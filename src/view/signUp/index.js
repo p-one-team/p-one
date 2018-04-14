@@ -1,6 +1,5 @@
-import React from 'react'
 import { connect } from 'react-redux'
-import signUpComponent from './signUp-component.js'
+import signUpComponentWrapper from './signUp-component.js'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -23,6 +22,6 @@ const mapStateToProps = (state) => {
 const signUp = connect(
     mapStateToProps,
     mapDispatchToProps
-)(signUpComponent)
+)(signUpComponentWrapper)
 
 export default signUp;
