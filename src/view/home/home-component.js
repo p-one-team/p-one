@@ -55,7 +55,10 @@ class HomeComponent extends Component {
             console.log(error, value);
         });
     }
-    handleClick = () => {
+    goSign() {
+        this.props.history.push('/miao')
+    }
+    handleClick() {
         this.customFocusInst.focus();
     }
     render() {
@@ -117,6 +120,7 @@ class HomeComponent extends Component {
                     >验证码</InputItem>
                     <WhiteSpace />
                     <Button type="primary" inline size="large" onClick={this.submit}>登录</Button>
+                    <Button type="primary" inline size="large" onClick={this.goSign}>注册</Button>
                     <Flex>
                         <Flex.Item>
                             <AgreeItem data-seed="logId" onChange={e => console.log('checkbox', e)}>

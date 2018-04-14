@@ -20,32 +20,6 @@ class signUpComponent extends Component {
 
     }
 
-    loginBox = (getFieldProps) => (
-        <div styleName="loginBox">
-            <InputItem
-                {...getFieldProps('phoneNumber')}
-                type="phone"
-                placeholder="1xx xxxx xxxx"
-                clear
-            >手机号码</InputItem>
-            <InputItem
-                {...getFieldProps('verificationCode')}
-                maxLength={4}
-                type={'digit'}
-                clear
-            >验证码</InputItem>
-            <InputItem
-                {...getFieldProps('password')}
-                type={'password'}
-                clear
-            >密码</InputItem>
-
-            <WhiteSpace />
-            <Button type="primary" inline size="large" onClick={this.submit}>登录</Button>
-        </div>
-    );
-
-
     componentDidMount() {
         this.props.initData()
     }
@@ -68,29 +42,6 @@ class signUpComponent extends Component {
         return (
             <div styleName="wrap">
                 <p styleName="title">GT</p>
-                <loginBox />
-                <div styleName="loginBox">
-                    <InputItem
-                        {...getFieldProps('phoneNumber')}
-                        type="phone"
-                        placeholder="1xx xxxx xxxx"
-                        clear
-                    >手机号码</InputItem>
-                    <InputItem
-                        {...getFieldProps('verificationCode')}
-                        maxLength={4}
-                        type={'digit'}
-                        clear
-                    >验证码</InputItem>
-                    <InputItem
-                        {...getFieldProps('password')}
-                        type={'password'}
-                        clear
-                    >密码</InputItem>
-
-                    <WhiteSpace />
-                    <Button type="primary" inline size="large" onClick={this.submit}>登录</Button>
-                </div>
 
                 <div styleName="signUp">
                     <InputItem
@@ -105,7 +56,7 @@ class signUpComponent extends Component {
                         clear
                     >密码</InputItem>
                     <InputItem
-                        {...getFieldProps('password')}
+                        {...getFieldProps('confirmpassword')}
                         type={'password'}
                         clear
                     >密码</InputItem>
@@ -116,11 +67,11 @@ class signUpComponent extends Component {
                         clear
                     >验证码</InputItem>
                     <WhiteSpace />
-                    <Button type="primary" inline size="large" onClick={this.submit}>登录</Button>
+                    <Button type="primary" inline size="large" onClick={this.submit}>注册</Button>
                     <Flex>
                         <Flex.Item>
                             <AgreeItem data-seed="logId" onChange={e => console.log('checkbox', e)}>
-                                Agree <a onClick={(e) => { e.preventDefault(); alert('agree it'); }}>agreement</a>
+                                Agree <a onClick={(e) => { e.preventDefault(); alert('agree it'); }}>同意协议</a>
                             </AgreeItem>
                         </Flex.Item>
                     </Flex>
