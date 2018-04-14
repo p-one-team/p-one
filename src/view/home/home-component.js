@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './home.less'
+// import classnames from "classnames"
 
-import { InputItem, Button, WhiteSpace } from 'antd-mobile';
+import { InputItem } from 'antd-mobile';
 import { createForm } from 'rc-form';
 
 
@@ -15,7 +16,8 @@ class HomeComponent extends Component {
 
         this.state = {
             phoneNumber: '',
-            verificationCode: ''
+            verificationCode: '',
+            mode:'password'
         }
 
     }
@@ -37,6 +39,11 @@ class HomeComponent extends Component {
     handleClick() {
         this.customFocusInst.focus();
     }
+
+    changeMode = () => {
+        this.state.mode=="password" ? this.setState({mode : "code"}) : this.setState({mode : "password"})
+    }
+
     render() {
         // const {} = this.props
         const { getFieldProps } = this.props.form;
@@ -45,33 +52,45 @@ class HomeComponent extends Component {
         console.log(this.props)
         return (
             <div styleName="wrap">
-                <p styleName="title">GT</p>
-                <div styleName="loginBox">
+                <p styleName="logo">GT</p>
+                <div styleName="main">
                     <InputItem
                         {...getFieldProps('phoneNumber')}
                         type="phone"
-                        placeholder="1xx xxxx xxxx"
+                        placeholder="请输入您的手机号"
                         clear
-                    >手机号码</InputItem>
-                    <InputItem
-                        {...getFieldProps('verificationCode')}
-                        maxLength={4}
-                        type={'digit'}
-                        clear
-                    >验证码</InputItem>
-                    <InputItem
-                        {...getFieldProps('password')}
-                        type={'password'}
-                        clear
-                    >密码</InputItem>
-
-                    <WhiteSpace />
-                    <Button type="primary" inline size="large" onClick={this.submit}>登录</Button>
-                    <Button type="primary" inline size="large" onClick={this.goSign}>注册</Button>
+                    ></InputItem>
+                    {
+                        this.state.mode=='password'
+                        ?
+                        <InputItem
+                            {...getFieldProps('password')}
+                            type={'password'}
+                            placeholder="请输入您的密码"
+                            clear
+                        ></InputItem>
+                        :
+                        <InputItem
+                            {...getFieldProps('verificationCode')}
+                            maxLength={4}
+                            type={'digit'}
+                            placeholder="请输入您的验证码"
+                            clear
+                        ></InputItem>
+                        
+                    }
                 </div>
 
-
-
+                { this.state.mode=="password" ? "" : <div styleName="getcode">获取验证码</div>}
+                
+                <div styleName="login-btn" onClick={this.submit}>登录</div>
+                <div styleName="bottom">
+                    { this.state.mode=="password"
+                        ? <span onClick={this.changeMode}>验证码登录</span>
+                        : <span onClick={this.changeMode}>密码登录</span>
+                    }
+                    <span styleName="register" onClick={this.goSign}>立即注册</span>
+                </div>
             </div>
         )
     }
