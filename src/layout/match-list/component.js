@@ -253,7 +253,7 @@ class MatchList extends React.Component {
             }
 
             return (
-                <div key={item.index} className={style.oddItem}>
+                <div key={item.index} className={style.oddItem} onClick={()=>this.props.goPage('match-detail')}>
                     <div className={style.oddValue}>
                         <p>{item.Odds.teamL}</p>
                         <p>赔率</p>

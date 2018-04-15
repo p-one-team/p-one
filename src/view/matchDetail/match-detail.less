@@ -13,7 +13,7 @@
             align-items: center;
             height: 12vw;
             width: 100%;
-            background-color: #0f171d;
+            background-color: #2c2c32;
             color: #fff;
         }
         .am-icon {
@@ -25,21 +25,113 @@
         .bet-info{
             width: 100%;
         }
-    }
-    .detailCard {
-        background-color: #0f171d;
-        color: #fff;
-        display: flex;
-        .teamL,.teamR,.des{
-            flex: 1;
+
+        .userPart{
+
+            .am-accordion-header{
+                height: 60px!important;
+            }
+
+            .userImg{
+                width: 100%;
+                display: flex;
+                align-items: center;
+            
+                img{
+                    margin: 0 10px 0 30px;
+                    width: 50px;
+                    height: 50px;
+                }
+            
+                span{
+                    font-weight: bold;
+                    color: #2c2c32;
+                    font-size: 12px;
+                    margin-left: 10px;
+                }
+            
+                label{
+                    display: inline-block;
+                    height: 30px;
+                    line-height: 30px;
+                    padding: 0 5px;
+                    margin-left: 20px;
+                    background: #2c2c32;
+                    color: #fff;
+                    font-size: 10px;
+                }
+            }
+            
+            .userImgList{
+                display: flex;
+
+                img{
+                    height: 60px;
+                    margin-right: 10px;
+                }
+
+                img:first-child{
+                    margin-left: 80px;
+                }
+            }
         }
     }
+    .detailCard {
+        background-color: #2c2c32;
+        display: flex;
+        text-align: center;
+        padding: 20px 0;
+
+        .teamL,.teamR{
+            width: 210px;
+
+            img{
+                width: 80px;
+                height: 80px;
+            }
+
+            p{
+                font-size: 24px;
+                color: #fff
+            }
+        }
+
+        .des{
+            flex: 1;
+
+            p:first-child,p:last-child{
+                color: #989898;
+                font-size: 15px;
+            }
+
+            p:nth-child(2){
+                margin: 5px auto;
+                width: 120px;
+                height: 42px;
+                line-height: 42px;
+                border-radius: 21px;
+                background: #989898;
+                color: #fff;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .sub-tips{
+        font-size: 20px;
+        color: #2c2c32;
+        margin: 50px 0 20px 20px;
+    }
+
     .rateBox{
         display: flex;
         margin-bottom: 50px;
         div{
             flex: 1;
-            display: flex;
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: #2c2c32;
         }
 
     }
@@ -54,3 +146,5 @@
         width: 100%;
       }
 }
+
+
