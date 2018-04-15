@@ -15,51 +15,121 @@ function MyBody(props) {
 
 const data = [
     {
-        img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
-        title: 'Meet hotel',
-        des: '不是所有的兼职汪都需要风吹日晒',
+        team1: {
+            name: "team1 name",
+            icon: "https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png"
+        },
+        team2: {
+            name: "team2 name",
+            icon: "https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png"
+        },
+        gameName: "Meet hotel",
+        gameId: "A123123123",
+        gameStatus: "03", //01未开始可预测 02进行中 03可预测
+        gameTime: "2小时前",
+        detailList: [
+            { 
+                index: 1,
+                title: '猜输赢',
+                Odds: { 
+                    teamL: 0.25,
+                    teamR: 3.65 
+                }, 
+                status: "02", //01未开始可预测 02进行中 03已结清
+                winner: "",
+                statusDesc: "进行中"
+            }, 
+            { 
+                index: 2,
+                title: '10杀',
+                Odds: { 
+                    teamL: 0.25,
+                    teamR: 3.65 
+                }, 
+                status: "03", //01未开始可预测 02进行中 03已结清
+                winner: "1",
+                statusDesc: "已结清"
+            }, 
+        ]
     },
     {
-        img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
-        title: 'McDonald\'s invites you',
-        des: '不是所有的兼职汪都需要风吹日晒',
+        team1: {
+            name: "team1 name",
+            icon: "https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png"
+        },
+        team2: {
+            name: "team2 name",
+            icon: "https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png"
+        },
+        gameName: 'McDonald\'s invites you',
+        gameId: "B123123123",
+        gameStatus: "02", //01未开始可预测 02进行中 03可预测
+        gameTime: "47分钟前",
+        detailList: [
+            { 
+                index: 1,
+                title: '猜输赢',
+                Odds: { 
+                    teamL: 0.25,
+                    teamR: 3.65 
+                }, 
+                status: "01", //01未开始可预测 02进行中 03已结清
+                winner: "",
+                statusDesc: "可预测"
+            }, 
+            { 
+                index: 2,
+                title: '10杀',
+                Odds: { 
+                    teamL: 0.25,
+                    teamR: 3.65 
+                }, 
+                status: "02", //01未开始可预测 02进行中 03已结清
+                winner: "",
+                statusDesc: "进行中"
+            }, 
+        ]
     },
     {
-        img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
-        title: 'Eat the week',
-        des: '不是所有的兼职汪都需要风吹日晒',
+        team1: {
+            name: "team1 name",
+            icon: "https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png"
+        },
+        team2: {
+            name: "team2 name",
+            icon: "https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png"
+        },
+        gameName: 'Eat the week',
+        gameId: "C123123123",
+        gameStatus: "01", //01未开始可预测 02进行中 03可预测
+        gameTime: "3小时后",
+        detailList: [
+            { 
+                index: 1,
+                title: '猜输赢',
+                Odds: { 
+                    teamL: 0.25,
+                    teamR: 3.65 
+                }, 
+                status: "01", //01未开始可预测 02进行中 03已结清
+                winner: "",
+                statusDesc: "可预测"
+            }, 
+            { 
+                index: 2,
+                title: '10杀',
+                Odds: { 
+                    teamL: 0.25,
+                    teamR: 3.65 
+                }, 
+                status: "03", //01未开始可预测 02进行中 03已结清
+                winner: "2",
+                statusDesc: "已结清"
+            }, 
+        ]
     },
 ];
 
-// const data1 = [
-//     {
-//         teamL: { name: 'col', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
-//         teamR: { name: 'liquid', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
-//         title: 'Meet hotel',
-//         time: '2小时前',
-//         matchID: 'A11123454',
-//         child_OPTS: [{ title: '猜输赢', Odds: { teamL: 0.25, teamR: 3.65 }, overdue: false, winner: null }, { title: '10杀', Odds: { teamL: 0.95, teamR: 3.65 }, overdue: false, winner: null }],
-//         overdue: false
-//     },
-//     {
-//         teamL: { name: 'LGD', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
-//         teamR: { name: 'NB', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
-//         title: 'Meet hotel',
-//         time: '1小时前',
-//         matchID: 'A1112r454',
-//         child_OPTS: [{ title: '猜输赢', Odds: { teamL: 0.25, teamR: 3.65 }, overdue: true, winner: 'teamL' }, { title: '10杀', Odds: { teamL: 0.95, teamR: 3.65 }, overdue: false, winner: null }],
-//         overdue: false
-//     },
-//     {
-//         teamL: { name: 'WINGS', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
-//         teamR: { name: 'VG', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
-//         title: 'Meet hotel',
-//         time: '1小时前',
-//         matchID: 'A1112r454',
-//         child_OPTS: [{ title: '猜输赢', Odds: { teamL: 0.25, teamR: 3.65 }, overdue: false, winner: 'teamL' }, { title: '10杀', Odds: { teamL: 0.95, teamR: 3.65 }, overdue: true, winner: 'teamR' }],
-//         overdue: false
-//     },
-// ];
 const NUM_ROWS = 20;
 let pageIndex = 0;
 
@@ -86,7 +156,7 @@ class MatchList extends React.Component {
             rowHasChanged: (row1, row2) => row1 !== row2,
         });
 
-        console.log(style)
+        // console.log(style)
 
         this.state = {
             dataSource,
@@ -136,75 +206,169 @@ class MatchList extends React.Component {
         }, 1000);
     }
 
-    render() {
-        const separator = (sectionID, rowID) => (
-            <div
-                key={`${sectionID}-${rowID}`}
-                style={{
-                    backgroundColor: '#F5F5F9',
-                    height: 8,
-                    borderTop: '1px solid #ECECED',
-                    borderBottom: '1px solid #ECECED',
-                }}
-            />
+    buildList(list){
+        let listItem;
+        listItem = list.map((item) => {
 
-        );
+            let titleStyle;
+            let statusColor;
+            let winLogoL;
+            let winLogoR;
+
+            switch(item.status){
+                case "01":
+                    titleStyle = style.blackTitle;
+                    statusColor = style.blackWord;
+                    break;
+                case "02":
+                    titleStyle = style.orangeTitle;
+                    statusColor = style.blackWord;
+                    break;
+                case "03":
+                    titleStyle = style.greyTitle;
+                    statusColor = style.greyWord;
+                    break;
+                default:
+                    titleStyle = style.greyTitle;
+                    statusColor = style.greyWord;
+                    break;
+            }
+
+            if(item.status=="03"){
+
+                if(item.winner=="1"){
+                    winLogoL = style.winLogo1;
+                    winLogoR = style.hide;
+                }else if(item.winner=="2"){
+                    winLogoL = style.hide;                    
+                    winLogoR = style.winLogo2;
+                }else{
+                    winLogoL = style.hide;
+                    winLogoR = style.hide;
+                }
+
+            }else{
+                winLogoL = style.hide;
+                winLogoR = style.hide;
+            }
+
+            return (
+                <div key={item.index} className={style.oddItem}>
+                    <div className={style.oddValue}>
+                        <p>{item.Odds.teamL}</p>
+                        <p>赔率</p>
+                        <div className={winLogoL}>胜</div>
+                    </div>
+                    <div className={style.oddDesc}>
+                        <div className={titleStyle}>{item.title}</div>
+                        <p className={statusColor}>{item.statusDesc}</p>
+                    </div>
+                    <div className={style.oddValue}>
+                        <p>{item.Odds.teamR}</p>
+                        <p>赔率</p>
+                        <div className={winLogoR}>胜</div>
+                    </div>
+                </div>
+            )
+        })
+        return (<div>{listItem}</div>)
+    }
+
+    render() {
+        // const separator = (sectionID, rowID) => (
+        //     <div
+        //         key={`${sectionID}-${rowID}`}
+        //         style={{
+        //             backgroundColor: '#F5F5F9',
+        //             height: 8,
+        //             borderTop: '1px solid #ECECED',
+        //             borderBottom: '1px solid #ECECED',
+        //         }}
+        //     />
+
+        // );
         let index = data.length - 1;
         const row_head = (rowData, sectionID, rowID) => {
             if (index < 0) {
                 index = data.length - 1;
             }
             const obj = data[index--];
-            console.log(obj)
+            // console.log(obj)
+
+            let statusDes;
+            let statusColor;
+            switch(obj.gameStatus){
+                case "01": 
+                    statusDes = "可预测"
+                    statusColor = "black"
+                    break;
+                case "02": 
+                    statusDes = "进行中"
+                    statusColor = "orange"
+                    break;
+                case "03": 
+                    statusDes = "可预测"
+                    statusColor = "orange"
+                    break;
+                default:
+                    statusDes = "可预测"
+                    statusColor = "black"
+                    break;
+            }
 
             return (
                 <div key={rowID} className={style.matchItem}>
 
                     <div className={style.content}>
 
-                        <div stylename="itemL">
-                            <img style={{ height: '64px', marginRight: '15px' }} src={obj.img} alt="" />
-                            <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{obj.des}</div>
-                            <div><span style={{ fontSize: '30px', color: '#FF6E27' }}>{rowID}</span>¥</div>
+                        <div className={style.itemL+" "+style.itemImg}>
+                            <img src={obj.team1.icon} alt="" />
+                            <div>{obj.team1.name}</div>
                         </div>
                         <div className={style.descript}>
-                            <p>{obj.title}</p>
-                            <p></p>
-                            <p></p>
+                            <p>{obj.gameName}</p>
+                            <p className={statusColor=="black"?style.blackBg:style.orangeBg}>{statusDes}</p>
+                            <p className={statusColor=="black"?style.blackWord:style.greyWord}>{obj.gameTime}</p>
                         </div>
-                        <div stylename="itemR">
-                            <img style={{ height: '64px', marginRight: '15px' }} src={obj.img} alt="" />
-                            <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{obj.des}</div>
-                            <div><span style={{ fontSize: '30px', color: '#FF6E27' }}>{rowID}</span>¥</div>
+                        <div className={style.itemR+" "+style.itemImg}>
+                            <img src={obj.team2.icon} alt="" />
+                            <div>{obj.team2.name}</div>
                         </div>
                     </div>
                 </div>
             );
         };
-        const row = (rowData, sectionID, rowID) => (
-            <div key={`${sectionID}-${rowID}`} style={{ marginTop: 10, marginBottom: 10 }}>
-                <Accordion accordion openAnimation={{}} className="my-accordion" onChange={this.onChange}>
-                    <Accordion.Panel header={row_head()}>
-                        <List className="my-list">
-                            <List.Item>content 1</List.Item>
-                            <List.Item>content 2</List.Item>
-                            <List.Item>content 3</List.Item>
-                        </List>
-                    </Accordion.Panel>
-                </Accordion>
-            </div>
-        );
-        console.log(this.state.dataSource)
+        const row = (rowData, sectionID, rowID) => {
+
+            if (index < 0) {
+                index = data.length - 1;
+            }
+            const obj = data[index--];
+            
+            
+            return (
+                <div key={`${sectionID}-${rowID}`} className={style.listItem}>
+                    <Accordion accordion openAnimation={{}} className="my-accordion" onChange={this.onChange}>
+                        <Accordion.Panel header={row_head()}>
+                            <List className="my-list">
+                            {this.buildList(obj.detailList)}
+                            </List>
+                        </Accordion.Panel>
+                    </Accordion>
+                </div>
+            )
+        };
+        // console.log(this.state.dataSource)
         return (
             <ListView
                 ref={el => this.lv = el}
                 dataSource={this.state.dataSource}
-                renderHeader={() => <span>header</span>}
+                // renderHeader={() => <span>header</span>}
                 renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
                     {this.state.isLoading ? 'Loading...' : 'Loaded'}
                 </div>)}
                 renderRow={row}
-                renderSeparator={separator}
+                // renderSeparator={separator}
                 renderBodyComponent={() => <MyBody />}
                 className="am-list aabbste"
                 pageSize={4}

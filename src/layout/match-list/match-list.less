@@ -12,11 +12,164 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .itemImg{
+        width: 180px;
+        text-align: center;
+
+        img{
+            width: 50px;
+            height: 50px;
+        }
+
+        div{
+            font-weight: bold;
+        }
+    }
+    .descript{
+        flex: 1;
+        text-align: center;
+
+        p:first-child{
+            font-size: 12px;
+            color: #2c2c32;
+        }
+
+        p:nth-child(2){
+            width: 120px;
+            height: 42px;
+            margin: 0 auto;
+            line-height: 42px;
+            background: #2c2c32;
+            color: #fff;
+            text-align: center;
+            border-radius: 21px;
+            font-size: 10px;
+        }
+
+        .blackBg{
+            background: #2c2c32!important;
+        }
+        .orangeBg{
+            background: orange!important;
+        }
+
+        .blackWord{
+            font-size: 12px;
+            color: #2c2c32!important;
+        }
+        .greyWord{
+            font-size: 12px;
+            color: #cacaca!important;
+        }
+
+    }
+}
+
+.oddItem{
+    position: relative;
+    display: flex;
+    background: #f1f1f1;
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+    padding: 20px 0;
+
+    .oddValue{
+        width: 180px;
+        font-size: 12px;
+        color: #989898;
+    }
+
+    .oddDesc{
+        flex: 1;
+
+        .blackTitle{
+            margin: 0 auto;
+            width: 150px;
+            height: 42px;
+            font-size: 10px;
+            line-height: 42px;
+            background: #2c2c32;
+            color: #fff;
+            text-align: center;
+            border-radius: 21px;
+            padding: 0 10px;
+        }
+
+        .orangeTitle{
+            margin: 0 auto;
+            width: 150px;
+            height: 42px;
+            font-size: 10px;
+            line-height: 42px;
+            background: orange;
+            color: #fff;
+            text-align: center;
+            border-radius: 21px;
+            padding: 0 10px;
+        }
+
+        .greyTitle{
+            margin: 0 auto;
+            width: 150px;
+            height: 42px;
+            font-size: 10px;
+            line-height: 42px;
+            background: #dddddd;
+            color: #2c2c32;
+            text-align: center;
+            border-radius: 21px;
+            padding: 0 10px;
+        }
+
+        p{
+            margin-top: 5px;
+        }
+
+        .blackWord{
+            font-size: 12px;
+            color: #2c2c32!important;
+        }
+        .greyWord{
+            font-size: 12px;
+            color: #cacaca!important;
+        }
+    }
+
+    .winLogo1{
+        position: absolute;
+        left: 20px;
+        top: 0;
+        padding: 5px 3px;
+        background: green;
+        font-size: 10px;
+        color: #fff;
+    }
+    .winLogo2{
+        position: absolute;
+        right: 20px;
+        top: 0;
+        padding: 5px 3px;
+        background: green;
+        font-size: 10px;
+        color: #fff;
+    }
+.show{
+    display: block!important;
+}
+    .hide{
+        display: none!important;
+    }
+}
+
+.oddItem:last-child{
+    border-bottom: none;
 }
 
 
     :global{
         .am-accordion-header{
-            height: 200px !important;
+            padding: 20px 0!important;
+            height: 120px!important;
         }
     }
