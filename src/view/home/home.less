@@ -1,53 +1,74 @@
 .wrap {
-    box-sizing: border-box;
-    padding: 20px;
-    height: 100%;
     position: relative;
-    display: flex;
-
-}
-
-.tip {
-    font-size: 24px;
-    color: #666;
-    text-align: center;
-}
-
-.hello {
-    margin: 60px auto 80px;
-    padding: 6px 0;
-    text-align: center;
-    border-bottom: solid 1px #0e90d2;
-}
-
-.button {
-    width: 400px;
-    margin: 40px auto;
-    line-height: 2.3;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    background: #0e90d2;
-}
-
-.loginBox {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -50%;
-    margin-top: -50%;
-    border: 1px solid red;
-    height: 50%;
     width: 100%;
-    box-sizing: border-box;
-      :global(.am-list-item) {
-        color: green;
-      }
-  }
-
-.a {
-    height: 50px;
+    height: 100%;
+    background: rgb(44,44,50);
 }
-.b {
-    height: 50px;
+
+.logo{
+    color: #fff;
+    font-size: 60px;
+    text-align: center;
+    width: 100%;
+    padding-top: 300px;
+    font-style: italic;
+}
+
+.main {
+    margin: 260px auto 30px;
+    width: 90%;
+    background: #fff;
+    border-radius: 10px;
+    padding: 0 30px;
+    box-sizing: border-box;
+
+
+    :global{
+        .am-list-item{
+            height: 80px;
+            padding-left: 0;
+        }
+
+        .am-list-item:last-child{
+            border-bottom: none;
+        }
+    }
+}
+
+.getcode{
+    color: #fff;
+    font-size: 15px;
+    position: absolute;
+    right: 5%;
+}
+
+
+.login-btn{
+    margin: 120px auto 0;
+    width: 90%;
+    height: 80px;
+    text-align: center;
+    color: #fff;
+    line-height: 80px;
+    background: transparent;
+    border-radius: 10px;
+    border: 1px solid #fff;
+}
+
+.bottom{
+    margin: 20px auto;
+    width: 90%;
+    display: flex;
+    color: #fff;
+    font-size: 15px;
+
+    span{
+        display: inline-block;
+        line-height: 30px;
+    }
+
+    span:first-child{
+        flex: 1;
+    }
+
 }
