@@ -12,6 +12,8 @@ import signUp from '../view/signUp'
 import List from '../view/list'
 import Miao from '../view/miao'
 import Match from '../view/match'
+import matchDetail from '../view/matchDetail'
+import matchList from '../layout/match-list'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -41,6 +43,12 @@ const routes_config = [
 	}, {
 		path: '/match',
 		component: Match
+	}, {
+		path: '/matchDetail',
+		component: matchDetail
+	}, {
+		path: '/matchList',
+		component: matchList
 	}
 ]
 

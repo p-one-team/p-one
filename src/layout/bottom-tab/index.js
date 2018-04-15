@@ -8,6 +8,7 @@ const mapDispatchToProps = (dispatch) => {
         changePage(pageText) {
             dispatch(changePage(pageText))
         }
+
     }
 }
 

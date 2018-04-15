@@ -86,8 +86,6 @@ class MatchList extends React.Component {
             rowHasChanged: (row1, row2) => row1 !== row2,
         });
 
-        console.log(style)
-
         this.state = {
             dataSource,
             isLoading: true,
@@ -136,6 +134,7 @@ class MatchList extends React.Component {
         }, 1000);
     }
 
+
     render() {
         const separator = (sectionID, rowID) => (
             <div
@@ -155,7 +154,6 @@ class MatchList extends React.Component {
                 index = data.length - 1;
             }
             const obj = data[index--];
-            console.log(obj)
 
             return (
                 <div key={rowID} className={style.matchItem}>
@@ -186,7 +184,7 @@ class MatchList extends React.Component {
                 <Accordion accordion openAnimation={{}} className="my-accordion" onChange={this.onChange}>
                     <Accordion.Panel header={row_head()}>
                         <List className="my-list">
-                            <List.Item>content 1</List.Item>
+                            <List.Item onClick={() => this.props.goPage('match-detail')}>content 1</List.Item>
                             <List.Item>content 2</List.Item>
                             <List.Item>content 3</List.Item>
                         </List>
@@ -194,7 +192,6 @@ class MatchList extends React.Component {
                 </Accordion>
             </div>
         );
-        console.log(this.state.dataSource)
         return (
             <ListView
                 ref={el => this.lv = el}

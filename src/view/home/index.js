@@ -4,6 +4,7 @@ import Dialog from 'mo-dialog'
 import HomeComponent from './home-component.js'
 
 const mapDispatchToProps = (dispatch, props) => {
+	console.log(props)
 	return {
 		initData() {
 			console.log('init index')
@@ -15,15 +16,15 @@ const mapDispatchToProps = (dispatch, props) => {
 			props.history.push('/miao')
 		},
 		openDialog() {
-			Dialog.alert(<p>Hello from the <b style={{color:"#f496ce"}}>Moon~</b></p>) 
+			Dialog.alert(<p>Hello from the <b style={{ color: "#f496ce" }}>Moon~</b></p>)
 		}
-	}	
+	}
 }
-	
+
 const mapStateToProps = (state) => {
-    return {
+	return {
 		...state.HomeReducer
-    }
+	}
 }
 
 

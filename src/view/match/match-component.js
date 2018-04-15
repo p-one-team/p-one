@@ -52,7 +52,7 @@ class MatchComponent extends Component {
         return (
             <div styleName="wrap">
                 {this.GridExample()}
-                <BottomTab />
+                <BottomTab goMatchDetail={this.props.goMatchDetail} />
 
             </div>
         )
