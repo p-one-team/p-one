@@ -1,5 +1,8 @@
 import React from 'react'
-import { ListView } from 'antd-mobile';
+import { ListView, Accordion, List } from 'antd-mobile';
+import CSSModules from 'react-css-modules'
+import style from './match-list.less'
+
 
 function MyBody(props) {
     return (
@@ -28,6 +31,35 @@ const data = [
     },
 ];
 
+// const data1 = [
+//     {
+//         teamL: { name: 'col', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
+//         teamR: { name: 'liquid', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
+//         title: 'Meet hotel',
+//         time: '2小时前',
+//         matchID: 'A11123454',
+//         child_OPTS: [{ title: '猜输赢', Odds: { teamL: 0.25, teamR: 3.65 }, overdue: false, winner: null }, { title: '10杀', Odds: { teamL: 0.95, teamR: 3.65 }, overdue: false, winner: null }],
+//         overdue: false
+//     },
+//     {
+//         teamL: { name: 'LGD', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
+//         teamR: { name: 'NB', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
+//         title: 'Meet hotel',
+//         time: '1小时前',
+//         matchID: 'A1112r454',
+//         child_OPTS: [{ title: '猜输赢', Odds: { teamL: 0.25, teamR: 3.65 }, overdue: true, winner: 'teamL' }, { title: '10杀', Odds: { teamL: 0.95, teamR: 3.65 }, overdue: false, winner: null }],
+//         overdue: false
+//     },
+//     {
+//         teamL: { name: 'WINGS', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
+//         teamR: { name: 'VG', icon: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png' },
+//         title: 'Meet hotel',
+//         time: '1小时前',
+//         matchID: 'A1112r454',
+//         child_OPTS: [{ title: '猜输赢', Odds: { teamL: 0.25, teamR: 3.65 }, overdue: false, winner: 'teamL' }, { title: '10杀', Odds: { teamL: 0.95, teamR: 3.65 }, overdue: true, winner: 'teamR' }],
+//         overdue: false
+//     },
+// ];
 const NUM_ROWS = 20;
 let pageIndex = 0;
 
@@ -46,12 +78,15 @@ function genData(pIndex = 0) {
 }
 
 
+@CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class MatchList extends React.Component {
     constructor(props) {
         super(props);
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1 !== row2,
         });
+
+        console.log(style)
 
         this.state = {
             dataSource,
@@ -112,26 +147,33 @@ class MatchList extends React.Component {
                     borderBottom: '1px solid #ECECED',
                 }}
             />
+
         );
         let index = data.length - 1;
-        const row = (rowData, sectionID, rowID) => {
+        const row_head = (rowData, sectionID, rowID) => {
             if (index < 0) {
                 index = data.length - 1;
             }
             const obj = data[index--];
+            console.log(obj)
+
             return (
-                <div key={rowID} style={{ padding: '0 15px' }}>
-                    <div
-                        style={{
-                            lineHeight: '50px',
-                            color: '#888',
-                            fontSize: 18,
-                            borderBottom: '1px solid #F6F6F6',
-                        }}
-                    >{obj.title}</div>
-                    <div style={{ display: 'flex', padding: '15px 0' }}>
-                        <img style={{ height: '64px', marginRight: '15px' }} src={obj.img} alt="" />
-                        <div style={{ lineHeight: 1 }}>
+                <div key={rowID} className={style.matchItem}>
+
+                    <div className={style.content}>
+
+                        <div stylename="itemL">
+                            <img style={{ height: '64px', marginRight: '15px' }} src={obj.img} alt="" />
+                            <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{obj.des}</div>
+                            <div><span style={{ fontSize: '30px', color: '#FF6E27' }}>{rowID}</span>¥</div>
+                        </div>
+                        <div className={style.descript}>
+                            <p>{obj.title}</p>
+                            <p></p>
+                            <p></p>
+                        </div>
+                        <div stylename="itemR">
+                            <img style={{ height: '64px', marginRight: '15px' }} src={obj.img} alt="" />
                             <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{obj.des}</div>
                             <div><span style={{ fontSize: '30px', color: '#FF6E27' }}>{rowID}</span>¥</div>
                         </div>
@@ -139,6 +181,20 @@ class MatchList extends React.Component {
                 </div>
             );
         };
+        const row = (rowData, sectionID, rowID) => (
+            <div key={`${sectionID}-${rowID}`} style={{ marginTop: 10, marginBottom: 10 }}>
+                <Accordion accordion openAnimation={{}} className="my-accordion" onChange={this.onChange}>
+                    <Accordion.Panel header={row_head()}>
+                        <List className="my-list">
+                            <List.Item>content 1</List.Item>
+                            <List.Item>content 2</List.Item>
+                            <List.Item>content 3</List.Item>
+                        </List>
+                    </Accordion.Panel>
+                </Accordion>
+            </div>
+        );
+        console.log(this.state.dataSource)
         return (
             <ListView
                 ref={el => this.lv = el}
@@ -153,9 +209,9 @@ class MatchList extends React.Component {
                 className="am-list aabbste"
                 pageSize={4}
                 style={{
-                    height: document.documentElement.clientHeight * 3 / 4,
+                    height: document.documentElement.clientHeight - 75 - 80,
                     overflow: 'auto',
-                    width:'100%'
+                    width: '100%'
                 }}
                 onScroll={() => { console.log('scroll'); }}
                 scrollRenderAheadDistance={500}
