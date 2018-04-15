@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './home.less'
+// import classNames from 'classnames'
 
 import { InputItem, Button, WhiteSpace } from 'antd-mobile';
 import { createForm } from 'rc-form';
@@ -29,6 +30,8 @@ class HomeComponent extends Component {
     submit = () => {
         this.props.form.validateFields((error, value) => {
             console.log(error, value);
+
+            this.props.history.push('/match')
         });
     }
     goSign = () => {
@@ -52,6 +55,7 @@ class HomeComponent extends Component {
                         type="phone"
                         placeholder="1xx xxxx xxxx"
                         clear
+                        prefixListCls='test'
                     >手机号码</InputItem>
                     <InputItem
                         {...getFieldProps('verificationCode')}

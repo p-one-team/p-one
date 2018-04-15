@@ -53,6 +53,7 @@
     "classnames": "^2.2.5",
     "es6-promise": "^4.1.1",
     "history": "^4.6.1",
+    "postcss-px2rem": "^0.3.0",
     "prop-types": "^15.5.10",
     "rc-form": "^2.2.0",
     "react": "^16.2.0",
