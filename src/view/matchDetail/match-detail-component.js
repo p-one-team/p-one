@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './match-detail.less'
 import { NavBar, Icon } from 'antd-mobile'
-import { Progress } from 'antd-mobile';
+// import { Progress } from 'antd-mobile';
 import { Tabs, WhiteSpace } from 'antd-mobile';
 import { StickyContainer, Sticky } from 'react-sticky';
 import { Accordion } from 'antd-mobile';
@@ -22,18 +22,22 @@ const tabs = [
 
 const data = {
     team1: {
-        name: "team1 name",
-        icon: "https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png"
+        name: "EHOME",
+        icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524217691703&di=8dc6d07e85bdbcbe504acafe523055fb&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F080a5890b0341879a1fff8cbca0bff826102cadb.jpg"
     },
     team2: {
-        name: "team2 name",
-        icon: "https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png"
+        name: "LDG",
+        icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524217774744&di=4c7adb6185187106c398ff5780d47bb6&imgtype=0&src=http%3A%2F%2Fupload.techweb.com.cn%2F2016%2F0115%2F1452822932280.png"
     },
     gameName: "Meet hotel",
     title: '猜输赢',
     Odds: {
         teamL: 0.25,
         teamR: 3.65
+    },
+    supportRate: {
+        teamL: 0.65,
+        teamR: 0.35
     },
     gameStatus: "03", //01未开始可预测 02进行中 03已结清
     winner: "",
@@ -42,7 +46,7 @@ const data = {
 
 const userInfo = {
     userName: "username",
-    userImg: "http://img4.duitang.com/uploads/item/201511/26/20151126112617_vUaQf.jpeg",
+    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
     userLevel: "LV 3",
     imgList: [
         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523812158978&di=6ebb2cffef7d33aa006e9125a0b37e2f&imgtype=0&src=http%3A%2F%2Fthumb.vpgame.com%2Fitem-7108.png",
@@ -56,7 +60,8 @@ const rowHead = () =>
         <span>1</span>
         <img src={userInfo.userImg} alt=""/>
         <span>{userInfo.userName}</span>
-        <label>{userInfo.userLevel}</label>
+        <div></div>
+        <div>{userInfo.userLevel}</div>
     </div>
     )
 
@@ -121,18 +126,30 @@ class matchDetail extends Component {
                 </div>
 
                 <div styleName="rateDes">
-                    <p styleName="sub-tips">谁将赢得此系列赛的胜利?</p>
+                    <p styleName="sub-tips"><span></span><label>谁将赢得此系列赛的胜利?</label></p>
+                    <div styleName="rateLine1"><div></div></div>
                     <div styleName="rateBox">
-                        <div>赔率</div>
-                        <div>0.28</div>
-                        <div>3.26</div>
-                        <div>赔率</div>
+                        <span>{data.team1.name}</span>
+                        <b>{data.Odds.teamL}</b>
+                        <label>赔率</label>
+                        <b>{data.Odds.teamR}</b>
+                        <span>{data.team2.name}</span>
                     </div>
+                    <div styleName="rateLine2"><div></div></div>
                     <div styleName="show-info">
-                        <div aria-hidden="true">40%</div>
-                        <div styleName="progress"><Progress percent={50} position="normal" /></div>
-                        <div aria-hidden="true">50%</div>
+                        <span>{Number(data.supportRate.teamL)*100}%</span>
+                        <label>支持率</label>
+                        {/* <Progress percent={Number(data.supportRate.teamL)*100} position="normal" /> */}
+                        <span>{Number(data.supportRate.teamR)*100}%</span>
                     </div>
+                    <div styleName="progress">
+                        <span style={{width:'65%'}}></span>
+                        <label></label>
+                        <b></b>
+                        <label></label>
+                        <span style={{width:'35%'}}></span>
+                    </div>
+                    <div styleName="forecast">预测</div>
                 </div>
 
                 <div styleName="rankList">

@@ -92,7 +92,7 @@ const clearList = () => ({
 const fetchAddList = (type, page) => async dispatch => {
     dispatch(fetchStart())
     try {
-        const list = await _ut.fetch(`http://localhost:3003/${type}${page}`)
+        const list = await _ut.fetch(`http://192.168.1.166:3003/${type}${page}`)
         dispatch(addList(type, list))
     } catch(e) {
         dispatch(fetchError())

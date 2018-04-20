@@ -2,7 +2,8 @@
     box-sizing: border-box;
     height: 100%;
     position: relative;
-    background-color: #fff;
+    background-color: #f1f1f1;
+
     :global{
         .am-navbar {
             display: -webkit-box;
@@ -39,26 +40,34 @@
             
                 img{
                     margin: 0 10px 0 30px;
-                    width: 50px;
-                    height: 50px;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 30px;
                 }
             
                 span{
                     font-weight: bold;
                     color: #2c2c32;
-                    font-size: 12px;
-                    margin-left: 10px;
+                    font-size: 24px;
+                    margin-left: 20px;
+                }
+
+                div:nth-child(4){
+                    margin-left: 20px;
+                    width: 0; 
+                    height: 0; 
+                    border-top: 8px solid transparent; 
+                    border-right: 8px solid #2c2c32; 
+                    border-bottom: 8px solid transparent; 
                 }
             
-                label{
-                    display: inline-block;
+                div:nth-child(5){
                     height: 30px;
                     line-height: 30px;
                     padding: 0 5px;
-                    margin-left: 20px;
                     background: #2c2c32;
                     color: #fff;
-                    font-size: 10px;
+                    font-size: 18px;
                 }
             }
             
@@ -79,6 +88,7 @@
     .detailCard {
         background-color: #2c2c32;
         display: flex;
+        align-items: center;
         text-align: center;
         padding: 20px 0;
 
@@ -92,7 +102,8 @@
 
             p{
                 font-size: 24px;
-                color: #fff
+                color: #fff;
+                font-weight: bold;
             }
         }
 
@@ -101,7 +112,7 @@
 
             p:first-child,p:last-child{
                 color: #989898;
-                font-size: 15px;
+                font-size: 20px;
             }
 
             p:nth-child(2){
@@ -112,39 +123,160 @@
                 border-radius: 21px;
                 background: #989898;
                 color: #fff;
-                font-size: 12px;
+                font-size: 18px;
             }
         }
     }
 
-    .sub-tips{
-        font-size: 20px;
-        color: #2c2c32;
-        margin: 50px 0 20px 20px;
-    }
+    .rateDes{
+        background: #fff;
+        margin-top: 15px;
+        padding-bottom: 30px;
 
-    .rateBox{
-        display: flex;
-        margin-bottom: 50px;
-        div{
-            flex: 1;
-            text-align: center;
-            font-size: 40px;
-            font-weight: bold;
-            color: #2c2c32;
+        .sub-tips{
+            display: flex;
+            padding: 20px 0;
+            border-bottom: 1px solid #f1f1f1;
+
+            span{
+                margin-left: 20px;
+                display: inline-block;
+                width: 5px;
+                background: #2c2c32;
+            }
+
+            label{
+                margin-left: 10px;
+                font-size: 24px;
+                color: #2c2c32;
+            }
+            
         }
 
+        .rateLine1{
+            width: 100%;
+            height: 30px;
+
+            div{
+                margin: 0 auto;
+                width: 1px;
+                height: 100%;
+                background: #f1f1f1;
+            }
+        }
+
+        .rateBox{
+            display: flex;
+            align-items: center;
+            color: #2c2c32;
+
+            span{
+                font-weight: bold;
+                font-size: 28px;
+                flex: 3;
+            }
+
+            span:first-child{
+                margin-left: 30px;
+                text-align: left;
+            }
+            span:last-child{
+                margin-right: 30px;
+                text-align: right;
+            }
+
+            b{
+                font-size: 40px;
+                flex: 2;
+                text-align: center;
+            }
+
+            label{
+                font-size: 20px;
+                flex: 1;
+                text-align: center;
+            }
+
+        }
+
+        .rateLine2{
+            width: 100%;
+            height: 50px;
+
+            div{
+                margin: 0 auto;
+                width: 1px;
+                height: 100%;
+                background: #f1f1f1;
+            }
+        }
+
+        .show-info{
+            width: 100%;
+            display: flex;
+            padding: 0 30px;
+            box-sizing: border-box;
+            margin-top: 5px;
+
+            span{
+                font-size: 30px;
+                font-weight: bold;
+                color: rgb(70,88,110);
+            }
+
+            label {
+                flex: 1;
+                text-align: center;
+                color: #2c2c32;
+                font-size: 20px;
+            }
+        }
+
+        .progress{
+            width: 100%;
+            display: flex;
+            padding: 0 30px;
+            box-sizing: border-box;
+            margin-top: 5px;
+
+            span{
+                height: 15px;
+                background: rgb(70,88,110);
+            }
+
+            label:nth-child(2){
+                width: 0; 
+                height: 0; 
+                border-top: 15px solid rgb(70,88,110);
+                border-right: 15px solid transparent; 
+            }
+
+            label:nth-child(4){
+                width: 0; 
+                height: 0; 
+                border-bottom: 15px solid rgb(70,88,110);
+                border-left: 15px solid transparent; 
+            }
+        }
+
+        .forecast{
+            margin: 30px auto 0;
+            width: 250px;
+            height: 80px;
+            line-height: 80px;
+            color: #fff;
+            background: #f1f1f1;
+            border-radius: 40px;
+            font-size: 30px;
+            text-align: center;
+        }
     }
-    .show-info {
-        margin-top: 18px;
-        display: flex;
-        align-items: center;
-      }
-      .show-info .progress {
-        margin-right: 5px;
-        margin-left: 5px;
-        width: 100%;
-      }
+
+    .rankList{
+        background: #fff;
+        margin-top: 15px;
+        padding-bottom: 100px;
+    }
 }
 
 
