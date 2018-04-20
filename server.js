@@ -18,9 +18,9 @@ var server = new WebpackDevServer(compiler, {
 	}
 });
 
-server.listen(3000, '192.168.1.166', function(err, result) {
+server.listen(3000, 'localhost', function(err, result) {
 	if (err) {
 		return console.log(err);
 	}
-	console.log('Listening at http://192.168.1.166:3000/');
+	console.log('Listening at http://localhost:3000/');
 });
