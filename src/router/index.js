@@ -14,6 +14,9 @@ import Miao from '../view/miao'
 import Match from '../view/match'
 import matchDetail from '../view/matchDetail'
 import matchList from '../layout/match-list'
+import Rank from '../view/rank'
+import Inventory from '../view/inventory'
+import myForecast from '../view/myForecast'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -49,6 +52,17 @@ const routes_config = [
 	}, {
 		path: '/matchList',
 		component: matchList
+	}, {
+		path: '/rank',
+		component: Rank
+	},
+	{
+		path: '/inventory',
+		component: Inventory
+	},
+	{
+		path: '/myForecast',
+		component: myForecast
 	}
 ]
 

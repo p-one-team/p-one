@@ -11,6 +11,16 @@ const mapDispatchToProps = (dispatch, props) => {
         goListPage() {
             props.history.push('/list')
         },
+
+        goRankPage() {
+            props.history.push('/rank')
+        },
+        goInventoryPage() {
+            props.history.push('/inventory')
+        },
+        goMyForecastPage() {
+            props.history.push('/myForecast')
+        },
         goMiaoPage() {
             props.history.push('/miao')
         },

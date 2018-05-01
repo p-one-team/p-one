@@ -17,6 +17,17 @@ class MatchComponent extends Component {
 
         console.log(el)
         console.log(index)
+        switch (index) {
+            case 0:
+                this.props.goRankPage();
+                break;
+            case 1:
+                this.props.goInventoryPage();
+                break;
+            case 2:
+                this.props.goMyForecastPage();
+                break;
+        }
     }
 
     GridExample = () => {
