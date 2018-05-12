@@ -25,32 +25,84 @@ class RankComponentWrapper extends Component {
             list1: [
                 {
                     index: 1,
-                    name: 'Rover',
-                    LV: 33,
-                    rate: '50%',
+                    userName: 'Rover',
+                    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
+                    userLevel: 33,
+                    winRate: '30%',
                     num: 23796
                 },
                 {
                     index: 2,
-                    name: 'blue',
-                    LV: 22,
-                    rate: '50%',
-                    num: 2222
+                    userName: 'Blue',
+                    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
+                    userLevel: 33,
+                    winRate: '40%',
+                    num: 23796
+                },
+                {
+                    index: 3,
+                    userName: 'Rover',
+                    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
+                    userLevel: 33,
+                    winRate: '50%',
+                    num: 23796
+                },
+                {
+                    index: 4,
+                    userName: 'Blue',
+                    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
+                    userLevel: 33,
+                    winRate: '60%',
+                    num: 23796
+                },
+                {
+                    index: 5,
+                    userName: 'Rover',
+                    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
+                    userLevel: 33,
+                    winRate: '70%',
+                    num: 23796
+                },
+                {
+                    index: 6,
+                    userName: 'Blue',
+                    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
+                    userLevel: 33,
+                    winRate: '80%',
+                    num: 23796
                 }],
             list2: [
                 {
                     index: 1,
-                    name: '皮皮',
-                    LV: 33,
-                    rate: '50%',
+                    userName: '皮皮',
+                    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
+                    userLevel: 33,
+                    winRate: '30%',
                     num: 23796
                 },
                 {
                     index: 2,
-                    name: '皮蛋',
-                    LV: 22,
-                    rate: '50%',
-                    num: 2222
+                    userName: '皮蛋',
+                    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
+                    userLevel: 33,
+                    winRate: '40%',
+                    num: 23796
+                },
+                {
+                    index: 3,
+                    userName: 'Rover',
+                    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
+                    userLevel: 33,
+                    winRate: '50%',
+                    num: 23796
+                },
+                {
+                    index: 4,
+                    userName: 'Blue',
+                    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
+                    userLevel: 33,
+                    winRate: '60%',
+                    num: 23796
                 }]
         }
 
@@ -61,18 +113,44 @@ class RankComponentWrapper extends Component {
     }
 
     TabExample(list) {
-        return list.map((item) => {
+        let listDetail = list.map((item) => {
+            let rankNum = ""
+            if(item.index==1){
+                rankNum = "rank_num_orange"
+            }else if(item.index==2){
+                rankNum = "rank_num_blue"
+            }else if(item.index==3){
+                rankNum = "rank_num_gray"
+            }else{
+                rankNum = ""
+            }
             return (<Item key={item.index}>
-                <div>{item.index}</div>
-                <div>{item.name}  </div>
-                <div>{item.LV} </div>
-                <div>{item.rate}</div>
+                <div>
+                    <span className={rankNum}>{item.index}</span>
+                    <img src={item.userImg} alt="头像" />
+                    <span>{item.userName}</span>
+                    <div></div>
+                    <div>LV {item.userLevel}</div>
+                </div>
+                <div className="rate_part">
+                    <p>{item.winRate}</p>
+                    <div>
+                        <span style={{"width":item.winRate}}></span>
+                        <label></label>
+                    </div>
+                </div>
                 <div>{item.num}</div>
             </Item>)
         })
 
-
-
+        return (
+            <div>
+                <div className="list-title">
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;玩家</div><div>胜率</div><div>下注</div>
+                </div>
+                {listDetail}
+            </div>
+        )
     }
 
     render() {
