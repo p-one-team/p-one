@@ -17,6 +17,8 @@ import matchList from '../layout/match-list'
 import Rank from '../view/rank'
 import Inventory from '../view/inventory'
 import myForecast from '../view/myForecast'
+import Shop from '../view/shop'
+import ShopItemDetail from '../view/shopItemDetail'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -63,6 +65,15 @@ const routes_config = [
 	{
 		path: '/myForecast',
 		component: myForecast
+	},
+	{
+		path: '/shop',
+		component: Shop
+	}
+	,
+	{
+		path: '/shopItem/:itemId',
+		component: ShopItemDetail
 	}
 ]
 
