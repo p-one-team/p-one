@@ -24,6 +24,9 @@ const mapDispatchToProps = (dispatch, props) => {
         goMiaoPage() {
             props.history.push('/miao')
         },
+        goShop() {
+            props.history.push('/shop')
+        },
         openDialog() {
             Dialog.alert(<p>Hello from the <b style={{ color: "#f496ce" }}>Moon~</b></p>)
         }

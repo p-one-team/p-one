@@ -27,6 +27,9 @@ class MatchComponent extends Component {
             case 2:
                 this.props.goMyForecastPage();
                 break;
+            case 3:
+                this.props.goShop();
+                break;
         }
     }
 
