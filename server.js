@@ -18,7 +18,7 @@ var server = new WebpackDevServer(compiler, {
     }
 });
 
-server.listen(3000, '192.168.199.211', function(err, result) {
+server.listen(3000, 'localhost', function(err, result) {
     if (err) {
         return console.log(err);
     }
