@@ -48,16 +48,256 @@
         }
     }
     .head-card {
+        padding-top: 30px;
         height: 50vw;
         background-color: #2c2c32;
         text-align: center;
         p {
-            font-size: 14px;
-            color: white;
+            font-size: 20px;
+            color: #777;
+
+            span{
+                color: #fff;
+            }
         }
-        img {
-            height: 30vw;
-            width: 50vw;
+
+        .imgPart{
+            position: relative;
+            margin-top: 20px;
+
+            img {
+                height: 30vw;
+                width: 50vw;
+            }
+
+            div{
+                position: absolute;
+                top: 20px;
+                right: 18%;
+
+                label:nth-child(1){
+                    display: block;
+                    font-size: 20px;
+                    color: #fff;
+                    padding: 5px 16px;
+                    background: green;
+                }
+    
+                label:nth-child(2){
+                    display: block;
+                    margin-top: 10px;
+                    font-size: 20px;
+                    color: #fff;
+                    padding: 5px 16px;
+                    background: #999;
+                }
+            }
+
+            
+        }
+        
+    }
+
+    .mainPart{
+        .listPart{
+            width: 100%;
+
+            .evaluate{
+                width: 100%;
+                background: #fff;
+                text-align: center;
+                height: 80px;
+                line-height: 80px;
+                font-size: 24px;
+                color: #555;
+
+                span{
+                    font-size: 48px;
+                    font-weight: 600;
+                    color: orange;
+                }
+
+                label{
+                    font-size: 20px;
+                    color: orange;
+                }
+            }
+
+            .sellListPart{
+                .title{
+                    width: 100%;
+                    border-top: 1px solid #ddd;
+                    padding: 0 20px;
+                    box-sizing: border-box;
+                    display: flex;
+
+                    span{
+                        display: inline-block;
+                        font-size: 20px;
+                        color: #989898;
+                        line-height: 50px;
+                    }
+
+                    span:nth-child(1){
+                        width: 40%
+                    }
+
+                    span:nth-child(2){
+                        flex: 1;
+                    }
+
+                    span:nth-child(3){
+                        width: 45%;
+                    }
+                }
+
+                .list_item{
+                    width: 100%;
+                    display: flex;
+                    border-top: 1px solid #ddd;
+                    padding: 10px 20px;
+                    box-sizing: border-box;
+                    align-items: center;
+
+                    div:nth-child(1){
+                        width: 40%;
+
+                        img{
+                            float: left;
+                            width: 70px;
+                            height: 70px;
+                            border-radius: 35px;
+                        }
+
+                        span{
+                            margin-left: 20px;
+                            line-height: 70px;
+                            float: left;
+                            font-size: 24px;
+                            color: #555;
+                        }
+                    }
+
+                    div:nth-child(2){
+                        flex: 1;
+                        font-size: 24px;
+                        color: #989898;
+                    }
+
+                    div:nth-child(3){
+                        width: 45%;
+
+                        span{
+                            font-size: 24px;
+                            color: orange;
+                            font-weight: 600;
+                        }
+
+                        label{
+                            float: right;
+                            padding: 0 30px;
+                            height: 50px;
+                            border-radius: 25px;
+                            line-height: 50px;
+                            font-size: 24px;
+                            color: #fff;
+                            background: orange;
+                        }
+                    }
+                }
+            }
+
+            .recordPart{
+                .title{
+                    width: 100%;
+                    border-top: 1px solid #ddd;
+                    padding: 0 20px;
+                    box-sizing: border-box;
+                    display: flex;
+
+                    span{
+                        display: inline-block;
+                        font-size: 20px;
+                        color: #989898;
+                        line-height: 50px;
+                    }
+
+                    span:nth-child(1){
+                        width: 35%
+                    }
+
+                    span:nth-child(2){
+                        flex: 1;
+                    }
+
+                    span:nth-child(3){
+                        flex: 1;
+                    }
+
+                    span:nth-child(4){
+                        width: 25%
+                    }
+
+                    span:nth-child(5){
+                        text-align: right;
+                        width: 20%
+                    }
+                }
+
+                .list_item{
+                    width: 100%;
+                    display: flex;
+                    border-top: 1px solid #ddd;
+                    padding: 10px 20px;
+                    box-sizing: border-box;
+                    align-items: center;
+
+                    div:nth-child(1){
+                        width: 35%;
+
+                        img{
+                            float: left;
+                            width: 70px;
+                            height: 70px;
+                            border-radius: 35px;
+                        }
+
+                        span{
+                            margin-left: 20px;
+                            line-height: 70px;
+                            float: left;
+                            font-size: 24px;
+                            color: #555;
+                        }
+                    }
+
+                    div:nth-child(2){
+                        flex: 1;
+                        font-size: 24px;
+                        color: #555;
+                    }
+
+                    div:nth-child(3){
+                        flex: 1;
+                        font-size: 24px;
+                        color: #989898;
+                    }
+
+                    div:nth-child(4){
+                        width: 25%;
+                        font-size: 24px;
+                        color: orange;
+                        font-weight: 600;
+                    }
+
+                    div:nth-child(5){
+                        width: 20%;
+                        text-align: right;
+                        font-size: 24px;
+                        color: #989898;
+                    }
+                }
+            }
         }
     }
 }

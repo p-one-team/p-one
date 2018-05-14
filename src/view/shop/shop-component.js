@@ -11,7 +11,59 @@ class ShopComponent extends Component {
 		this.state = {
 			value: '',
 			selectedTab: 'redTab',
-			hidden: false
+			hidden: false,
+			prodList: [
+				{
+					index: 1,
+					prodName: "铭刻 守夜法印",
+					imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png",
+					price: 5000,
+					prePrice: 7000,
+					isDiscount: true,
+					discount: "七折",
+					soldoutNum: 10000
+				},
+				{
+					index: 2,
+					prodName: "烬爵披肩",
+					imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png",
+					price: 5000,
+					prePrice: 5000,
+					isDiscount: false,
+					discount: "",
+					soldoutNum: 10000
+				},
+				{
+					index: 3,
+					prodName: "铭刻 守夜法印",
+					imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png",
+					price: 5000,
+					prePrice: 6000,
+					isDiscount: true,
+					discount: "八折",
+					soldoutNum: 10000
+				},
+				{
+					index: 4,
+					prodName: "烬爵披肩",
+					imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png",
+					price: 5000,
+					prePrice: 5000,
+					isDiscount: false,
+					discount: "",
+					soldoutNum: 10000
+				},
+				{
+					index: 5,
+					prodName: "烬爵披肩",
+					imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png",
+					price: 5000,
+					prePrice: 5000,
+					isDiscount: false,
+					discount: "",
+					soldoutNum: 10000
+				}
+			]
 		}
 	}
 	onChange = (value) => {
@@ -26,37 +78,31 @@ class ShopComponent extends Component {
 
 
 	renderContent() {
+		let list = this.state.prodList;
+		let listDetail = list.map((item)=>{
+			return (
+				<li key={item.index}>
+					<div styleName="item" onClick={(id) => this.props.goItemDetail(id)}>
+						<div styleName="item-img">
+							<img src={item.imgUrl} alt="" />
+							<p styleName="item-name">{item.prodName}</p>
+						</div>
+						<div styleName="item-info">
+							<p>
+								<label styleName="now">{item.price}金币</label>
+								{item.isDiscount ? <label styleName="original">{item.prePrice}金币</label> : null}
+							</p>
+							<p>已售: {item.soldoutNum}件</p>
+						</div>
+						{item.isDiscount ? <div styleName="discount"><div></div><span>{item.discount}</span></div> : null}
+					</div>
+				</li>
+			)
+		})
 		return (
 			<div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
 				<ul styleName="item-list">
-					<li>
-						<div styleName="item" onClick={(id) => this.props.goItemDetail(id)}>
-							<div styleName="item-img">
-								<img src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=9153244c808ba61edfeecf29790ff037/b3fb43166d224f4a00c251950bf790529922d1d8.jpg" alt="" />
-								<p styleName="item-name">纯正 热奋袭人</p>
-							</div>
-							<div styleName="item-info">
-								<p>
-									<label styleName="now">1000金币</label>
-									<label styleName="original">12000金币</label>
-								</p>
-								<p>已售: 5051件</p>
-							</div>
-						</div>
-						<div styleName="item">
-							<div styleName="item-img">
-								<img src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=9153244c808ba61edfeecf29790ff037/b3fb43166d224f4a00c251950bf790529922d1d8.jpg" alt="" />
-								<p styleName="item-name">纯正 热奋袭人</p>
-							</div>
-							<div>
-								<p>
-									<label styleName="now">1000金币</label>
-									<label styleName="original">12000金币</label>
-								</p>
-								<p>已售: 5051件</p>
-							</div>
-						</div>
-					</li>
+					{listDetail}
 				</ul>
 			</div>
 		);
@@ -71,7 +117,7 @@ class ShopComponent extends Component {
 				>商城</NavBar>
 				<SearchBar
 					value={this.state.value}
-					placeholder="Search"
+					placeholder="输入您想查找的内容"
 					onSubmit={value => console.log(value, 'onSubmit')}
 					onClear={value => console.log(value, 'onClear')}
 					onFocus={() => console.log('onFocus')}
@@ -83,56 +129,52 @@ class ShopComponent extends Component {
 
 				<div style={{ height: '100%', width: '100%', top: 0 }}>
 					<TabBar
-						unselectedTintColor="#949494"
-						tintColor="#33A3F4"
-						barTintColor="white"
+						unselectedTintColor="#999"
+						tintColor="#555"
+						barTintColor="#fff"
 						hidden={this.state.hidden}
 					>
 						<TabBar.Item
 							title="推荐区"
 							key="recommend"
 							icon={<div style={{
-								width: '22px',
-								height: '22px',
-								background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat'
-							}}
-							/>
-							}
+								width: '40px',
+								height: '40px',
+								backgroundColor: '#fff',
+								borderRadius: '25px',
+								background: 'url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526299598390&di=c4d2f120d20f3702e52b33e81b60e331&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F17%2F83%2F63E58PICtmF_1024.jpg) center center /  24px 24px no-repeat'
+							}}/>}
 							selectedIcon={<div style={{
-								width: '22px',
-								height: '22px',
-								background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat'
-							}}
-							/>
-							}
+								width: '40px',
+								height: '40px',
+								backgroundColor: '#555',
+								borderRadius: '25px',
+								background: 'url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526299598390&di=c4d2f120d20f3702e52b33e81b60e331&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F17%2F83%2F63E58PICtmF_1024.jpg) center center /  24px 24px no-repeat'
+							}}/>}
 							selected={this.state.selectedTab === 'recommend'}
-							badge={1}
 							onPress={() => {
 								this.setState({
 									selectedTab: 'recommend',
 								});
 							}}
-							data-seed="logId"
 						>
 							{this.renderContent('Life')}
 						</TabBar.Item>
 						<TabBar.Item
-							icon={
-								<div style={{
-									width: '22px',
-									height: '22px',
-									background: 'url(https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg) center center /  21px 21px no-repeat'
-								}}
-								/>
-							}
-							selectedIcon={
-								<div style={{
-									width: '22px',
-									height: '22px',
-									background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat'
-								}}
-								/>
-							}
+							icon={<div style={{
+								width: '40px',
+								height: '40px',
+								backgroundColor: '#fff',
+								borderRadius: '25px',
+								background: 'url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526299598390&di=c4d2f120d20f3702e52b33e81b60e331&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F17%2F83%2F63E58PICtmF_1024.jpg) center center /  24px 24px no-repeat'
+							}}/>}
+							selectedIcon={<div style={{
+								width: '40px',
+								height: '40px',
+								backgroundColor: '#555',
+								borderRadius: '25px',
+								background: 'url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526299598390&di=c4d2f120d20f3702e52b33e81b60e331&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F17%2F83%2F63E58PICtmF_1024.jpg) center center /  24px 24px no-repeat'
+							}}/>}
 							title="打折区"
 							key="sale"
 							selected={this.state.selectedTab === 'sale'}
@@ -141,30 +183,26 @@ class ShopComponent extends Component {
 									selectedTab: 'sale',
 								});
 							}}
-							data-seed="logId1"
 						>
 							{this.renderContent('Koubei')}
 						</TabBar.Item>
 						<TabBar.Item
-							icon={
-								<div style={{
-									width: '22px',
-									height: '22px',
-									background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  21px 21px no-repeat'
-								}}
-								/>
-							}
-							selectedIcon={
-								<div style={{
-									width: '22px',
-									height: '22px',
-									background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
-								}}
-								/>
-							}
+							icon={<div style={{
+								width: '40px',
+								height: '40px',
+								backgroundColor: '#fff',
+								borderRadius: '25px',
+								background: 'url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526299598390&di=c4d2f120d20f3702e52b33e81b60e331&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F17%2F83%2F63E58PICtmF_1024.jpg) center center /  24px 24px no-repeat'
+							}}/>}
+							selectedIcon={<div style={{
+								width: '40px',
+								height: '40px',
+								backgroundColor: '#555',
+								borderRadius: '25px',
+								background: 'url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526299598390&di=c4d2f120d20f3702e52b33e81b60e331&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F17%2F83%2F63E58PICtmF_1024.jpg) center center /  24px 24px no-repeat'
+							}}/>}
 							title="人气区"
 							key="popularity"
-							dot
 							selected={this.state.selectedTab === 'popularity'}
 							onPress={() => {
 								this.setState({
@@ -175,8 +213,20 @@ class ShopComponent extends Component {
 							{this.renderContent('Friend')}
 						</TabBar.Item>
 						<TabBar.Item
-							icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
-							selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
+							icon={<div style={{
+								width: '40px',
+								height: '40px',
+								backgroundColor: '#fff',
+								borderRadius: '25px',
+								background: 'url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526299598390&di=c4d2f120d20f3702e52b33e81b60e331&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F17%2F83%2F63E58PICtmF_1024.jpg) center center /  24px 24px no-repeat'
+							}}/>}
+							selectedIcon={<div style={{
+								width: '40px',
+								height: '40px',
+								backgroundColor: '#555',
+								borderRadius: '25px',
+								background: 'url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526299598390&di=c4d2f120d20f3702e52b33e81b60e331&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F17%2F83%2F63E58PICtmF_1024.jpg) center center /  24px 24px no-repeat'
+							}}/>}
 							title="求购区"
 							key="ask"
 							selected={this.state.selectedTab === 'ask'}

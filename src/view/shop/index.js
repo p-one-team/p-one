@@ -9,12 +9,11 @@ const mapDispatchToProps = (dispatch, props) => {
 		},
 
 		goItemDetail(id) {
-			id = 1222;
+			id = "烬爵披肩";
 			props.history.push(`/shopItem/${id}`)
 		}
 	}
 }
-
 
 const Shop = connect(
 	null,
