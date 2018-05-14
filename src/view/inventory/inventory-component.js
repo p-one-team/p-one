@@ -36,7 +36,7 @@ class InventoryComponent extends Component {
                     mode="light"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
-                >排名</NavBar>
+                >库存</NavBar>
                 <Tabs tabs={tabs2}
                     initialPage={1}
                     tabBarPosition="top"

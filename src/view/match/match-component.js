@@ -15,8 +15,6 @@ class MatchComponent extends Component {
 
     goPage(el, index) {
 
-        console.log(el)
-        console.log(index)
         switch (index) {
             case 0:
                 this.props.goRankPage();

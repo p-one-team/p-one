@@ -4,6 +4,7 @@ import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
 import CSSModules from 'react-css-modules'
 import style from './bottom-tab.less'
 import MatchList from '../match-list'
+import UserCenter from '../../view/userCenter'
 
 const tabs = [
     { title: <Badge >DOTA2</Badge> },
@@ -39,11 +40,21 @@ class TabBarExample extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = props.BottomTab_state;
+        console.log(UserCenter)
+        // this.state = props.BottomTab_state;
+        this.state = {
+            currentPage: 'My',
+            hidden: false
+        }
     }
 
     renderContent(pageText) {
-        return TabExample(pageText)
+        if (pageText == 'My') {
+            // return <UserCenter />
+        } else {
+            return TabExample(pageText)
+        }
+
     }
     renderContent2(pageText) {
         return (
@@ -182,7 +193,7 @@ class TabBarExample extends React.Component {
                             this.props.changePage('My');
                         }}
                     >
-                        {this.renderContent('My')}
+                        <UserCenter />
                     </TabBar.Item>
                 </TabBar>
             </div>
