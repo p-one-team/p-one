@@ -1,17 +1,19 @@
 .wrap {
-    box-sizing: border-box;
-    height: 100%;
-    position: relative;
-    display: flex;
+  box-sizing: border-box;
+  height: 100%;
+  position: relative;
+  display: flex;
+}
 
-}
-.tabBarBox{
+.tabBarBox {
   position: fixed;
-   height: calc(~"100% - 150px"); 
-   width: 100%; 
-   top: 150px;
+  height: calc(~"100% - 150px");
+  width: 100%;
+  top: 150px;
+  background-color: #fff;
 }
-:global{
+
+:global {
   .am-tabs-default-bar-tab {
     position: relative;
     display: -webkit-box;
@@ -38,5 +40,5 @@
     -ms-flex-negative: 0;
     flex-shrink: 0;
     overflow-y: hidden;
-}
+  }
 }

@@ -53,7 +53,6 @@ class MatchComponent extends Component {
         ]
         return (
             <div styleName="topMenu">
-                <div styleName="sub-title">预测</div>
                 <Grid data={data} hasLine={false} itemStyle={{ height: '50px', background: '#2c2c32', color: '#404439' }} onClick={(_el, index) => { this.goPage(_el, index) }} />
             </div>
         )

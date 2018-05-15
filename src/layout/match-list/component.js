@@ -253,7 +253,7 @@ class MatchList extends React.Component {
             }
 
             return (
-                <div key={item.index} className={style.oddItem} onClick={()=>this.props.goPage('match-detail')}>
+                <div key={item.index} className={style.oddItem} onClick={() => this.props.goPage('match-detail')}>
                     <div className={style.oddValue}>
                         <p>{item.Odds.teamL}</p>
                         <p>赔率</p>
@@ -360,6 +360,7 @@ class MatchList extends React.Component {
         };
         // console.log(this.state.dataSource)
         return (
+
             <ListView
                 ref={el => this.lv = el}
                 dataSource={this.state.dataSource}
@@ -382,6 +383,7 @@ class MatchList extends React.Component {
                 onEndReached={this.onEndReached}
                 onEndReachedThreshold={10}
             />
+
         );
     }
 }
