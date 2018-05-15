@@ -12,9 +12,9 @@ class UserCenterComponent extends Component {
 		return (
 			<div styleName="wrap">
 				<header>
-					<div styleName="user-img"></div>
-					<div styleName="user-info">12123123</div>
-					<div styleName="arrow"></div>
+					<div ></div>
+					<div >12123123</div>
+					<div ></div>
 				</header>
 			</div>
 		)
