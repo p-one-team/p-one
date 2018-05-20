@@ -19,12 +19,15 @@ import Inventory from '../view/inventory'
 import myForecast from '../view/myForecast'
 import Shop from '../view/shop'
 import ShopItemDetail from '../view/shopItemDetail'
+import UserDetail from '../view/user-detail'
+import TradeHistory from '../view/tradeHistory'
 
 /*引入路由切换样式*/
 import style from './router.less'
 
 /*引入全局样式*/
 import '../styles/reset.less'
+import '../styles/iconfont.css'
 
 /* 做 vw vh 的降级处理 */
 // require('viewport-units-buggyfill').init();
@@ -74,6 +77,16 @@ const routes_config = [
 	{
 		path: '/shopItem/:itemId',
 		component: ShopItemDetail
+	}
+	,
+	{
+		path: '/userDetail',
+		component: UserDetail
+	}
+	,
+	{
+		path: '/tradeHistory',
+		component: TradeHistory
 	}
 ]
 

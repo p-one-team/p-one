@@ -103,6 +103,13 @@ module.exports = {
             use: [
                 'url-loader?limit=8192&name=img/[hash:8].[name].[ext]' // 图片小于8k就转化为 base64, 或者单独作为文件
             ]
+        },
+        {
+            test: /\.(woff|svg|eot|ttf)\??.*$/,
+            include: /src/,
+            use: [
+                'url-loader?name=fonts/[name].[hash:5].[ext]' // 图片小于8k就转化为 base64, 或者单独作为文件
+            ]
         }
         ]
     },

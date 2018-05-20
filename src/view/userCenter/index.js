@@ -1,23 +1,27 @@
 import { connect } from 'react-redux'
 import UserCenterComponent from './userCenter-component.js'
+import { withRouter } from 'react-router-dom'
 
 
 const mapDispatchToProps = (dispatch, props) => {
+	console.log(props);
 	return {
 		goBack() {
 			props.history.replace('/')
 		},
 
-		goItemDetail(id) {
-			id = "烬爵披肩";
-			props.history.push(`/shopItem/${id}`)
+		goDetail() {
+			props.history.push('/userDetail')
+		},
+		goTradeHistory() {
+			props.history.push('/tradeHistory')
 		}
 	}
 }
 
-const UserCenter = connect(
+const UserCenter = withRouter(connect(
 	null,
 	mapDispatchToProps
-)(UserCenterComponent)
+)(UserCenterComponent))
 
 export default UserCenter
