@@ -34,7 +34,7 @@ class TradeHistoryComponent extends Component {
                             <p>30</p>
                             <p>我的金币</p>
                         </div>
-                        <div>
+                        <div styleName="total">
                             <div>
                                 <p>0</p>
                                 <p>累计消费</p>
@@ -79,27 +79,41 @@ class TradeHistoryComponent extends Component {
 
                     </div>
 
-                    <div>
-                        <p >近期交易</p>
-                        <p styleName="title">
-                            <lable>时间</lable>
-                            <lable>操作</lable>
-                            <lable>饰品</lable>
-                            <lable>件数</lable>
-                            <lable>价格</lable>
-                            <lable>交易状态</lable>
-                        </p>
+                    <div styleName="listPart">
+                        <p styleName="recent_deal">近期交易</p>
+                        <div styleName="title">
+                            <label>时间</label>
+                            <label>操作</label>
+                            <label>饰品</label>
+                            <label>件数</label>
+                            <label>价格</label>
+                            <label>交易状态</label>
+                        </div>
                         <ul>
                             <li>
-                                <lable>2018-01-01</lable>
-                                <lable>买入</lable>
-                                <lable>aSDFADSFF</lable>
-                                <lable>1</lable>
-                                <lable>500.00</lable>
-                                <lable>成功</lable>
+                                <label>2018-01-01</label>
+                                <label>买入</label>
+                                <label>aSDFADSFF</label>
+                                <label>1</label>
+                                <label>500.00</label>
+                                <label>成功</label>
                             </li>
-                            <li></li>
-                            <li></li>
+                            <li>
+                                <label>2018-01-01</label>
+                                <label>买入</label>
+                                <label>aSDFADSFF</label>
+                                <label>1</label>
+                                <label>500.00</label>
+                                <label>成功</label>
+                            </li>
+                            <li>
+                                <label>2018-01-01</label>
+                                <label>买入</label>
+                                <label>aSDFADSFF</label>
+                                <label>1</label>
+                                <label>500.00</label>
+                                <label>成功</label>
+                            </li>
                         </ul>
                     </div>
                 </div>

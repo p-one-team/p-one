@@ -42,18 +42,39 @@
             font-size: 30px;
         }
     }
-    li {
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid #e1e1e1;
-        padding: 20px 20px;
-    }
+
     .headCard {
         background-color: #2c2c32;
         color: #fff;
+        padding-bottom: 50px;
+
         .wallet {
             text-align: center;
-            padding: 30px 0;
+            padding: 30px 0 50px;
+            font-size: 20px;
+            color: orange;
+
+            p:first-child{
+                font-size: 50px;
+            }
+        }
+
+        .total{
+            display: flex;
+            width: 100%;
+
+            div{
+                flex: 1;
+                text-align: center;
+                border-right: 1px solid #555;
+                font-size: 20px;
+                color: #989898;
+
+                p:first-child{
+                    font-size: 30px;
+                    color: #fff;
+                }
+            }
         }
     }
     .tips {
@@ -61,9 +82,17 @@
         text-align: center;
         background-color: #fff;
         font-size: 20px;
+        color: #989898;
+
         div {
             flex: 1;
-            border-right: 1px solid #e1e1e1;
+            border-right: 1px solid #efefef;
+
+            p:first-child{
+                color: #2c2c32;
+                font-size: 24px;
+                font-weight: 600;
+            }
         }
     }
     .proD {
@@ -72,29 +101,101 @@
         padding: 15px 0;
     }
     .cards {
-        padding: 10px 0;
+        padding: 20px 0;
+        color: #2c2c32!important;
+
         div {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            i {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 60px;
+                height: 60px;
+                color: #fff;
+                background-color: #2c2c32;
+                border-radius: 50%;
+                margin-bottom: 10px;
+            }
         }
-        i {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            width: 60px;
-            height: 60px;
-            color: #fff;
-            background-color: #2c2c32;
-            border-radius: 50%;
-        }
+        
     }
-    .title {
-        display: flex;
-        lable {
-            flex: 1;
+
+    .listPart{
+        margin-top: 15px;
+        width: 100%;
+        background: #fff;
+
+        .recent_deal{
+            border-bottom: 1px solid #efefef;
+            font-size: 24px;
+            color: #2c2c32;
+            padding: 20px 40px;
+        }
+
+        .title{
+            width: 100%;
+            font-size: 20px;
+            display: flex;
+            border-bottom: 1px solid #efefef;
+            padding: 10px 0;
+
+            label:first-child{
+                width: 20%;
+                text-align: center;
+            }
+
+            label:nth-child(2){
+                width: 10%;
+                text-align: center;
+            }
+
+            label:nth-child(3){
+                flex: 1;
+                text-align: center;
+            }
+    
+            label:nth-child(4),label:nth-child(5),label:nth-child(6){
+                width: 15%;
+                text-align: center;
+            }
+        }
+
+        ul{
+            width: 100%;
+
+            li{
+                padding: 0;
+                width: 100%;
+                font-size: 20px;
+                display: flex;
+                padding: 10px 0;
+
+                label:first-child{
+                    width: 20%;
+                    text-align: center;
+                }
+
+                label:nth-child(2){
+                    width: 10%;
+                    text-align: center;
+                }
+
+                label:nth-child(3){
+                    flex: 1;
+                    text-align: center;
+                }
+        
+                label:nth-child(4),label:nth-child(5),label:nth-child(6){
+                    width: 15%;
+                    text-align: center;
+                }
+            }
         }
     }
 }

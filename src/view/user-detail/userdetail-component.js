@@ -27,18 +27,41 @@ class UserDetailComponent extends Component {
                     mode="light"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
-                >我的账户</NavBar>
-                <div className="container">
+                >个人资料</NavBar>
+                <div styleName="container">
                     <ul>
-                        <li><span>头像</span> <div styleName="user-img"></div></li>
-                        <li><span>昵称</span> <div><label>D.G</label><label className="iconfont icon-previewright"></label>   </div></li>
-                        <li><span>手机</span> <div><label>D.G</label><label className="iconfont icon-previewright"></label>   </div></li>
-                        <li><span>Steam设置</span> <div><label>D.G</label><label className="iconfont icon-previewright"></label>   </div></li>
-                        <li><span>实名认证</span> <div><label>D.G</label><label className="iconfont icon-previewright"></label>   </div></li>
-                        <li><span>修改密码</span> <div><label>D.G</label><label className="iconfont icon-previewright"></label>   </div></li>
+                        <li>
+                            <span>头像</span>
+                            <img styleName="user-img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg" alt=""/>
+                        </li>
+                        <li>
+                            <span>昵称</span>
+                            <label>ROVER</label>
+                            <label className="iconfont icon-previewright"></label>
+                        </li>
+                        <li>
+                            <span>手机</span>
+                            <label>未绑定</label>
+                            <label className="iconfont icon-previewright"></label>
+                        </li>
+                        <li>
+                            <span>Steam设置</span>
+                            <label></label>
+                            <label className="iconfont icon-previewright"></label>
+                        </li>
+                        <li>
+                            <span>实名认证</span>
+                            <label>未设置</label>
+                            <label className="iconfont icon-previewright"></label>
+                        </li>
+                        <li>
+                            <span>修改密码</span>
+                            <label></label>
+                            <label className="iconfont icon-previewright"></label>
+                        </li>
                     </ul>
                 </div>
-
+                <div styleName="logout">退出登录</div>
             </div>
         )
     }
