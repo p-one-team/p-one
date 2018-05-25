@@ -10,10 +10,15 @@ const _ut = (function() {
         } 
         return res.json()
     }
+
+    const isString = function(str) {
+        return str instanceof String || (typeof str).toLowerCase() == "string";
+    }
     
     return {
         fixNum,
-        fetch: myfetch
+        fetch: myfetch,
+        isString
     }
 })()
 

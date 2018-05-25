@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './userDetail.less'
+import alertWindow from '../../module/mo-alertWindow'
 
 import { NavBar, Icon } from 'antd-mobile';
 
@@ -15,6 +16,10 @@ class UserDetailComponent extends Component {
 
     componentDidMount() {
         this.props.initData()
+    }
+
+    logout(){
+        alertWindow.Prompt("确认退出登录吗？")
     }
 
     render() {
@@ -61,7 +66,7 @@ class UserDetailComponent extends Component {
                         </li>
                     </ul>
                 </div>
-                <div styleName="logout">退出登录</div>
+                <div styleName="logout" onClick={this.logout}>退出登录</div>
             </div>
         )
     }
