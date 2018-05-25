@@ -3,8 +3,24 @@ import { connect } from 'react-redux'
 import Dialog from 'mo-dialog'
 import HomeComponent from './home-component.js'
 
+import axios from 'axios'
+
 const mapDispatchToProps = (dispatch, props) => {
-	console.log(props)
+
+	axios.post('/User/Register', {
+		Phone: 13312345678,
+		SmsCode: 1111,
+		Password: 1122,
+		ConfirmPassword: 1122
+	})
+		.then(function (response) {
+			console.log('res', response)
+		})
+		.catch(function (error) {
+			console.log('error', error)
+		});
+
+
 	return {
 		initData() {
 			console.log('init index')
