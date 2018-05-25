@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "antd-mobile": "^2.1.8",
+    "axios": "^0.18.0",
     "babel-plugin-import": "^1.7.0",
     "babel-polyfill": "^6.23.0",
     "classnames": "^2.2.5",
