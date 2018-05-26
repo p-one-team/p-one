@@ -4,24 +4,30 @@ import { withRouter } from 'react-router-dom'
 
 
 const mapDispatchToProps = (dispatch, props) => {
-	console.log(props);
-	return {
-		goBack() {
-			props.history.replace('/')
-		},
+    console.log(props);
+    return {
+        goBack() {
+            props.history.replace('/')
+        },
 
-		goDetail() {
-			props.history.push('/userDetail')
-		},
-		goTradeHistory() {
-			props.history.push('/tradeHistory')
-		}
-	}
+        goDetail() {
+            props.history.push('/userDetail')
+        },
+        goTradeHistory() {
+            props.history.push('/tradeHistory')
+        },
+        goMessage() {
+            props.history.push('/message')
+        },
+        goHelpSuggest() {
+            props.history.push('/helpSuggest')
+        }
+    }
 }
 
 const UserCenter = withRouter(connect(
-	null,
-	mapDispatchToProps
+    null,
+    mapDispatchToProps
 )(UserCenterComponent))
 
 export default UserCenter

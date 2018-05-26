@@ -21,6 +21,8 @@ import Shop from '../view/shop'
 import ShopItemDetail from '../view/shopItemDetail'
 import UserDetail from '../view/user-detail'
 import TradeHistory from '../view/tradeHistory'
+import HelpSuggest from '../view/helpSuggest'
+import Message from '../view/message'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -87,6 +89,14 @@ const routes_config = [
 	{
 		path: '/tradeHistory',
 		component: TradeHistory
+	},
+	{
+		path: '/message',
+		component: Message
+	},
+	{
+		path: '/helpSuggest',
+		component: HelpSuggest
 	}
 ]
 
