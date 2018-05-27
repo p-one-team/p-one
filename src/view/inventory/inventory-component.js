@@ -11,10 +11,33 @@ const tabs2 = [
     { title: 'PUBG', sub: '3' },
 ];
 
-const data = Array.from(new Array(9)).map((_val, i) => ({
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-    text: `name${i}`,
-}));
+const data = [
+    {
+        icon: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png',
+        text: '不朽',
+        rate: "0.39"
+    },
+    {
+        icon: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png',
+        text: '不朽',
+        rate: "0.39"
+    },
+    {
+        icon: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png',
+        text: '不朽',
+        rate: "0.39"
+    },
+    {
+        icon: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png',
+        text: '不朽',
+        rate: "0.39"
+    },
+    {
+        icon: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png',
+        text: '不朽',
+        rate: "0.39"
+    }
+]
 
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class InventoryComponent extends Component {
@@ -37,30 +60,31 @@ class InventoryComponent extends Component {
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
                 >库存</NavBar>
+
                 <Tabs tabs={tabs2}
-                    initialPage={1}
+                    initialPage={0}
                     tabBarPosition="top"
                     renderTab={tab => <span>{tab.title}</span>}
                 >
+
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%', backgroundColor: '#fff' }}>
                         <Grid data={data}
                             columnNum={4}
-                            renderItem={dataItem => (
-                                <div style={{ padding: '12.5px' }}>
-                                    <img src={dataItem.icon} style={{ width: '75px', height: '75px' }} alt="" />
-                                    <div style={{ color: '#888', fontSize: '14px', marginTop: '12px' }}>
-                                        <span>I am title..</span>
-                                    </div>
-                                </div>
-                            )}
+                            renderItem={(item,index) => {
+                                const test =  index == 0 ? (<div className="goStore" onClick={()=>this.props.goStore()}><p className="iconfont">&#xe705;</p><p>去商城购买</p></div>)
+                                : (<div className="grid_item">
+                                    <img src={item.icon} alt="" />
+                                    <label>{item.rate}</label>                                    
+                                    <span>{item.text}</span>
+                                </div>)
+                                return test
+                                
+                            }}
                         />
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
-                        Content of second tab
-      </div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
-                        Content of third tab
-      </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>Content of second tab</div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>Content of third tab</div>
                 </Tabs>
             </div>
         )

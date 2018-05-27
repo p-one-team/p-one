@@ -28,19 +28,19 @@ class UserCenterComponent extends Component {
 						<div> <span className="iconfont icon-cart"></span>我的交易</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
-					<li>
+					<li onClick={() => this.props.goMessage()}>
 						<div> <span className="iconfont icon-message"></span>我的消息</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
-					<li>
+					{/* <li>
 						<div> <span className="iconfont icon-gift"></span>我的礼物</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
 					<li>
 						<div> <span className="iconfont icon-star"></span>我的关注</div>
 						<div className="iconfont icon-previewright"></div>
-					</li>
-					<li>
+					</li> */}
+					<li onClick={() => this.props.goHelpSuggest()}>
 						<div> <span className="iconfont icon-help"></span>帮助和建议</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>

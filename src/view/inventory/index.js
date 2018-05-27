@@ -6,8 +6,9 @@ const mapDispatchToProps = (dispatch, props) => {
         initData() {
             console.log('init inventory')
         },
-        goListPage() {
-            props.history.push('/list')
+
+        goStore() {
+            props.history.push('/shop')
         }
     }
 }
