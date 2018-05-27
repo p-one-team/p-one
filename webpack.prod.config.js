@@ -53,12 +53,12 @@ module.exports = {
             allChunks: true
         }),
         new webpack.ProvidePlugin({
-            'Promise':'es6-promise',
+            'Promise': 'es6-promise',
             'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
         }),
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify('production')  
+                'NODE_ENV': JSON.stringify('production')
             }
         })
     ],
@@ -67,6 +67,40 @@ module.exports = {
             test: /\.js$/,
             include: resolve(__dirname, 'src'),
             use: ['babel-loader']
+        },
+        {
+            test: /\.css$/,
+            use: [
+                require.resolve('style-loader'),
+                {
+                    loader: require.resolve('css-loader'),
+                    options: {
+                        importLoaders: 1
+                    }
+                },
+                {
+                    loader: require.resolve('postcss-loader')
+                }
+            ]
+        }, {
+            test: /\.less$/,
+            exclude: [/src/],
+            use: [
+                require.resolve('style-loader'),
+                {
+                    loader: require.resolve('css-loader'),
+                    options: {
+                        importLoaders: 1
+                    }
+                },
+                {
+                    loader: require.resolve('postcss-loader')
+                },
+                {
+                    loader: require.resolve('less-loader'),
+                    options: { modifyVars: { '@primary-color': '#1DA57A' } }
+                }
+            ]
         }, {
             test: /\.less$/,
             exclude: [/node_modules/],
@@ -75,9 +109,15 @@ module.exports = {
                 use: 'css-loader?modules,localIdentName="[name]-[local]-[hash:base64:5]"!postcss-loader!less-loader'
             }),
         }, {
-            test:/\.(png|jpg|gif)$/,
+            test: /\.(jpe?g|png|gif)$/i,
             exclude: [/node_modules/],
             use: 'url-loader?limit=8192&name=build/[name].[ext]'
+        }, {
+            test: /\.(woff|svg|eot|ttf)\??.*$/,
+            include: /src/,
+            use: [
+                'url-loader?name=build/[name].[hash:5].[ext]' // 图片小于8k就转化为 base64, 或者单独作为文件
+            ]
         }]
     },
     resolve: {
