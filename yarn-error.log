@@ -1,17 +1,17 @@
 Arguments: 
-  D:\Program Files\nodejs\node.exe D:\Program Files (x86)\Yarn\bin\yarn.js add axios
+  /usr/local/bin/node /usr/local/bin/yarn install fetch --save
 
 PATH: 
-  D:\Python27\;D:\Python27\Scripts;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;D:\Program Files\nodejs\node_global;C:\Users\ROVER\AppData\Roaming\npm\node_modules\;C:\Users\ROVER\AppData\Roaming\npm;D:\Program Files (x86)\Yarn\bin;D:\VPS\OpenVPN\bin;C:\Users\ROVER\AppData\Local\Programs\Python\Python36;C:\Users\ROVER\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;D:\Program Files\Git\cmd;D:\Program Files\nodejs\;C:\Program Files (x86)\Skype\Phone\;C:\Users\ROVER\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\ROVER\AppData\Local\Programs\Python\Python36\;C:\Users\ROVER\AppData\Local\Yarn\bin;D:\Program Files\Microsoft VS Code\bin;C:\Users\ROVER\AppData\Local\Microsoft\WindowsApps;C:\Users\ROVER\AppData\Roaming\npm
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
-  0.27.5
+  1.5.1
 
 Node version: 
-  8.11.1
+  6.11.2
 
 Platform: 
-  win32 x64
+  darwin x64
 
 npm manifest: 
   {
@@ -536,6 +536,13 @@ Lockfile:
   aws4@^1.2.1:
     version "1.7.0"
     resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.7.0.tgz#d4d0e9b9dbfca77bf08eeb0a8a471550fe39e289"
+  
+  axios@^0.18.0:
+    version "0.18.0"
+    resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+    dependencies:
+      follow-redirects "^1.3.0"
+      is-buffer "^1.1.5"
   
   babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
     version "6.26.0"
@@ -2882,6 +2889,12 @@ Lockfile:
   flatten@^1.0.2:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
+  
+  follow-redirects@^1.3.0:
+    version "1.5.0"
+    resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.0.tgz#234f49cf770b7f35b40e790f636ceba0c3a0ab77"
+    dependencies:
+      debug "^3.1.0"
   
   for-in@^1.0.1, for-in@^1.0.2:
     version "1.0.2"
@@ -7099,7 +7112,10 @@ Lockfile:
       babel-runtime "6.x"
 
 Trace: 
-  Error: connect ETIMEDOUT 104.16.62.173:443
-      at Object._errnoException (util.js:1022:11)
-      at _exceptionWithHostPort (util.js:1044:20)
-      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+  Error: `install` has been replaced with `add` to add new dependencies. Run "yarn add fetch" instead.
+      at MessageError.Error (native)
+      at new MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
+      at Object.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:21987:13)
+      at next (native)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:98:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:109:13

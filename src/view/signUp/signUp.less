@@ -16,11 +16,16 @@
         color: #cacaca!important;
     }
     :global {
+        .am-list-item{
+            height: 80px;
+            padding-left: 0;
+            border-bottom: 1PX solid #ddd;
+        }
         .am-list-item .am-input-label.am-input-label-5 {
             width: 18vw;
         }
         .am-list-item .am-input-label {
-            font-size: 3.5vw;
+            font-size: 3.2vw;
         }
         .am-list-item.am-input-error .am-input-error-extra {
             height: 4vw;
@@ -55,41 +60,33 @@
 
 .main {
     margin: 225px auto 30px;
-    width: 90%;
+    width: 80%;
     background: #fff;
     border-radius: 10px;
-    padding: 0 30px;
-    box-sizing: border-box;
-    .phoneInput {
-        display: flex;
-        align-items: center;
-        height: 80px;
-        width: 100%;
-        border-bottom: 1px solid #ddd;
-        div:first-child {
-            flex: 1;
-            input {
-                width: 100%;
-                font-size: 17px;
-            }
-        }
-        .getCode {
-            width: 120px;
-            font-size: 15px;
-            color: #2c2c32;
-        }
-    }
+    padding: 1px 30px;
+ 
     :global {
-        .am-list-item {
-            height: 80px;
-            padding-left: 0;
-            .am-list-line {
-                border-bottom: 1PX solid #ddd!important;
+        .am-list-body{
+            .codeInput{
+                float: left;
+                width: 70%;
+                height: 80px;
+                border-bottom: 1PX solid #ddd;
+
+                .am-list-line {
+                    height: 80px;
+                }
             }
-        }
-        .am-list-item:last-child {
-            .am-list-line {
-                border-bottom: none;
+
+            .getCode{
+                width: 30%;
+                float: right;
+                height: 80px;
+                line-height: 80px;
+                text-align: right;
+                font-size: 3.2vw;
+                color: #2c2c32;
+                border-bottom: 1PX solid #ddd;
             }
         }
     }

@@ -1,6 +1,8 @@
 import { connect } from 'react-redux'
 import TradeHistoryComponent from './tradeHistory-component'
-// import { withRouter } from 'react-router-dom'
+// import { Toast } from 'antd-mobile'
+
+// import axios from "axios"
 
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -10,6 +12,20 @@ const mapDispatchToProps = (dispatch, props) => {
 
         initData() {
             console.log('init index')
+
+            // axios.post('Game/MyTransaction',{
+            //     //无需参数
+            // })
+            // .then(function (response) {
+			// 	Toast.success('登录成功,跳转中...');
+			// 	// props.history.push('/match');
+			// 	console.log('reslogin', response.data);
+			// })
+			// .catch(function (error) {
+			// 	Toast.fail('登录失败,跳转中...');
+			// 	console.log('error', error);
+            // });
+            
         },
         goListPage() {
             props.history.push('/list')

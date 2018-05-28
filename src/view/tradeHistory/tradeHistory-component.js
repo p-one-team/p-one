@@ -20,6 +20,49 @@ class TradeHistoryComponent extends Component {
 
         // const { getFieldProps, getFieldError } = this.props.form;
         console.log(this.props)
+
+        let tradeList = [
+            {
+                index: 1,
+                time: "2018-01-01",
+                operation: "m买入",
+                prodName: "ABCDEFG",
+                number: 10,
+                price: 100,
+                status: "成功"
+            },
+            {
+                index: 2,
+                time: "2018-01-02",
+                operation: "m买入",
+                prodName: "ABCDEFG",
+                number: 10,
+                price: 100,
+                status: "成功"
+            },
+            {
+                index: 3,
+                time: "2018-01-03",
+                operation: "m买入",
+                prodName: "ABCDEFG",
+                number: 10,
+                price: 100,
+                status: "成功"
+            }
+        ]
+        let List = tradeList.map((item)=>{
+            return (
+                <li key={item.index}>
+                    <label>{item.time}</label>
+                    <label>{item.operation}</label>
+                    <label>{item.prodName}</label>
+                    <label>{item.number}</label>
+                    <label>{item.price}</label>
+                    <label>{item.status}</label>
+                </li>
+            )
+        })
+
         return (
             <div styleName="wrap">
                 <NavBar
@@ -89,32 +132,7 @@ class TradeHistoryComponent extends Component {
                             <label>价格</label>
                             <label>交易状态</label>
                         </div>
-                        <ul>
-                            <li>
-                                <label>2018-01-01</label>
-                                <label>买入</label>
-                                <label>aSDFADSFF</label>
-                                <label>1</label>
-                                <label>500.00</label>
-                                <label>成功</label>
-                            </li>
-                            <li>
-                                <label>2018-01-01</label>
-                                <label>买入</label>
-                                <label>aSDFADSFF</label>
-                                <label>1</label>
-                                <label>500.00</label>
-                                <label>成功</label>
-                            </li>
-                            <li>
-                                <label>2018-01-01</label>
-                                <label>买入</label>
-                                <label>aSDFADSFF</label>
-                                <label>1</label>
-                                <label>500.00</label>
-                                <label>成功</label>
-                            </li>
-                        </ul>
+                        <ul>{List}</ul>
                     </div>
                 </div>
             </div>
