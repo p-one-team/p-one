@@ -1,58 +1,63 @@
 import React from 'react'
 import { TabBar } from 'antd-mobile';
 import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
+// import { Tabs, WhiteSpace } from 'antd-mobile';
 import CSSModules from 'react-css-modules'
 import style from './bottom-tab.less'
 import MatchList from '../match-list'
 import UserCenter from '../../view/userCenter'
 
-const tabs = [
-    { title: <Badge >DOTA2</Badge> },
-    { title: <Badge >CS:GO</Badge> },
-    { title: <Badge >LOL</Badge> },
-    { title: <Badge >体育</Badge> },
-];
+// const tabs = [
+//     { title: <Badge >DOTA2</Badge> },
+//     { title: <Badge >CS:GO</Badge> },
+//     { title: <Badge >LOL</Badge> },
+//     { title: <Badge >体育</Badge> },
+// ];
 
-
-const TabExample = () => (
-    <div>
-        <Tabs tabs={tabs}
-            initialPage={0}
-            onChange={(tab, index) => { console.log('onChange', index, tab); }}
-            onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
-        >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                <MatchList />
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                Content of second tab
-        </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                Content of third tab
-        </div>
-        </Tabs>
-        <WhiteSpace />
-
-    </div>
-);
 @CSSModules(style)
 class TabBarExample extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log(UserCenter)
-        // this.state = props.BottomTab_state;
+        let gameTypes = this.props.gameTypes
+        for(let i in gameTypes){
+            gameTypes[i].title = (<Badge >{gameTypes[i].GameName}</Badge>)
+        }
+
         this.state = {
             currentPage: 'My',
-            hidden: false
+            hidden: false,
+            gameTypes: gameTypes
         }
+    }
+
+    TabExample = () => {
+        
+        return (<div>
+            <Tabs tabs={this.state.gameTypes}
+                initialPage={0}
+                // onChange={(tab, index) => { console.log('onChange', index, tab.GameCode); }}
+                onTabClick={(tab, index) => { console.log('onTabClick', index, tab.GameCode); }}
+            >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+                    <MatchList />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+                    Content of second tab
+            </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+                    Content of third tab
+            </div>
+            </Tabs>
+            <WhiteSpace />
+        </div>)
     }
 
     renderContent(pageText) {
         if (pageText == 'My') {
             // return <UserCenter />
         } else {
-            return TabExample(pageText)
+            return this.TabExample(pageText)
         }
 
     }

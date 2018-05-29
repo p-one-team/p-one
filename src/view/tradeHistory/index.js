@@ -6,10 +6,7 @@ import TradeHistoryComponent from './tradeHistory-component'
 
 
 const mapDispatchToProps = (dispatch, props) => {
-
-    console.log(props)
     return {
-
         initData() {
             console.log('init index')
 
@@ -19,7 +16,7 @@ const mapDispatchToProps = (dispatch, props) => {
             // .then(function (response) {
 			// 	Toast.success('登录成功,跳转中...');
 			// 	// props.history.push('/match');
-			// 	console.log('reslogin', response.data);
+			// 	console.log('tradeHistory', response.data);
 			// })
 			// .catch(function (error) {
 			// 	Toast.fail('登录失败,跳转中...');

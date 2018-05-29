@@ -83,7 +83,7 @@ axios.interceptors.response.use(function (res) {
 	// 		msg: '请求异常'
 	// 	})
 	// }
-	console.log('res', res.data)
+	// console.log('res', res.data)
 
 	//在这里对返回的数据进行处理
 	if(res.data.Code=="0000"){

@@ -6,14 +6,14 @@ import { withRouter } from 'react-router-dom';
 
 
 const mapDispatchToProps = (dispatch, props) => {
-    console.log(props)
+    // console.log(props)
     return {
         changePage(pageText) {
             dispatch(changePage(pageText))
         },
 
         goPage(page) {
-            console.log(props)
+            // console.log(props)
             switch (page) {
                 case 'match-detail':
                     props.history.push('matchDetail');

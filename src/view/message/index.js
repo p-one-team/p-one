@@ -3,12 +3,14 @@ import MessageComponent from './message-component'
 
 const mapDispatchToProps = (dispatch, props) => {
 
-    console.log(props)
     return {
-
         initData() {
             console.log('init index')
         },
+
+        goListPage(){
+            props.history.push('/list')
+        }
 
     }
 }

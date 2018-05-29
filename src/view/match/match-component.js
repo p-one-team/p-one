@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './match.less'
 import BottomTab from '../../layout/bottom-tab'
-import { Grid } from 'antd-mobile'
+import { Grid} from 'antd-mobile'
 
 
 @CSSModules(style)
@@ -11,6 +11,24 @@ import { Grid } from 'antd-mobile'
 class MatchComponent extends Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            gameTypes: [
+                {GameCode: "570", GameName: "Dota2"},
+                {GameCode: "730", GameName: "CSGO"},
+                {GameCode: "578080", GameName: "PUBG"},
+                {GameCode: "Sports", GameName: "体育"}
+            ]
+        }
+    }
+
+    componentDidMount(){
+        // this.props.initData()
+        // let gameTypes = this.props.getGameTypes();
+        // console.log("componentDidMount:",gameTypes)
+        // this.setState = {
+        //     gameTypes: this.props.getGameTypes()
+        // }
     }
 
     goPage(el, index) {
@@ -59,11 +77,12 @@ class MatchComponent extends Component {
     };
 
     render() {
-
+        // console.log("match-component-render:",this.state.gameTypes)
         return (
             <div styleName="wrap">
                 {this.GridExample()}
-                <BottomTab goMatchDetail={this.props.goMatchDetail} />
+                
+                <BottomTab goMatchDetail={this.props.goMatchDetail} gameTypes={this.state.gameTypes} />
 
             </div>
         )
