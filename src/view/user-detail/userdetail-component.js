@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './userDetail.less'
-import alertWindow from '../../module/mo-alertWindow'
+import AlertWindow from '../../module/mo-alertWindow'
 
 import { NavBar, Icon } from 'antd-mobile';
 
@@ -11,21 +11,24 @@ import { NavBar, Icon } from 'antd-mobile';
 class UserDetailComponent extends Component {
     constructor(props) {
         super(props)
-        console.log(this.props.history)
     }
 
     componentDidMount() {
         this.props.initData()
     }
 
-    logout(){
-        alertWindow.Prompt("确认退出登录吗？")
+    //修改密码
+    modifyPsd = () => {
+        this.props.history.push('/resetPassword')
+    }
+
+    logout = () => {
+        const self = this
+        AlertWindow.Confirm("确认退出登录吗？",()=>{self.props.logout()})
     }
 
     render() {
-
-        // const { getFieldProps, getFieldError } = this.props.form;
-        console.log(this.props)
+        
         return (
             <div styleName="wrap">
                 <NavBar
@@ -59,7 +62,7 @@ class UserDetailComponent extends Component {
                             <label>未设置</label>
                             <label className="iconfont icon-previewright"></label>
                         </li>
-                        <li>
+                        <li onClick={this.modifyPsd}>
                             <span>修改密码</span>
                             <label></label>
                             <label className="iconfont icon-previewright"></label>

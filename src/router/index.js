@@ -23,6 +23,7 @@ import UserDetail from '../view/user-detail'
 import TradeHistory from '../view/tradeHistory'
 import HelpSuggest from '../view/helpSuggest'
 import Message from '../view/message'
+import ResetPassword from '../view/resetPassword'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -97,6 +98,10 @@ const routes_config = [
 	{
 		path: '/helpSuggest',
 		component: HelpSuggest
+	},
+	{
+		path: '/resetPassword',
+		component: ResetPassword
 	}
 ]
 

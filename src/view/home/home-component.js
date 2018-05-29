@@ -34,6 +34,11 @@ class HomeComponent extends Component {
         this.props.history.push('/signUp')
     }
 
+    //去重置密码
+    goResetPsd = () => {
+        this.props.history.push('/resetPassword')
+    }
+
     //切换登录方式
     changeMode = () => {
         this.state.useMessageCode ? 
@@ -210,7 +215,7 @@ class HomeComponent extends Component {
                     }
                 </div>
 
-                {this.state.useMessageCode==false ? "" : <div styleName="getcode" onClick={this.getCode}>获取验证码</div>}
+                {this.state.useMessageCode==false ? <div styleName="forget" onClick={this.goResetPsd}>忘记密码？</div> : <div styleName="getcode" onClick={this.getCode}>获取验证码</div>}
 
                 <div styleName="login-btn" onClick={this.login}>登录</div>
                 <div styleName="bottom">
