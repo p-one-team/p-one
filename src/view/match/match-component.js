@@ -18,17 +18,38 @@ class MatchComponent extends Component {
                 {GameCode: "730", GameName: "CSGO"},
                 {GameCode: "578080", GameName: "PUBG"},
                 {GameCode: "Sports", GameName: "体育"}
+            ],
+            gameInfos: [
+                {
+                    BeginDate:"2018-05-20 22:00:00",
+                    EndDate:"2018-05-20 23:30:00",
+                    GameDate:"-18前",
+                    GameID:1,
+                    GameTeam:{
+                        LeftProfit:0,
+                        LeftTeamID:1,
+                        LeftTeamImage:"",
+                        LeftTeamName:"同程",
+                        LeftTeamOdds:"",
+                        LeftTeamRate:"",
+                        LeftTeamResult:"0",
+                        RightProfit:0,
+                        RightTeamID:2,
+                        RightTeamImage:"",
+                        RightTeamName:"艺龙",
+                        RightTeamOdds:"",
+                        RightTeamRate:"",
+                        RightTeamResult:"0"
+                    },
+                    GameTitle:"屌丝逆袭战",
+                    IsForecast:true
+                }
             ]
         }
     }
 
     componentDidMount(){
-        // this.props.initData()
-        // let gameTypes = this.props.getGameTypes();
-        // console.log("componentDidMount:",gameTypes)
-        // this.setState = {
-        //     gameTypes: this.props.getGameTypes()
-        // }
+        this.props.initData()
     }
 
     goPage(el, index) {
@@ -82,7 +103,7 @@ class MatchComponent extends Component {
             <div styleName="wrap">
                 {this.GridExample()}
                 
-                <BottomTab goMatchDetail={this.props.goMatchDetail} gameTypes={this.state.gameTypes} />
+                <BottomTab goMatchDetail={this.props.goMatchDetail} gameTypes={this.state.gameTypes} gameInfos={this.state.gameInfos} />
 
             </div>
         )

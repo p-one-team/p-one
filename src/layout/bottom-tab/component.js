@@ -24,6 +24,8 @@ class TabBarExample extends React.Component {
             gameTypes[i].title = (<Badge >{gameTypes[i].GameName}</Badge>)
         }
 
+        console.log("gameInfos:",this.props.gameInfos)
+
         this.state = {
             currentPage: 'My',
             hidden: false,
@@ -36,18 +38,17 @@ class TabBarExample extends React.Component {
         return (<div>
             <Tabs tabs={this.state.gameTypes}
                 initialPage={0}
-                // onChange={(tab, index) => { console.log('onChange', index, tab.GameCode); }}
-                onTabClick={(tab, index) => { console.log('onTabClick', index, tab.GameCode); }}
+                onTabClick={(tab) => { this.props.changeGameInfo(tab.GameCode) }}
             >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
                     <MatchList />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
                     Content of second tab
-            </div>
+                </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
                     Content of third tab
-            </div>
+                </div>
             </Tabs>
             <WhiteSpace />
         </div>)

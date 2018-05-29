@@ -7,6 +7,11 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changePage(pageText) {
             dispatch(changePage(pageText))
+        },
+
+        changeGameInfo(code) {
+            console.log(code)
+
         }
 
     }

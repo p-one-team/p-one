@@ -9,6 +9,8 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         initData() {
             console.log('init index')
+
+            // this.getGameInfo("570")
         },
 
         getGameTypes(){
@@ -21,13 +23,24 @@ const mapDispatchToProps = (dispatch, props) => {
                 }
             })
             .catch(function (error) {
-                Toast.fail('竞猜类型获取失败，请稍后重试！');
+                Toast.fail('获取失败，请稍后重试！');
                 console.log('error', error);
             });
         },
 
         getGameInfo(type){
-            console.log(type)
+            axios.post("/Game/GetGameInfos",{
+                GameType: type
+            })
+            .then(function (res) {
+                if(res){
+                    console.log(res.Data)
+                }
+            })
+            .catch(function (error) {
+                Toast.fail('获取失败，请稍后重试！');
+                console.log('error', error);
+            });
         },
 
         goListPage() {
