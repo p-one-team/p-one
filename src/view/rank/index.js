@@ -4,7 +4,7 @@ import RankComponentWrapper from './rank-component.js'
 const mapDispatchToProps = (dispatch, props) => {
     return {
         initData() {
-            console.log('init index')
+            //console.log('init index')
         },
         goListPage() {
             props.history.push('/list')

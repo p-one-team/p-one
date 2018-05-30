@@ -7,47 +7,46 @@ import style from './bottom-tab.less'
 import MatchList from '../match-list'
 import UserCenter from '../../view/userCenter'
 
-// const tabs = [
-//     { title: <Badge >DOTA2</Badge> },
-//     { title: <Badge >CS:GO</Badge> },
-//     { title: <Badge >LOL</Badge> },
-//     { title: <Badge >体育</Badge> },
-// ];
+
 
 @CSSModules(style)
 class TabBarExample extends React.Component {
     constructor(props) {
         super(props);
 
-        let gameTypes = this.props.gameTypes
-        for(let i in gameTypes){
-            gameTypes[i].title = (<Badge >{gameTypes[i].GameName}</Badge>)
-        }
-
-        console.log("gameInfos:",this.props.gameInfos)
-
         this.state = {
             currentPage: 'My',
             hidden: false,
-            gameTypes: gameTypes
         }
     }
 
+    componentDidMount(){
+        this.props.changeGameInfo("570")
+    }
+
     TabExample = () => {
+
+        let _gameTypes = this.props.gameTypes
+        for(let i in _gameTypes){
+            _gameTypes[i].title = (<Badge >{_gameTypes[i].GameName}</Badge>)
+        }
         
         return (<div>
-            <Tabs tabs={this.state.gameTypes}
+            <Tabs tabs={_gameTypes}
                 initialPage={0}
-                onTabClick={(tab) => { this.props.changeGameInfo(tab.GameCode) }}
+                onTabClick={(tab) => {this.props.changeGameInfo(tab.GameCode)}}
             >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
                     <MatchList />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    Content of second tab
+                    <MatchList />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    Content of third tab
+                    <MatchList />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+                    <MatchList />
                 </div>
             </Tabs>
             <WhiteSpace />
@@ -58,14 +57,16 @@ class TabBarExample extends React.Component {
         if (pageText == 'My') {
             // return <UserCenter />
         } else {
-            return this.TabExample(pageText)
+            return this.TabExample()
         }
 
     }
+
     renderContent2(pageText) {
         return (
             <div style={{ backgroundColor: 'black', height: '100%', textAlign: 'center' }}>
                 <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>
+
                 <a style={{ display: 'block', marginTop: 40, marginBottom: 20, color: '#108ee9' }}
                     onClick={(e) => {
                         e.preventDefault();
@@ -74,16 +75,13 @@ class TabBarExample extends React.Component {
                             hidden: !this.state.hidden,
                         });
                     }}
-                >
-                    Click to show/hide tab-bar
-        </a>
+                >Click to show/hide tab-bar</a>
+
                 <a style={{ display: 'block', marginBottom: 600, color: '#108ee9' }}
                     onClick={(e) => {
                         e.preventDefault();
                     }}
-                >
-                    Click to switch fullscreen
-        </a>
+                >Click to switch fullscreen</a>
             </div>
         );
     }
@@ -124,6 +122,7 @@ class TabBarExample extends React.Component {
                     >
                         {this.renderContent2('recommend')}
                     </TabBar.Item>
+
                     <TabBar.Item
                         icon={
                             <div style={{
@@ -152,6 +151,7 @@ class TabBarExample extends React.Component {
                     >
                         {this.renderContent('lottery')}
                     </TabBar.Item>
+
                     <TabBar.Item
                         icon={
                             <div style={{
@@ -179,6 +179,7 @@ class TabBarExample extends React.Component {
                     >
                         {this.renderContent('rank')}
                     </TabBar.Item>
+
                     <TabBar.Item
                         icon={<div style={{
                             width: '22px',

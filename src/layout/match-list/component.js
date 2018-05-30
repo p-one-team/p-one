@@ -15,18 +15,30 @@ function MyBody(props) {
 
 const data = [
     {
-        team1: {
-            name: "LDG",
-            icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524217866821&di=05b8bec97c5c389eb61e8489e7cff0e6&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20160826%2F33eeaffa10474fd0a852ded77ab5de04_th.jpg"
-        },
-        team2: {
-            name: "EHOME",
-            icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524812329&di=541821e4fec802ad0e5bfa0fe06ad7e9&imgtype=jpg&er=1&src=http%3A%2F%2Fdota2.wanmei.com%2Fresources%2Fpng%2F150113%2F10251421135707960.png"
-        },
-        gameName: "TI8 BO3",
-        gameId: "A123123123",
+        GameId: 1,        
+        GameTitle: "屌丝逆袭战",
+        GameDate: "-12前",
+        BeginDate: "2018-05-20 22:00:00",
+        EndDate: "2018-05-20 23:30:00",
+        IsForecast: true,
         gameStatus: "03", //01未开始可预测 02进行中 03可预测
         gameTime: "2小时前",
+        GameTeam: {
+            LeftTeamID: 1,
+            LeftTeamName: "LDG",
+            LeftTeamImage: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524217866821&di=05b8bec97c5c389eb61e8489e7cff0e6&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20160826%2F33eeaffa10474fd0a852ded77ab5de04_th.jpg",
+            LeftTeamResult: "0",
+            LeftTeamOdds: "",
+            LeftTeamRate: "",
+            LeftProfit: 0,
+            RightTeamID: 2,
+            RightTeamName: "EHOME",
+            RightTeamImage: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524812329&di=541821e4fec802ad0e5bfa0fe06ad7e9&imgtype=jpg&er=1&src=http%3A%2F%2Fdota2.wanmei.com%2Fresources%2Fpng%2F150113%2F10251421135707960.png",
+            RightTeamResult: "0",
+            RightTeamOdds: "",
+            RightTeamRate: "",
+            RightProfit: 0
+        },
         detailList: [
             {
                 index: 1,
@@ -51,83 +63,7 @@ const data = [
                 statusDesc: "已结清"
             },
         ]
-    },
-    {
-        team1: {
-            name: "NewBee",
-            icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524218552147&di=118616052982412454c49e4cbc71329f&imgtype=0&src=http%3A%2F%2Fimg1.gtimg.com%2Fsports%2Fpics%2Fhv1%2F222%2F171%2F2062%2F134125377.png"
-        },
-        team2: {
-            name: "Team Secret",
-            icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524218189225&di=f1de64cc92deb129094d0108614971c2&imgtype=0&src=http%3A%2F%2Fimg1.178.com%2Fdota2%2F201509%2F237526343764%2F237526403037.jpg"
-        },
-        gameName: 'TI8 BO3',
-        gameId: "B123123123",
-        gameStatus: "02", //01未开始可预测 02进行中 03可预测
-        gameTime: "47分钟前",
-        detailList: [
-            {
-                index: 1,
-                title: '猜输赢',
-                Odds: {
-                    teamL: 0.25,
-                    teamR: 3.65
-                },
-                status: "01", //01未开始可预测 02进行中 03已结清
-                winner: "",
-                statusDesc: "可预测"
-            },
-            {
-                index: 2,
-                title: '10杀',
-                Odds: {
-                    teamL: 0.25,
-                    teamR: 3.65
-                },
-                status: "02", //01未开始可预测 02进行中 03已结清
-                winner: "",
-                statusDesc: "进行中"
-            },
-        ]
-    },
-    {
-        team1: {
-            name: "Invictus Gaming",
-            icon: "https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=5a659521b1de9c82b268f1dd0de8eb6f/f9198618367adab482d06a5b89d4b31c8701e4a2.jpg"
-        },
-        team2: {
-            name: "CDEC Gaming",
-            icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524218734244&di=fd887c72be7e077fd42715aed03f0b8b&imgtype=0&src=http%3A%2F%2Fimg.sgamer.com%2Fdota2_sgamer_com%2Fimages%2F20151008%2F3835eef3280ba9c2a99f0706cf4a7e2c.jpg"
-        },
-        gameName: 'TI8 BO3',
-        gameId: "C123123123",
-        gameStatus: "01", //01未开始可预测 02进行中 03可预测
-        gameTime: "3小时后",
-        detailList: [
-            {
-                index: 1,
-                title: '猜输赢',
-                Odds: {
-                    teamL: 0.25,
-                    teamR: 3.65
-                },
-                status: "01", //01未开始可预测 02进行中 03已结清
-                winner: "",
-                statusDesc: "可预测"
-            },
-            {
-                index: 2,
-                title: '10杀',
-                Odds: {
-                    teamL: 0.25,
-                    teamR: 3.65
-                },
-                status: "03", //01未开始可预测 02进行中 03已结清
-                winner: "2",
-                statusDesc: "已结清"
-            },
-        ]
-    },
+    }
 ];
 
 const NUM_ROWS = 20;
@@ -287,6 +223,9 @@ class MatchList extends React.Component {
         //     />
 
         // );
+
+        // let data = this.props.gameInfos;
+
         let index = data.length - 1;
         const row_head = (rowData, sectionID, rowID) => {
             if (index < 0) {
@@ -322,17 +261,17 @@ class MatchList extends React.Component {
                     <div className={style.content}>
 
                         <div className={style.itemL + " " + style.itemImg}>
-                            <img src={obj.team1.icon} alt="" />
-                            <div>{obj.team1.name}</div>
+                            <img src={obj.GameTeam.LeftTeamImage} alt="" />
+                            <div>{obj.GameTeam.LeftTeamName}</div>
                         </div>
                         <div className={style.descript}>
-                            <p>{obj.gameName}</p>
+                            <p>{obj.GameTitle}</p>
                             <p className={statusColor == "black" ? style.blackBg : style.redBg}>{statusDes}</p>
                             <p className={statusColor == "black" ? style.blackWord : style.greyWord}>{obj.gameTime}</p>
                         </div>
                         <div className={style.itemR + " " + style.itemImg}>
-                            <img src={obj.team2.icon} alt="" />
-                            <div>{obj.team2.name}</div>
+                            <img src={obj.GameTeam.RightTeamImage} alt="" />
+                            <div>{obj.GameTeam.RightTeamName}</div>
                         </div>
                     </div>
                 </div>

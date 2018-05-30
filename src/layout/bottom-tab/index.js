@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
 // import _ut from 'my-util'
-import { changePage } from 'reducers/main'
+import { changePage } from '../../reducers/main'
 import TabBarExample from './component.js'
+import {getGameInfos} from '../../reducers/match.js'
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -10,8 +11,7 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         changeGameInfo(code) {
-            console.log(code)
-
+            getGameInfos(code)
         }
 
     }
@@ -19,13 +19,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
 
-    // const BottomTab_state = {
-    //     selectedTab: 'redTab',
-    //     hidden: false,
-    //     fullScreen: true,
-    // }
-    // const { screenSize, countValue } = state.UserReducer
     return {
+        gameInfos: state.MatchReducer.gameInfos,
         currentPage: state.MainInfoReducer.currentPage,
         hidden: false
     }

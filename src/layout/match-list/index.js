@@ -1,24 +1,13 @@
 import { connect } from 'react-redux'
-// import _ut from 'my-util'
-import { changePage } from 'reducers/main'
 import MatchListWrapper from './component.js'
-import { withRouter } from 'react-router-dom';
 
 
 const mapDispatchToProps = (dispatch, props) => {
-    // console.log(props)
+
     return {
-        changePage(pageText) {
-            dispatch(changePage(pageText))
-        },
-
-        goPage(page) {
-            // console.log(props)
-            switch (page) {
-                case 'match-detail':
-                    props.history.push('matchDetail');
-            }
-
+        goMatchDetail(gameId) {
+            console.log(gameId)
+            props.history.push('/matchDetail');
         }
     }
 }
@@ -26,14 +15,15 @@ const mapDispatchToProps = (dispatch, props) => {
 const mapStateToProps = (state) => {
 
     return {
-        currentPage: state.MainInfoReducer.currentPage,
+        gameInfos: state.MatchReducer.gameInfos,
+        
         hidden: false
     }
 }
 
-const MatchList = withRouter(connect(
+const MatchList = connect(
     mapStateToProps,
     mapDispatchToProps
-)(MatchListWrapper))
+)(MatchListWrapper)
 
 export default MatchList;

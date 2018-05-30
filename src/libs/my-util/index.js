@@ -14,11 +14,21 @@ const _ut = (function() {
     const isString = function(str) {
         return str instanceof String || (typeof str).toLowerCase() == "string";
     }
+
+    const isEmpty = function(value, allowEmptyString) {
+        return (
+          value === null ||
+          value === undefined ||
+          (!allowEmptyString ? value === "" : false) ||
+          value == "(null)"
+        );
+    }
     
     return {
         fixNum,
         fetch: myfetch,
-        isString
+        isString,
+        isEmpty
     }
 })()
 

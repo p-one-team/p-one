@@ -4,7 +4,7 @@ import ShopItemDetailComponent from './item-component.js'
 const mapDispatchToProps = (dispatch, props) => {
     return {
         initData() {
-            console.log('init index')
+            //console.log('init index')
         },
         goListPage() {
             props.history.push('/list')

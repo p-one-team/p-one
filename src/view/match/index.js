@@ -2,45 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Dialog from 'mo-dialog'
 import MatchComponent from './match-component'
-import axios from 'axios'
-import {Toast} from 'antd-mobile'
+import {getGameTypes} from '../../reducers/match.js'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
         initData() {
-            console.log('init index')
-
-            // this.getGameInfo("570")
-        },
-
-        getGameTypes(){
-            axios.post("/Game/GetGameTypes",{
-                //无需参数
-            })
-            .then(function (res) {
-                if(res){
-                    console.log(res.Data.GameTypeModels)
-                }
-            })
-            .catch(function (error) {
-                Toast.fail('获取失败，请稍后重试！');
-                console.log('error', error);
-            });
-        },
-
-        getGameInfo(type){
-            axios.post("/Game/GetGameInfos",{
-                GameType: type
-            })
-            .then(function (res) {
-                if(res){
-                    console.log(res.Data)
-                }
-            })
-            .catch(function (error) {
-                Toast.fail('获取失败，请稍后重试！');
-                console.log('error', error);
-            });
+            getGameTypes()
         },
 
         goListPage() {
@@ -70,7 +37,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
-        ...state.HomeReducer
+        gameTypes: state.MatchReducer.gameTypes
     }
 }
 

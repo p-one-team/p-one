@@ -36,7 +36,7 @@ class HomeComponent extends Component {
 
     //去重置密码
     goResetPsd = () => {
-        this.props.history.push('/resetPassword')
+        this.props.goResetPsd()
     }
 
     //切换登录方式

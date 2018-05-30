@@ -162,7 +162,7 @@ class resetPsdComponent extends Component {
             SmsCode: this.state.messageCode,
             Password: this.state.loginPsd,
             ConfirmPassword: this.state.confirmPsd
-        })
+        },this.props.isForgetPsd)
     }
 
     render() {
@@ -174,7 +174,7 @@ class resetPsdComponent extends Component {
                     mode="light"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
-                >重置密码</NavBar>
+                >{this.props.isForgetPsd?"忘记密码":"重置密码"}</NavBar>
 
                 <div styleName="main">
                     <List>

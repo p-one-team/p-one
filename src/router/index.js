@@ -9,8 +9,6 @@ import store from '../store'
 /*引入页面组件*/
 import Home from '../view/home'
 import signUp from '../view/signUp'
-import List from '../view/list'
-import Miao from '../view/miao'
 import Match from '../view/match'
 import matchDetail from '../view/matchDetail'
 import matchList from '../layout/match-list'
@@ -19,7 +17,7 @@ import Inventory from '../view/inventory'
 import myForecast from '../view/myForecast'
 import Shop from '../view/shop'
 import ShopItemDetail from '../view/shopItemDetail'
-import UserDetail from '../view/user-detail'
+import UserDetail from '../view/userDetail'
 import TradeHistory from '../view/tradeHistory'
 import HelpSuggest from '../view/helpSuggest'
 import Message from '../view/message'
@@ -42,25 +40,24 @@ const routes_config = [
 		path: '/',
 		component: Home,
 		isExact: true
-	}, {
+	},
+	{
 		path: '/signUp',
 		component: signUp
-	}, {
-		path: '/list',
-		component: List
-	}, {
-		path: '/miao',
-		component: Miao
-	}, {
+	},
+	{
 		path: '/match',
 		component: Match
-	}, {
+	},
+	{
 		path: '/matchDetail',
 		component: matchDetail
-	}, {
+	},
+	{
 		path: '/matchList',
 		component: matchList
-	}, {
+	}, 
+	{
 		path: '/rank',
 		component: Rank
 	},
@@ -127,19 +124,6 @@ const App = () => (
 		</HashRouter>
 	</Provider>
 )
-
-
-/*如果不需要页面过渡效果，参考下面更简单易懂的写法*/
-/*const App = () => (
-	<Provider store={ store }>
-		<HashRouter history={CustomHistory}>
-			<Switch> // import { Switch } from 'react-router'
-				<Route exact path={'/home'} component={Home} />
-				<Route path={'/list'} component={List} />
-			</Switch>
-		</HashRouter>
-	</Provider>
-) */
 
 
 export default App

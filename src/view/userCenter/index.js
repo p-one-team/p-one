@@ -5,6 +5,10 @@ import { withRouter } from 'react-router-dom'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+        initData() {
+            //console.log("init data")
+        },
+
         goBack() {
             props.history.replace('/')
         },
@@ -12,20 +16,30 @@ const mapDispatchToProps = (dispatch, props) => {
         goDetail() {
             props.history.push('/userDetail')
         },
+
         goTradeHistory() {
             props.history.push('/tradeHistory')
         },
+
         goMessage() {
             props.history.push('/message')
         },
+        
         goHelpSuggest() {
             props.history.push('/helpSuggest')
         }
     }
 }
 
+
+const mapStateToProps = (state) => {
+    return {
+        userInfos: state.UserReducer.userInfos
+    }
+}
+
 const UserCenter = withRouter(connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(UserCenterComponent))
 

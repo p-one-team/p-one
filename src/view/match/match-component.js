@@ -13,12 +13,6 @@ class MatchComponent extends Component {
         super(props)
 
         this.state = {
-            gameTypes: [
-                {GameCode: "570", GameName: "Dota2"},
-                {GameCode: "730", GameName: "CSGO"},
-                {GameCode: "578080", GameName: "PUBG"},
-                {GameCode: "Sports", GameName: "体育"}
-            ],
             gameInfos: [
                 {
                     BeginDate:"2018-05-20 22:00:00",
@@ -103,7 +97,7 @@ class MatchComponent extends Component {
             <div styleName="wrap">
                 {this.GridExample()}
                 
-                <BottomTab goMatchDetail={this.props.goMatchDetail} gameTypes={this.state.gameTypes} gameInfos={this.state.gameInfos} />
+                <BottomTab goMatchDetail={this.props.goMatchDetail} gameTypes={this.props.gameTypes} />
 
             </div>
         )

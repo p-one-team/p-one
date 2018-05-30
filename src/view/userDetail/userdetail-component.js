@@ -19,7 +19,7 @@ class UserDetailComponent extends Component {
 
     //修改密码
     modifyPsd = () => {
-        this.props.history.push('/resetPassword')
+        this.props.goResetPsd()
     }
 
     logout = () => {
@@ -28,6 +28,8 @@ class UserDetailComponent extends Component {
     }
 
     render() {
+
+        let userInfos = this.props.userInfos
         
         return (
             <div styleName="wrap">
@@ -44,26 +46,31 @@ class UserDetailComponent extends Component {
                         </li>
                         <li>
                             <span>昵称</span>
-                            <label>ROVER</label>
+                            <label>{userInfos.NickName}</label>
                             <label className="iconfont icon-previewright"></label>
                         </li>
                         <li>
                             <span>手机</span>
-                            <label>未绑定</label>
-                            <label className="iconfont icon-previewright"></label>
-                        </li>
-                        <li>
-                            <span>Steam设置</span>
-                            <label></label>
+                            <label>{userInfos.Mobile}</label>
                             <label className="iconfont icon-previewright"></label>
                         </li>
                         <li>
                             <span>实名认证</span>
-                            <label>未设置</label>
+                            <label>{userInfos.UserName?userInfos.UserName:"未认证"}</label>
+                            <label className="iconfont icon-previewright"></label>
+                        </li>
+                        <li>
+                            <span>邮箱</span>
+                            <label>{userInfos.Email?userInfos.Email:"未绑定"}</label>
                             <label className="iconfont icon-previewright"></label>
                         </li>
                         <li onClick={this.modifyPsd}>
                             <span>修改密码</span>
+                            <label></label>
+                            <label className="iconfont icon-previewright"></label>
+                        </li>
+                        <li>
+                            <span>Steam设置</span>
                             <label></label>
                             <label className="iconfont icon-previewright"></label>
                         </li>
