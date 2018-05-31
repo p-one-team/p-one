@@ -5,9 +5,18 @@
     display: flex;
 }
 
- .title{
-     color: green;
- }
+.title{
+    color: green;
+}
+
+.gameList{
+    width: 100%;
+
+    li{
+        border-bottom: 1px solid #f1f1f1;
+    }
+}
+
 .content {
     display: flex;
     justify-content: center;
@@ -48,10 +57,12 @@
         }
 
         .blackBg{
+            color: #fff!important;
             background: #2c2c32!important;
         }
-        .redBg{
-            background: #ff5a5f!important;
+        .greyBg{
+            color: #2c2c32!important;
+            background: #cacaca!important;
         }
 
         .blackWord{
@@ -168,9 +179,12 @@
 }
 
 
-    :global{
-        .am-accordion-header{
-            padding: 20px 0!important;
-            height: 120px!important;
-        }
+:global{
+    .am-accordion-header{
+        padding: 20px 0!important;
+        height: 120px!important;
     }
+    .am-tabs-default-bar-content{
+        background: #f1f1f1!important;
+    }
+}

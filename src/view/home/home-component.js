@@ -25,10 +25,6 @@ class HomeComponent extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.initData()
-    }
-
     //去注册
     goSign = () => {
         this.props.history.push('/signUp')

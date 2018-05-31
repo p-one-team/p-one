@@ -92,8 +92,6 @@ class MatchList extends React.Component {
             rowHasChanged: (row1, row2) => row1 !== row2,
         });
 
-        // console.log(style)
-
         this.state = {
             dataSource,
             isLoading: true,
@@ -102,10 +100,6 @@ class MatchList extends React.Component {
     }
 
     componentDidMount() {
-        // you can scroll to the specified position
-        // setTimeout(() => this.lv.scrollTo(0, 120), 800);
-
-        // simulate initial Ajax
         setTimeout(() => {
             this.rData = genData();
             this.setState({
@@ -115,19 +109,7 @@ class MatchList extends React.Component {
         }, 600);
     }
 
-    // If you use redux, the data maybe at props, you need use `componentWillReceiveProps`
-    // componentWillReceiveProps(nextProps) {
-    //   if (nextProps.dataSource !== this.props.dataSource) {
-    //     this.setState({
-    //       dataSource: this.state.dataSource.cloneWithRows(nextProps.dataSource),
-    //     });
-    //   }
-    // }
-
-
     onEndReached = (event) => {
-        // load new data
-        // hasMore: from backend data, indicates whether it is the last page, here is false
         if (this.state.isLoading && !this.state.hasMore) {
             return;
         }
@@ -232,7 +214,6 @@ class MatchList extends React.Component {
                 index = data.length - 1;
             }
             const obj = data[index--];
-            // console.log(obj)
 
             let statusDes;
             let statusColor;

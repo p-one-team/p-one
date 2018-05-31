@@ -1,16 +1,11 @@
-import React from 'react'
 import { connect } from 'react-redux'
-import Dialog from 'mo-dialog'
 import HomeComponent from './home-component.js'
 import { loginAction, getMsgCode } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
 
 	return {
-		initData() {
-			//console.log('init index')
-		},
-
+		//前往忘记密码页
 		goResetPsd(){
 			dispatch({
 				type: "USER_FORGET_PSD",
@@ -19,16 +14,14 @@ const mapDispatchToProps = (dispatch, props) => {
 			props.history.push('/resetPassword')
 		},
 
-		openDialog() {
-			Dialog.alert(<p>Hello from the <b style={{ color: "#f496ce" }}>Moon~</b></p>)
-		},
-
+		//登录
 		login(data) {
 			loginAction(data, function(){
 				props.history.push('/match')
 			})
 		},
 
+		//获取验证码
 		getCode(data) {
 			getMsgCode(data)
 		}
@@ -40,7 +33,6 @@ const mapStateToProps = (state) => {
 		...state.HomeReducer
 	}
 }
-
 
 const Home = connect(
 	mapStateToProps,

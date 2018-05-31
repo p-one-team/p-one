@@ -37,7 +37,7 @@ class TabBarExample extends React.Component {
                 onTabClick={(tab) => {this.props.changeGameInfo(tab.GameCode)}}
             >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <MatchList />
+                    <MatchList goMatchDetail={(id)=>this.props.goMatchDetail(id)}/>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
                     <MatchList />

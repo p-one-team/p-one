@@ -97,7 +97,7 @@ class MatchComponent extends Component {
             <div styleName="wrap">
                 {this.GridExample()}
                 
-                <BottomTab goMatchDetail={this.props.goMatchDetail} gameTypes={this.props.gameTypes} />
+                <BottomTab goMatchDetail={(id)=>this.props.goMatchDetail(id)}/>
 
             </div>
         )

@@ -102,7 +102,7 @@ const registerAction = (data, callback) => {
     .then(function (res) {
         if(res){
             // Toast.success('注册成功！');
-            window.token = res.Data.token;
+            window.token = res.Data.Token;
 
             store.dispatch({
                 type: "USER_INFO",

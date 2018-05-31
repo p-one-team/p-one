@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
 
     return {
-        gameInfos: state.MatchReducer.gameInfos,
+        gameTypes: state.MatchReducer.gameTypes,
         currentPage: state.MainInfoReducer.currentPage,
         hidden: false
     }
