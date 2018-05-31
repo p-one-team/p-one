@@ -8,7 +8,8 @@ import store from '../store'
 const initMatchInfo = {
     gameTypes: [],
     gameInfos: [],
-    gameItems: []
+    gameItems: [],
+    gameItemInfos: {}
 }
 
 const MatchReducer = (state = initMatchInfo, action) => {
@@ -19,6 +20,8 @@ const MatchReducer = (state = initMatchInfo, action) => {
             return Object.assign({}, state, { gameInfos: action.gameInfos })
         case 'GAME_ITEM':
             return Object.assign({}, state, { gameItems: action.gameItems })
+        case 'GAME_ITEM_INFO':
+            return Object.assign({}, state, { gameItemInfos: action.gameItemInfos })
         default:
             return state
     }
@@ -82,10 +85,30 @@ const getGameItems = (id) => {
     });
 }
 
+const getGameItemInfo = (id, callback) => {
+    axios.post("/Game/GetGameItemInfo", {
+        HandicapID: id
+    })
+    .then(function(res) {
+        if (res) {
+            store.dispatch({
+                type: 'GAME_ITEM_INFO',
+                gameItems: res.Data
+            })
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function(error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
 
 export {
     MatchReducer,
     getGameTypes,
     getGameInfos,
-    getGameItems
+    getGameItems,
+    getGameItemInfo
 }
