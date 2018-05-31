@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './match.less'
 import BottomTab from '../../layout/bottom-tab'
-import { Grid} from 'antd-mobile'
+import { Grid } from 'antd-mobile'
 
 
 @CSSModules(style)
@@ -15,34 +15,34 @@ class MatchComponent extends Component {
         this.state = {
             gameInfos: [
                 {
-                    BeginDate:"2018-05-20 22:00:00",
-                    EndDate:"2018-05-20 23:30:00",
-                    GameDate:"-18前",
-                    GameID:1,
-                    GameTeam:{
-                        LeftProfit:0,
-                        LeftTeamID:1,
-                        LeftTeamImage:"",
-                        LeftTeamName:"同程",
-                        LeftTeamOdds:"",
-                        LeftTeamRate:"",
-                        LeftTeamResult:"0",
-                        RightProfit:0,
-                        RightTeamID:2,
-                        RightTeamImage:"",
-                        RightTeamName:"艺龙",
-                        RightTeamOdds:"",
-                        RightTeamRate:"",
-                        RightTeamResult:"0"
+                    BeginDate: "2018-05-20 22:00:00",
+                    EndDate: "2018-05-20 23:30:00",
+                    GameDate: "-18前",
+                    GameID: 1,
+                    GameTeam: {
+                        LeftProfit: 0,
+                        LeftTeamID: 1,
+                        LeftTeamImage: "",
+                        LeftTeamName: "同程",
+                        LeftTeamOdds: "",
+                        LeftTeamRate: "",
+                        LeftTeamResult: "0",
+                        RightProfit: 0,
+                        RightTeamID: 2,
+                        RightTeamImage: "",
+                        RightTeamName: "艺龙",
+                        RightTeamOdds: "",
+                        RightTeamRate: "",
+                        RightTeamResult: "0"
                     },
-                    GameTitle:"屌丝逆袭战",
-                    IsForecast:true
+                    GameTitle: "屌丝逆袭战",
+                    IsForecast: true
                 }
             ]
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.initData()
     }
 
@@ -96,8 +96,8 @@ class MatchComponent extends Component {
         return (
             <div styleName="wrap">
                 {this.GridExample()}
-                
-                <BottomTab goMatchDetail={(id)=>this.props.goMatchDetail(id)}/>
+
+                <BottomTab goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(id) => this.props.showGameDetail(id)} />
 
             </div>
         )

@@ -1,15 +1,18 @@
 import { connect } from 'react-redux'
 import MatchListWrapper from './list-component.js'
-import { getGameItems } from '../../reducers/match'
 
 
 const mapDispatchToProps = (dispatch, props) => {
 
     return {
-        showGameDetail(gameId){
+        initData() {
             console.log(props)
-            getGameItems(gameId)
-        }
+        },
+
+        // showGameDetail(gameId){
+        //     console.log(props)
+        //     getGameItems(gameId)
+        // }
     }
 }
 

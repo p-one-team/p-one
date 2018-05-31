@@ -20,24 +20,24 @@ class TabBarExample extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.changeGameInfo("570")
     }
 
     TabExample = () => {
 
         let _gameTypes = this.props.gameTypes
-        for(let i in _gameTypes){
+        for (let i in _gameTypes) {
             _gameTypes[i].title = (<Badge >{_gameTypes[i].GameName}</Badge>)
         }
-        
+
         return (<div>
             <Tabs tabs={_gameTypes}
                 initialPage={0}
-                onTabClick={(tab) => {this.props.changeGameInfo(tab.GameCode)}}
+                onTabClick={(tab) => { this.props.changeGameInfo(tab.GameCode) }}
             >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <MatchList goMatchDetail={(id)=>this.props.goMatchDetail(id)}/>
+                    <MatchList goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
                     <MatchList />

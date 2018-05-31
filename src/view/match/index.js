@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import MatchComponent from './match-component'
-import {getGameTypes,getGameItemInfo} from '../../reducers/match.js'
+import { getGameTypes, getGameItems, getGameItemInfo } from '../../reducers/match.js'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -8,10 +8,14 @@ const mapDispatchToProps = (dispatch, props) => {
             getGameTypes()
         },
 
-        goMatchDetail(id){
+        goMatchDetail(id) {
             getGameItemInfo(id, () => {
                 props.history.push('/matchDetail')
             })
+        },
+
+        showGameDetail(gameId) {
+            getGameItems(gameId)
         },
 
         goRankPage() {

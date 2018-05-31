@@ -58,7 +58,7 @@ const userInfo = {
 const rowHead = () =>
     (<div className="userImg">
         <span>1</span>
-        <img src={userInfo.userImg} alt=""/>
+        <img src={userInfo.userImg} alt="" />
         <span>{userInfo.userName}</span>
         <div></div>
         <div>{userInfo.userLevel}</div>
@@ -105,13 +105,13 @@ class matchDetail extends Component {
             <div styleName="wrap">
                 <NavBar
                     icon={<Icon type="left" />}
-                    onLeftClick={() => console.log('onLeftClick')}
+                    onLeftClick={() => this.props.history.goBack()}
                     mode="dark"
                 >比赛预测</NavBar>
 
                 <div styleName="detailCard">
                     <div styleName="teamL">
-                        <img src={data.team1.icon} alt=""/>
+                        <img src={data.team1.icon} alt="" />
                         <p>{data.team1.name}</p>
                     </div>
                     <div styleName="des">
@@ -120,7 +120,7 @@ class matchDetail extends Component {
                         <p>{data.statusDesc}</p>
                     </div>
                     <div styleName="teamR">
-                        <img src={data.team2.icon} alt=""/>
+                        <img src={data.team2.icon} alt="" />
                         <p>{data.team2.name}</p>
                     </div>
                 </div>
@@ -137,17 +137,17 @@ class matchDetail extends Component {
                     </div>
                     <div styleName="rateLine2"><div></div></div>
                     <div styleName="show-info">
-                        <span>{Number(data.supportRate.teamL)*100}%</span>
+                        <span>{Number(data.supportRate.teamL) * 100}%</span>
                         <label>支持率</label>
                         {/* <Progress percent={Number(data.supportRate.teamL)*100} position="normal" /> */}
-                        <span>{Number(data.supportRate.teamR)*100}%</span>
+                        <span>{Number(data.supportRate.teamR) * 100}%</span>
                     </div>
                     <div styleName="progress">
-                        <span style={{width:'65%'}}></span>
+                        <span style={{ width: '65%' }}></span>
                         <label></label>
                         <b></b>
                         <label></label>
-                        <span style={{width:'35%'}}></span>
+                        <span style={{ width: '35%' }}></span>
                     </div>
                     <div styleName="forecast">预测</div>
                 </div>
