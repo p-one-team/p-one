@@ -8,7 +8,7 @@ import store from '../store'
 const initMatchInfo = {
     gameTypes: [],
     gameInfos: [],
-    gameItems: [],
+    gameItems: {},
     gameItemInfos: {}
 }
 
@@ -75,7 +75,10 @@ const getGameItems = (id) => {
         if (res) {
             store.dispatch({
                 type: 'GAME_ITEM',
-                gameItems: res.Data.GameItems
+                gameItems: {
+                    gameId: id,
+                    itemList: res.Data.GameItems
+                }
             })
         }
     })
@@ -93,7 +96,7 @@ const getGameItemInfo = (id, callback) => {
         if (res) {
             store.dispatch({
                 type: 'GAME_ITEM_INFO',
-                gameItems: res.Data
+                gameItemInfos: res.Data
             })
 
             callback ? callback() : ""

@@ -20,29 +20,29 @@ const tabs = [
     { title: '土豪榜' },
 ];
 
-const data = {
-    team1: {
-        name: "EHOME",
-        icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524217691703&di=8dc6d07e85bdbcbe504acafe523055fb&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F080a5890b0341879a1fff8cbca0bff826102cadb.jpg"
-    },
-    team2: {
-        name: "LDG",
-        icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524217774744&di=4c7adb6185187106c398ff5780d47bb6&imgtype=0&src=http%3A%2F%2Fupload.techweb.com.cn%2F2016%2F0115%2F1452822932280.png"
-    },
-    gameName: "Meet hotel",
-    title: '猜输赢',
-    Odds: {
-        teamL: 0.25,
-        teamR: 3.65
-    },
-    supportRate: {
-        teamL: 0.65,
-        teamR: 0.35
-    },
-    gameStatus: "03", //01未开始可预测 02进行中 03已结清
-    winner: "",
-    statusDesc: "已结算"
-}
+// const data = {
+//     team1: {
+//         name: "EHOME",
+//         icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524217691703&di=8dc6d07e85bdbcbe504acafe523055fb&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F080a5890b0341879a1fff8cbca0bff826102cadb.jpg"
+//     },
+//     team2: {
+//         name: "LDG",
+//         icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524217774744&di=4c7adb6185187106c398ff5780d47bb6&imgtype=0&src=http%3A%2F%2Fupload.techweb.com.cn%2F2016%2F0115%2F1452822932280.png"
+//     },
+//     gameName: "Meet hotel",
+//     title: '猜输赢',
+//     Odds: {
+//         teamL: 0.25,
+//         teamR: 3.65
+//     },
+//     supportRate: {
+//         teamL: 0.65,
+//         teamR: 0.35
+//     },
+//     gameStatus: "03", //01未开始可预测 02进行中 03已结清
+//     winner: "",
+//     statusDesc: "已结算"
+// }
 
 const userInfo = {
     userName: "username",
@@ -101,6 +101,8 @@ class matchDetail extends Component {
         super(props)
     }
     render() {
+        let gameItemInfos = this.props.gameItemInfos;
+
         return (
             <div styleName="wrap">
                 <NavBar
@@ -111,17 +113,17 @@ class matchDetail extends Component {
 
                 <div styleName="detailCard">
                     <div styleName="teamL">
-                        <img src={data.team1.icon} alt="" />
-                        <p>{data.team1.name}</p>
+                        <img src={gameItemInfos.GameTeam.LeftTeamImage} alt="" />
+                        <p>{gameItemInfos.GameTeam.LeftTeamName}</p>
                     </div>
                     <div styleName="des">
-                        <p>{data.gameName}</p>
-                        <p>{data.title}</p>
-                        <p>{data.statusDesc}</p>
+                        <p>{gameItemInfos.GameItemTitle}</p>
+                        <p>猜输赢</p>
+                        <p>{gameItemInfos.IsForecast?"进行中":"已结算"}</p>
                     </div>
                     <div styleName="teamR">
-                        <img src={data.team2.icon} alt="" />
-                        <p>{data.team2.name}</p>
+                        <img src={gameItemInfos.GameTeam.RightTeamImage} alt="" />
+                        <p>{gameItemInfos.GameTeam.RightTeamName}</p>
                     </div>
                 </div>
 
@@ -129,27 +131,26 @@ class matchDetail extends Component {
                     <p styleName="sub-tips"><span></span><label>谁将赢得此系列赛的胜利?</label></p>
                     <div styleName="rateLine1"><div></div></div>
                     <div styleName="rateBox">
-                        <span>{data.team1.name}</span>
-                        <b>{data.Odds.teamL}</b>
+                        <span>{gameItemInfos.GameTeam.LeftTeamName}</span>
+                        <b>{gameItemInfos.GameTeam.LeftTeamOdds}</b>
                         <label>赔率</label>
-                        <b>{data.Odds.teamR}</b>
-                        <span>{data.team2.name}</span>
+                        <b>{gameItemInfos.GameTeam.RightTeamOdds}</b>
+                        <span>{gameItemInfos.GameTeam.RightTeamName}</span>
                     </div>
                     <div styleName="rateLine2"><div></div></div>
                     <div styleName="show-info">
-                        <span>{Number(data.supportRate.teamL) * 100}%</span>
+                        <span>{parseFloat(gameItemInfos.GameTeam.LeftTeamRate)}%</span>
                         <label>支持率</label>
-                        {/* <Progress percent={Number(data.supportRate.teamL)*100} position="normal" /> */}
-                        <span>{Number(data.supportRate.teamR) * 100}%</span>
+                        <span>{parseFloat(gameItemInfos.GameTeam.RightTeamRate)}%</span>
                     </div>
                     <div styleName="progress">
-                        <span style={{ width: '65%' }}></span>
+                        <span style={{ width: parseFloat(gameItemInfos.GameTeam.LeftTeamRate)+"%" }}></span>
                         <label></label>
                         <b></b>
                         <label></label>
-                        <span style={{ width: '35%' }}></span>
+                        <span style={{ width: parseFloat(gameItemInfos.GameTeam.RightTeamRate)+"%" }}></span>
                     </div>
-                    <div styleName="forecast">预测</div>
+                    {gameItemInfos.IsForecast ? (<div styleName="forecast">预测</div>) : (<div styleName="forecastCanClick">预测</div>)}
                 </div>
 
                 <div styleName="rankList">
