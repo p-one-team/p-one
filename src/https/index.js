@@ -20,6 +20,8 @@ axios.interceptors.response.use(function (res) {
 
 const _baseURL = "http://112.33.11.107:61680/api"
 
+window.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9tb2JpbGVwaG9uZSI6IjEzOTAwMDAwMDAxIiwiZXhwIjoxNTI4NTI3ODI0LCJpc3MiOiJndHF1aXouY29tIiwiYXVkIjoiZ3RxdWl6LmNvbSJ9.T7GyTwnS-1SUCh-h4B4i9KD3PBHjyY_QJU52Ml17gAo"
+
 export default {
     post (url, params) { 
         return axios({  //------------------- 发送 POST 请求

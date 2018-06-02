@@ -6,18 +6,29 @@ import store from '../store'
 /*User Reducer*/
 /*-----------------------------------------------------------------*/
 const initMatchInfo = {
-    gameTypes: [],
-    gameInfos: [],
+    // gameTypes: [],
+    gameInfos_570: [],
+    gameInfos_730: [],
+    gameInfos_578080: [],
+    gameInfos_Sports: [],
     gameItems: {},
     gameItemInfos: {}
 }
 
 const MatchReducer = (state = initMatchInfo, action) => {
     switch (action.type) {
-        case 'GAME_TYPE':
-            return Object.assign({}, state, { gameTypes: action.gameTypes })
-        case 'GAME_INFO':
-            return Object.assign({}, state, { gameInfos: action.gameInfos })
+        // case 'GAME_TYPE':
+        //     return Object.assign({}, state, { gameTypes: action.gameTypes })
+
+        case 'GAME_INFO_570':
+            return Object.assign({}, state, { gameInfos_570: action.gameInfos_570 })
+        case 'GAME_INFO_730':
+            return Object.assign({}, state, { gameInfos_730: action.gameInfos_730 })
+        case 'GAME_INFO_578080':
+            return Object.assign({}, state, { gameInfos_578080: action.gameInfos_578080 })
+        case 'GAME_INFO_Sports':
+            return Object.assign({}, state, { gameInfos_Sports: action.gameInfos_Sports })
+
         case 'GAME_ITEM':
             return Object.assign({}, state, { gameItems: action.gameItems })
         case 'GAME_ITEM_INFO':
@@ -31,34 +42,61 @@ const MatchReducer = (state = initMatchInfo, action) => {
 /*-----------------------------------------------------------------*/
 /*User Action*/
 /*-----------------------------------------------------------------*/
-const getGameTypes = () => {
-    axios.post("/Game/GetGameTypes", {
-        //无需参数
-    })
-    .then(function(res) {
-        if (res) {
-            store.dispatch({
-                type: 'GAME_TYPE',
-                gameTypes: res.Data.GameTypeModels
-            })
-        }
-    })
-    .catch(function(error) {
-        Toast.fail('获取失败，请稍后重试！');
-        console.log('error', error);
-    });
-}
+// const getGameTypes = () => {
+//     axios.post("/Game/GetGameTypes", {
+//         //无需参数
+//     })
+//     .then(function(res) {
+//         if (res) {
+//             store.dispatch({
+//                 type: 'GAME_TYPE',
+//                 gameTypes: res.Data.GameTypeModels
+//             })
+//         }
+//     })
+//     .catch(function(error) {
+//         Toast.fail('获取失败，请稍后重试！');
+//         console.log('error', error);
+//     });
+// }
 
 const getGameInfos = (type) => {
+    console.log("getinfo")
     axios.post("/Game/GetGameInfos", {
         GameType: type
     })
     .then(function(res) {
         if (res) {
-            store.dispatch({
-                type: 'GAME_INFO',
-                gameInfos: res.Data.GameInfos
-            })
+            switch(type){
+                case "570": 
+                    store.dispatch({
+                        type: 'GAME_INFO_570',
+                        gameInfos_570: res.Data.GameInfos
+                    })
+                    break;
+                case "730": 
+                    store.dispatch({
+                        type: 'GAME_INFO_730',
+                        gameInfos_730: res.Data.GameInfos
+                    })
+                    break;
+                case "578080": 
+                    store.dispatch({
+                        type: 'GAME_INFO_578080',
+                        gameInfos_578080: res.Data.GameInfos
+                    })
+                    break;
+                case "Sports": 
+                    store.dispatch({
+                        type: 'GAME_INFO_Sports',
+                        gameInfos_Sports: res.Data.GameInfos
+                    })
+                    break;
+                default:
+                    break;
+            }
+
+            console.log("请求成功")
         }
     })
     .catch(function(error) {
@@ -110,7 +148,7 @@ const getGameItemInfo = (id, callback) => {
 
 export {
     MatchReducer,
-    getGameTypes,
+    // getGameTypes,
     getGameInfos,
     getGameItems,
     getGameItemInfo

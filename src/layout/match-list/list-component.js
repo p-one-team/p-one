@@ -58,7 +58,7 @@ class MatchList extends React.Component {
     constructor(props) {
         super(props);
 
-        let _gameList = this.props.gameInfos;
+        let _gameList = this.props.detailList;
         _gameList.map((item)=>{
             item.isShowDetail = false;
             item.gameItemList = []
@@ -71,7 +71,7 @@ class MatchList extends React.Component {
 
     componentWillReceiveProps(nextProps){
         let _gameItems = nextProps.gameItems
-        let _gameList = this.state.gameList
+        let _gameList = nextProps.detailList
         _gameList.map((item)=>{
             if(item.GameID == _gameItems.gameId){
                 item.gameItemList = _gameItems.itemList

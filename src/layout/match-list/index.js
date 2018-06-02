@@ -8,19 +8,13 @@ const mapDispatchToProps = (dispatch, props) => {
         initData() {
             console.log(props)
         },
-
-        // showGameDetail(gameId){
-        //     console.log(props)
-        //     getGameItems(gameId)
-        // }
     }
 }
 
 const mapStateToProps = (state) => {
 
     return {
-        gameInfos: state.MatchReducer.gameInfos,
-        gameItems: state.MatchReducer.gameItems
+        ...state.MatchReducer
     }
 }
 

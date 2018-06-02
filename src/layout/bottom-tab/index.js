@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-// import _ut from 'my-util'
 import { changePage } from '../../reducers/main'
 import TabBarExample from './component.js'
 import {getGameInfos} from '../../reducers/match.js'
@@ -11,6 +10,7 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         changeGameInfo(code) {
+            console.log("change")
             getGameInfos(code)
         }
 
@@ -20,7 +20,13 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
 
     return {
-        gameTypes: state.MatchReducer.gameTypes,
+        gameInfos_570: state.MatchReducer.gameInfos_570,
+        gameInfos_730: state.MatchReducer.gameInfos_730,
+        gameInfos_578080: state.MatchReducer.gameInfos_578080,
+        gameInfos_Sports: state.MatchReducer.gameInfos_Sports,
+
+        gameItems: state.MatchReducer.gameItems,
+
         currentPage: state.MainInfoReducer.currentPage,
         hidden: false
     }

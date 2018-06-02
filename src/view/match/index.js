@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import MatchComponent from './match-component'
-import { getGameTypes, getGameItems, getGameItemInfo } from '../../reducers/match.js'
+import { getGameItems, getGameItemInfo } from '../../reducers/match.js'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
         initData() {
-            getGameTypes()
+            //console.log("init data")
         },
 
         goMatchDetail(id) {

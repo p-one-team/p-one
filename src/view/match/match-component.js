@@ -92,7 +92,6 @@ class MatchComponent extends Component {
     };
 
     render() {
-        // console.log("match-component-render:",this.state.gameTypes)
         return (
             <div styleName="wrap">
                 {this.GridExample()}
