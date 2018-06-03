@@ -89,11 +89,9 @@ class ShopItemDetailComponent extends Component {
         this.props.initData()
     }
 
-    tabContent(type,list){
-        let evaluation = this.state.prodInfo.evaluation;
-        let evaluateRate = this.state.prodInfo.evaluateRate;
-        let content;
+    tabContent(type,tPrice,price,list){
 
+        let content;
         if(type=="sellList"){
             let listDetail1 = list.map((item)=>{
                 return (
@@ -172,7 +170,7 @@ class ShopItemDetailComponent extends Component {
 
         return (
             <div>
-                <div styleName="evaluate">系统估价：<span>{evaluation}P</span><label>({evaluateRate})</label></div>
+                <div styleName="evaluate">系统估价：<span>{tPrice}</span><label>T豆&nbsp;({price})</label></div>
                 {content}
             </div>
         )
@@ -181,23 +179,24 @@ class ShopItemDetailComponent extends Component {
 
     render() {
 
-        let data = this.state.prodInfo;
+        let prodDetail = this.props.shopItem;
         return (
             <div styleName="wrap">
                 <NavBar
                     mode="light"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
-                >{data.name}</NavBar>
+                >{prodDetail.Name}</NavBar>
+
                 <div className="container">
                     <div styleName="head-card">
-                        <p>槽位：<span>{data.slotPosition}</span>&nbsp;&nbsp;使用英雄：<span>{data.hero}</span></p>
+                        {/* <p>槽位：<span>{data.slotPosition}</span>&nbsp;&nbsp;使用英雄：<span>{data.hero}</span></p> */}
                         <p>允许预测</p>
                         <div styleName="imgPart">
-                            <img src={data.imgUrl} alt="" />
+                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png" alt="" />
                             <div>
-                                <label>{data.special1}</label>
-                                <label>{data.special2}</label>
+                                <label>{prodDetail.Rarity}</label>
+                                {/* <label>{data.special2}</label> */}
                             </div>
                         </div>
                     </div>
@@ -208,13 +207,13 @@ class ShopItemDetailComponent extends Component {
                             onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
                         >
                             <div styleName="listPart">
-                                {this.tabContent("sellList",this.state.sellList)}
+                                {this.tabContent("sellList", prodDetail.TPrice,prodDetail.Price, this.state.sellList)}
                             </div>
                             <div styleName="listPart">
-                                {this.tabContent("forBuyList",this.state.forBuyList)}
+                                {this.tabContent("forBuyList", prodDetail.TPrice,prodDetail.Price, this.state.forBuyList)}
                             </div>
                             <div styleName="listPart">
-                                {this.tabContent("dealRecordList",this.state.dealRecordList)}
+                                {this.tabContent("dealRecordList", prodDetail.TPrice,prodDetail.Price, this.state.dealRecordList)}
                             </div>
                         </Tabs>
                     </div>

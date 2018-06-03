@@ -7,7 +7,8 @@ import store from '../store'
 /*User Reducer*/
 /*-----------------------------------------------------------------*/
 const initShopInfo = {
-    shopInfos: {}
+    shopInfos: {},
+    shopItem: {}
 }
 
 const ShopReducer = (state = initShopInfo, action) => {
@@ -15,6 +16,9 @@ const ShopReducer = (state = initShopInfo, action) => {
     switch (action.type) {
         case 'MALL_LIST':
             return Object.assign({}, state, {shopInfos: action.shopInfos})
+
+        case 'PROD_DETAIL':
+            return Object.assign({}, state, {shopItem: action.shopItem})
 
 
         default:
@@ -52,7 +56,28 @@ const getMallList = (data, callback) => {
     });
 }
 
+const getMallProdItem = (data, callback) => {
+    axios.post('/Game/GetOrnamentInfo', {
+        MarketHashName: data.MarketHashName,
+    })
+    .then(function (res) {
+        if(res){
+            store.dispatch({
+                type: "PROD_DETAIL",
+                shopItem: res.Data.Ornament
+            })
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function (error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
 export { 
     ShopReducer,
     getMallList,
+    getMallProdItem
 }

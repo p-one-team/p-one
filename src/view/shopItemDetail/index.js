@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
-        ...state.HomeReducer
+        shopItem: state.ShopReducer.shopItem
     }
 }
 

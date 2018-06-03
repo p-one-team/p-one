@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import MatchComponent from './match-component'
 import { getGameItems, getGameItemInfo } from '../../reducers/match.js'
+import store from '../../store'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -9,6 +10,11 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         goMatchDetail(id) {
+            store.dispatch({
+                type: 'GAME_ITEM_ID',
+                gameItemId: id
+            })
+            
             getGameItemInfo(id, () => {
                 props.history.push('/matchDetail')
             })

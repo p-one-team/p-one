@@ -5,43 +5,15 @@ import style from './match-detail.less'
 import { NavBar, Icon } from 'antd-mobile'
 // import { Progress } from 'antd-mobile';
 import { Tabs, WhiteSpace } from 'antd-mobile';
-import { StickyContainer, Sticky } from 'react-sticky';
+import { StickyContainer } from 'react-sticky';
+// import { StickyContainer, Sticky } from 'react-sticky';
 import { Accordion } from 'antd-mobile';
 
 
-function renderTabBar(props) {
-    return (<Sticky>
-        {({ style }) => <div style={{ ...style, zIndex: 1 }}><Tabs.DefaultTabBar {...props} /></div>}
-    </Sticky>);
-}
-const tabs = [
-    { title: '饰品预测' },
-    { title: 'P豆预测' },
-    { title: '土豪榜' },
-];
-
-// const data = {
-//     team1: {
-//         name: "EHOME",
-//         icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524217691703&di=8dc6d07e85bdbcbe504acafe523055fb&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F080a5890b0341879a1fff8cbca0bff826102cadb.jpg"
-//     },
-//     team2: {
-//         name: "LDG",
-//         icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524217774744&di=4c7adb6185187106c398ff5780d47bb6&imgtype=0&src=http%3A%2F%2Fupload.techweb.com.cn%2F2016%2F0115%2F1452822932280.png"
-//     },
-//     gameName: "Meet hotel",
-//     title: '猜输赢',
-//     Odds: {
-//         teamL: 0.25,
-//         teamR: 3.65
-//     },
-//     supportRate: {
-//         teamL: 0.65,
-//         teamR: 0.35
-//     },
-//     gameStatus: "03", //01未开始可预测 02进行中 03已结清
-//     winner: "",
-//     statusDesc: "已结算"
+// function renderTabBar(props) {
+//     return (<Sticky>
+//         {({ style }) => <div style={{ ...style, zIndex: 1 }}><Tabs.DefaultTabBar {...props} /></div>}
+//     </Sticky>);
 // }
 
 const userInfo = {
@@ -55,51 +27,63 @@ const userInfo = {
     ]
 }
 
-const rowHead = () =>
-    (<div className="userImg">
-        <span>1</span>
-        <img src={userInfo.userImg} alt="" />
-        <span>{userInfo.userName}</span>
-        <div></div>
-        <div>{userInfo.userLevel}</div>
-    </div>
-    )
-
-const TabExample = () => (
-    <div className="userPart">
-        <StickyContainer>
-            <Tabs tabs={tabs}
-                initalPage={'t2'}
-                renderTabBar={renderTabBar}
-            >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <Accordion defaultActiveKey="0" className="my-accordion  bet-info" onChange={this.onChange}>
-                        <Accordion.Panel header={rowHead()} className="pad">
-                            <div className="userImgList">
-                                <img src={userInfo.imgList[0]} alt="" />
-                                <img src={userInfo.imgList[1]} alt="" />
-                                <img src={userInfo.imgList[2]} alt="" />
-                            </div>
-
-                        </Accordion.Panel>
-                    </Accordion>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
-                    Content of second tab
-          </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
-                    Content of third tab
-          </div>
-            </Tabs>
-        </StickyContainer>
-        <WhiteSpace />
-    </div>)
-
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class matchDetail extends Component {
     constructor(props) {
         super(props)
+
+        this.props.getGuessList("ornaments",this.props.gameItemId)
+
+        this.state = {
+            tabs: [
+                { title: '饰品竞猜' },
+                { title: 'T豆竞猜' },
+                { title: '土豪榜' },
+            ],
+        }
     }
+
+    rowHead = () =>(
+        <div className="userImg">
+            <span>1</span>
+            <img src={userInfo.userImg} alt="" />
+            <span>{userInfo.userName}</span>
+            <div></div>
+            <div>{userInfo.userLevel}</div>
+        </div>
+    )
+
+    TabExample = () => (
+        <div className="userPart">
+            <StickyContainer>
+                <Tabs tabs={this.state.tabs}
+                    initalPage={0}
+                    // renderTabBar={renderTabBar}
+                >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+                        <Accordion defaultActiveKey="0" className="my-accordion  bet-info" onChange={this.onChange}>
+                            <Accordion.Panel header={this.rowHead()} className="pad">
+                                <div className="userImgList">
+                                    <img src={userInfo.imgList[0]} alt="" />
+                                    <img src={userInfo.imgList[1]} alt="" />
+                                    <img src={userInfo.imgList[2]} alt="" />
+                                </div>
+    
+                            </Accordion.Panel>
+                        </Accordion>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
+                        Content of second tab
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
+                        Content of third tab
+                    </div>
+                </Tabs>
+            </StickyContainer>
+            <WhiteSpace />
+        </div>
+    )
+
     render() {
         let gameItemInfos = this.props.gameItemInfos;
 
@@ -154,7 +138,7 @@ class matchDetail extends Component {
                 </div>
 
                 <div styleName="rankList">
-                    <TabExample />
+                    {this.TabExample(this.props.gameItemOrnamentsGuessInfo)}
                 </div>
 
             </div>

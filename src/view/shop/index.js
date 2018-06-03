@@ -1,31 +1,33 @@
 import { connect } from 'react-redux'
 import ShopComponent from './shop-component.js'
-import { getMallList } from '../../reducers/shop'
+import { getMallList, getMallProdItem } from '../../reducers/shop'
 
 
 const mapDispatchToProps = (dispatch, props) => {
-	return {
+    return {
 
-		initData(){
-			// console.log("init index")
-		},
+        initData() {
+            // console.log("init index")
+        },
 
-		showGetMallList(data){
-			getMallList(data,function(){
-
-			})
-		},
+        showGetMallList(data) {
+            getMallList(data)
+        },
 
 
-		goBack() {
-			props.history.replace('/')
-		},
+        goBack() {
+            props.history.replace('/')
+        },
 
-		goItemDetail(id) {
-			id = "烬爵披肩";
-			props.history.push(`/shopItem/${id}`)
-		}
-	}
+        goItemDetail(hashName) {
+            console.log(hashName)
+            getMallProdItem({
+                MarketHashName: hashName
+            }, () => {
+                props.history.push("/shopItem")
+            })
+        }
+    }
 }
 
 const mapStateToProps = (state) => {
@@ -35,8 +37,8 @@ const mapStateToProps = (state) => {
 }
 
 const Shop = connect(
-	mapStateToProps,
-	mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(ShopComponent)
 
 export default Shop

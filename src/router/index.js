@@ -75,7 +75,7 @@ const routes_config = [
 	}
 	,
 	{
-		path: '/shopItem/:itemId',
+		path: '/shopItem',
 		component: ShopItemDetail
 	}
 	,

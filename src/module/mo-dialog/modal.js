@@ -20,7 +20,6 @@ class Modal extends Component {
     }
     
     componentWillReceiveProps(nextProps) {
-        console.log(123, nextProps)
         if (nextProps.visible && !this.state.isShow) {
             this.enter()
         } else if(!nextProps.visible && this.state.isShow) {

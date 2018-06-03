@@ -12,7 +12,9 @@ const initMatchInfo = {
     gameInfos_578080: [],
     gameInfos_Sports: [],
     gameItems: {},
-    gameItemInfos: {}
+    gameItemId: "",
+    gameItemInfos: {},
+    gameItemOrnamentsGuessInfo: []
 }
 
 const MatchReducer = (state = initMatchInfo, action) => {
@@ -31,8 +33,13 @@ const MatchReducer = (state = initMatchInfo, action) => {
 
         case 'GAME_ITEM':
             return Object.assign({}, state, { gameItems: action.gameItems })
+        case 'GAME_ITEM_ID':
+            return Object.assign({}, state, { gameItemId: action.gameItemId })
         case 'GAME_ITEM_INFO':
             return Object.assign({}, state, { gameItemInfos: action.gameItemInfos })
+        case 'GAME_ITEM_ORNAMENT_GUESS_INFO':
+            return Object.assign({}, state, { gameItemOrnamentsGuessInfo: action.gameItemOrnamentsGuessInfo })
+            
         default:
             return state
     }
@@ -143,10 +150,35 @@ const getGameItemInfo = (id, callback) => {
     });
 }
 
+//饰品竞猜列表
+const getOrnamentsGuessOfGameItem = (data, callback) => {
+  axios.post("/Game/GetOrnamentsGuessOfGameItem", {
+        HandicapID: data.HandicapID,
+        PageIndex: data.PageIndex,
+        PageSize: 10
+    })
+    .then(function(res) {
+        if (res) {
+            store.dispatch({
+                type: 'GAME_ITEM_ORNAMENT_GUESS_INFO',
+                gameItemOrnamentsGuessInfo: res.Data
+            })
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function(error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
+
 export {
     MatchReducer,
     // getGameTypes,
     getGameInfos,
     getGameItems,
-    getGameItemInfo
+    getGameItemInfo,
+    getOrnamentsGuessOfGameItem
 }
