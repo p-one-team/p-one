@@ -19,8 +19,6 @@ class TabBarExample extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log("0000")
-
         this.props.changeGameInfo("570")
 
         this.state = {
@@ -30,9 +28,6 @@ class TabBarExample extends React.Component {
     }
 
     TabExample = () => {
-        console.log("3333")
-        console.log(this.props.gameInfos_570)
-
         let _gameTypes = gameTypes
         for (let i in _gameTypes) {
             _gameTypes[i].title = (<Badge >{_gameTypes[i].GameName}</Badge>)
@@ -44,30 +39,20 @@ class TabBarExample extends React.Component {
                 onTabClick={(tab) => { this.props.changeGameInfo(tab.GameCode) }}
             >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <MatchList detailList={this.props.gameInfos_570} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
+                    <MatchList detailList={this.props.gameInfos_570} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <MatchList detailList={this.props.gameInfos_730} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
+                    <MatchList detailList={this.props.gameInfos_730} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <MatchList detailList={this.props.gameInfos_578080} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
+                    <MatchList detailList={this.props.gameInfos_578080} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <MatchList detailList={this.props.gameInfos_Sports} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
+                    <MatchList detailList={this.props.gameInfos_Sports} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
                 </div>
             </Tabs>
             <WhiteSpace />
         </div>)
-    }
-
-    renderContent(pageText) {
-        console.log("4444")
-        if (pageText == 'My') {
-            // return <UserCenter />
-        } else {
-            return this.TabExample()
-        }
-
     }
 
     renderContent2(pageText) {
@@ -95,8 +80,6 @@ class TabBarExample extends React.Component {
     }
 
     render() {
-        console.log("5555")
-
         return (
             <div styleName="tabBarBox">
                 <TabBar
@@ -158,7 +141,7 @@ class TabBarExample extends React.Component {
                         }}
                         data-seed="logId1"
                     >
-                        {this.renderContent('lottery')}
+                        {this.TabExample()}
                     </TabBar.Item>
 
                     <TabBar.Item
@@ -186,7 +169,7 @@ class TabBarExample extends React.Component {
                             this.props.changePage('rank');
                         }}
                     >
-                        {/* {this.renderContent('rank')} */}
+                        {}
                     </TabBar.Item>
 
                     <TabBar.Item

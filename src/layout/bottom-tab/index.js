@@ -10,7 +10,6 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         changeGameInfo(code) {
-            console.log("change")
             getGameInfos(code)
         }
 

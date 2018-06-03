@@ -66,6 +66,21 @@ class ShopComponent extends Component {
 			]
 		}
 	}
+
+	componentDidMount(){
+		console.log("请求商城信息")
+		this.props.showGetMallList({
+			GameType: "570",
+			AttributeID: 1,
+			AttributeValue: "",
+			KeyWords: "",
+			PageIndex: 0,
+			PageSize: 5
+		})
+	}
+
+
+
 	onChange = (value) => {
 		this.setState({ value });
 	};

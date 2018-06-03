@@ -57,34 +57,6 @@ import style from './match-list.less'
 class MatchList extends React.Component {
     constructor(props) {
         super(props);
-
-        let _gameList = this.props.detailList;
-        _gameList.map((item)=>{
-            item.isShowDetail = false;
-            item.gameItemList = []
-        })
-
-        this.state = {
-            gameList: _gameList
-        }
-    }
-
-    componentWillReceiveProps(nextProps){
-        let _gameItems = nextProps.gameItems
-        let _gameList = nextProps.detailList
-        _gameList.map((item)=>{
-            if(item.GameID == _gameItems.gameId){
-                item.gameItemList = _gameItems.itemList
-                item.isShowDetail = true
-            }else{
-                item.gameItemList = []
-                item.isShowDetail = false
-            }
-        })
-
-        this.setState = {
-            gameList: _gameList
-        }
     }
 
     //主列表
@@ -172,8 +144,21 @@ class MatchList extends React.Component {
     }
 
     render() {
+
+        let _gameItems = this.props.detailItem
+        let _gameList = this.props.detailList
+        _gameList.map((item)=>{
+            if(item.GameID == _gameItems.gameId){
+                item.gameItemList = _gameItems.itemList
+                item.isShowDetail = true
+            }else{
+                item.gameItemList = []
+                item.isShowDetail = false
+            }
+        })
+
         return (
-            <ul className={style.gameList}>{this.buildGameList(this.state.gameList)}</ul>
+            <ul className={style.gameList}>{this.buildGameList(_gameList)}</ul>
         );
     }
 }

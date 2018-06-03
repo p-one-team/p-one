@@ -61,7 +61,6 @@ const MatchReducer = (state = initMatchInfo, action) => {
 // }
 
 const getGameInfos = (type) => {
-    console.log("getinfo")
     axios.post("/Game/GetGameInfos", {
         GameType: type
     })
@@ -95,8 +94,6 @@ const getGameInfos = (type) => {
                 default:
                     break;
             }
-
-            console.log("请求成功")
         }
     })
     .catch(function(error) {

@@ -1,9 +1,22 @@
 import { connect } from 'react-redux'
 import ShopComponent from './shop-component.js'
+import { getMallList } from '../../reducers/shop'
 
 
 const mapDispatchToProps = (dispatch, props) => {
 	return {
+
+		initData(){
+			// console.log("init index")
+		},
+
+		showGetMallList(data){
+			getMallList(data,function(){
+
+			})
+		},
+
+
 		goBack() {
 			props.history.replace('/')
 		},
@@ -15,8 +28,14 @@ const mapDispatchToProps = (dispatch, props) => {
 	}
 }
 
+const mapStateToProps = (state) => {
+    return {
+        shopInfos: state.ShopReducer.shopInfos
+    }
+}
+
 const Shop = connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(ShopComponent)
 
