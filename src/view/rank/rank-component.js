@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './rank.less'
 
-import { NavBar, Icon, List } from 'antd-mobile';
+import { List } from 'antd-mobile';
+// import { NavBar, Icon } from 'antd-mobile';
 import { Tabs } from 'antd-mobile';
 
 
@@ -159,11 +160,12 @@ class RankComponentWrapper extends Component {
         console.log(this.props)
         return (
             <div styleName="wrap">
-                <NavBar
+                {/* <NavBar
                     mode="light"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
-                >排名</NavBar>
+                >排行榜</NavBar> */}
+
                 <div className="container">
                     <Tabs tabs={tabs2}
                         initialPage={1}

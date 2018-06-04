@@ -12,7 +12,7 @@ import signUp from '../view/signUp'
 import Match from '../view/match'
 import matchDetail from '../view/matchDetail'
 import matchList from '../layout/match-list'
-import Rank from '../view/rank'
+import GuessRank from '../view/guessRank'
 import Inventory from '../view/inventory'
 import myForecast from '../view/myForecast'
 import Shop from '../view/shop'
@@ -58,8 +58,8 @@ const routes_config = [
 		component: matchList
 	}, 
 	{
-		path: '/rank',
-		component: Rank
+		path: '/guessRank',
+		component: GuessRank
 	},
 	{
 		path: '/inventory',

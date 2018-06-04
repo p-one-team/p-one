@@ -6,6 +6,7 @@ import CSSModules from 'react-css-modules'
 import style from './bottom-tab.less'
 import MatchList from '../match-list'
 import UserCenter from '../../view/userCenter'
+import Rank from '../../view/rank'
 
 const gameTypes = [
     {GameCode: "570", GameName: "Dota2"},
@@ -169,7 +170,7 @@ class TabBarExample extends React.Component {
                             this.props.changePage('rank');
                         }}
                     >
-                        {}
+                        <Rank />
                     </TabBar.Item>
 
                     <TabBar.Item

@@ -6,15 +6,15 @@ import store from '../store'
 /*-----------------------------------------------------------------*/
 /*User Reducer*/
 /*-----------------------------------------------------------------*/
-const initPersonInfo = {
-
+const initUserInfo = {
+    guessRank: {},
 }
 
-const PersonReducer = (state = initPersonInfo, action) => {
+const RankReducer = (state = initUserInfo, action) => {
 
     switch (action.type) {
-        case 'USER_INFO':
-            return Object.assign({}, state, {userInfos: action.userInfos})
+        case 'GUESS_RANK':
+            return Object.assign({}, state, {guessRank: action.guessRank})
 
         default:
             return state
@@ -26,34 +26,31 @@ const PersonReducer = (state = initPersonInfo, action) => {
 /*User Action*/
 /*-----------------------------------------------------------------*/
 
-const loginAction = (data, callback) => {
-    axios.post('/User/Login', {
-        Phone: data.Phone,
-        SmsCode: data.SmsCode,
-        Password: data.Password,
-        UseSmsCode: data.UseSmsCode
+const getGuessRank = (data, callback) => {
+    axios.post('/Game/GetGameGuessRanking', {
+        PageIndex: data.PageIndex,
+        PageSize: 10
     })
     .then(function (res) {
         if(res){
-            // Toast.success('登录成功！');
-            window.token = res.Data.Token
 
             store.dispatch({
-                type: "USER_INFO",
-                userInfos: res.Data
+                type: "GUESS_RANK",
+                guessRank: res.Data
             })
 
             callback ? callback() : ""
         }
     })
     .catch(function (error) {
-        Toast.fail('登录失败，请稍后重试！');
+        Toast.fail('获取失败，请稍后重试！');
         console.log('error', error);
     });
 }
 
 
+
 export { 
-    PersonReducer,
-    loginAction,
+    RankReducer,
+    getGuessRank,
 }

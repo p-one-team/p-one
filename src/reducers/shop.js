@@ -11,7 +11,9 @@ const initShopInfo = {
     shopItem: {},
     saleRecordInfo: {},
     buyRecordInfo: {},
-    dealRecordInfo: {}
+    dealRecordInfo: {},
+    myTransactionInfo: {},
+    myTransactionHistory: []
 }
 
 const ShopReducer = (state = initShopInfo, action) => {
@@ -31,6 +33,12 @@ const ShopReducer = (state = initShopInfo, action) => {
 
         case 'DEAL_RECORD':
             return Object.assign({}, state, {dealRecordInfo: action.dealRecordInfo})
+
+        case 'MY_TRANSACTION':
+            return Object.assign({}, state, {myTransactionInfo: action.myTransactionInfo})
+
+        case 'MY_TRANSACTION_HISTORY':
+            return Object.assign({}, state, {myTransactionHistory: action.myTransactionHistory})
 
 
         default:
@@ -157,11 +165,56 @@ const getTransactionRecords = (data, callback) => {
     });
 }
 
+//我的交易
+const getMyTransaction = (data, callback) => {
+    axios.post('/Game/MyTransaction', {
+
+    })
+    .then(function (res) {
+        if(res){
+            store.dispatch({
+                type: "MY_TRANSACTION",
+                myTransactionInfo: res.Data
+            })
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function (error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
+//我的交易历史查询
+const queryMyTransHistory = (data, callback) => {
+    axios.post('/Game/MyTransactionRecordsQuery', {
+        TransactionStartDate: data.TransactionStartDate,
+        TransactionEndDate: data.TransactionEndDate
+    })
+    .then(function (res) {
+        if(res){
+            store.dispatch({
+                type: "MY_TRANSACTION_HISTORY",
+                myTransactionHistory: res.Data.TransactonRecords
+            })
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function (error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
 export { 
     ShopReducer,
     getMallList,
     getMallProdItem,
     getSalePublishRecords,
     getBuyPublishRecords,
-    getTransactionRecords
+    getTransactionRecords,
+    getMyTransaction,
+    queryMyTransHistory
 }

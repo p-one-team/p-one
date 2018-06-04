@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import UserCenterComponent from './userCenter-component.js'
 import { withRouter } from 'react-router-dom'
+import { getMyTransaction } from '../../reducers/shop'
 
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -18,7 +19,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         goTradeHistory() {
-            props.history.push('/tradeHistory')
+            getMyTransaction({},()=>{
+                props.history.push('/tradeHistory')
+            })
         },
 
         goMessage() {

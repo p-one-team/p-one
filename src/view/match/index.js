@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         goRankPage() {
-            props.history.push('/rank')
+            props.history.push('/guessRank')
         },
 
         goInventoryPage() {

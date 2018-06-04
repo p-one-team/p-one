@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import TradeHistoryComponent from './tradeHistory-component'
+import { queryMyTransHistory } from '../../reducers/shop'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -9,13 +10,21 @@ const mapDispatchToProps = (dispatch, props) => {
 
         goListPage() {
             props.history.push('/list')
+        },
+
+        queryRecord(startDate,endDate){
+            queryMyTransHistory({
+                TransactionStartDate: startDate,
+                TransactionEndDate: endDate
+            })
         }
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        ...state.HomeReducer
+        myTransactionInfo: state.ShopReducer.myTransactionInfo,
+        myTransactionHistory: state.ShopReducer.myTransactionHistory
     }
 }
 

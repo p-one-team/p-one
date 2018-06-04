@@ -10,58 +10,57 @@ import { NavBar, Icon } from 'antd-mobile';
 class TradeHistoryComponent extends Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            startDate: "",
+            endDate: ""
+        }
     }
 
-    componentDidMount() {
-        this.props.initData()
+    queryTrans = (tradeList) => {
+        if(tradeList && tradeList.length>0){
+            return (<div>
+                <div styleName="title">
+                    <label>时间</label>
+                    <label>操作</label>
+                    <label>饰品</label>
+                    <label>件数</label>
+                    <label>价格</label>
+                    <label>交易状态</label>
+                </div>
+                <ul>
+                    {tradeList.map((item,index) => (
+                        <li key={index}>
+                            <label>{item.time}</label>
+                            <label>{item.operation}</label>
+                            <label>{item.prodName}</label>
+                            <label>{item.number}</label>
+                            <label>{item.price}</label>
+                            <label>{item.status}</label>
+                        </li>
+                    ))}
+                </ul>
+            </div>)
+        }else{
+            return (<div styleName="noRecords">该时段无交易记录</div>)
+        }
+    }
+
+    start = (event) => {
+        this.setState({
+            startDate: event.target.value
+        })
+    }
+
+    end = (event) => {
+        this.setState({
+            endDate: event.target.value
+        })
     }
 
     render() {
-
-        // const { getFieldProps, getFieldError } = this.props.form;
-        console.log(this.props)
-
-        let tradeList = [
-            {
-                index: 1,
-                time: "2018-01-01",
-                operation: "m买入",
-                prodName: "ABCDEFG",
-                number: 10,
-                price: 100,
-                status: "成功"
-            },
-            {
-                index: 2,
-                time: "2018-01-02",
-                operation: "m买入",
-                prodName: "ABCDEFG",
-                number: 10,
-                price: 100,
-                status: "成功"
-            },
-            {
-                index: 3,
-                time: "2018-01-03",
-                operation: "m买入",
-                prodName: "ABCDEFG",
-                number: 10,
-                price: 100,
-                status: "成功"
-            }
-        ]
-        let List = tradeList.map((item)=>{
-            return (
-                <li key={item.index}>
-                    <label>{item.time}</label>
-                    <label>{item.operation}</label>
-                    <label>{item.prodName}</label>
-                    <label>{item.number}</label>
-                    <label>{item.price}</label>
-                    <label>{item.status}</label>
-                </li>
-            )
-        })
+        let tradeInfo = this.props.myTransactionInfo
+        let tradeList = this.props.myTransactionHistory
 
         return (
             <div styleName="wrap">
@@ -74,65 +73,56 @@ class TradeHistoryComponent extends Component {
                 <div>
                     <div styleName="headCard">
                         <div styleName="wallet">
-                            <p>30</p>
-                            <p>我的金币</p>
+                            <p>{tradeInfo.StockCount}/{tradeInfo.TBeanCount}</p>
+                            <p>我的库存和T豆</p>
                         </div>
                         <div styleName="total">
                             <div>
-                                <p>0</p>
-                                <p>累计消费</p>
+                                <p>{tradeInfo.Cost}</p>
+                                <p>累计花费（T豆）</p>
                             </div>
                             <div>
-                                <p>0</p>
-                                <p>累计收益</p>
+                                <p>{tradeInfo.Income}</p>
+                                <p>累计收益（T豆）</p>
                             </div>
                         </div>
                     </div>
                     <div className={style.tips + ' ' + style.proD}>
                         <div>
-                            <p>0</p>
+                            <p>{tradeInfo.OnSaleCount}</p>
                             <p>在售</p>
                         </div>
                         <div>
-                            <p>0</p>
+                            <p>{tradeInfo.SoldCount}</p>
                             <p>已售</p>
                         </div>
                         <div>
-                            <p>0</p>
+                            <p>{tradeInfo.BuyCount}</p>
                             <p>购买</p>
                         </div>
                         <div>
-                            <p>0</p>
+                            <p>{tradeInfo.WantBuyCount}</p>
                             <p>求购</p>
                         </div>
                     </div>
-                    <div className={style.tips + ' ' + style.cards}>
-                        <div>
-                            <i className="iconfont icon-sale"></i>
-                            <p>我的出售</p>
-                        </div>
-                        <div>
-                            <i className="iconfont icon-goumai"></i>
-                            <p>我的购买</p>
-                        </div>
-                        <div>
-                            <i className="iconfont icon-iconwishlist"></i>
-                            <p>我的求购</p>
-                        </div>
 
-                    </div>
+                    {/* <div className={style.tips + ' ' + style.cards}>
+                        <div><i className="iconfont icon-sale"></i><p>我的出售</p></div>
+                        <div><i className="iconfont icon-goumai"></i><p>我的购买</p></div>
+                        <div><i className="iconfont icon-iconwishlist"></i><p>我的求购</p></div>
+                    </div> */}
 
                     <div styleName="listPart">
-                        <p styleName="recent_deal">近期交易</p>
-                        <div styleName="title">
-                            <label>时间</label>
-                            <label>操作</label>
-                            <label>饰品</label>
-                            <label>件数</label>
-                            <label>价格</label>
-                            <label>交易状态</label>
+                        <p styleName="recent_deal">查询交易</p>
+
+                        <div styleName="chooseDate">
+                            <input placeholder="开始日期" type="text" value={this.state.startDate} onChange={this.start.bind(this)} />
+                            <label>至</label>
+                            <input placeholder="结束日期" type="text" value={this.state.endDate} onChange={this.end.bind(this)} />
+                            <span onClick={()=>this.props.queryRecord(this.state.startDate, this.state.endDate)}>查询</span>
                         </div>
-                        <ul>{List}</ul>
+
+                        {this.queryTrans(tradeList)}
                     </div>
                 </div>
             </div>
