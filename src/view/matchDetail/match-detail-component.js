@@ -3,36 +3,16 @@ import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './match-detail.less'
 import { NavBar, Icon } from 'antd-mobile'
-// import { Progress } from 'antd-mobile';
 import { Tabs, WhiteSpace } from 'antd-mobile';
 import { StickyContainer } from 'react-sticky';
-// import { StickyContainer, Sticky } from 'react-sticky';
 import { Accordion } from 'antd-mobile';
-
-
-// function renderTabBar(props) {
-//     return (<Sticky>
-//         {({ style }) => <div style={{ ...style, zIndex: 1 }}><Tabs.DefaultTabBar {...props} /></div>}
-//     </Sticky>);
-// }
-
-const userInfo = {
-    userName: "username",
-    userImg: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg",
-    userLevel: "LV 3",
-    imgList: [
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523812158978&di=6ebb2cffef7d33aa006e9125a0b37e2f&imgtype=0&src=http%3A%2F%2Fthumb.vpgame.com%2Fitem-7108.png",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523812158978&di=6ebb2cffef7d33aa006e9125a0b37e2f&imgtype=0&src=http%3A%2F%2Fthumb.vpgame.com%2Fitem-7108.png",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523812158978&di=6ebb2cffef7d33aa006e9125a0b37e2f&imgtype=0&src=http%3A%2F%2Fthumb.vpgame.com%2Fitem-7108.png"
-    ]
-}
 
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class matchDetail extends Component {
     constructor(props) {
         super(props)
 
-        this.props.getGuessList("ornaments",this.props.gameItemId)
+        this.props.getGuessList(this.props.gameItemId)
 
         this.state = {
             tabs: [
@@ -43,40 +23,70 @@ class matchDetail extends Component {
         }
     }
 
-    rowHead = () =>(
+    userPart = (info,index) => (
         <div className="userImg">
-            <span>1</span>
-            <img src={userInfo.userImg} alt="" />
-            <span>{userInfo.userName}</span>
-            <div></div>
-            <div>{userInfo.userLevel}</div>
+            <span>{index}</span>
+            {/* <img src={info.UserImage} alt="" /> */}
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg" alt="" />
+            <span>{info.UserNickname}</span>
+            {/* <div></div> */}
+            {/* <div>{userInfo.userLevel}</div> */}
         </div>
     )
 
-    TabExample = () => (
+    guessList = (guessInfo) =>{
+        if(guessInfo){
+            return guessInfo.map((item,index)=>(
+                <div key={index} className="guess_list">
+                    <Accordion defaultActiveKey="0" className="my-accordion  bet-info" onChange={this.onChange}>
+                        <Accordion.Panel header={this.userPart(item,index+1)} className="pad">
+                            <div className="ornament_list">
+                                {item.Ornaments.map((_item)=>(
+                                    // <img key={_item.MarketHashName} src={_item.IconUrl} alt="" />
+                                    <img key={_item.MarketHashName} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523812158978&di=6ebb2cffef7d33aa006e9125a0b37e2f&imgtype=0&src=http%3A%2F%2Fthumb.vpgame.com%2Fitem-7108.png" alt=""/>
+                                ))}
+                            </div>
+                        </Accordion.Panel>
+                    </Accordion>
+                </div>
+            ))
+        }else{
+            return ""
+        }
+    }
+
+    tBeansList = (guessInfo) =>{
+        if(guessInfo){
+            return (<div className="beans_list">
+                {guessInfo.map((item,index)=>(
+                    <div key={index} className="inner">
+                        <span>{index+1}</span>
+                        {/* <img src={info.UserImage} alt="" /> */}
+                        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg" alt="" />
+                        <span>{item.UserNickname}</span>
+                        <label>{item.TBeans}T豆</label>
+                    </div>
+                ))}
+            </div>) 
+        }else{
+            return ""
+        }
+    }
+
+    TabExample = (ornamentInfo,tBeansInfo,tycoonInfo) => (
         <div className="userPart">
             <StickyContainer>
                 <Tabs tabs={this.state.tabs}
                     initalPage={0}
-                    // renderTabBar={renderTabBar}
                 >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                        <Accordion defaultActiveKey="0" className="my-accordion  bet-info" onChange={this.onChange}>
-                            <Accordion.Panel header={this.rowHead()} className="pad">
-                                <div className="userImgList">
-                                    <img src={userInfo.imgList[0]} alt="" />
-                                    <img src={userInfo.imgList[1]} alt="" />
-                                    <img src={userInfo.imgList[2]} alt="" />
-                                </div>
-    
-                            </Accordion.Panel>
-                        </Accordion>
+                        {this.guessList(ornamentInfo.OrnamentsGuessOfGameItems)}
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
-                        Content of second tab
+                        {this.tBeansList(tBeansInfo.BeansGuessOfGameItems)}
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
-                        Content of third tab
+                        {this.guessList(tycoonInfo.GuessOfGameItems)}
                     </div>
                 </Tabs>
             </StickyContainer>
@@ -138,7 +148,7 @@ class matchDetail extends Component {
                 </div>
 
                 <div styleName="rankList">
-                    {this.TabExample(this.props.gameItemOrnamentsGuessInfo)}
+                    {this.TabExample(this.props.gameItemOrnamentsGuessInfo,this.props.gameItemTBeansGuessInfo,this.props.gameItemTycoonGuessInfo)}
                 </div>
 
             </div>

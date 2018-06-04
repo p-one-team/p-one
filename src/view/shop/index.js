@@ -20,7 +20,6 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         goItemDetail(hashName) {
-            console.log(hashName)
             getMallProdItem({
                 MarketHashName: hashName
             }, () => {

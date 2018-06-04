@@ -50,10 +50,10 @@ class MatchComponent extends Component {
 
         switch (index) {
             case 0:
-                this.props.goRankPage();
+                this.props.goInventoryPage();
                 break;
             case 1:
-                this.props.goInventoryPage();
+                this.props.goRankPage();
                 break;
             case 2:
                 this.props.goMyForecastPage();
@@ -67,26 +67,28 @@ class MatchComponent extends Component {
     GridExample = () => {
         const data = [
             {
-                icon: '排名',
-                text: '排名'
-            },
-            {
-                icon: '我的库存',
                 text: '我的库存'
             },
             {
-                icon: '我的预测',
+                text: '收菜排行'
+            },
+            
+            {
                 text: '我的预测'
             },
             {
-                icon: '饰品商城',
-                text: '饰品商城'
+                text: '商城'
             },
 
         ]
         return (
             <div styleName="topMenu">
-                <Grid data={data} hasLine={false} itemStyle={{ height: '50px', background: '#2c2c32', color: '#404439' }} onClick={(_el, index) => { this.goPage(_el, index) }} />
+                <Grid 
+                    data={data} 
+                    hasLine={false}
+                    activeStyle={{backgroundColor:"#2c2c32","color":"#fff",fontSize:"3.2vw"}}
+                    onClick={(_el, index) => { this.goPage(_el, index) }} 
+                />
             </div>
         )
     };

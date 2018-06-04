@@ -8,7 +8,10 @@ import store from '../store'
 /*-----------------------------------------------------------------*/
 const initShopInfo = {
     shopInfos: {},
-    shopItem: {}
+    shopItem: {},
+    saleRecordInfo: {},
+    buyRecordInfo: {},
+    dealRecordInfo: {}
 }
 
 const ShopReducer = (state = initShopInfo, action) => {
@@ -19,6 +22,15 @@ const ShopReducer = (state = initShopInfo, action) => {
 
         case 'PROD_DETAIL':
             return Object.assign({}, state, {shopItem: action.shopItem})
+
+        case 'SALE_RECORD':
+            return Object.assign({}, state, {saleRecordInfo: action.saleRecordInfo})
+
+        case 'BUY_RECORD':
+            return Object.assign({}, state, {buyRecordInfo: action.buyRecordInfo})
+
+        case 'DEAL_RECORD':
+            return Object.assign({}, state, {dealRecordInfo: action.dealRecordInfo})
 
 
         default:
@@ -76,8 +88,80 @@ const getMallProdItem = (data, callback) => {
     });
 }
 
+
+const getSalePublishRecords = (data, callback) => {
+    axios.post('/Game/GetPublishRecords', {
+        MarketHashName: data.MarketHashName,
+        PublishType: 1, //1出售 2求购
+        PageIndex: data.PageIndex,
+        PageSize: 10
+    })
+    .then(function (res) {
+        if(res){
+            store.dispatch({
+                type: "SALE_RECORD",
+                saleRecordInfo: res.Data
+            })
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function (error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
+const getBuyPublishRecords = (data, callback) => {
+    axios.post('/Game/GetPublishRecords', {
+        MarketHashName: data.MarketHashName,
+        PublishType: 2, //1出售 2求购
+        PageIndex: data.PageIndex,
+        PageSize: 10
+    })
+    .then(function (res) {
+        if(res){
+            store.dispatch({
+                type: "BUY_RECORD",
+                buyRecordInfo: res.Data
+            })
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function (error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
+const getTransactionRecords = (data, callback) => {
+    axios.post('/Game/GetTransactionRecords', {
+        MarketHashName: data.MarketHashName,
+        PageIndex: data.PageIndex,
+        PageSize: 10
+    })
+    .then(function (res) {
+        if(res){
+            store.dispatch({
+                type: "DEAL_RECORD",
+                dealRecordInfo: res.Data
+            })
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function (error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
 export { 
     ShopReducer,
     getMallList,
-    getMallProdItem
+    getMallProdItem,
+    getSalePublishRecords,
+    getBuyPublishRecords,
+    getTransactionRecords
 }

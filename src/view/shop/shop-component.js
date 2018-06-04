@@ -45,7 +45,8 @@ class ShopComponent extends Component {
 							<li key={index}>
 								<div styleName="item" onClick={()=>this.props.goItemDetail(item.MarketHashName)}>
 									<div styleName="item-img">
-										<img src={item.IconUrl} alt="" />
+										{/* <img src={item.IconUrl} alt="" /> */}
+										<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png" alt=""/>
 										<p styleName="item-name">{item.Name}</p>
 									</div>
 									<div styleName="item-info">

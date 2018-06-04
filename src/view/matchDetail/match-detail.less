@@ -23,64 +23,115 @@
             width: 10vw;
             height: 10vw;
         }
+
+        .am-tabs-pane-wrap>div{
+            height: auto!important;
+        }
+        
         .bet-info{
             width: 100%;
         }
 
         .userPart{
+            width: 100%;
 
             .am-accordion-header{
                 height: 60px!important;
             }
 
-            .userImg{
+            .guess_list{
                 width: 100%;
-                display: flex;
-                align-items: center;
-            
-                img{
-                    margin: 0 10px 0 30px;
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 30px;
-                }
-            
-                span{
-                    font-weight: bold;
-                    color: #2c2c32;
-                    font-size: 24px;
-                    margin-left: 20px;
+
+                .userImg{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                
+                    img{
+                        margin: 0 10px 0 30px;
+                        width: 60px;
+                        height: 60px;
+                        border-radius: 30px;
+                    }
+                
+                    span{
+                        font-weight: bold;
+                        color: #2c2c32;
+                        font-size: 24px;
+                        margin-left: 20px;
+                    }
+    
+                    div:nth-child(4){
+                        margin-left: 20px;
+                        width: 0; 
+                        height: 0; 
+                        border-top: 8px solid transparent; 
+                        border-right: 8px solid #2c2c32; 
+                        border-bottom: 8px solid transparent; 
+                    }
+                
+                    div:nth-child(5){
+                        height: 30px;
+                        line-height: 30px;
+                        padding: 0 5px;
+                        background: #2c2c32;
+                        color: #fff;
+                        font-size: 18px;
+                    }
                 }
 
-                div:nth-child(4){
-                    margin-left: 20px;
-                    width: 0; 
-                    height: 0; 
-                    border-top: 8px solid transparent; 
-                    border-right: 8px solid #2c2c32; 
-                    border-bottom: 8px solid transparent; 
-                }
-            
-                div:nth-child(5){
-                    height: 30px;
-                    line-height: 30px;
-                    padding: 0 5px;
-                    background: #2c2c32;
-                    color: #fff;
-                    font-size: 18px;
+                .ornament_list{
+                    display: flex;
+    
+                    img{
+                        height: 60px;
+                        margin-right: 10px;
+                    }
+    
+                    img:first-child{
+                        margin-left: 80px;
+                    }
                 }
             }
             
-            .userImgList{
-                display: flex;
 
-                img{
-                    height: 60px;
-                    margin-right: 10px;
-                }
+            .beans_list{
+                width: 100%;
 
-                img:first-child{
-                    margin-left: 80px;
+                .inner{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    height: 80px;
+
+                    span{
+                        font-weight: bold;
+                        color: #2c2c32;
+                        font-size: 24px;
+                    }
+
+                    span:nth-child(1){
+                        margin-left: 30px;
+                    }
+
+                    img{
+                        margin: 0 30px;
+                        width: 60px;
+                        height: 60px;
+                        border-radius: 30px;
+                    }
+
+                    span:nth-child(3){
+                        flex: 1;
+                        margin-left: 50px;
+                    }
+
+                    label{
+                        color: orange;
+                        font-size: 24px;
+                        margin-right: 30px;
+                    }
+
                 }
             }
         }

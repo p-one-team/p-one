@@ -14,7 +14,9 @@ const initMatchInfo = {
     gameItems: {},
     gameItemId: "",
     gameItemInfos: {},
-    gameItemOrnamentsGuessInfo: []
+    gameItemOrnamentsGuessInfo: {},
+    gameItemTBeansGuessInfo: {},
+    gameItemTycoonGuessInfo: {}
 }
 
 const MatchReducer = (state = initMatchInfo, action) => {
@@ -39,6 +41,10 @@ const MatchReducer = (state = initMatchInfo, action) => {
             return Object.assign({}, state, { gameItemInfos: action.gameItemInfos })
         case 'GAME_ITEM_ORNAMENT_GUESS_INFO':
             return Object.assign({}, state, { gameItemOrnamentsGuessInfo: action.gameItemOrnamentsGuessInfo })
+        case 'GAME_ITEM_TBEANS_GUESS_INFO':
+            return Object.assign({}, state, { gameItemTBeansGuessInfo: action.gameItemTBeansGuessInfo })
+        case 'GAME_ITEM_TYCOON_GUESS_INFO':
+            return Object.assign({}, state, { gameItemTycoonGuessInfo: action.gameItemTycoonGuessInfo })
             
         default:
             return state
@@ -173,6 +179,50 @@ const getOrnamentsGuessOfGameItem = (data, callback) => {
     });
 }
 
+//T豆竞猜列表
+const getTBeansGuessOfGameItem = (data,callback) => {
+    axios.post("/Game/GetTBeasGuessOfGameItem", {
+        HandicapID: data.HandicapID,
+        PageIndex: data.PageIndex,
+        PageSize: 10
+    })
+    .then(function(res) {
+        if (res) {
+            store.dispatch({
+                type: 'GAME_ITEM_TBEANS_GUESS_INFO',
+                gameItemTBeansGuessInfo: res.Data
+            })
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function(error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
+const getVulgarTycoonGuessOfGameItem = (data,callback) => {
+    axios.post("/Game/GetVulgarTycoonGuessOfGameItem", {
+        HandicapID: data.HandicapID,
+        PageIndex: data.PageIndex,
+        PageSize: 10
+    })
+    .then(function(res) {
+        if (res) {
+            store.dispatch({
+                type: 'GAME_ITEM_TYCOON_GUESS_INFO',
+                gameItemTycoonGuessInfo: res.Data
+            })
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function(error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
 
 export {
     MatchReducer,
@@ -180,5 +230,8 @@ export {
     getGameInfos,
     getGameItems,
     getGameItemInfo,
-    getOrnamentsGuessOfGameItem
+    getOrnamentsGuessOfGameItem,
+    getTBeansGuessOfGameItem,
+    getVulgarTycoonGuessOfGameItem
+    
 }

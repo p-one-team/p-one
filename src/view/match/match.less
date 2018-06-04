@@ -7,9 +7,8 @@
     .topMenu {
         width: 100%;
         background-color: #2c2c32;
-        padding-top: 20px;
-        height: 1250px;
-        box-sizing: border-box;
+        height: 105px;
+
         .sub-title {
             text-align: center;
             line-height: 32px;
@@ -18,8 +17,33 @@
         }
     }
     :global {
-        .am-grid-text {
-            color: #EFF0DC !important;
+        .am-grid{
+            height: 105px;
+
+            .am-flexbox{
+                height: 105px;
+
+                .am-flexbox-item{
+                    background-color: #2c2c32;
+                    height: 100%;
+
+                    .am-grid-item-content{
+                        padding: 0;
+
+                        .am-grid-item-inner-content{
+                            img{
+                                display: none;
+                            }
+
+                            div{
+                                color: #fff;
+                                font-size: 24px;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

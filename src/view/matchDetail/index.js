@@ -1,6 +1,6 @@
 import matchDetailComponent from './match-detail-component'
 import { connect } from 'react-redux'
-import { getOrnamentsGuessOfGameItem } from '../../reducers/match'
+import { getOrnamentsGuessOfGameItem,getTBeansGuessOfGameItem,getVulgarTycoonGuessOfGameItem } from '../../reducers/match'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -12,13 +12,19 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/shop')
         },
 
-        getGuessList(tab,id){
-            if(tab=="ornaments"){
-                getOrnamentsGuessOfGameItem({
-                    HandicapID: id,
-                    PageIndex: 0
-                })
-            }
+        getGuessList(id){
+            getOrnamentsGuessOfGameItem({
+                HandicapID: id,
+                PageIndex: 0
+            })
+            getTBeansGuessOfGameItem({
+                HandicapID: id,
+                PageIndex: 0
+            })
+            getVulgarTycoonGuessOfGameItem({
+                HandicapID: id,
+                PageIndex: 0
+            })
         }
 
 
@@ -30,7 +36,8 @@ const mapStateToProps = (state) => {
         gameItemId: state.MatchReducer.gameItemId,
         gameItemInfos: state.MatchReducer.gameItemInfos,
         gameItemOrnamentsGuessInfo: state.MatchReducer.gameItemOrnamentsGuessInfo,
-        userInfos: state.UserReducer.userInfos
+        gameItemTBeansGuessInfo: state.MatchReducer.gameItemTBeansGuessInfo,
+        gameItemTycoonGuessInfo: state.MatchReducer.gameItemTycoonGuessInfo,
     }
 }
 

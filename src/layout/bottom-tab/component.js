@@ -22,7 +22,7 @@ class TabBarExample extends React.Component {
         this.props.changeGameInfo("570")
 
         this.state = {
-            currentPage: 'My',
+            currentPage: 'my',
             hidden: false,
         }
     }
@@ -185,11 +185,11 @@ class TabBarExample extends React.Component {
                             background: 'url(https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg) center center /  21px 21px no-repeat'
                         }}
                         />}
-                        title="My"
+                        title="个人"
                         key="my"
-                        selected={this.props.currentPage === 'My'}
+                        selected={this.props.currentPage === 'my'}
                         onPress={() => {
-                            this.props.changePage('My');
+                            this.props.changePage('my');
                         }}
                     >
                         <UserCenter />
