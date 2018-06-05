@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './shop.less'
-import { NavBar, Icon, SearchBar, Tabs } from 'antd-mobile';
+import { NavBar, Icon, SearchBar } from 'antd-mobile';
+// import {Tabs} from 'antd-mobile'
 
 @CSSModules(style)
 class ShopComponent extends Component {
@@ -36,6 +37,9 @@ class ShopComponent extends Component {
 		this.manualFocusInst.focus();
 	}
 
+	select = () => {
+		console.log("select")
+	}
 
 	renderContent = (tab, infos) => {
 		if(infos.Ornaments){
@@ -47,6 +51,7 @@ class ShopComponent extends Component {
 								<div styleName="item" onClick={()=>this.props.goItemDetail(item.MarketHashName)}>
 									<div styleName="item-img">
 										<img src={item.IconUrl} alt="" />
+										{/* <img src={item.IconUrl.replace("http:","https:")} alt="" /> */}
 										{/* <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png" alt=""/> */}
 										<p styleName="item-name">{item.Name}</p>
 									</div>
@@ -79,31 +84,39 @@ class ShopComponent extends Component {
 					onLeftClick={() => this.props.history.goBack()}
 				>商城</NavBar>
 
-				<SearchBar
-					value={this.state.value}
-					placeholder="输入您想查找的内容"
-					onSubmit={value => console.log(value, 'onSubmit')}
-					onClear={value => console.log(value, 'onClear')}
-					onFocus={() => console.log('onFocus')}
-					onBlur={() => console.log('onBlur')}
-					onCancel={() => console.log('onCancel')}
-					maxLength={8}
-					onChange={this.onChange}
-				/>
+				<div styleName="search_part">
+					<div styleName="search">
+						<SearchBar
+							value={this.state.value}
+							placeholder="输入您想查找的内容"
+							onSubmit={value => console.log(value, 'onSubmit')}
+							onClear={value => console.log(value, 'onClear')}
+							onFocus={() => console.log('onFocus')}
+							onBlur={() => console.log('onBlur')}
+							onCancel={() => console.log('onCancel')}
+							maxLength={8}
+							onChange={this.onChange}
+						/>
+					</div>
+
+					<div styleName="select" onClick={()=>this.select()}>筛选</div>
+				</div>
+
+				
 
 				<div style={{width: '100%', top: 0 }}>
-					<Tabs tabs={[{title:"出售"},{title:"求购"}]}
+					{/* <Tabs tabs={[{title:"出售"},{title:"求购"}]}
 						initialPage={0}
 						// onTabClick={(tab) => { this.props.changeGameInfo(tab)}}
-					>
+					> */}
 						<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
 							{this.renderContent("sale",this.props.shopInfos)}
 						</div>
 
-						<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+						{/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
 							{this.renderContent("buy",this.props.shopInfos)}
-						</div>
-                    </Tabs>
+						</div> */}
+                    {/* </Tabs> */}
 					
 				</div>
 			</div>

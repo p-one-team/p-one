@@ -123,6 +123,7 @@ class ShopItemDetailComponent extends Component {
                         <p>允许预测</p>
                         <div styleName="imgPart">
                             <img src={prodDetail.IconUrlLarge} alt="" />
+                            {/* <img src={prodDetail.IconUrlLarge.replace("http:","https:")} alt="" /> */}
                             {/* <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png" alt="" /> */}
                             <div>
                                 <label>{prodDetail.Rarity}</label>
