@@ -6,17 +6,8 @@ import { getMallList, getMallProdItem } from '../../reducers/shop'
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
-        initData() {
-            // console.log("init index")
-        },
-
         showGetMallList(data) {
             getMallList(data)
-        },
-
-
-        goBack() {
-            props.history.replace('/')
         },
 
         goItemDetail(hashName) {

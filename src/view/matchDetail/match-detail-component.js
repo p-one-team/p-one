@@ -157,7 +157,7 @@ class matchDetail extends Component {
 }
 
 matchDetail.propTypes = {
-    goBack: PropTypes.func
+    getGuessList: PropTypes.func
 }
 
 export default matchDetail

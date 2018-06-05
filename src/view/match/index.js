@@ -5,9 +5,6 @@ import store from '../../store'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        initData() {
-            //console.log("init data")
-        },
 
         goMatchDetail(id) {
             store.dispatch({
@@ -44,7 +41,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
-        ...state.HomeReducer
+        ...state.MatchReducer
     }
 }
 

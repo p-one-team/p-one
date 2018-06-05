@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './shop.less'
 import { NavBar, Icon, SearchBar, Tabs } from 'antd-mobile';
+
 @CSSModules(style)
 class ShopComponent extends Component {
 	constructor(props) {

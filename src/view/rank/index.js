@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import RankComponentWrapper from './rank-component.js'
+import { getRanking } from '../../reducers/rank'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -8,13 +9,18 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         goListPage() {
             props.history.push('/list')
+        },
+
+        getRank(data){
+            getRanking(data)
         }
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        ...state.HomeReducer
+        rankTotal: state.RankReducer.rankTotal,
+        rankWeek: state.RankReducer.rankWeek
     }
 }
 

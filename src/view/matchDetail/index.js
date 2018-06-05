@@ -4,10 +4,6 @@ import { getOrnamentsGuessOfGameItem,getTBeansGuessOfGameItem,getVulgarTycoonGue
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        initData() {
-            //console.log('init index')
-        },
-
         goShop() {
             props.history.push('/shop')
         },
@@ -26,8 +22,6 @@ const mapDispatchToProps = (dispatch, props) => {
                 PageIndex: 0
             })
         }
-
-
     }
 }
 

@@ -1,20 +1,24 @@
 import { connect } from 'react-redux'
 import myForecastComponent from './myForecast-component'
+import {getMyGuessRecords} from '../../reducers/rank'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        initData() {
-            console.log('init inventory')
-        },
+
         goListPage() {
             props.history.push('/list')
+        },
+
+        getGuessRecord(data){
+            getMyGuessRecords(data)
         }
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        ...state.HomeReducer
+        guessRecordWeek: state.RankReducer.guessRecordWeek,
+        guessRecordMonth: state.RankReducer.guessRecordMonth,
     }
 }
 
