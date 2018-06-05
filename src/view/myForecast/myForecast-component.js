@@ -90,7 +90,7 @@ class myForecastComponent extends Component {
                     <div styleName="tab_title">预测统计</div>
 
                     <Tabs tabs={this.state.tabs}
-                        initialPage={1}
+                        initialPage={0}
                         onTabClick={(tab) => { this.props.getGuessRecord({DayType: tab.sub, PageIndex: 0})}}
                     >
 
