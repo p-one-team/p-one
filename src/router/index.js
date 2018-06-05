@@ -22,6 +22,7 @@ import TradeHistory from '../view/tradeHistory'
 import HelpSuggest from '../view/helpSuggest'
 import Message from '../view/message'
 import ResetPassword from '../view/resetPassword'
+import ShopSelect from '../view/shopSelect'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -99,6 +100,10 @@ const routes_config = [
 	{
 		path: '/resetPassword',
 		component: ResetPassword
+	},
+	{
+		path: '/shopSelect',
+		component: ShopSelect
 	}
 ]
 

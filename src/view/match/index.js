@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import MatchComponent from './match-component'
-import { getGameItems, getGameItemInfo } from '../../reducers/match.js'
+import { getGameItems, getGameItemInfo } from '../../reducers/match'
+import { getMallList } from '../../reducers/shop'
 import store from '../../store'
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -34,7 +35,16 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         goShop() {
-            props.history.push('/shop')
+            getMallList({
+                GameType: "570",
+				AttributeID: 1,
+				AttributeValue: "",
+				KeyWords: "",
+				PageIndex: 0,
+				PageSize: 10
+            },() => {
+                props.history.push('/shop')
+            })
         }
     }
 }

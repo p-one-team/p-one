@@ -15,6 +15,16 @@
             margin: 0 10px;
         }
 
+        .search_btn{
+            text-align: center;
+            color: #2c2c32;
+            width: 90px;
+            height: 7vw;
+            line-height: 7vw;
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
         .select{
             text-align: center;
             background: #2c2c32;
@@ -26,6 +36,14 @@
             margin-right: 10px;
             font-size: 24px;
         }
+    }
+
+    .noResult{
+        width: 100%;
+        line-height: 300px;
+        color: #2c2c32;
+        font-size: 30px;
+        text-align: center;
     }
 
     :global {
@@ -81,8 +99,8 @@
             height: 7vw;
         }
         .am-search-input .am-search-synthetic-ph {
-            height: 7.5vw;
-            line-height: 7.5vw;
+            height: 7vw;
+            line-height: 7vw;
             border-radius: 5vw!important;
             background-color: rgba(0, 0, 0, .05)!important;
         }
@@ -97,6 +115,10 @@
             border-radius: 5vw !important;
             background-color: rgba(0, 0, 0, 0.1) !important;
         }
+        .am-search.am-search-start .am-search-input input[type="search"]{
+            padding: 0 6vw 0 10.5vw;
+        }
+
         .am-search-input .am-search-synthetic-ph-icon {
             display: inline-block;
             margin-right: .66667vw;
@@ -110,6 +132,11 @@
         .am-search.am-search-start .am-search-input .am-search-synthetic-ph {
             padding-left: 5.5vw;
             width: auto;
+        }
+        .am-search-clear{
+            width: 5vw;
+            height: 5vw;
+            background-size: 3vw 3vw;
         }
         .am-tabs-bottom {
             -webkit-box-orient: vertical;
@@ -133,7 +160,7 @@
     .item-list {
         width: 100%;
         font-size: 0;
-        margin-top: 15px;
+        margin-top: 30px;
 
         li {
             float: left;

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import InventoryComponent from './inventory-component'
+import { getMallList } from '../../reducers/shop'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -8,7 +9,16 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         goStore() {
-            props.history.push('/shop')
+            getMallList({
+                GameType: "570",
+				AttributeID: 1,
+				AttributeValue: "",
+				KeyWords: "",
+				PageIndex: 0,
+				PageSize: 10
+            },() => {
+                props.history.push('/shop')
+            })
         }
     }
 }

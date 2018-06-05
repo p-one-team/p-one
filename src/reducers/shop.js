@@ -13,7 +13,8 @@ const initShopInfo = {
     buyRecordInfo: {},
     dealRecordInfo: {},
     myTransactionInfo: {},
-    myTransactionHistory: []
+    myTransactionHistory: [],
+    prodAttribute: {}
 }
 
 const ShopReducer = (state = initShopInfo, action) => {
@@ -21,6 +22,9 @@ const ShopReducer = (state = initShopInfo, action) => {
     switch (action.type) {
         case 'MALL_LIST':
             return Object.assign({}, state, {shopInfos: action.shopInfos})
+
+        case 'PROD_ATTRIBUTES':
+            return Object.assign({}, state, {prodAttribute: action.prodAttribute})
 
         case 'PROD_DETAIL':
             return Object.assign({}, state, {shopItem: action.shopItem})
@@ -51,6 +55,7 @@ const ShopReducer = (state = initShopInfo, action) => {
 /*User Action*/
 /*-----------------------------------------------------------------*/
 
+//商城
 const getMallList = (data, callback) => {
     axios.post('/Game/GetMallList', {
         GameType: data.GameType,
@@ -65,6 +70,27 @@ const getMallList = (data, callback) => {
             store.dispatch({
                 type: "MALL_LIST",
                 shopInfos: res.Data
+            })
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function (error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
+//商品属性筛选
+const getOrnamentAttributes = (data, callback) => {
+    axios.post('/Game/GetOrnamentAttributes', {
+
+    })
+    .then(function (res) {
+        if(res){
+            store.dispatch({
+                type: "PROD_ATTRIBUTES",
+                prodAttribute: res.Data
             })
 
             callback ? callback() : ""
@@ -216,5 +242,6 @@ export {
     getBuyPublishRecords,
     getTransactionRecords,
     getMyTransaction,
-    queryMyTransHistory
+    queryMyTransHistory,
+    getOrnamentAttributes
 }

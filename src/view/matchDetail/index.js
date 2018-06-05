@@ -4,8 +4,8 @@ import { getOrnamentsGuessOfGameItem,getTBeansGuessOfGameItem,getVulgarTycoonGue
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        goShop() {
-            props.history.push('/shop')
+        goList() {
+            props.history.push('/list')
         },
 
         getGuessList(id){

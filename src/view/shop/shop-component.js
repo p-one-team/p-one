@@ -10,18 +10,10 @@ class ShopComponent extends Component {
 	constructor(props) {
 		super(props)
 
-		this.props.showGetMallList({
-			GameType: "570",
-			AttributeID: 1,
-			AttributeValue: "",
-			KeyWords: "",
-			PageIndex: 0,
-			PageSize: 10
-		})
-
 		this.state = {
 			value: '',
 			hidden: false,
+			isSearch: false,
 		}
 	}
 
@@ -37,41 +29,44 @@ class ShopComponent extends Component {
 		this.manualFocusInst.focus();
 	}
 
-	select = () => {
-		console.log("select")
-	}
-
 	renderContent = (tab, infos) => {
 		if(infos.Ornaments){
 			return (
 				<div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
 					<ul styleName="item-list">
-						{infos.Ornaments.map((item,index)=>(
-							<li key={index}>
-								<div styleName="item" onClick={()=>this.props.goItemDetail(item.MarketHashName)}>
-									<div styleName="item-img">
-										<img src={item.IconUrl} alt="" />
-										{/* <img src={item.IconUrl.replace("http:","https:")} alt="" /> */}
-										{/* <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png" alt=""/> */}
-										<p styleName="item-name">{item.Name}</p>
-									</div>
-									<div styleName="item-info">
-										<p>
-											<label styleName="now">{item.TPrice}T豆</label>
-											{/* {item.isDiscount ? <label styleName="original">{item.prePrice}金币</label> : null} */}
-										</p>
-										<p>已售: {item.SaleCount}件</p>
-									</div>
-									{/* {item.isDiscount ? <div styleName="discount"><div></div><span>{item.discount}</span></div> : null} */}
+					{infos.Ornaments.map((item,index)=>(
+						<li key={index}>
+							<div styleName="item" onClick={()=>this.props.goItemDetail(item.MarketHashName)}>
+								<div styleName="item-img">
+									{/* <img src={item.IconUrl} alt="" /> */}
+									<img src={item.IconUrl.indexOf("http:")>=0?item.IconUrl.replace("http:","https:"):item.IconUrl} alt="" />
+									{/* <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526290768043&di=9596619bd7c62cb81c21dc87a4bf4108&imgtype=0&src=http%3A%2F%2Fthumb.vpgcdn.com%2Fcrop%2F360x240%2Fitem-16599.png" alt=""/> */}
+									<p styleName="item-name">{item.Name}</p>
 								</div>
-							</li>
-						))}
+								<div styleName="item-info">
+									<p>
+										<label styleName="now">{item.TPrice}T豆</label>
+										{/* {item.isDiscount ? <label styleName="original">{item.prePrice}金币</label> : null} */}
+									</p>
+									<p>已售: {item.SaleCount}件</p>
+								</div>
+								{/* {item.isDiscount ? <div styleName="discount"><div></div><span>{item.discount}</span></div> : null} */}
+							</div>
+						</li>
+					))}
 					</ul>
 				</div>
 			)
 		}else{
-			return ""
+			return (<div styleName="noResult">无结果</div>)
 		}
+	}
+
+	showGetMallList = () => {
+		this.setState({
+			isSearch: true
+		})
+		this.props.showGetMallList(this.state.value)
 	}
 
 
@@ -89,17 +84,17 @@ class ShopComponent extends Component {
 						<SearchBar
 							value={this.state.value}
 							placeholder="输入您想查找的内容"
-							onSubmit={value => console.log(value, 'onSubmit')}
-							onClear={value => console.log(value, 'onClear')}
-							onFocus={() => console.log('onFocus')}
-							onBlur={() => console.log('onBlur')}
-							onCancel={() => console.log('onCancel')}
+							// onSubmit={value => console.log(value, 'onSubmit')}
+							// onClear={value => console.log(value, 'onClear')}
+							// onFocus={() => console.log('onFocus')}
+							// onBlur={() => console.log('onBlur')}
+							// onCancel={() => console.log('onCancel')}
 							maxLength={8}
 							onChange={this.onChange}
 						/>
 					</div>
-
-					<div styleName="select" onClick={()=>this.select()}>筛选</div>
+					<div styleName="search_btn" onClick={()=>this.showGetMallList()}>搜索</div>
+					<div styleName="select" onClick={()=>this.props.select()}>筛选</div>
 				</div>
 
 				
@@ -125,7 +120,6 @@ class ShopComponent extends Component {
 }
 
 ShopComponent.propTypes = {
-	showGetMallList: PropTypes.func,
 	goItemDetail: PropTypes.func,
 }
 

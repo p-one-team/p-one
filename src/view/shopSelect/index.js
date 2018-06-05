@@ -1,20 +1,25 @@
 import { connect } from 'react-redux'
-import ShopComponent from './shop-component.js'
-import { getMallList, getMallProdItem, getOrnamentAttributes } from '../../reducers/shop'
-
+import SelectComponent from './select-component.js'
+import { getMallList, getMallProdItem } from '../../reducers/shop'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
-        showGetMallList(word) {
+        chooseAttribute(id,text){
             getMallList({
                 GameType: "570",
-                AttributeID: 1,
-                AttributeValue: "",
-                KeyWords: word,
+                AttributeID: id,
+                AttributeValue: text,
+                KeyWords: "",
                 PageIndex: 0,
                 PageSize: 10
+            }, () => {
+                props.history.goBack()
             })
+        },
+
+        showGetMallList(data) {
+            getMallList(data)
         },
 
         goItemDetail(hashName) {
@@ -23,25 +28,19 @@ const mapDispatchToProps = (dispatch, props) => {
             }, () => {
                 props.history.push("/shopItem")
             })
-        },
-
-        select(){
-            getOrnamentAttributes({},()=>{
-                props.history.push("/shopSelect")
-            })
         }
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        shopInfos: state.ShopReducer.shopInfos
+        prodAttribute: state.ShopReducer.prodAttribute
     }
 }
 
-const Shop = connect(
+const ShopSelect = connect(
     mapStateToProps,
     mapDispatchToProps
-)(ShopComponent)
+)(SelectComponent)
 
-export default Shop
+export default ShopSelect
