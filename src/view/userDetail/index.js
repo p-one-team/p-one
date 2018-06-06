@@ -7,10 +7,6 @@ const mapDispatchToProps = (dispatch, props) => {
 
     return {
 
-        initData() {
-            //console.log('init data')
-        },
-
         goResetPsd(){
 			dispatch({
 				type: "USER_FORGET_PSD",

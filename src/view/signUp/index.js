@@ -4,9 +4,6 @@ import { getMsgCode, registerAction} from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        initData() {
-            //console.log('init index')
-        },
         goListPage() {
             props.history.push('/list')
         },

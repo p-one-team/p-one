@@ -27,10 +27,6 @@ class MessageComponent extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.initData()
-    }
-
     render() {
         let messageList = this.state.messageList
         let list = messageList.map((item)=>{

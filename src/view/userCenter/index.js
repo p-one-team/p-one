@@ -6,16 +6,20 @@ import { getMyTransaction } from '../../reducers/shop'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        initData() {
-            //console.log("init data")
-        },
-
         goBack() {
             props.history.replace('/')
         },
 
         goDetail() {
             props.history.push('/userDetail')
+        },
+
+        goInventory() {
+            props.history.push('/inventory')
+        },
+
+        goMyForecast() {
+            props.history.push('/myForecast')
         },
 
         goTradeHistory() {

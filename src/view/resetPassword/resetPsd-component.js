@@ -25,10 +25,6 @@ class resetPsdComponent extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.initData()
-    }
-
     //手机号相关
     onErrorClickPhone = () => {
         if (this.state.hasPhoneError) {

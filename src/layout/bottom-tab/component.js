@@ -23,12 +23,12 @@ class TabBarExample extends React.Component {
         this.props.changeGameInfo("570")
 
         this.state = {
-            currentPage: 'my',
+            // currentPage: 'my',
             hidden: false,
         }
     }
 
-    TabExample = () => {
+    lotteryPart = () => {
         let _gameTypes = gameTypes
         for (let i in _gameTypes) {
             _gameTypes[i].title = (<Badge >{_gameTypes[i].GameName}</Badge>)
@@ -56,29 +56,11 @@ class TabBarExample extends React.Component {
         </div>)
     }
 
-    renderContent2(pageText) {
-        return (
-            <div style={{ backgroundColor: 'black', height: '100%', textAlign: 'center' }}>
-                <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>
-
-                <a style={{ display: 'block', marginTop: 40, marginBottom: 20, color: '#108ee9' }}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        this.props.changePage(pageText);
-                        this.setState({
-                            hidden: !this.state.hidden,
-                        });
-                    }}
-                >Click to show/hide tab-bar</a>
-
-                <a style={{ display: 'block', marginBottom: 600, color: '#108ee9' }}
-                    onClick={(e) => {
-                        e.preventDefault();
-                    }}
-                >Click to switch fullscreen</a>
-            </div>
-        );
-    }
+    recommendPart = () => (
+        <div style={{ backgroundColor: '#fff', height: '100%', textAlign: 'center' }}>
+            <p style={{marginTop:50}}>推单部分</p>
+        </div>
+    );
 
     render() {
         return (
@@ -113,7 +95,7 @@ class TabBarExample extends React.Component {
                         }}
                         data-seed="logId"
                     >
-                        {this.renderContent2('recommend')}
+                        {this.recommendPart()}
                     </TabBar.Item>
 
                     <TabBar.Item
@@ -142,7 +124,7 @@ class TabBarExample extends React.Component {
                         }}
                         data-seed="logId1"
                     >
-                        {this.TabExample()}
+                        {this.lotteryPart()}
                     </TabBar.Item>
 
                     <TabBar.Item

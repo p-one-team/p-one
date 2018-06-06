@@ -13,10 +13,6 @@ class UserDetailComponent extends Component {
         super(props)
     }
 
-    componentDidMount() {
-        this.props.initData()
-    }
-
     //修改密码
     modifyPsd = () => {
         this.props.goResetPsd()

@@ -26,6 +26,14 @@ class UserCenterComponent extends Component {
 
 						<div className="iconfont icon-previewright"></div>
 					</li>
+					<li onClick={() => this.props.goInventory()}>
+						<div> <span className="iconfont icon-money"></span>我的库存</div>
+						<div className="iconfont icon-previewright"></div>
+					</li>
+					<li onClick={() => this.props.goMyForecast()}>
+						<div> <span className="iconfont icon-line_chart"></span>我的预测</div>
+						<div className="iconfont icon-previewright"></div>
+					</li>
 					<li onClick={() => this.props.goTradeHistory()}>
 						<div> <span className="iconfont icon-cart"></span>我的交易</div>
 						<div className="iconfont icon-previewright"></div>

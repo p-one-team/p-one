@@ -4,10 +4,6 @@ import { getMallList } from '../../reducers/shop'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        initData() {
-            console.log('init inventory')
-        },
-
         goStore() {
             getMallList({
                 GameType: "570",

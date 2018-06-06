@@ -4,9 +4,6 @@ import { getRanking } from '../../reducers/rank'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        initData() {
-            //console.log('init index')
-        },
         goListPage() {
             props.history.push('/list')
         },

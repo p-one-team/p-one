@@ -143,6 +143,84 @@
                         flex: 1;
                     }
                 }
+
+                .list-item{
+                    width: 100%;
+                    display: flex;
+                    padding: 10px 0;
+                    text-align: center;
+                    align-items: center;
+
+                    div:nth-child(1){
+                        flex: 1;
+                        
+
+                        p{
+                            font-size: 20px;
+                            color: #989898;
+                        }
+
+                        p:first-child{
+                            font-size: 24px;
+                            line-height: 45px;
+                        }
+                    }
+                    div:nth-child(2){
+                        flex: 3;
+
+                        div:first-child{
+                            font-size: 0;
+                            position: relative;
+                            height: 45px;
+
+                            img{
+                                display: inline-block;
+                                width: 45px;
+                                height: 45px;
+                            }
+
+                            label{
+                                position: relative;
+                                top: -2vw;
+                                display: inline-block;
+                                width: 45px;
+                                height: 45px;
+                                line-height: 45px;
+                                text-align: center;
+                                font-size: 20px;
+                                color: #989898;
+                                margin: 0 20px;
+                            }
+                        }
+                        p{
+                            font-size: 20px;
+                            color: #989898;
+                        }
+                    }
+                    div:nth-child(3){
+                        flex: 1;
+
+                        div{
+                            height: 45px;
+
+                            img{
+                                width: 40px;
+                                height: 40px;
+                            }
+                        }
+                        
+
+                        p{
+                            color: #ff5a5f;
+                            font-size: 20px;
+                        }
+                    }
+                    div:nth-child(4){
+                        flex: 1;
+                        color: #ff5a5f;
+                        font-size: 20px;
+                    }
+                }
             }
         }
     }

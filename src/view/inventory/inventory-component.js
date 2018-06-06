@@ -45,14 +45,7 @@ class InventoryComponent extends Component {
         super(props)
     }
 
-    componentDidMount() {
-        this.props.initData()
-    }
-
     render() {
-
-        // const { getFieldProps, getFieldError } = this.props.form;
-        console.log(this.props)
         return (
             <div styleName="wrap">
                 <NavBar

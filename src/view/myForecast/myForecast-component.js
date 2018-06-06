@@ -35,12 +35,29 @@ class myForecastComponent extends Component {
                         <span>队伍</span>
                         <span>收益</span>
                     </div>
-                    <div className="list-item">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
+                    {info.BetDetails.map((item,index) => (
+                        <div key={index} className="list-item">
+                            <div>
+                                <p>已结算</p>
+                                <p>5小时前</p>
+                            </div>
+                            <div>
+                                <div>
+                                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1983538288,3126111242&fm=27&gp=0.jpg"/>
+                                    <label>VS</label>
+                                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1983538288,3126111242&fm=27&gp=0.jpg"/>
+                                </div>
+                                <p>第二局十杀 The Bucharest Major</p>
+                            </div>
+                            <div>
+                                <div>
+                                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1983538288,3126111242&fm=27&gp=0.jpg"/>
+                                </div>
+                                <p>2.78</p>
+                            </div>
+                            <div>-2.78</div>
+                        </div>
+                    ))}
                 </div>)
             }else{
                 historyList = (<div className="noRecord">暂无预测记录</div>)

@@ -12,10 +12,6 @@ class HelpSuggestComponent extends Component {
         super(props)
     }
 
-    componentDidMount() {
-        this.props.initData()
-    }
-
     render() {
 
         return (

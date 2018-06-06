@@ -10,10 +10,8 @@ const MainInfoReducer = (state = initMainInfo, action) => {
     switch (action.type) {
 
         case 'CHANGE_PAGE':
-            {
-                console.log(action)
-                return Object.assign({}, state, { currentPage: action.target })
-            }
+            return Object.assign({}, state, { currentPage: action.target })
+            
         default:
             return state
     }

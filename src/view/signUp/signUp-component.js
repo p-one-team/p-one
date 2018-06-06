@@ -25,10 +25,6 @@ class signUpComponent extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.initData()
-    }
-
     //去登录
     goLogin = () => {
         this.props.history.push('/')
