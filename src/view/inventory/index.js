@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import InventoryComponent from './inventory-component'
 import { getMallList } from '../../reducers/shop'
+import { getMyInventory } from '../../reducers/inventory'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -15,13 +16,20 @@ const mapDispatchToProps = (dispatch, props) => {
             },() => {
                 props.history.push('/shop')
             })
+        },
+
+        getInventory(data){
+            console.log(data)
+            getMyInventory(data)
         }
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        ...state.HomeReducer
+        dotaInventory: state.InventoryReducer.dotaInventory,
+        csgoInventory: state.InventoryReducer.csgoInventory,
+        pubgInventory: state.InventoryReducer.pubgInventory,
     }
 }
 

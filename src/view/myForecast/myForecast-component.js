@@ -38,24 +38,24 @@ class myForecastComponent extends Component {
                     {info.BetDetails.map((item,index) => (
                         <div key={index} className="list-item">
                             <div>
-                                <p>已结算</p>
-                                <p>5小时前</p>
+                                <p>{item.SettlementStatus}</p>
+                                <p>{item.HandicapDate}</p>
                             </div>
                             <div>
                                 <div>
-                                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1983538288,3126111242&fm=27&gp=0.jpg"/>
+                                    <img src={item.HostTeamImage}/>
                                     <label>VS</label>
-                                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1983538288,3126111242&fm=27&gp=0.jpg"/>
+                                    <img src={item.GuestTeamImage}/>
                                 </div>
-                                <p>第二局十杀 The Bucharest Major</p>
+                                <p>{item.HandicapName}</p>
                             </div>
                             <div>
                                 <div>
-                                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1983538288,3126111242&fm=27&gp=0.jpg"/>
+                                    <img src={item.BetTeamImage}/>
                                 </div>
-                                <p>2.78</p>
+                                <p>{item.EstimatedEarning}</p>
                             </div>
-                            <div>-2.78</div>
+                            <div>{item.SettlementAmount}</div>
                         </div>
                     ))}
                 </div>)

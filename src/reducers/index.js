@@ -4,7 +4,7 @@ import { UserReducer } from './user'
 import { MatchReducer } from './match'
 import { ShopReducer } from './shop'
 import { RankReducer } from './rank'
-
+import { InventoryReducer } from './inventory';
 
 
 export default combineReducers({
@@ -12,5 +12,6 @@ export default combineReducers({
     UserReducer,
     MatchReducer,
     ShopReducer,
-    RankReducer
+    RankReducer,
+    InventoryReducer
 })
