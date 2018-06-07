@@ -65,7 +65,7 @@ class TradeHistoryComponent extends Component {
         return (
             <div styleName="wrap">
                 <NavBar
-                    mode="light"
+                    mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
                 >我的交易</NavBar>

@@ -167,7 +167,7 @@ class resetPsdComponent extends Component {
         return (
             <div styleName="wrap">
                 <NavBar
-                    mode="light"
+                    mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
                 >{this.props.isForgetPsd?"忘记密码":"重置密码"}</NavBar>

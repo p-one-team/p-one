@@ -1,19 +1,12 @@
 import React from 'react'
 import { TabBar } from 'antd-mobile';
-import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
-// import { Tabs, WhiteSpace } from 'antd-mobile';
+import { Tabs, WhiteSpace, Badge, Grid, NavBar } from 'antd-mobile';
 import CSSModules from 'react-css-modules'
 import style from './bottom-tab.less'
 import MatchList from '../match-list'
 import UserCenter from '../../view/userCenter'
 import Rank from '../../view/rank'
 
-const gameTypes = [
-    {GameCode: "570", GameName: "Dota2"},
-    {GameCode: "730", GameName: "CSGO"},
-    {GameCode: "578080", GameName: "PUBG"},
-    {GameCode: "Sports", GameName: "体育"}
-]
 
 @CSSModules(style)
 class TabBarExample extends React.Component {
@@ -23,18 +16,40 @@ class TabBarExample extends React.Component {
         this.props.changeGameInfo("570")
 
         this.state = {
-            // currentPage: 'my',
+            gameTypes: [
+                {GameCode: "570", GameName: "Dota2"},
+                {GameCode: "730", GameName: "CSGO"},
+                {GameCode: "578080", GameName: "PUBG"},
+                {GameCode: "Sports", GameName: "体育"}
+            ],
             hidden: false,
+            gridData: [
+                {text: '我的库存'},
+                {text: '收菜排行'},
+                {text: '我的预测'},
+                {text: '商城'}
+            ]
         }
     }
 
     lotteryPart = () => {
-        let _gameTypes = gameTypes
+        let _gameTypes = this.state.gameTypes
         for (let i in _gameTypes) {
             _gameTypes[i].title = (<Badge >{_gameTypes[i].GameName}</Badge>)
         }
 
         return (<div>
+            <NavBar
+                mode="dark"
+            >赛事预测</NavBar>
+            <div styleName="topMenu">
+                <Grid 
+                    data={this.state.gridData} 
+                    hasLine={false}
+                    activeStyle={{backgroundColor:"#2c2c32","color":"#fff",fontSize:"3.2vw"}}
+                    onClick={(_el, index) => { this.props.goPage(_el, index) }} 
+                />
+            </div>
             <Tabs tabs={_gameTypes}
                 initialPage={0}
                 onTabClick={(tab) => { this.props.changeGameInfo(tab.GameCode) }}
@@ -56,11 +71,12 @@ class TabBarExample extends React.Component {
         </div>)
     }
 
-    recommendPart = () => (
-        <div style={{ backgroundColor: '#fff', height: '100%', textAlign: 'center' }}>
-            <p style={{marginTop:50}}>推单部分</p>
-        </div>
-    );
+    recommendPart = () => (<div style={{ backgroundColor: '#fff', height: '100%', textAlign: 'center' }}>
+        <NavBar
+            mode="dark"
+        >推单</NavBar>
+        <p style={{marginTop:50}}>推单部分</p>
+    </div>);
 
     render() {
         return (

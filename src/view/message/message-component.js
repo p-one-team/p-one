@@ -41,7 +41,7 @@ class MessageComponent extends Component {
         return (
             <div styleName="wrap">
                 <NavBar
-                    mode="light"
+                    mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
                 >我的消息</NavBar>

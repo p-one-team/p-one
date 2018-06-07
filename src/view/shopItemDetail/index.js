@@ -9,12 +9,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         getRecords(tab, name){
-            if(tab.sub == "1"){
+            if(tab == "1"){
                 getSalePublishRecords({
                     MarketHashName: name,
                     PageIndex: 0
                 })
-            }else if(tab.sub == "2"){
+            }else if(tab == "2"){
                 getBuyPublishRecords({
                     MarketHashName: name,
                     PageIndex: 0

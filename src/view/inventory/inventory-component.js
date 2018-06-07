@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules'
 import style from './inventory.less'
 import { Tabs, NavBar, Icon,  } from 'antd-mobile';
 
+
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class InventoryComponent extends Component {
     constructor(props) {
@@ -343,7 +344,7 @@ class InventoryComponent extends Component {
         return (
             <div styleName="wrap">
                 <NavBar
-                    mode="light"
+                    mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
                 >我的库存</NavBar>

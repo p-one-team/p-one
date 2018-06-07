@@ -2,14 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './item.less'
-
 import { NavBar, Icon,Tabs } from 'antd-mobile';
-
-const tabsInfo = [
-    { title: "出售", sub: '1' },
-    { title: '求购', sub: '2' },
-    { title: '成交记录', sub: '3' }
-]
 
 
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
@@ -17,7 +10,16 @@ class ShopItemDetailComponent extends Component {
     constructor(props) {
         super(props)
 
-        this.props.getRecords(tabsInfo[0], this.props.shopItem.MarketHashName)
+        //获取出售列表
+        this.props.getRecords("1", this.props.shopItem.MarketHashName)
+
+        this.state = {
+            tabs: [
+                { title: "出售", sub: '1' },
+                { title: '求购', sub: '2' },
+                { title: '成交记录', sub: '3' }
+            ]
+        }
     }
 
     tabContent(type, tPrice, price, list){
@@ -120,7 +122,7 @@ class ShopItemDetailComponent extends Component {
         return (
             <div styleName="wrap">
                 <NavBar
-                    mode="light"
+                    mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
                 >{prodDetail.Name}</NavBar>
@@ -140,9 +142,9 @@ class ShopItemDetailComponent extends Component {
                         </div>
                     </div>
                     <div styleName="mainPart">
-                        <Tabs tabs={tabsInfo}
+                        <Tabs tabs={this.state.tabs}
                             initialPage={0}
-                            onTabClick={(tab) => { this.props.getRecords(tab, prodDetail.MarketHashName)} }
+                            onTabClick={(tab) => { this.props.getRecords(tab.sub, prodDetail.MarketHashName)} }
                         >
                             <div styleName="listPart">
                                 {this.tabContent("sale", prodDetail.TPrice, prodDetail.Price, this.props.saleRecordInfo.PublishRecords)}

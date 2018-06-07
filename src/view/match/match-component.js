@@ -52,8 +52,8 @@ class MatchComponent extends Component {
     render() {
         return (
             <div styleName="wrap">
-                {this.GridExample()}
-                <BottomTab goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(id) => this.props.showGameDetail(id)} />
+                {/* {this.GridExample()} */}
+                <BottomTab goPage={(_el,index)=>this.goPage(_el,index)}goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(id) => this.props.showGameDetail(id)} />
             </div>
         )
     }

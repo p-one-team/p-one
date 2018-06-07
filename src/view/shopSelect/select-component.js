@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules'
 import style from './select.less'
 import { NavBar, Icon, Tabs } from 'antd-mobile';
 
+
 @CSSModules(style)
 class SelectComponent extends Component {
 	constructor(props) {
@@ -38,17 +39,10 @@ class SelectComponent extends Component {
 		return (
 			<div styleName="wrap">
 				<NavBar
-					mode="light"
+					mode="dark"
 					icon={<Icon type="left" />}
 					onLeftClick={() => this.props.history.goBack()}
 				>求购商品属性筛选</NavBar>
-
-                {/* <div styleName="main">
-                    <div styleName="tab_part"></div>
-                    <div styleName="content_part">
-
-                    </div>
-                </div> */}
 
                 <Tabs tabs={this.state.tabs}
                     initalPage={0}

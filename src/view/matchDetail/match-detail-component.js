@@ -7,6 +7,7 @@ import { Tabs, WhiteSpace } from 'antd-mobile';
 import { StickyContainer } from 'react-sticky';
 import { Accordion } from 'antd-mobile';
 
+
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class matchDetail extends Component {
     constructor(props) {

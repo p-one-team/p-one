@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules'
 import style from './myForecast.less'
 import { NavBar, Icon, Tabs } from 'antd-mobile';
 
+
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class myForecastComponent extends Component {
     constructor(props) {
@@ -94,7 +95,7 @@ class myForecastComponent extends Component {
         return (
             <div styleName="wrap">
                 <NavBar
-                    mode="light"
+                    mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
                 >我的预测</NavBar>

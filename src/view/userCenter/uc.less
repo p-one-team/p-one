@@ -10,6 +10,54 @@
         }
     }
 
+    .header {
+        padding: 40px 30px;
+        background: #2c2c32;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        
+        .left {
+            margin-left: 6vw;
+            flex: 1;
+
+            .user-img {
+                border-radius: 50%;
+                height: 120px;
+                width: 120px;
+            }
+            .user-info {
+                font-size: 30px;
+                font-weight: 600;
+                color: #fff;
+            }
+        }
+
+        .sign{
+            width: 150px;
+            height: 46px;
+            font-size: 20px;
+            border-radius: 23px;
+            text-align: center;
+            line-height: 46px;
+            color: #2c2c32;
+            background: #fff;
+            margin-right: 6vw;
+        }
+
+        .hasSigned{
+            width: 150px;
+            height: 46px;
+            font-size: 20px;
+            border-radius: 23px;
+            text-align: center;
+            line-height: 46px;
+            color: #cacaca;
+            background: #f1f1f1;
+            margin-right: 6vw;
+        }
+    }
+
     ul{
         width: 100%;
         padding: 0 20px;
@@ -39,28 +87,7 @@
             }
         }
 
-        .header {
-            padding: 40px 30px;
-            .left {
-                display: flex;
-                align-items: center;
-    
-                .user-img {
-                    border-radius: 50%;
-                    height: 100px;
-                    width: 100px;
-                }
-                .user-info {
-                    margin-left: 20px;
-                    font-size: 24px;
-    
-                    p:first-child{
-                        font-size: 30px;
-                        font-weight: 600;
-                    }
-                }
-            }
-        }
+        
     }
     
 }

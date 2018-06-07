@@ -2,19 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './rank.less'
-
-import { List } from 'antd-mobile';
-// import { NavBar, Icon } from 'antd-mobile';
-import { Tabs } from 'antd-mobile';
+import { List,NavBar,Tabs } from 'antd-mobile';
 
 
-const tabs = [
-    { title: "胜率总榜", sub: 1 },
-    { title: '本周榜', sub: 2 }
-];
 const Item = List.Item;
-
-
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class RankComponentWrapper extends Component {
     constructor(props) {
@@ -25,6 +16,13 @@ class RankComponentWrapper extends Component {
             RankingType: 1, //1胜率总榜，2本周榜
             PageIndex: 0,
         })
+
+        this.state = {
+            tabs: [
+                { title: "胜率总榜", sub: 1 },
+                { title: '本周榜', sub: 2 }
+            ]
+        }
     }
 
     TabExample(list) {
@@ -57,14 +55,14 @@ class RankComponentWrapper extends Component {
     render() {
         return (
             <div styleName="wrap">
-                {/* <NavBar
-                    mode="light"
-                    icon={<Icon type="left" />}
-                    onLeftClick={() => this.props.history.goBack()}
-                >排行榜</NavBar> */}
+                <NavBar
+                    mode="dark"
+                    // icon={<Icon type="left" />}
+                    // onLeftClick={() => this.props.history.goBack()}
+                >排行榜</NavBar>
 
                 <div className="container">
-                    <Tabs tabs={tabs}
+                    <Tabs tabs={this.state.tabs}
                         initialPage={0}
                         onTabClick={(tab) => { this.props.getRank({RankingType: tab.sub, PageIndex: 0})}}
                     >

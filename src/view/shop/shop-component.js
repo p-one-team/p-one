@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './shop.less'
 import { NavBar, Icon, SearchBar } from 'antd-mobile';
-// import {Tabs} from 'antd-mobile'
+
 
 @CSSModules(style)
 class ShopComponent extends Component {
@@ -74,7 +74,7 @@ class ShopComponent extends Component {
 		return (
 			<div styleName="wrap">
 				<NavBar
-					mode="light"
+					mode="dark"
 					icon={<Icon type="left" />}
 					onLeftClick={() => this.props.history.goBack()}
 				>商城</NavBar>

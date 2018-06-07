@@ -2,18 +2,22 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './rank.less'
-import { NavBar, Icon, List } from 'antd-mobile';
-
+import { NavBar, Icon, List, Tabs } from 'antd-mobile';
 
 const Item = List.Item;
-
-
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class GuessRankComponentWrapper extends Component {
     constructor(props) {
         super(props)
 
         this.props.getGuessRanking({PageIndex:0})
+
+        this.state = {
+            tabs: [
+                {title: "周明灯"},
+                {title: "周黑灯"}
+            ]
+        }
 
     }
 
@@ -67,15 +71,26 @@ class GuessRankComponentWrapper extends Component {
         return (
             <div styleName="wrap">
                 <NavBar
-                    mode="light"
+                    mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
                 >收菜排行</NavBar>
 
                 <div className="container">
-                    <List className="beacon-list">
-                        {this.TabExample(this.props.guessRank.Players)}
-                    </List>
+                    <Tabs tabs={this.state.tabs}
+                        initialPage={0}
+                        // onTabClick={(tab) => { this.props.getRank({RankingType: tab.sub, PageIndex: 0})}}
+                    >
+
+                        <List className="beacon-list">
+                            {this.TabExample(this.props.guessRank.Players)}
+                        </List>
+
+                        <List className="beacon-list">
+                            {this.TabExample(this.props.guessRank.Players)}
+                        </List>
+                    </Tabs>
+
                 </div>
 
             </div>
