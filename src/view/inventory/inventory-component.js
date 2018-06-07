@@ -20,8 +20,8 @@ class InventoryComponent extends Component {
         this.state = {
             tabs: [
                 { title: 'Dota2', sub: '1' ,type: "570"},
-                { title: 'CS:GO', sub: '2' ,type: "730"},
-                { title: 'PUBG', sub: '3' ,type: "578080"},
+                // { title: 'CS:GO', sub: '2' ,type: "730"},
+                // { title: 'PUBG', sub: '3' ,type: "578080"},
                 { title: 'G钻/T豆', sub: '4',type: "tbean" }
             ],
             dotaSort: {
@@ -64,6 +64,28 @@ class InventoryComponent extends Component {
                     PriceSort: this.state.dotaSort.PriceSort==0?1:0,
                     QualitySort: 0,
                     RaritySort: 0
+                }
+            },()=>{
+                this.updateInventory("570")
+            })
+        }else if(type==3){
+            this.setState({
+                dotaSort: {
+                    DateSort: 0,
+                    PriceSort: 0,
+                    QualitySort: this.state.dotaSort.QualitySort==0?1:0,
+                    RaritySort: 0
+                }
+            },()=>{
+                this.updateInventory("570")
+            })
+        }else if(type==4){
+            this.setState({
+                dotaSort: {
+                    DateSort: 0,
+                    PriceSort: 0,
+                    QualitySort: 0,
+                    RaritySort: this.state.dotaSort.RaritySort==0?1:0
                 }
             },()=>{
                 this.updateInventory("570")
@@ -154,7 +176,6 @@ class InventoryComponent extends Component {
     dotaContent = (info) => {
         if(info.Ornaments){
             let ornamentList;
-            // console.log(info.Ornaments && info.Ornaments.length==0)
             if(info.Ornaments && info.Ornaments.length==0){
                 ornamentList = (<div styleName="go_buy">
                     <div onClick={()=>this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
@@ -179,8 +200,8 @@ class InventoryComponent extends Component {
 
             return (<div>
                 <div styleName="type_title">
-                    <span>品质</span>
-                    <span>稀有度</span>
+                    <span onClick={()=>this.changeDotaSort(3)}>品质{this.state.dotaSort.QualitySort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
+                    <span onClick={()=>this.changeDotaSort(4)}>稀有度{this.state.dotaSort.RaritySort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
                     <span onClick={()=>this.changeDotaSort(1)}>时间{this.state.dotaSort.DateSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
                     <span onClick={()=>this.changeDotaSort(2)}>价值{this.state.dotaSort.PriceSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
                 </div>
@@ -217,8 +238,9 @@ class InventoryComponent extends Component {
 
             return (<div>
                 <div styleName="type_title">
-                    <span>类别</span>
-                    <span>外观</span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                     <span onClick={()=>this.changeCsgoSort(1)}>时间{this.state.csgoSort.DateSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
                     <span onClick={()=>this.changeCsgoSort(2)}>价值{this.state.csgoSort.PriceSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
                 </div>
@@ -337,13 +359,13 @@ class InventoryComponent extends Component {
                         {this.dotaContent(this.props.dotaInventory)}
                     </div>
 
-                    <div styleName="csgo_content">
+                    {/* <div styleName="csgo_content">
                         {this.csgoContent(this.props.csgoInventory)}
                     </div>
 
                     <div styleName="pubg_content">
                         {this.pubgContent(this.props.pubgInventory)}
-                    </div>
+                    </div> */}
 
                     <div styleName="tbean_content">
                         {this.tBeanContent()}
