@@ -23,6 +23,7 @@ import HelpSuggest from '../view/helpSuggest'
 import Message from '../view/message'
 import ResetPassword from '../view/resetPassword'
 import ShopSelect from '../view/shopSelect'
+import Feedback from '../view/feedback'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -104,6 +105,10 @@ const routes_config = [
 	{
 		path: '/shopSelect',
 		component: ShopSelect
+	},
+	{
+		path: '/feedback',
+		component: Feedback
 	}
 ]
 

@@ -28,6 +28,10 @@ const mapDispatchToProps = (dispatch, props) => {
             })
         },
 
+        goFeedback() {
+            props.history.push('/feedback')
+        },
+
         goMessage() {
             props.history.push('/message')
         },

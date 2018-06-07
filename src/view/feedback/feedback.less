@@ -2,7 +2,8 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: #ebebeb;
+    background: #f1f1f1;
+
     :global {
         .am-navbar {
             display: -webkit-box;
@@ -20,6 +21,10 @@
                 font-size: 30px!important;
             }
 
+            .am-navbar-right{
+                font-size: 3.5vw;
+            }
+
             .am-icon {
                 fill: currentColor;
                 background-size: cover;
@@ -27,39 +32,46 @@
                 height: 8vw;
             }
         }
-        .am-tabs-default-bar-tab {
-            font-size: 24px;
-        }
-
-        .container {
-            height: calc(~"100% - 12vw");
-        }
-        .am-tabs-pane-wrap {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            justify-content: center;
-            background-color: #fff;
-        }
-        .iconfont {
-            font-size: 30px;
-        }
     }
 
-    ul{
-        li{
+    .container{
+        width: 100%;
+
+        .short{
             margin-top: 20px;
             width: 100%;
             background: #fff;
             padding: 20px 30px;
-            box-sizing: border-box;
             font-size: 24px;
-            color: #333;
+            color: #2c2c32;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+        }
 
-            p:first-child{
-                margin-bottom: 10px;
-                color: #989898;
-            }
+        .qq{
+            margin-top: 20px;
+            width: 100%;
+            background: #fff;
+            padding: 20px 30px;
+            font-size: 24px;
+            color: #2c2c32;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+        }
+
+        .detail{
+            margin-top: 20px;
+            width: 100%;
+            background: #fff;
+            padding: 20px 30px;
+            height: 300px;
+            font-size: 24px;
+            color: #2c2c32;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
         }
     }
 }
