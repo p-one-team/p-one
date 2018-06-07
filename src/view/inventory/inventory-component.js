@@ -55,13 +55,7 @@ class InventoryComponent extends Component {
                     RaritySort: 0
                 }
             },()=>{
-                this.props.getInventory({
-                    GameType: "570",
-                    DateSort: this.state.dotaSort.DateSort,
-                    PriceSort: this.state.dotaSort.PriceSort,
-                    QualitySort: this.state.dotaSort.QualitySort,
-                    RaritySort: this.state.dotaSort.RaritySort
-                })
+                this.updateInventory("570")
             })
         }else if(type==2){
             this.setState({
@@ -72,40 +66,116 @@ class InventoryComponent extends Component {
                     RaritySort: 0
                 }
             },()=>{
-                this.props.getInventory({
-                    GameType: "570",
-                    DateSort: this.state.dotaSort.DateSort,
-                    PriceSort: this.state.dotaSort.PriceSort,
-                    QualitySort: this.state.dotaSort.QualitySort,
-                    RaritySort: this.state.dotaSort.RaritySort
-                })
+                this.updateInventory("570")
+            })
+        }
+    }
+
+    changeCsgoSort = (type) => {
+        if(type==1){
+            this.setState({
+                csgoSort: {
+                    DateSort: this.state.csgoSort.DateSort==0?1:0,
+                    PriceSort: 0,
+                    QualitySort: 0,
+                    RaritySort: 0
+                }
+            },()=>{
+                this.updateInventory("730")
+            })
+        }else if(type==2){
+            this.setState({
+                csgoSort: {
+                    DateSort: 0,
+                    PriceSort: this.state.csgoSort.PriceSort==0?1:0,
+                    QualitySort: 0,
+                    RaritySort: 0
+                }
+            },()=>{
+                this.updateInventory("730")
+            })
+        }
+    }
+
+    changePubgSort = (type) => {
+        if(type==1){
+            this.setState({
+                pubgSort: {
+                    DateSort: this.state.pubgSort.DateSort==0?1:0,
+                    PriceSort: 0,
+                    QualitySort: 0,
+                    RaritySort: 0
+                }
+            },()=>{
+                this.updateInventory("578080")
+            })
+        }else if(type==2){
+            this.setState({
+                pubgSort: {
+                    DateSort: 0,
+                    PriceSort: this.state.pubgSort.PriceSort==0?1:0,
+                    QualitySort: 0,
+                    RaritySort: 0
+                }
+            },()=>{
+                this.updateInventory("578080")
+            })
+        }
+    }
+
+    updateInventory = (type) => {
+        if(type=="570"){
+            this.props.getInventory({
+                GameType: "570",
+                DateSort: this.state.dotaSort.DateSort,
+                PriceSort: this.state.dotaSort.PriceSort,
+                QualitySort: this.state.dotaSort.QualitySort,
+                RaritySort: this.state.dotaSort.RaritySort
+            })
+        }else if(type=="730"){
+            this.props.getInventory({
+                GameType: "730",
+                DateSort: this.state.csgoSort.DateSort,
+                PriceSort: this.state.csgoSort.PriceSort,
+                QualitySort: this.state.csgoSort.QualitySort,
+                RaritySort: this.state.csgoSort.RaritySort
+            })
+        }else if(type=="578080"){
+            this.props.getInventory({
+                GameType: "578080",
+                DateSort: this.state.pubgSort.DateSort,
+                PriceSort: this.state.pubgSort.PriceSort,
+                QualitySort: this.state.pubgSort.QualitySort,
+                RaritySort: this.state.pubgSort.RaritySort
             })
         }
     }
 
     dotaContent = (info) => {
-        if(info){
+        if(info.Ornaments){
             let ornamentList;
-            // if(info.Ornaments){
-            //     ornamentList = (<div>
-            //         <div styleName="goStore" onClick={()=>this.props.goStore()}>
-            //             <p className="iconfont icon-cart"></p>
-            //             <p>去商城购买</p>
-            //         </div>
-            //         {info.Ornaments.map((item,index)=>(
-            //             <div key={index} styleName="grid_item">
-            //                 <img src={item.icon} alt="" />
-            //                 <label>{item.rate}</label>                                    
-            //                 <span>{item.text}</span>
-            //             </div>
-            //         ))}
-            //     </div>)
-            // }else{
+            // console.log(info.Ornaments && info.Ornaments.length==0)
+            if(info.Ornaments && info.Ornaments.length==0){
                 ornamentList = (<div styleName="go_buy">
                     <div onClick={()=>this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
                     <div>去Steam存入<span className="iconfont icon-previewright"></span></div>
                 </div>)
-            // }
+
+            }else{
+                ornamentList = (<div>
+                    <div styleName="goStore" onClick={()=>this.props.goStore()}>
+                        <p className="iconfont icon-cart"></p>
+                        <p>去商城购买</p>
+                    </div>
+                    {info.Ornaments.map((item,index)=>(
+                        <div key={index} styleName="grid_item">
+                            <img src={item.icon} alt="" />
+                            <label>{item.rate}</label>                                    
+                            <span>{item.text}</span>
+                        </div>
+                    ))}
+                </div>)
+            }
 
             return (<div>
                 <div styleName="type_title">
@@ -133,57 +203,80 @@ class InventoryComponent extends Component {
         }
     }
 
-    csgoContent = () => (<div>
-        <div styleName="type_title">
-            <span>类别</span>
-            <span>外观</span>
-            <span>时间</span>
-            <span>价值</span>
-        </div>
-        <div styleName="count_title">
-            <p>库存上限 <span>0</span>/60</p>
-            <p>总价值：0.00</p>
-        </div>
+    csgoContent = (info) => {
+        if(info.Ornaments){
+            let ornamentList;
+            if(info.Ornaments && info.Ornaments.length == 0){
+                ornamentList = (<div styleName="go_buy">
+                    <div onClick={()=>this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
+                    <div>去Steam存入<span className="iconfont icon-previewright"></span></div>
+                </div>)
+            }else{
+                ornamentList = ""
+            }
 
-        <div styleName="go_buy">
-            <div onClick={()=>this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
-            <div>去Steam存入<span className="iconfont icon-previewright"></span></div>
-        </div>
+            return (<div>
+                <div styleName="type_title">
+                    <span>类别</span>
+                    <span>外观</span>
+                    <span onClick={()=>this.changeCsgoSort(1)}>时间{this.state.csgoSort.DateSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
+                    <span onClick={()=>this.changeCsgoSort(2)}>价值{this.state.csgoSort.PriceSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
+                </div>
+                <div styleName="count_title">
+                    <p>库存上限 <span>0</span>/60</p>
+                    <p>总价值：0.00</p>
+                </div>
+                {ornamentList}
+                <div styleName="btn_part">
+                    <div styleName="btn">
+                        <div>存入</div>
+                        <div>取回</div>
+                        <div>出售</div>
+                    </div>
+                </div>
+            </div>)
+        }else{
+            return ""
+        }
+    }
 
-        <div styleName="btn_part">
-            <div styleName="btn">
-                <div>存入</div>
-                <div>取回</div>
-                <div>出售</div>
-            </div>
-        </div>
-    </div>)
+    pubgContent = (info) => {
+        if(info.Ornaments){
+            let ornamentList;
+            if(info.Ornaments && info.Ornaments.length == 0){
+                ornamentList = (<div styleName="go_buy">
+                    <div onClick={()=>this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
+                </div>)
+            }else{
+                ornamentList = ""
+            }
 
-    pubgContent = () => (<div>
-        <div styleName="type_title">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span>时间</span>
-            <span>价值</span>
-        </div>
-        <div styleName="count_title">
-            <p>库存上限 <span>0</span>/60</p>
-            <p>总价值：0.00</p>
-        </div>
+            return (<div>
+                <div styleName="type_title">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span onClick={()=>this.changePubgSort(1)}>时间{this.state.pubgSort.DateSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
+                    <span onClick={()=>this.changePubgSort(2)}>价值{this.state.pubgSort.PriceSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
+                </div>
+                <div styleName="count_title">
+                    <p>库存上限 <span>0</span>/60</p>
+                    <p>总价值：0.00</p>
+                </div>
+                {ornamentList}
+                <div styleName="btn_part">
+                    <div styleName="btn">
+                        <div>存入</div>
+                        <div>取回</div>
+                        <div>补给箱</div>
+                    </div>
+                </div>
+            </div>)
+        }else{
+            return ""
+        }
+    }
 
-        <div styleName="go_buy">
-            <div onClick={()=>this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
-        </div>
-
-        <div styleName="btn_part">
-            <div styleName="btn">
-                <div>存入</div>
-                <div>取回</div>
-                <div>补给箱</div>
-            </div>
-        </div>
-    </div>)
 
     tBeanContent = () => (<div>
         <div styleName="gzuan">
@@ -225,10 +318,6 @@ class InventoryComponent extends Component {
     }
 
     render() {
-        console.log(this.state.dotaSort.DateSort)
-        console.log("dota",this.props.dotaInventory)
-        console.log("csgo",this.props.csgoInventory)
-        console.log("pubg",this.props.pubgInventory)
         return (
             <div styleName="wrap">
                 <NavBar
@@ -249,11 +338,11 @@ class InventoryComponent extends Component {
                     </div>
 
                     <div styleName="csgo_content">
-                        {this.csgoContent()}
+                        {this.csgoContent(this.props.csgoInventory)}
                     </div>
 
                     <div styleName="pubg_content">
-                        {this.pubgContent()}
+                        {this.pubgContent(this.props.pubgInventory)}
                     </div>
 
                     <div styleName="tbean_content">

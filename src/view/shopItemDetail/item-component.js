@@ -25,7 +25,8 @@ class ShopItemDetailComponent extends Component {
             if(list){
                 return (<div>
                     <div styleName="evaluate">市场价：<span>{tPrice}</span><label>T豆&nbsp;({price})</label></div>
-                    <div styleName="sellListPart">
+                    { list.length > 0
+                    ? <div styleName="sellListPart">
                         <div styleName="title">
                             <span>商家</span><span>数量</span><span>价格(/件)</span>
                         </div>
@@ -44,6 +45,7 @@ class ShopItemDetailComponent extends Component {
                             </div>
                         ))}
                     </div>
+                    : <div styleName="noInfo">暂无出售信息</div>}
                 </div>)
             }else{
                 return ""
@@ -53,7 +55,8 @@ class ShopItemDetailComponent extends Component {
             if(list){
                 return (<div>
                     <div styleName="evaluate">系统估价：<span>{tPrice}</span><label>T豆&nbsp;({price})</label></div>
-                    <div styleName="sellListPart">
+                    { list.length > 0
+                    ? <div styleName="sellListPart">
                         <div styleName="title">
                             <span>商家</span><span>数量</span><span>价格(/件)</span>
                         </div>
@@ -72,6 +75,8 @@ class ShopItemDetailComponent extends Component {
                             </div>
                         ))}
                     </div>
+                    : <div styleName="noInfo">暂无求购信息</div>
+                    }
                 </div>)
             }else{
                 return ""
@@ -80,7 +85,8 @@ class ShopItemDetailComponent extends Component {
             if(list){
                 return (<div>
                     <div styleName="evaluate">系统估价：<span>{tPrice}</span><label>T豆&nbsp;({price})</label></div>
-                    <div styleName="recordPart">
+                    { list.length > 0 
+                    ? <div styleName="recordPart">
                         <div styleName="title">
                             <span>玩家</span><span>操作</span><span>数量</span><span>价格(/件)</span><span>成交时间</span>
                         </div>
@@ -98,6 +104,8 @@ class ShopItemDetailComponent extends Component {
                             </div>
                         ))}
                     </div>
+                    : <div styleName="noInfo">暂无成交记录</div>
+                    }
                 </div>)
             }else{
                 return ""

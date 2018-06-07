@@ -32,7 +32,7 @@ class ShopComponent extends Component {
 	renderContent = (tab, infos) => {
 		if(infos.Ornaments){
 			return (
-				<div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
+				<div style={{ backgroundColor: 'white', width: '100%', height: '100%', textAlign: 'center' }}>
 					<ul styleName="item-list">
 					{infos.Ornaments.map((item,index)=>(
 						<li key={index}>
