@@ -24,6 +24,8 @@ import Message from '../view/message'
 import ResetPassword from '../view/resetPassword'
 import ShopSelect from '../view/shopSelect'
 import Feedback from '../view/feedback'
+import SteamInventory from '../view/steamInventory'
+import MatchForecast from '../view/matchForecast'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -109,6 +111,14 @@ const routes_config = [
 	{
 		path: '/feedback',
 		component: Feedback
+	},
+	{
+		path: '/steamInventory',
+		component: SteamInventory
+	},
+	{
+		path: '/matchForecast',
+		component: MatchForecast
 	}
 ]
 

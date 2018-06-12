@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './inventory.less'
 import { Tabs, NavBar, Icon,  } from 'antd-mobile';
+import InventoryItem from '../../layout/inventory-item'
 
 
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
@@ -43,6 +44,19 @@ class InventoryComponent extends Component {
                 QualitySort: 0,
                 RaritySort: 0
             },
+            isDotaCanSale: false
+        }
+    }
+
+    changeBtnPart = () => {
+        if(this.props.dotaChosenVipInventory.length>0){
+            this.setState({
+                isDotaCanSale: true
+            })
+        }else{
+            this.setState({
+                isDotaCanSale: false
+            })
         }
     }
 
@@ -174,6 +188,14 @@ class InventoryComponent extends Component {
         }
     }
 
+    //dota从VIP库存取回至Steam
+    getBackToSteam = () => {
+        this.props.addVipToSteamInventory({
+            AppId: "570",
+            Items: this.props.dotaChosenVipInventory
+        })
+    }
+
     dotaContent = (info) => {
         if(info.Ornaments){
             let ornamentList;
@@ -184,17 +206,18 @@ class InventoryComponent extends Component {
                 </div>)
 
             }else{
-                ornamentList = (<div>
+                ornamentList = (<div styleName="imgPart">
                     <div styleName="goStore" onClick={()=>this.props.goStore()}>
                         <p className="iconfont icon-cart"></p>
                         <p>去商城购买</p>
                     </div>
                     {info.Ornaments.map((item,index)=>(
-                        <div key={index} styleName="grid_item">
-                            <img src={item.icon} alt="" />
-                            <label>{item.rate}</label>                                    
-                            <span>{item.text}</span>
-                        </div>
+                        <InventoryItem
+                            key={index}
+                            itemInfo={item}
+                            usageType="vip"
+                            changeBtn={this.changeBtnPart}
+                        />
                     ))}
                 </div>)
             }
@@ -207,16 +230,16 @@ class InventoryComponent extends Component {
                     <span onClick={()=>this.changeDotaSort(2)}>价值{this.state.dotaSort.PriceSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
                 </div>
                 <div styleName="count_title">
-                    <p>库存上限 <span>0</span>/300</p>
+                    <p>库存上限 <span>{info.Ornaments.length}</span>/300</p>
                     <p>总价值：{info.TotalCost}</p>
                 </div>
                 {ornamentList}
                 <div styleName="btn_part">
                     <p>注：单次最多出售<span> 6 </span>件不同的饰品</p>
                     <div styleName="btn">
-                        <div>存入</div>
-                        <div>取回</div>
-                        <div>出售</div>
+                        <div styleName="deposit_canclick" onClick={()=>this.props.goToSteamInventory()}>存入</div>
+                        {this.state.isDotaCanSale ? <div styleName="getback_canclick" onClick={()=>this.getBackToSteam()}>取回</div> : <div>取回</div>}
+                        {this.state.isDotaCanSale ? <div styleName="sale_canclick">出售</div> : <div>出售</div>}
                     </div>
                 </div>
             </div>)
@@ -347,7 +370,7 @@ class InventoryComponent extends Component {
                     mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
-                >我的库存</NavBar>
+                >我的VIP库存</NavBar>
 
                 <Tabs tabs={this.state.tabs}
                     initialPage={0}

@@ -9,7 +9,10 @@ import store from '../store'
 const initInventoryInfo = {
     dotaInventory: {},
     csgoInventory: {},
-    pubgInventory: {}
+    pubgInventory: {},
+    dotaSteamInventory: [],
+    dotaChosenInventory: [],
+    dotaChosenVipInventory: []
 }
 
 const InventoryReducer = (state = initInventoryInfo, action) => {
@@ -23,6 +26,15 @@ const InventoryReducer = (state = initInventoryInfo, action) => {
             
         case 'PUBG_INVENTORY':
             return Object.assign({}, state, {pubgInventory: action.pubgInventory})
+
+        case 'DOTA_STEAM_INVENTORY':
+            return Object.assign({}, state, {dotaSteamInventory: action.dotaSteamInventory})
+
+        case 'DOTA_CHOSEN_INVENTORY':
+            return Object.assign({}, state, {dotaChosenInventory: action.dotaChosenInventory})
+
+        case 'DOTA_CHOSEN_VIP_INVENTORY':
+            return Object.assign({}, state, {dotaChosenVipInventory: action.dotaChosenVipInventory})
 
         default:
             return state
@@ -72,7 +84,72 @@ const getMyInventory = (data, callback) => {
     });
 }
 
+//查询用户steam库存
+const getMySteamInventory = (data, callback) => {
+    axios.post('/Ornament/GetUserInventory', {
+        GameCode: data.GameCode
+    })
+    .then(function (res) {
+        if(res){
+
+            if(data.GameCode=="570"){
+                store.dispatch({
+                    type: "DOTA_STEAM_INVENTORY",
+                    dotaSteamInventory: res.Data
+                })
+            }
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function (error) {
+        Toast.fail('获取失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
+//添加饰品到VIP库存
+const addToMyInventory = (data, callback) => {
+    axios.post('/Offer/AddToMine', {
+        AppId: data.AppId,
+        Items: data.Items
+    })
+    .then(function (res) {
+        if(res){
+            console.log(res)
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function (error) {
+        Toast.fail('添加失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
+//从VIP库存提取到STEAM
+const addToSteamInventory = (data, callback) => {
+    axios.post('/Offer/AddToUser', {
+        AppId: data.AppId,
+        Items: data.Items
+    })
+    .then(function (res) {
+        if(res){
+            console.log(res)
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function (error) {
+        Toast.fail('添加失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
 export { 
     InventoryReducer,
     getMyInventory,
+    getMySteamInventory,
+    addToMyInventory,
+    addToSteamInventory
 }
