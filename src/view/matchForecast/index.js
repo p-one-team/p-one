@@ -37,6 +37,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
+        userInfos: state.UserReducer.userInfos,
         gameItemId: state.MatchReducer.gameItemId,
         gameItemInfos: state.MatchReducer.gameItemInfos,
         dotaInventory: state.InventoryReducer.dotaInventory,

@@ -112,19 +112,29 @@ class MatchForecastComponent extends Component {
         
     }
 
+    chooseTBean = (num) => {
+        if(num > this.props.userInfos.TBeansCount){
+            AlertWindow.Prompt("您剩余的T豆余额不足"+num+"！",()=>{return false})
+        }else{
+            this.setState({
+                tbeanCount: num
+            })
+        }
+    }
+
     tBeanForecast = () => (
         <div styleName="tbean_part">
-            <p styleName="my_tbean">我的剩余T豆：<span>xxx</span></p>
+            <p styleName="my_tbean">我的剩余T豆：<span>{this.props.userInfos.TBeansCount}</span></p>
             <div styleName="forecast_tbean">
                 <p>预测的T豆</p>
                 <input type="tel" value={this.state.tbeanCount} onChange={this.tbeanChange.bind(this)} />
             </div>
             <div styleName="fast_choose">
-                <span>1,000</span>
-                <span>5,000</span>
-                <span>50,000</span>
-                <span>100,000</span>
-                <span>ALL IN</span>
+                <span onClick={()=>this.chooseTBean(1000)}>1,000</span>
+                <span onClick={()=>this.chooseTBean(5000)}>5,000</span>
+                <span onClick={()=>this.chooseTBean(50000)}>50,000</span>
+                <span onClick={()=>this.chooseTBean(100000)}>100,000</span>
+                <span onClick={()=>this.chooseTBean(this.props.userInfos.TBeansCount)}>ALL IN</span>
             </div>
         </div>
     )
