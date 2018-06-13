@@ -30,6 +30,7 @@ const UserReducer = (state = initUserInfo, action) => {
 /*User Action*/
 /*-----------------------------------------------------------------*/
 
+// 登录
 const loginAction = (data, callback) => {
     axios.post('/User/Login', {
         Phone: data.Phone,
@@ -56,6 +57,7 @@ const loginAction = (data, callback) => {
     });
 }
 
+// 获取验证码
 const getMsgCode = (data) => {
     axios.post('/User/GetSmsCode', {
         phone: data.phone
@@ -71,6 +73,7 @@ const getMsgCode = (data) => {
     });
 }
 
+// 登出
 const logoutAction = (callback) => {
     axios.get("/User/Logout")
         .then(function (res) {
@@ -92,6 +95,7 @@ const logoutAction = (callback) => {
         });
 }
 
+// 注册
 const registerAction = (data, callback) => {
     axios.post('/User/Register', {
         Phone: data.Phone,
@@ -118,6 +122,7 @@ const registerAction = (data, callback) => {
     });
 }
 
+// 重置密码
 const resetPsdAction = (data, callback) => {
     axios.post('/User/ResetPassword', {
         Phone: data.Phone,

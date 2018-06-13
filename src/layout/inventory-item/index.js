@@ -5,7 +5,8 @@ import InventoryItemComponent from './component.js'
 const mapStateToProps = (state) => {
     return {
         dotaChosenInventory: state.InventoryReducer.dotaChosenInventory,
-        dotaChosenVipInventory: state.InventoryReducer.dotaChosenVipInventory
+        dotaChosenVipInventory: state.InventoryReducer.dotaChosenVipInventory,
+        dotaChosenForecastInventory: state.InventoryReducer.dotaChosenForecastInventory
     }
 }
 

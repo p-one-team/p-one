@@ -73,6 +73,7 @@ const MatchReducer = (state = initMatchInfo, action) => {
 //     });
 // }
 
+//赛事列表：dota csgo pubg 体育
 const getGameInfos = (type) => {
     axios.post("/Game/GetGameInfos", {
         GameType: type
@@ -115,6 +116,7 @@ const getGameInfos = (type) => {
     });
 }
 
+// 主赛事的预测列表
 const getGameItems = (id) => {
     axios.post("/Game/GetGameItems", {
         AgendaId: id
@@ -136,6 +138,7 @@ const getGameItems = (id) => {
     });
 }
 
+//赛事预测详情
 const getGameItemInfo = (id, callback) => {
     axios.post("/Game/GetGameItemInfo", {
         HandicapID: id
@@ -202,6 +205,7 @@ const getTBeansGuessOfGameItem = (data,callback) => {
     });
 }
 
+//土豪榜列表
 const getVulgarTycoonGuessOfGameItem = (data,callback) => {
     axios.post("/Game/GetVulgarTycoonGuessOfGameItem", {
         HandicapID: data.HandicapID,
@@ -224,6 +228,48 @@ const getVulgarTycoonGuessOfGameItem = (data,callback) => {
     });
 }
 
+// t豆预测
+const useTBeanForecast = (data,callback) => {
+    axios.post("/Game/GuessTBeans", {
+        TBeans: data.TBeans,
+        HandicapID: data.HandicapID,
+        SelectedEdge: data.SelectedEdge,
+        GameTeamID: data.GameTeamID,
+    })
+    .then(function(res) {
+        if (res) {
+            console.log(res.Data)
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function(error) {
+        Toast.fail('请求失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
+// 饰品预测
+const useOrnamentForecast = (data,callback) => {
+    axios.post("/Game/GuessOrnaments", {
+        Ornaments: data.Ornaments,
+        HandicapID: data.HandicapID,
+        SelectedEdge: data.SelectedEdge,
+        GameTeamID: data.GameTeamID,
+    })
+    .then(function(res) {
+        if (res) {
+            console.log(res.Data)
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function(error) {
+        Toast.fail('请求失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
 export {
     MatchReducer,
     // getGameTypes,
@@ -232,6 +278,8 @@ export {
     getGameItemInfo,
     getOrnamentsGuessOfGameItem,
     getTBeansGuessOfGameItem,
-    getVulgarTycoonGuessOfGameItem
+    getVulgarTycoonGuessOfGameItem,
+    useTBeanForecast,
+    useOrnamentForecast
     
 }

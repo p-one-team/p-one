@@ -28,7 +28,7 @@ class myForecastComponent extends Component {
         if(info){
             let historyList;
             
-            if(info.BetDetails){
+            if(info.BetDetails && info.BetDetails.length>0){
                 historyList = (<div>
                     <div className="list_title">
                         <span>状态</span>
@@ -71,7 +71,7 @@ class myForecastComponent extends Component {
                         <p>预测场次</p>
                     </div>
                     <div>
-                        <p>{info.GuessWinRate}%</p>
+                        <p>{info.GuessWinRate}</p>
                         <p>胜率</p>
                     </div>
                     <div>

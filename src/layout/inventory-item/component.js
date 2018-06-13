@@ -87,8 +87,51 @@ class InventoryItemComponent extends React.Component {
         })
     }
 
-    vipContent = (info,key) => (
-        <div styleName="inventory_item" onClick={()=>this.vipChosen(info.MarketHashName,key)}>
+    vipContent = (info) => (
+        <div styleName="inventory_item" onClick={()=>this.vipChosen(info.MarketHashName)}>
+            <img src={"https://steamcommunity-a.akamaihd.net/economy/image/"+info.IconUrl} alt="" />
+            {this.state.isChosen ? <div styleName="chosen"><i className="iconfont icon-gou_ico"></i></div> : null}
+            <label>{info.Price}</label>                                    
+            <span>{info.Name}</span>
+        </div>
+    )
+
+    forecastChosen = (hashName) => {
+        this.setState({
+            isChosen: !this.state.isChosen
+        },()=>{
+            if(this.state.isChosen){
+                let list = this.props.dotaChosenForecastInventory;
+                list.push({MarketHashName:hashName})
+
+                store.dispatch({
+                    type: "DOTA_CHOSEN_FORECAST_INVENTORY",
+                    dotaChosenForecastInventory: list
+                })
+                this.props.changeBtn()
+
+            }else{
+                let list = this.props.dotaChosenForecastInventory;
+                let deleteId;
+                list.map((item,index)=>{
+                    if(item.MarketHashName==hashName){
+                        deleteId = index
+                    }
+                })
+                list.splice(deleteId,1)
+
+                store.dispatch({
+                    type: "DOTA_CHOSEN_FORECAST_INVENTORY",
+                    dotaChosenForecastInventory: list
+                })
+                this.props.changeBtn()
+
+            }
+        })
+    }
+
+    forecastContent = (info) => (
+        <div styleName="inventory_item" onClick={()=>this.forecastChosen(info.MarketHashName)}>
             <img src={"https://steamcommunity-a.akamaihd.net/economy/image/"+info.IconUrl} alt="" />
             {this.state.isChosen ? <div styleName="chosen"><i className="iconfont icon-gou_ico"></i></div> : null}
             <label>{info.Price}</label>                                    
@@ -98,7 +141,12 @@ class InventoryItemComponent extends React.Component {
 
     render() {
         let info = this.props.itemInfo;
-        return this.props.usageType=="steam" ? this.steamContent(info) : this.vipContent(info)
+        return this.props.usageType=="steam" 
+            ? this.steamContent(info) 
+            : (this.props.usageType=="vip"
+                ? this.vipContent(info)
+                : this.forecastContent(info)
+            )
         
     }
 }

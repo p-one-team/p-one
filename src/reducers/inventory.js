@@ -12,7 +12,8 @@ const initInventoryInfo = {
     pubgInventory: {},
     dotaSteamInventory: [],
     dotaChosenInventory: [],
-    dotaChosenVipInventory: []
+    dotaChosenVipInventory: [],
+    dotaChosenForecastInventory: []
 }
 
 const InventoryReducer = (state = initInventoryInfo, action) => {
@@ -35,6 +36,9 @@ const InventoryReducer = (state = initInventoryInfo, action) => {
 
         case 'DOTA_CHOSEN_VIP_INVENTORY':
             return Object.assign({}, state, {dotaChosenVipInventory: action.dotaChosenVipInventory})
+        
+        case 'DOTA_CHOSEN_FORECAST_INVENTORY':
+            return Object.assign({}, state, {dotaChosenForecastInventory: action.dotaChosenForecastInventory})
 
         default:
             return state

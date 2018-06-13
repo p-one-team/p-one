@@ -102,6 +102,7 @@ const getOrnamentAttributes = (data, callback) => {
     });
 }
 
+//单件饰品详情
 const getMallProdItem = (data, callback) => {
     axios.post('/Game/GetOrnamentInfo', {
         MarketHashName: data.MarketHashName,
@@ -122,7 +123,7 @@ const getMallProdItem = (data, callback) => {
     });
 }
 
-
+//出售列表
 const getSalePublishRecords = (data, callback) => {
     axios.post('/Game/GetPublishRecords', {
         MarketHashName: data.MarketHashName,
@@ -146,6 +147,7 @@ const getSalePublishRecords = (data, callback) => {
     });
 }
 
+//求购列表
 const getBuyPublishRecords = (data, callback) => {
     axios.post('/Game/GetPublishRecords', {
         MarketHashName: data.MarketHashName,
@@ -169,6 +171,7 @@ const getBuyPublishRecords = (data, callback) => {
     });
 }
 
+//交易记录列表
 const getTransactionRecords = (data, callback) => {
     axios.post('/Game/GetTransactionRecords', {
         MarketHashName: data.MarketHashName,

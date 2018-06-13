@@ -4,12 +4,18 @@ import CSSModules from 'react-css-modules'
 import style from './steam.less'
 import { NavBar, Icon,  } from 'antd-mobile';
 import InventoryItem from '../../layout/inventory-item'
+import store from '../../store'
 
 
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class SteamInventoryComponent extends Component {
     constructor(props) {
         super(props)
+
+        store.dispatch({
+            type: "DOTA_CHOSEN_INVENTORY",
+            dotaChosenInventory: []
+        })
 
         this.props.getSteamInventory({
             GameCode: "570"
