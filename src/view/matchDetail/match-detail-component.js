@@ -145,7 +145,7 @@ class matchDetail extends Component {
                         <label></label>
                         <span style={{ width: parseFloat(gameItemInfos.GameTeam.RightTeamRate)+"%" }}></span>
                     </div>
-                    {gameItemInfos.IsForecast ? (<div styleName="forecastCanClick" onClick={()=>this.props.goForecast()}>预测</div>) : (<div styleName="forecast" onClick={()=>this.props.goForecast()}>预测</div>)}
+                    {gameItemInfos.IsForecast ? (<div styleName="forecastCanClick" onClick={()=>this.props.goForecast()}>预测</div>) : (<div styleName="forecast">预测</div>)}
                 </div>
 
                 <div styleName="rankList">
