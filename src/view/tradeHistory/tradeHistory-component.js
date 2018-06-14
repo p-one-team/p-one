@@ -31,12 +31,12 @@ class TradeHistoryComponent extends Component {
                 <ul>
                     {tradeList.map((item,index) => (
                         <li key={index}>
-                            <label>{item.time}</label>
-                            <label>{item.operation}</label>
+                            <label>{item.TransactionDate}</label>
+                            <label>{item.TransactionContent}</label>
                             <label>{item.prodName}</label>
-                            <label>{item.number}</label>
-                            <label>{item.price}</label>
-                            <label>{item.status}</label>
+                            <label>{item.TransactionCount}</label>
+                            <label>{item.TransactionAmount}</label>
+                            <label>{item.TransactionStatus}</label>
                         </li>
                     ))}
                 </ul>
@@ -113,7 +113,7 @@ class TradeHistoryComponent extends Component {
                     </div> */}
 
                     <div styleName="listPart">
-                        <p styleName="recent_deal">查询交易</p>
+                        <p styleName="recent_deal">查询交易<span>(填写日期，如：20180101至20180214)</span></p>
 
                         <div styleName="chooseDate">
                             <input placeholder="开始日期" type="text" value={this.state.startDate} onChange={this.start.bind(this)} />

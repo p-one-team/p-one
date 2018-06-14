@@ -22,6 +22,24 @@ class ShopItemDetailComponent extends Component {
         }
     }
 
+    publishSale = (count,price) => {
+        this.props.publishBuySale({
+            PublishType: 1,//出售
+            MarketHashName: this.props.shopItem.MarketHashName,
+            OrnamentPrice: price,
+            OrnamentCount: count
+        })
+    }
+
+    publishBuy = (count,price) => {
+        this.props.publishBuySale({
+            PublishType: 2,//求购
+            MarketHashName: this.props.shopItem.MarketHashName,
+            OrnamentPrice: price,
+            OrnamentCount: count
+        })
+    }
+
     tabContent(type, tPrice, price, list){
         if(type == "sale"){
             if(list){
@@ -42,7 +60,7 @@ class ShopItemDetailComponent extends Component {
                                 <div>{item.OrnamentCount}</div>
                                 <div>
                                     <span>{item.OrnamentPrice}</span>
-                                    <label>购买</label>
+                                    <label onClick={()=>this.publishBuy(item.OrnamentCount,item.OrnamentPrice)}>购买</label>
                                 </div>
                             </div>
                         ))}
@@ -72,7 +90,7 @@ class ShopItemDetailComponent extends Component {
                                 <div>{item.OrnamentCount}</div>
                                 <div>
                                     <span>{item.OrnamentPrice}</span>
-                                    <label>出售</label>
+                                    <label onClick={()=>this.publishSale(item.OrnamentCount,item.OrnamentPrice)}>出售</label>
                                 </div>
                             </div>
                         ))}

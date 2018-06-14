@@ -237,6 +237,27 @@ const queryMyTransHistory = (data, callback) => {
     });
 }
 
+//发布出售、求购
+const publishBuyOrSale = (data, callback) => {
+    axios.post('/Game/MallPublish', {
+        PublishType: data.PublishType,
+        MarketHashName: data.MarketHashName,
+        OrnamentPrice: data.OrnamentPrice,
+        OrnamentCount: data.OrnamentCount
+    })
+    .then(function (res) {
+        if(res){
+            console.log(res.Data)
+
+            callback ? callback() : ""
+        }
+    })
+    .catch(function (error) {
+        Toast.fail('请求失败，请稍后重试！');
+        console.log('error', error);
+    });
+}
+
 export { 
     ShopReducer,
     getMallList,
@@ -246,5 +267,6 @@ export {
     getTransactionRecords,
     getMyTransaction,
     queryMyTransHistory,
-    getOrnamentAttributes
+    getOrnamentAttributes,
+    publishBuyOrSale
 }

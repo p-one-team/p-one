@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import ShopItemDetailComponent from './item-component.js'
-import { getSalePublishRecords, getBuyPublishRecords, getTransactionRecords } from '../../reducers/shop'
+import { getSalePublishRecords, getBuyPublishRecords, getTransactionRecords, publishBuyOrSale } from '../../reducers/shop'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        goListPage() {
-            props.history.push('/list')
+        goInventory() {
+            props.history.push('/inventory')
         },
 
         getRecords(tab, name){
@@ -25,6 +25,10 @@ const mapDispatchToProps = (dispatch, props) => {
                     PageIndex: 0
                 })
             }
+        },
+
+        publishBuySale(data){
+            publishBuyOrSale(data)
         }
     }
 }

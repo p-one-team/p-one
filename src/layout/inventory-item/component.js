@@ -53,13 +53,16 @@ class InventoryItemComponent extends React.Component {
         </div>
     )
 
-    vipChosen = (hashName) => {
+    vipChosen = (contextid,assetid) => {
         this.setState({
             isChosen: !this.state.isChosen
         },()=>{
             if(this.state.isChosen){
                 let list = this.props.dotaChosenVipInventory;
-                list.push({MarketHashName:hashName})
+                list.push({
+                    ContextId:contextid,
+                    AssetId:assetid
+                })
 
                 store.dispatch({
                     type: "DOTA_CHOSEN_VIP_INVENTORY",
@@ -71,7 +74,7 @@ class InventoryItemComponent extends React.Component {
                 let list = this.props.dotaChosenVipInventory;
                 let deleteId;
                 list.map((item,index)=>{
-                    if(item.MarketHashName==hashName){
+                    if(item.AssetId==assetid){
                         deleteId = index
                     }
                 })
@@ -88,11 +91,11 @@ class InventoryItemComponent extends React.Component {
     }
 
     vipContent = (info) => (
-        <div styleName="inventory_item" onClick={()=>this.vipChosen(info.MarketHashName)}>
+        <div styleName="inventory_item" onClick={()=>this.vipChosen(info.ContextId,info.AssetId)}>
             <img src={"https://steamcommunity-a.akamaihd.net/economy/image/"+info.IconUrl} alt="" />
             {this.state.isChosen ? <div styleName="chosen"><i className="iconfont icon-gou_ico"></i></div> : null}
             <label>{info.Price}</label>                                    
-            <span>{info.Name}</span>
+            <span>{info.Rarity}</span>
         </div>
     )
 
@@ -135,7 +138,7 @@ class InventoryItemComponent extends React.Component {
             <img src={"https://steamcommunity-a.akamaihd.net/economy/image/"+info.IconUrl} alt="" />
             {this.state.isChosen ? <div styleName="chosen"><i className="iconfont icon-gou_ico"></i></div> : null}
             <label>{info.Price}</label>                                    
-            <span>{info.Name}</span>
+            <span>{info.Rarity}</span>
         </div>
     )
 
