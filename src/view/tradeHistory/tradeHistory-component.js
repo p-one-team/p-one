@@ -106,12 +106,6 @@ class TradeHistoryComponent extends Component {
                         </div>
                     </div>
 
-                    {/* <div className={style.tips + ' ' + style.cards}>
-                        <div><i className="iconfont icon-sale"></i><p>我的出售</p></div>
-                        <div><i className="iconfont icon-goumai"></i><p>我的购买</p></div>
-                        <div><i className="iconfont icon-iconwishlist"></i><p>我的求购</p></div>
-                    </div> */}
-
                     <div styleName="listPart">
                         <p styleName="recent_deal">查询交易<span>(填写日期，如：20180101至20180214)</span></p>
 

@@ -33,35 +33,35 @@ class UserCenterComponent extends Component {
 				</div>
 				<ul>
 					<li onClick={() => this.props.goInventory()}>
-						<div> <span className="iconfont icon-money"></span>我的库存</div>
+						<div> <span className="iconfont icon-goodsfill"></span>我的库存</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
 					<li onClick={() => this.props.goMyForecast()}>
-						<div> <span className="iconfont icon-line_chart"></span>我的预测</div>
+						<div> <span className="iconfont icon-shujutongji"></span>我的预测</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
 					<li onClick={() => this.props.goTradeHistory()}>
-						<div> <span className="iconfont icon-cart"></span>我的交易</div>
+						<div> <span className="iconfont icon-sponsorfill"></span>我的交易</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
 					<li onClick={() => this.props.goFeedback()}>
-						<div> <span className="iconfont icon-yijianfankui"></span>意见反馈</div>
+						<div> <span className="iconfont icon-writefill"></span>意见反馈</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
 					<li onClick={() => this.props.goMessage()}>
-						<div> <span className="iconfont icon-message"></span>我的消息</div>
+						<div> <span className="iconfont icon-messagefill"></span>我的消息</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
 					{/* <li>
-						<div> <span className="iconfont icon-gift"></span>我的礼物</div>
+						<div> <span className="iconfont icon-gift1"></span>我的礼物</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
 					<li>
-						<div> <span className="iconfont icon-star"></span>我的关注</div>
+						<div> <span className="iconfont icon-favorfill"></span>我的关注</div>
 						<div className="iconfont icon-previewright"></div>
 					</li> */}
 					<li onClick={() => this.props.goHelpSuggest()}>
-						<div> <span className="iconfont icon-help"></span>帮助和建议</div>
+						<div> <span className="iconfont icon-help1"></span>帮助和建议</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
 				</ul>

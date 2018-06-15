@@ -83,7 +83,7 @@ class TabBarExample extends React.Component {
             <div styleName="tabBarBox">
                 <TabBar
                     unselectedTintColor="#949494"
-                    tintColor="#33A3F4"
+                    tintColor="#2c2c32"
                     barTintColor="white"
                     hidden={this.props.hidden}
                 >
@@ -91,21 +91,20 @@ class TabBarExample extends React.Component {
                         title="推单"
                         key="recommend"
                         icon={<div style={{
-                            width: '22px',
-                            height: '22px',
-                            background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat'
+                            width: '6.5vw',
+                            height: '6.5vw',
+                            background: 'url(./img/like.png) center center /  6.5vw 6.5vw no-repeat'
                         }}
                         />
                         }
                         selectedIcon={<div style={{
-                            width: '22px',
-                            height: '22px',
-                            background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat'
+                            width: '6.5vw',
+                            height: '6.5vw',
+                            background: 'url(./img/like_fill.png) center center /  6.5vw 6.5vw no-repeat'
                         }}
                         />
                         }
                         selected={this.props.currentPage === 'recommend'}
-                        badge={1}
                         onPress={() => {
                             this.props.changePage('recommend');
                         }}
@@ -117,23 +116,22 @@ class TabBarExample extends React.Component {
                     <TabBar.Item
                         icon={
                             <div style={{
-                                width: '22px',
-                                height: '22px',
-                                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg) center center /  21px 21px no-repeat'
+                                width: '6.5vw',
+                                height: '6.5vw',
+                                background: 'url(./img/game.png) center center /  6.5vw 6.5vw no-repeat'
                             }}
                             />
                         }
                         selectedIcon={
                             <div style={{
-                                width: '22px',
-                                height: '22px',
-                                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat'
+                                width: '6.5vw',
+                                height: '6.5vw',
+                                background: 'url(./img/game_fill.png) center center /  6.5vw 6.5vw no-repeat'
                             }}
                             />
                         }
                         title="菠菜"
                         key="lottery"
-                        badge={'new'}
                         selected={this.props.currentPage === 'lottery'}
                         onPress={() => {
                             this.props.changePage('lottery');
@@ -146,23 +144,22 @@ class TabBarExample extends React.Component {
                     <TabBar.Item
                         icon={
                             <div style={{
-                                width: '22px',
-                                height: '22px',
-                                background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  21px 21px no-repeat'
+                                width: '6.5vw',
+                                height: '6.5vw',
+                                background: 'url(./img/rank.png) center center /  6.5vw 6.5vw no-repeat'
                             }}
                             />
                         }
                         selectedIcon={
                             <div style={{
-                                width: '22px',
-                                height: '22px',
-                                background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
+                                width: '6.5vw',
+                                height: '6.5vw',
+                                background: 'url(./img/rank_fill.png) center center /  6.5vw 6.5vw no-repeat'
                             }}
                             />
                         }
                         title="排行榜"
                         key="rank"
-                        dot
                         selected={this.props.currentPage === 'rank'}
                         onPress={() => {
                             this.props.changePage('rank');
@@ -173,15 +170,15 @@ class TabBarExample extends React.Component {
 
                     <TabBar.Item
                         icon={<div style={{
-                            width: '22px',
-                            height: '22px',
-                            background: 'url(https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg) center center /  21px 21px no-repeat'
+                            width: '6.5vw',
+                            height: '6.5vw',
+                            background: 'url(./img/user.png) center center /  6.5vw 6.5vw no-repeat'
                         }}
                         />}
                         selectedIcon={<div style={{
-                            width: '22px',
-                            height: '22px',
-                            background: 'url(https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg) center center /  21px 21px no-repeat'
+                            width: '6.5vw',
+                            height: '6.5vw',
+                            background: 'url(./img/user_fill.png) center center /  6.5vw 6.5vw no-repeat'
                         }}
                         />}
                         title="个人"
