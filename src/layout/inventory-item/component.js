@@ -46,7 +46,7 @@ class InventoryItemComponent extends React.Component {
 
     steamContent = (info) => (
         <div styleName="inventory_item" onClick={()=>this.steamChosen(info.contextid,info.assetid)}>
-            <img src={info.icon_url.indexOf("http:")>=0?info.icon_url.replace("http:","https:"):info.icon_url} alt="" />
+            <img src={info.icon_url} alt="" />
             {this.state.isChosen ? <div styleName="chosen"><i className="iconfont icon-gou_ico"></i></div> : null}
             <label>{info.price}</label>                                
             <span>{info.type.substr(0,2)}</span>
@@ -92,7 +92,7 @@ class InventoryItemComponent extends React.Component {
 
     vipContent = (info) => (
         <div styleName="inventory_item" onClick={()=>this.vipChosen(info.ContextId,info.AssetId)}>
-            <img src={"https://steamcommunity-a.akamaihd.net/economy/image/"+info.IconUrl} alt="" />
+            <img src={info.IconUrl} alt="" />
             {this.state.isChosen ? <div styleName="chosen"><i className="iconfont icon-gou_ico"></i></div> : null}
             <label>{info.Price}</label>                                    
             <span>{info.Rarity}</span>
@@ -135,7 +135,7 @@ class InventoryItemComponent extends React.Component {
 
     forecastContent = (info) => (
         <div styleName="inventory_item" onClick={()=>this.forecastChosen(info.MarketHashName)}>
-            <img src={"https://steamcommunity-a.akamaihd.net/economy/image/"+info.IconUrl} alt="" />
+            <img src={info.IconUrl} alt="" />
             {this.state.isChosen ? <div styleName="chosen"><i className="iconfont icon-gou_ico"></i></div> : null}
             <label>{info.Price}</label>                                    
             <span>{info.Rarity}</span>
