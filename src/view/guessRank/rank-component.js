@@ -10,12 +10,14 @@ class GuessRankComponentWrapper extends Component {
     constructor(props) {
         super(props)
 
-        this.props.getGuessRanking({PageIndex:0})
+        this.props.getGuessRanking({
+            RankingType: 1
+        })
 
         this.state = {
             tabs: [
-                {title: "周明灯"},
-                {title: "周黑灯"}
+                {title: "周明灯",sub:1},
+                {title: "周黑灯",sub:2}
             ]
         }
 
@@ -25,18 +27,18 @@ class GuessRankComponentWrapper extends Component {
         if(list){
             let listDetail = list.map((item,index) => {
                 let rankNum = ""
-                if(item.Ranking==0){
+                if(index==0){
                     rankNum = "rank_num_orange"
-                }else if(item.Ranking==1){
+                }else if(index==1){
                     rankNum = "rank_num_blue"
-                }else if(item.Ranking==2){
+                }else if(index==2){
                     rankNum = "rank_num_gray"
                 }else{
                     rankNum = ""
                 }
                 return (<Item key={index}>
                     <div>
-                        <span className={rankNum}>{item.Ranking+1}</span>
+                        <span className={rankNum}>{index+1}</span>
                         {/* <img src={item.PlayerImage} alt="头像" /> */}
                         <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg" />
                         <span>{item.PlayerName}</span>
@@ -79,15 +81,15 @@ class GuessRankComponentWrapper extends Component {
                 <div className="container">
                     <Tabs tabs={this.state.tabs}
                         initialPage={0}
-                        // onTabClick={(tab) => { this.props.getRank({RankingType: tab.sub, PageIndex: 0})}}
+                        onTabClick={(tab) => { this.props.getGuessRanking({RankingType: tab.sub})}}
                     >
 
                         <List className="beacon-list">
-                            {this.TabExample(this.props.guessRank.Players)}
+                            {this.TabExample(this.props.guessRankLight.Players)}
                         </List>
 
                         <List className="beacon-list">
-                            {this.TabExample(this.props.guessRank.Players)}
+                            {this.TabExample(this.props.guessRankDark.Players)}
                         </List>
                     </Tabs>
 

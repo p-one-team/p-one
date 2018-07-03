@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
         getGuessRanking(data){
             getGuessRank({
-                PageIndex: data.PageIndex
+                RankingType: data.RankingType
             })
         }
 
@@ -20,7 +20,8 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
-        guessRank: state.RankReducer.guessRank
+        guessRankLight: state.RankReducer.guessRankLight,
+        guessRankDark: state.RankReducer.guessRankDark
     }
 }
 

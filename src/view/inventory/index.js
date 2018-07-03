@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import InventoryComponent from './inventory-component'
 import { getMallList } from '../../reducers/shop'
 import { getMyInventory,addToSteamInventory } from '../../reducers/inventory'
+import AlertWindow from '../../module/mo-alertWindow';
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -27,7 +28,11 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         addVipToSteamInventory(data){
-            addToSteamInventory(data)
+            addToSteamInventory(data, (rs) => {
+                AlertWindow.Prompt(rs.Msg,()=>{
+                    return false
+                })
+            })
         }
     }
 }

@@ -139,9 +139,7 @@ const addToSteamInventory = (data, callback) => {
     })
     .then(function (res) {
         if(res){
-            console.log(res)
-
-            callback ? callback() : ""
+            callback ? callback(res) : ""
         }
     })
     .catch(function (error) {

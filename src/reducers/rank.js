@@ -7,7 +7,8 @@ import store from '../store'
 /*User Reducer*/
 /*-----------------------------------------------------------------*/
 const initRankInfo = {
-    guessRank: {},
+    guessRankLight: {},
+    guessRankDark: {},
     rankTotal: {},
     rankWeek: {},
     guessRecordWeek: {},
@@ -17,8 +18,11 @@ const initRankInfo = {
 const RankReducer = (state = initRankInfo, action) => {
 
     switch (action.type) {
-        case 'GUESS_RANK':
-            return Object.assign({}, state, {guessRank: action.guessRank})
+        case 'GUESS_RANK_LIGHT':
+            return Object.assign({}, state, {guessRankLight: action.guessRankLight})
+
+        case 'GUESS_RANK_DARK':
+            return Object.assign({}, state, {guessRankDark: action.guessRankDark})
 
         case 'RANK_TOTAL':
             return Object.assign({}, state, {rankTotal: action.rankTotal})
@@ -45,16 +49,24 @@ const RankReducer = (state = initRankInfo, action) => {
 //收菜排行
 const getGuessRank = (data, callback) => {
     axios.post('/Game/GetGameGuessRanking', {
-        PageIndex: data.PageIndex,
-        PageSize: 10
+        RankingType: data.RankingType
     })
     .then(function (res) {
         if(res){
 
-            store.dispatch({
-                type: "GUESS_RANK",
-                guessRank: res.Data
-            })
+            if(data.RankingType == 1){
+                store.dispatch({
+                    type: "GUESS_RANK_LIGHT",
+                    guessRankLight: res.Data
+                })
+
+            }else if(data.RankingType == 2){
+                store.dispatch({
+                    type: "GUESS_RANK_DARK",
+                    guessRankDark: res.Data
+                })
+
+            }
 
             callback ? callback() : ""
         }
