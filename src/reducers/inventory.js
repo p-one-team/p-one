@@ -114,7 +114,7 @@ const getMySteamInventory = (data, callback) => {
 
 //添加饰品到VIP库存
 const addToMyInventory = (data, callback) => {
-    axios.post('/Offer/AddToMine', {
+    axios.post('/Offer/AddToUser', {
         AppId: data.AppId,
         Items: data.Items
     })
@@ -133,7 +133,7 @@ const addToMyInventory = (data, callback) => {
 
 //从VIP库存提取到STEAM
 const addToSteamInventory = (data, callback) => {
-    axios.post('/Offer/AddToUser', {
+    axios.post('/Offer/AddToMine', {
         AppId: data.AppId,
         Items: data.Items
     })
