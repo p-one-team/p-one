@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch, props) => {
 				AttributeValue: "",
 				KeyWords: "",
 				PageIndex: 0,
-				PageSize: 10
+				PageSize: 100
             },() => {
                 props.history.push('/shop')
             })

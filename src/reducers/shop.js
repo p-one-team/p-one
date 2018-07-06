@@ -129,7 +129,7 @@ const getSalePublishRecords = (data, callback) => {
         MarketHashName: data.MarketHashName,
         PublishType: 1, //1出售 2求购
         PageIndex: data.PageIndex,
-        PageSize: 10
+        PageSize: 50
     })
     .then(function (res) {
         if(res){
@@ -153,7 +153,7 @@ const getBuyPublishRecords = (data, callback) => {
         MarketHashName: data.MarketHashName,
         PublishType: 2, //1出售 2求购
         PageIndex: data.PageIndex,
-        PageSize: 10
+        PageSize: 50
     })
     .then(function (res) {
         if(res){
@@ -176,7 +176,7 @@ const getTransactionRecords = (data, callback) => {
     axios.post('/Game/GetTransactionRecords', {
         MarketHashName: data.MarketHashName,
         PageIndex: data.PageIndex,
-        PageSize: 10
+        PageSize: 50
     })
     .then(function (res) {
         if(res){

@@ -82,7 +82,7 @@ const getRanking = (data, callback) => {
     axios.post('/Game/GetRanking', {
         RankingType: data.RankingType, //1胜率总榜，2本周榜
         PageIndex: data.PageIndex,
-        PageSize: 10
+        PageSize: 50
     })
     .then(function (res) {
         if(res){
@@ -113,7 +113,7 @@ const getMyGuessRecords = (data, callback) => {
     axios.post('/Game/GetMyGuessRecords', {
         DayType: data.DayType, //0本周 1本月
         PageIndex: data.PageIndex,
-        PageSize: 10
+        PageSize: 50
     })
     .then(function (res) {
         if(res){

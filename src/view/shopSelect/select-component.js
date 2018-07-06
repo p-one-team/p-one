@@ -71,7 +71,6 @@ class SelectComponent extends Component {
 }
 
 SelectComponent.propTypes = {
-	showGetMallList: PropTypes.func,
 	goItemDetail: PropTypes.func,
 }
 

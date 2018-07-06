@@ -164,7 +164,7 @@ const getOrnamentsGuessOfGameItem = (data, callback) => {
   axios.post("/Game/GetOrnamentsGuessOfGameItem", {
         HandicapID: data.HandicapID,
         PageIndex: data.PageIndex,
-        PageSize: 10
+        PageSize: 50
     })
     .then(function(res) {
         if (res) {
@@ -187,7 +187,7 @@ const getTBeansGuessOfGameItem = (data,callback) => {
     axios.post("/Game/GetTBeasGuessOfGameItem", {
         HandicapID: data.HandicapID,
         PageIndex: data.PageIndex,
-        PageSize: 10
+        PageSize: 50
     })
     .then(function(res) {
         if (res) {
@@ -210,7 +210,7 @@ const getVulgarTycoonGuessOfGameItem = (data,callback) => {
     axios.post("/Game/GetVulgarTycoonGuessOfGameItem", {
         HandicapID: data.HandicapID,
         PageIndex: data.PageIndex,
-        PageSize: 10
+        PageSize: 50
     })
     .then(function(res) {
         if (res) {

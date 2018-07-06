@@ -80,13 +80,13 @@ class matchDetail extends Component {
                 <Tabs tabs={this.state.tabs}
                     initalPage={0}
                 >
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+                    <div>
                         {this.guessList(ornamentInfo.OrnamentsGuessOfGameItems)}
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
+                    <div>
                         {this.tBeansList(tBeansInfo.BeansGuessOfGameItems)}
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
+                    <div>
                         {this.guessList(tycoonInfo.GuessOfGameItems)}
                     </div>
                 </Tabs>

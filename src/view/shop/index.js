@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch, props) => {
                 AttributeValue: "",
                 KeyWords: word,
                 PageIndex: 0,
-                PageSize: 10
+                PageSize: 100
             })
         },
 

@@ -12,14 +12,10 @@ const mapDispatchToProps = (dispatch, props) => {
                 AttributeValue: text,
                 KeyWords: "",
                 PageIndex: 0,
-                PageSize: 10
+                PageSize: 100
             }, () => {
                 props.history.goBack()
             })
-        },
-
-        showGetMallList(data) {
-            getMallList(data)
         },
 
         goItemDetail(hashName) {
