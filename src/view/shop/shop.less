@@ -3,19 +3,16 @@
     width: 100%;
     height: 100%;
     background-color: #fff;
-
-    .search_part{
+    .search_part {
         width: 100%;
         display: flex;
         align-items: center;
         padding: 20px 0;
-
-        .search{
+        .search {
             flex: 1;
             margin: 0 10px;
         }
-
-        .search_btn{
+        .search_btn {
             text-align: left;
             color: #2c2c32;
             width: 90px;
@@ -24,8 +21,7 @@
             margin-right: 10px;
             font-size: 24px;
         }
-
-        .select{
+        .select {
             text-align: center;
             background: #2c2c32;
             color: #fff;
@@ -37,15 +33,13 @@
             font-size: 24px;
         }
     }
-
-    .noResult{
+    .noResult {
         width: 100%;
         line-height: 300px;
         color: #2c2c32;
         font-size: 30px;
         text-align: center;
     }
-
     :global {
         .am-navbar {
             display: -webkit-box;
@@ -58,11 +52,9 @@
             width: 100%;
             background-color: #2c2c32;
             color: #fff;
-
             .am-navbar-title {
                 font-size: 30px!important;
             }
-
             .am-icon {
                 fill: currentColor;
                 background-size: cover;
@@ -70,7 +62,6 @@
                 height: 8vw;
             }
         }
-
         .container {
             height: calc(~"100% - 12vw");
         }
@@ -118,10 +109,9 @@
             border-radius: 5vw !important;
             background-color: rgba(0, 0, 0, 0.1) !important;
         }
-        .am-search.am-search-start .am-search-input input[type="search"]{
+        .am-search.am-search-start .am-search-input input[type="search"] {
             padding: 0 6vw 0 10.5vw;
         }
-
         .am-search-input .am-search-synthetic-ph-icon {
             display: inline-block;
             margin-right: .66667vw;
@@ -136,7 +126,7 @@
             padding-left: 5.5vw;
             width: auto;
         }
-        .am-search-clear{
+        .am-search-clear {
             width: 5vw;
             height: 5vw;
             background-size: 3vw 3vw;
@@ -146,17 +136,13 @@
             -webkit-box-direction: normal;
             flex-direction: column-reverse;
         }
-
-
-        .am-tab-bar{
+        .am-tab-bar {
             margin-top: 30px;
         }
-
-        .am-tab-bar-item{
+        .am-tab-bar-item {
             width: 100%;
         }
-
-        .am-tabs-default-bar-content{
+        .am-tabs-default-bar-content {
             background: #fff!important;
         }
     }
@@ -164,22 +150,25 @@
         width: 100%;
         font-size: 0;
         margin-top: 30px;
-
+        &::after {
+            display: block;
+            clear: both;
+            content: "";
+            visibility: hidden;
+            height: 0;
+        }
         li {
             float: left;
             width: 50%;
             padding: 2vw 2vw;
             box-sizing: border-box;
             border-bottom: 1px solid #ddd;
-
             .item {
                 position: relative;
                 width: 100%;
-
                 .item-img {
                     width: 100%;
                     position: relative;
-
                     img {
                         height: 100%;
                         width: 100%;
@@ -190,41 +179,34 @@
                         color: #fff;
                         width: 100%;
                         font-size: 24px;
-                        background-color: rgba(0,0,0,0.7);
+                        background-color: rgba(0, 0, 0, 0.7);
                     }
                 }
-
                 .item-info {
                     margin-top: 30px;
-
-                    p{
+                    p {
                         padding: 0 10px;
                         box-sizing: border-box;
                         font-size: 24px;
                     }
-
-                    p:nth-child(1){
+                    p:nth-child(1) {
                         text-align: left;
-                        
                         .now {
                             color: orange;
                         }
-
                         .original {
                             float: right;
                             color: #aaa;
                             text-decoration-line: line-through;
                         }
                     }
-
-                    p:last-child{
+                    p:last-child {
                         text-align: left;
                         color: #888;
                     }
                 }
-
-                .discount{
-                    position:absolute;
+                .discount {
+                    position: absolute;
                     width: 140px;
                     height: 0;
                     right: -34px;
@@ -232,9 +214,8 @@
                     border-width: 0px 40px 40px;
                     border-style: none solid solid;
                     border-color: transparent transparent red;
-                    transform:rotate(45deg);
-
-                    span{
+                    transform: rotate(45deg);
+                    span {
                         font-size: 24px;
                         color: #fff;
                         position: absolute;
@@ -242,8 +223,12 @@
                         right: 0;
                     }
                 }
-                
             }
         }
+    }
+    .loadMore {
+        line-height: 120px;
+        font-size: 12px;
+        color: #666;
     }
 }

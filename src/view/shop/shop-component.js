@@ -21,6 +21,62 @@ class ShopComponent extends Component {
 		this.setState({ value });
 	}
 
+	componentDidMount() {
+
+		window.addEventListener('scroll', () => {
+			if (this.state.isLoadingMore) {
+				return;
+			}
+
+			if (!this.wrapper) {
+				return;
+			}
+
+			this.jugeHeight();
+
+		}, false);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', () => {
+			if (this.state.isLoadingMore) {
+				return;
+			}
+
+			if (!this.wrapper) {
+				return;
+			}
+
+			this.jugeHeight();
+
+		}, false);
+	}
+
+	loadMoreDataFn() {
+		this.setState({
+			isLoadingMore: true
+		})
+
+
+		console.log('testload')
+		//loadmore  CODE
+
+		this.setState({
+			isLoadingMore: false
+		})
+	}
+
+	jugeHeight() {
+
+		const top = this.wrapper.getBoundingClientRect().top;
+		const windowHeight = window.screen.height;
+
+		if (top && top < windowHeight) {
+			// 当 wrapper 已经被滚动到页面可视范围之内触发
+			this.loadMoreDataFn();
+		}
+	}
+
 	clear = () => {
 		this.setState({ value: '' });
 	}
@@ -30,32 +86,33 @@ class ShopComponent extends Component {
 	}
 
 	renderContent = (tab, infos) => {
-		if(infos.Ornaments){
+		if (infos.Ornaments) {
 			return (
 				<div style={{ backgroundColor: 'white', width: '100%', height: '100%', textAlign: 'center' }}>
 					<ul styleName="item-list">
-					{infos.Ornaments.map((item,index)=>(
-						<li key={index}>
-							<div styleName="item" onClick={()=>this.props.goItemDetail(item.MarketHashName)}>
-								<div styleName="item-img">
-									<img src={item.IconUrl} alt="" />
-									<p styleName="item-name">{item.Name}</p>
+						{infos.Ornaments.map((item, index) => (
+							<li key={index}>
+								<div styleName="item" onClick={() => this.props.goItemDetail(item.MarketHashName)}>
+									<div styleName="item-img">
+										<img src={item.IconUrl} alt="" />
+										<p styleName="item-name">{item.Name}</p>
+									</div>
+									<div styleName="item-info">
+										<p>
+											<label styleName="now">{item.TPrice}T豆</label>
+											{/* {item.isDiscount ? <label styleName="original">{item.prePrice}金币</label> : null} */}
+										</p>
+										<p>已售: {item.SaleCount}件</p>
+									</div>
+									{/* {item.isDiscount ? <div styleName="discount"><div></div><span>{item.discount}</span></div> : null} */}
 								</div>
-								<div styleName="item-info">
-									<p>
-										<label styleName="now">{item.TPrice}T豆</label>
-										{/* {item.isDiscount ? <label styleName="original">{item.prePrice}金币</label> : null} */}
-									</p>
-									<p>已售: {item.SaleCount}件</p>
-								</div>
-								{/* {item.isDiscount ? <div styleName="discount"><div></div><span>{item.discount}</span></div> : null} */}
-							</div>
-						</li>
-					))}
+							</li>
+						))}
 					</ul>
+					<div styleName="loadMore" ref={(c) => { this.wrapper = c; }} onClick={this.loadMoreDataFn.bind(this, this)}>加载更多...</div>
 				</div>
 			)
-		}else{
+		} else {
 			return (<div styleName="noResult">无结果</div>)
 		}
 	}
@@ -91,26 +148,26 @@ class ShopComponent extends Component {
 							onChange={this.onChange}
 						/>
 					</div>
-					<div styleName="search_btn" onClick={()=>this.showGetMallList()}>搜索</div>
-					<div styleName="select" onClick={()=>this.props.select()}>筛选</div>
+					<div styleName="search_btn" onClick={() => this.showGetMallList()}>搜索</div>
+					<div styleName="select" onClick={() => this.props.select()}>筛选</div>
 				</div>
 
-				
 
-				<div style={{width: '100%', top: 0 }}>
+
+				<div style={{ width: '100%', top: 0 }}>
 					{/* <Tabs tabs={[{title:"出售"},{title:"求购"}]}
 						initialPage={0}
 						// onTabClick={(tab) => { this.props.changeGameInfo(tab)}}
 					> */}
-						<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-							{this.renderContent("sale",this.props.shopInfos)}
-						</div>
+					<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+						{this.renderContent("sale", this.props.shopInfos)}
+					</div>
 
-						{/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+					{/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
 							{this.renderContent("buy",this.props.shopInfos)}
 						</div> */}
-                    {/* </Tabs> */}
-					
+					{/* </Tabs> */}
+
 				</div>
 			</div>
 		)
