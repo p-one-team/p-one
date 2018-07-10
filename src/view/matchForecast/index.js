@@ -1,22 +1,20 @@
 import MatchForecastComponent from './component'
 import { connect } from 'react-redux'
-import { getMallList } from '../../reducers/shop'
 import { getMyInventory } from '../../reducers/inventory'
 import { useTBeanForecast,useOrnamentForecast } from '../../reducers/match'
+import store from '../../store'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
         goStore() {
-            getMallList({
-                GameType: "570",
-				AttributeID: 1,
-				AttributeValue: "",
-				KeyWords: "",
-				PageIndex: 0,
-				PageSize: 100
-            },() => {
-                props.history.push('/shop')
+            store.dispatch({
+                type:"MALL_LIST_PARAM",
+                paramAttributeId: 0,
+                paramAttributeValue: "",
+                paramKeywords: "",
+                paramPageIndex: 1
             })
+            props.history.push('/shop')
         },
 
         getInventory(data){
@@ -24,12 +22,10 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         tBeanForecast(data){
-            console.log(data)
             useTBeanForecast(data)
         },
 
         ornamentForecast(data){
-            console.log(data)
             useOrnamentForecast(data)
         }
     }

@@ -87,6 +87,82 @@ const getRanking = (data, callback) => {
     .then(function (res) {
         if(res){
 
+            // res.Data.Players = [
+            //     {
+            //         PlayerImage:null,
+            //         PlayerIncome:0.01,
+            //         PlayerName:"赌神之手",
+            //         PlayerTitle:"",
+            //         PlayerWinRate:"100.0%",
+            //         Ranking:0,
+            //     },
+            //     {
+            //         PlayerImage:null,
+            //         PlayerIncome:0.01,
+            //         PlayerName:"赌神之手",
+            //         PlayerTitle:"",
+            //         PlayerWinRate:"100.0%",
+            //         Ranking:0,
+            //     },{
+            //         PlayerImage:null,
+            //         PlayerIncome:0.01,
+            //         PlayerName:"赌神之手",
+            //         PlayerTitle:"",
+            //         PlayerWinRate:"100.0%",
+            //         Ranking:0,
+            //     },{
+            //         PlayerImage:null,
+            //         PlayerIncome:0.01,
+            //         PlayerName:"赌神之手",
+            //         PlayerTitle:"",
+            //         PlayerWinRate:"100.0%",
+            //         Ranking:0,
+            //     },{
+            //         PlayerImage:null,
+            //         PlayerIncome:0.01,
+            //         PlayerName:"赌神之手",
+            //         PlayerTitle:"",
+            //         PlayerWinRate:"100.0%",
+            //         Ranking:0,
+            //     },{
+            //         PlayerImage:null,
+            //         PlayerIncome:0.01,
+            //         PlayerName:"赌神之手",
+            //         PlayerTitle:"",
+            //         PlayerWinRate:"100.0%",
+            //         Ranking:0,
+            //     },{
+            //         PlayerImage:null,
+            //         PlayerIncome:0.01,
+            //         PlayerName:"赌神之手",
+            //         PlayerTitle:"",
+            //         PlayerWinRate:"100.0%",
+            //         Ranking:0,
+            //     },{
+            //         PlayerImage:null,
+            //         PlayerIncome:0.01,
+            //         PlayerName:"赌神之手",
+            //         PlayerTitle:"",
+            //         PlayerWinRate:"100.0%",
+            //         Ranking:0,
+            //     },{
+            //         PlayerImage:null,
+            //         PlayerIncome:0.01,
+            //         PlayerName:"赌神之手",
+            //         PlayerTitle:"",
+            //         PlayerWinRate:"100.0%",
+            //         Ranking:0,
+            //     },{
+            //         PlayerImage:null,
+            //         PlayerIncome:0.01,
+            //         PlayerName:"赌神之手",
+            //         PlayerTitle:"",
+            //         PlayerWinRate:"100.0%",
+            //         Ranking:0,
+            //     }
+            // ]
+            // res.Data.IsMore = true
+
             if(data.RankingType==1){
                 store.dispatch({
                     type: "RANK_TOTAL",

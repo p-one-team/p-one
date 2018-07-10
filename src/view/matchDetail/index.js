@@ -11,15 +11,15 @@ const mapDispatchToProps = (dispatch, props) => {
         getGuessList(id){
             getOrnamentsGuessOfGameItem({
                 HandicapID: id,
-                PageIndex: 0
+                PageIndex: 1
             })
             getTBeansGuessOfGameItem({
                 HandicapID: id,
-                PageIndex: 0
+                PageIndex: 1
             })
             getVulgarTycoonGuessOfGameItem({
                 HandicapID: id,
-                PageIndex: 0
+                PageIndex: 1
             })
         }
     }

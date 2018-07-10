@@ -1,22 +1,25 @@
 import { connect } from 'react-redux'
 import InventoryComponent from './inventory-component'
-import { getMallList } from '../../reducers/shop'
 import { getMyInventory,addToSteamInventory } from '../../reducers/inventory'
 import AlertWindow from '../../module/mo-alertWindow';
+import store from '../../store'
+import { publishBuyOrSale } from '../../reducers/shop'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+        publishSale(data,callback){
+            publishBuyOrSale(data,callback)
+        },
+
         goStore() {
-            getMallList({
-                GameType: "570",
-				AttributeID: 1,
-				AttributeValue: "",
-				KeyWords: "",
-				PageIndex: 0,
-				PageSize: 100
-            },() => {
-                props.history.push('/shop')
+            store.dispatch({
+                type:"MALL_LIST_PARAM",
+                paramAttributeId: 0,
+                paramAttributeValue: "",
+                paramKeywords: "",
+                paramPageIndex: 1
             })
+            props.history.push('/shop')
         },
 
         getInventory(data){

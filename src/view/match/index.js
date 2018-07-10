@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import MatchComponent from './match-component'
 import { getGameItems, getGameItemInfo } from '../../reducers/match'
-import { getMallList } from '../../reducers/shop'
 import store from '../../store'
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -35,16 +34,14 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         goShop() {
-            getMallList({
-                GameType: "570",
-				AttributeID: 1,
-				AttributeValue: "",
-				KeyWords: "",
-				PageIndex: 0,
-				PageSize: 100
-            },() => {
-                props.history.push('/shop')
+            store.dispatch({
+                type:"MALL_LIST_PARAM",
+                paramAttributeId: 0,
+                paramAttributeValue: "",
+                paramKeywords: "",
+                paramPageIndex: 1
             })
+            props.history.push('/shop')
         }
     }
 }

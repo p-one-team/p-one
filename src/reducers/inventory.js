@@ -120,8 +120,6 @@ const addToMyInventory = (data, callback) => {
     })
     .then(function (res) {
         if(res){
-            console.log(res)
-
             callback ? callback() : ""
         }
     })

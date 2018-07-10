@@ -2,20 +2,25 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './uc.less'
-// import '../../styles/iconfont.css'
+
+
 @CSSModules(style)
 class UserCenterComponent extends Component {
 	constructor(props) {
 		super(props)
 
+		this.props.refreshUser()
+
 		this.state = {
-			isSign: false
+			isSign: this.props.isSign
 		}
 	}
 
 	sign = () => {
-		this.setState({
-			isSign: true
+		this.props.signIn(()=>{
+			this.setState({
+				isSign: this.props.isSign
+			})
 		})
 	}
 
@@ -48,11 +53,11 @@ class UserCenterComponent extends Component {
 						<div> <span className="iconfont icon-writefill"></span>意见反馈</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
-					<li onClick={() => this.props.goMessage()}>
+					{/* <li onClick={() => this.props.goMessage()}>
 						<div> <span className="iconfont icon-messagefill"></span>我的消息</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
-					{/* <li>
+					<li>
 						<div> <span className="iconfont icon-gift1"></span>我的礼物</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>

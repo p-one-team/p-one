@@ -35,6 +35,20 @@ class FeedbackComponent extends Component {
         })
     }
 
+    submit = () => {
+        this.props.feedBack({
+            ProblemTitle: this.state.shortDesc,
+            QQ: this.state.qqNumber,
+            ProblemContent: this.state.detailDesc
+        },()=>{
+            this.setState({
+                shortDesc: "",
+                qqNumber: "",
+                detailDesc: ""
+            })
+        })
+    }
+
     render() {
         return (
             <div styleName="wrap">
@@ -42,7 +56,7 @@ class FeedbackComponent extends Component {
                     mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
-                    rightContent="确认提交"
+                    rightContent={<span onClick={()=>this.submit()}>确认提交</span>}
                 >意见反馈</NavBar>
 
                 <div styleName="container">

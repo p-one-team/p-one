@@ -8,8 +8,8 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/list')
         },
 
-        getRank(data){
-            getRanking(data)
+        getRank(data,callback){
+            getRanking(data,callback)
         }
     }
 }

@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './rank.less'
-import { NavBar, Icon, List, Tabs } from 'antd-mobile';
+import { NavBar, Icon, Tabs } from 'antd-mobile';
 
-const Item = List.Item;
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class GuessRankComponentWrapper extends Component {
     constructor(props) {
@@ -23,8 +22,8 @@ class GuessRankComponentWrapper extends Component {
 
     }
 
-    TabExample(list) {
-        if(list){
+    TabExample(list,isMore) {
+        if(list && list.length > 0){
             let listDetail = list.map((item,index) => {
                 let rankNum = ""
                 if(index==0){
@@ -36,7 +35,7 @@ class GuessRankComponentWrapper extends Component {
                 }else{
                     rankNum = ""
                 }
-                return (<Item key={index}>
+                return (<div styleName="list-item" key={index}>
                     <div>
                         <span className={rankNum}>{index+1}</span>
                         {/* <img src={item.PlayerImage} alt="头像" /> */}
@@ -45,7 +44,7 @@ class GuessRankComponentWrapper extends Component {
                         {/* <div></div> */}
                         {/* <div>LV {item.userLevel}</div> */}
                     </div>
-                    <div className="rate_part">
+                    <div styleName="rate_part">
                         <p>{item.PlayerWinRate}</p>
                         <div>
                             <span style={{"width":item.PlayerWinRate}}></span>
@@ -53,19 +52,20 @@ class GuessRankComponentWrapper extends Component {
                         </div>
                     </div>
                     <div>{item.PlayerIncome}</div>
-                </Item>)
+                </div>)
             })
     
             return (
-                <div>
-                    <div className="list-title">
+                <div styleName="listMain">
+                    <div styleName="list-title">
                         <div>&nbsp;&nbsp;&nbsp;&nbsp;玩家</div><div>胜率</div><div>收菜</div>
                     </div>
                     {listDetail}
+                    {isMore ? <div styleName="loadMore">加载更多...</div> : <div styleName="loadMore">无更多</div>}
                 </div>
             )
         }else{
-            return ""
+            return (<div styleName="noRankInfo">暂无排行信息</div>)
         }
     }
 
@@ -84,13 +84,13 @@ class GuessRankComponentWrapper extends Component {
                         onTabClick={(tab) => { this.props.getGuessRanking({RankingType: tab.sub})}}
                     >
 
-                        <List className="beacon-list">
-                            {this.TabExample(this.props.guessRankLight.Players)}
-                        </List>
+                        <div styleName="beacon-list">
+                            {this.TabExample(this.props.guessRankLight.Players, this.props.guessRankLight.IsMore)}
+                        </div>
 
-                        <List className="beacon-list">
-                            {this.TabExample(this.props.guessRankDark.Players)}
-                        </List>
+                        <div styleName="beacon-list">
+                            {this.TabExample(this.props.guessRankDark.Players, this.props.guessRankDark.IsMore)}
+                        </div>
                     </Tabs>
 
                 </div>

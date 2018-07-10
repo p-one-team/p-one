@@ -99,13 +99,13 @@ class InventoryItemComponent extends React.Component {
         </div>
     )
 
-    forecastChosen = (hashName) => {
+    forecastChosen = (ornamentId) => {
         this.setState({
             isChosen: !this.state.isChosen
         },()=>{
             if(this.state.isChosen){
                 let list = this.props.dotaChosenForecastInventory;
-                list.push({MarketHashName:hashName})
+                list.push(ornamentId)
 
                 store.dispatch({
                     type: "DOTA_CHOSEN_FORECAST_INVENTORY",
@@ -117,7 +117,7 @@ class InventoryItemComponent extends React.Component {
                 let list = this.props.dotaChosenForecastInventory;
                 let deleteId;
                 list.map((item,index)=>{
-                    if(item.MarketHashName==hashName){
+                    if(item==ornamentId){
                         deleteId = index
                     }
                 })
@@ -134,7 +134,7 @@ class InventoryItemComponent extends React.Component {
     }
 
     forecastContent = (info) => (
-        <div styleName="inventory_item" onClick={()=>this.forecastChosen(info.MarketHashName)}>
+        <div styleName="inventory_item" onClick={()=>this.forecastChosen(info.UserOrnamentId)}>
             <img src={info.IconUrl} alt="" />
             {this.state.isChosen ? <div styleName="chosen"><i className="iconfont icon-gou_ico"></i></div> : null}
             <label>{info.Price}</label>                                    

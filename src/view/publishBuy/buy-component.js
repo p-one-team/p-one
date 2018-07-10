@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
-import style from './shop.less'
+import style from './buy.less'
 import { NavBar, Icon, SearchBar } from 'antd-mobile';
 import store from '../../store'
 
 
 @CSSModules(style)
-class ShopComponent extends Component {
+class BuyComponent extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
+            canBuyAlertShow: false,
+            buyProduct: {},
+            buyUnitPrice: 0,
+            buyNumber: 0,
 			value: '',
 			pageIndex: this.props.paramPageIndex,
 			shopList: [],
@@ -95,7 +99,66 @@ class ShopComponent extends Component {
 
 	handleClick = () => {
 		this.manualFocusInst.focus();
-	}
+    }
+    
+    showBuyAlert = (info) => {
+        this.setState({
+            canBuyAlertShow: true,
+            buyProduct: info,
+            buyUnitPrice: info.TPrice,
+            buyNumber: 1
+        })
+    }
+
+    closeBuyAlert = () => {
+        this.setState({
+            canBuyAlertShow: false,
+            buyProduct: {},
+            buyUnitPrice: 0,
+            buyNumber: 0
+        })
+    }
+
+    onChangePrice = (event) => {
+        this.setState({
+            buyUnitPrice: event.target.value
+        })
+    }
+
+    onChangeNumber = (event) => {
+        this.setState({
+            buyNumber: event.target.value
+        })
+    }
+
+    publishBuy = () => {
+        this.props.publishBuy({
+            PublishType: 2,
+            MarketHashName: this.state.buyProduct.MarketHashName,
+            OrnamentPrice: this.state.buyUnitPrice,
+            OrnamentCount: this.state.buyNumber
+        },() => {
+            this.closeBuyAlert()
+        })
+    }
+
+    buyAlert = () => (<div styleName="buyAlert">
+        <div styleName="inner">
+            <div styleName="close">
+                <span className="iconfont icon-guanbi" onClick={()=>this.closeBuyAlert()}></span>
+            </div>
+            <div styleName="prodInfo">
+                <div><img src={this.state.buyProduct.IconUrl}/></div>
+                <div>
+                    <p>{this.state.buyProduct.Name}</p>
+                    <p>市场参考价：{this.state.buyProduct.TPrice} T豆</p>
+                </div>
+            </div>
+            <div styleName="inputPart">求购单价：<input type="tel" value={this.state.buyUnitPrice} onChange={this.onChangePrice.bind(this)}/></div>
+            <div styleName="inputPart">求购数量：<input type="tel" value={this.state.buyNumber} onChange={this.onChangeNumber.bind(this)}/></div>
+            <div styleName="btn" onClick={()=>this.publishBuy()}>发布求购</div>
+        </div>
+    </div>)
 
 	renderContent = () => {
 		if (this.state.shopList) {
@@ -104,7 +167,7 @@ class ShopComponent extends Component {
 					<ul styleName="item-list">
 						{this.state.shopList.map((item, index) => (
 							<li key={index}>
-								<div styleName="item" onClick={() => this.props.goItemDetail(item.MarketHashName)}>
+								<div styleName="item" onClick={() => this.showBuyAlert(item)}>
 									<div styleName="item-img">
 										<img src={item.IconUrl} alt="" />
 										<p styleName="item-name">{item.Name}</p>
@@ -179,12 +242,7 @@ class ShopComponent extends Component {
 					mode="dark"
 					icon={<Icon type="left" />}
 					onLeftClick={() => this.props.history.goBack()}
-				>商城</NavBar>
-
-				<div styleName="btnPart">
-					<span onClick={()=>this.props.goInventoryPage()}>出售</span>
-					<span onClick={()=>this.props.goPublishBuy()}>求购</span>
-				</div>
+				>发布求购专区</NavBar>
 
 				<div styleName="search_part">
 					<div styleName="search">
@@ -200,20 +258,20 @@ class ShopComponent extends Component {
 					<div styleName="select" onClick={() => this.props.select()}>筛选</div>
 				</div>
 
-
-
 				<div style={{ width: '100%', top: 0 }}>
 					<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
 						{this.renderContent()}
 					</div>
 				</div>
+
+                {this.state.canBuyAlertShow ? this.buyAlert() : ""}
 			</div>
 		)
 	}
 }
 
-ShopComponent.propTypes = {
+BuyComponent.propTypes = {
 	goItemDetail: PropTypes.func,
 }
 
-export default ShopComponent
+export default BuyComponent

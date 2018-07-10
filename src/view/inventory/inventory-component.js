@@ -5,6 +5,7 @@ import style from './inventory.less'
 import { Tabs, NavBar, Icon,  } from 'antd-mobile';
 import InventoryItem from '../../layout/inventory-item'
 import store from '../../store'
+import AlertWindow from '../../module/mo-alertWindow';
 
 
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
@@ -26,6 +27,10 @@ class InventoryComponent extends Component {
         })
 
         this.state = {
+            canSaleAlertShow: false,
+            saleProduct: {},
+            saleUnitPrice: 0,
+            saleNumber: 0,
             tabs: [
                 { title: 'Dota2', sub: '1' ,type: "570"},
                 // { title: 'CS:GO', sub: '2' ,type: "730"},
@@ -202,6 +207,77 @@ class InventoryComponent extends Component {
         })
     }
 
+    //出售商品
+    saleOrnament = () => {
+        if(this.props.dotaChosenVipInventory.length != 1){
+            AlertWindow.Prompt("单次最多出售1件饰品",()=>{return false})
+        }else{
+            let product = {}
+            this.props.dotaInventory.Ornaments.map((item)=>{
+                if(item.AssetId == this.props.dotaChosenVipInventory[0].AssetId){
+                    product = item
+                }
+            })
+            this.setState({
+                canSaleAlertShow: true,
+                saleProduct: product,
+                saleUnitPrice: product.TPrice,
+                saleNumber: 1
+            })
+        }
+    }
+
+    closeSaleAlert = () => {
+        this.setState({
+            canSaleAlertShow: false,
+            saleProduct: {},
+            saleUnitPrice: 0,
+            saleNumber: 0
+        })
+    }
+
+    onChangePrice = (event) => {
+        this.setState({
+            saleUnitPrice: event.target.value
+        })
+    }
+
+    onChangeNumber = (event) => {
+        this.setState({
+            saleNumber: event.target.value
+        })
+    }
+
+    publishSale = () => {
+        this.props.publishSale({
+            PublishType: 1,
+            MarketHashName: this.state.saleProduct.MarketHashName,
+            OrnamentPrice: this.state.saleUnitPrice,
+            OrnamentCount: this.state.saleNumber
+        },() => {
+            this.closeSaleAlert()
+        })
+    }
+
+    saleAlert = () => (<div styleName="saleAlert">
+        <div styleName="inner">
+            <div styleName="close">
+                <span className="iconfont icon-guanbi" onClick={()=>this.closeSaleAlert()}></span>
+            </div>
+            <div styleName="prodInfo">
+                <div><img src={this.state.saleProduct.IconUrl}/></div>
+                <div>
+                    <p>{this.state.saleProduct.Name}</p>
+                    <p>市场参考价：{this.state.saleProduct.TPrice} T豆</p>
+                </div>
+            </div>
+            <div styleName="inputPart">出售单价：<input type="tel" value={this.state.saleUnitPrice} onChange={this.onChangePrice.bind(this)}/></div>
+            <div styleName="inputPart">出售数量：<input type="tel" value={this.state.saleNumber} onChange={this.onChangeNumber.bind(this)}/></div>
+            <div styleName="btn" onClick={()=>this.publishSale()}>发布出售</div>
+        </div>
+    </div>)
+
+
     dotaContent = (info) => {
         if(info.Ornaments){
             let ornamentList;
@@ -241,11 +317,11 @@ class InventoryComponent extends Component {
                 </div>
                 {ornamentList}
                 <div styleName="btn_part">
-                    <p>注：单次最多出售<span> 6 </span>件不同的饰品</p>
+                    <p>注：单次最多出售<span> 1 </span>件饰品</p>
                     <div styleName="btn">
                         <div styleName="deposit_canclick" onClick={()=>this.props.goToSteamInventory()}>存入</div>
                         {this.state.isDotaCanSale ? <div styleName="getback_canclick" onClick={()=>this.getBackToSteam()}>取回</div> : <div>取回</div>}
-                        {this.state.isDotaCanSale ? <div styleName="sale_canclick">出售</div> : <div>出售</div>}
+                        {this.state.isDotaCanSale ? <div styleName="sale_canclick" onClick={()=>this.saleOrnament()}>出售</div> : <div>出售</div>}
                     </div>
                 </div>
             </div>)
@@ -401,6 +477,8 @@ class InventoryComponent extends Component {
                         {this.tBeanContent()}
                     </div>
                 </Tabs>
+
+                {this.state.canSaleAlertShow ? this.saleAlert() : ""}
             </div>
         )
     }

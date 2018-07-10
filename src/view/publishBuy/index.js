@@ -1,11 +1,14 @@
 import { connect } from 'react-redux'
-import ShopComponent from './shop-component.js'
-import { getMallList, getMallProdItem, getOrnamentAttributes } from '../../reducers/shop'
-import store from '../../store'
+import BuyComponent from './buy-component.js'
+import { getMallList, publishBuyOrSale, getOrnamentAttributes } from '../../reducers/shop'
 
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+        publishBuy(data,callback){
+            publishBuyOrSale(data,callback)
+        },
+
         getShopList(attributeId, attributeValue, keywords, pageIndex, callback) {
             getMallList({
                 GameType: "570",
@@ -17,14 +20,6 @@ const mapDispatchToProps = (dispatch, props) => {
             }, callback)
         },
 
-        goItemDetail(hashName) {
-            getMallProdItem({
-                MarketHashName: hashName
-            }, () => {
-                props.history.push("/shopItem")
-            })
-        },
-
         select() {
             getOrnamentAttributes({}, () => {
                 props.history.push("/shopSelect")
@@ -34,17 +29,6 @@ const mapDispatchToProps = (dispatch, props) => {
         goInventoryPage() {
             props.history.push('/inventory')
         },
-
-        goPublishBuy() {
-            store.dispatch({
-                type:"MALL_LIST_PARAM",
-                paramAttributeId: 0,
-                paramAttributeValue: "",
-                paramKeywords: "",
-                paramPageIndex: 1
-            })
-            props.history.push('/publishBuy')
-        }
     }
 }
 
@@ -58,9 +42,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const Shop = connect(
+const PublishBuy = connect(
     mapStateToProps,
     mapDispatchToProps
-)(ShopComponent)
+)(BuyComponent)
 
-export default Shop
+export default PublishBuy

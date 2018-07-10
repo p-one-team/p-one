@@ -2,10 +2,16 @@ import { connect } from 'react-redux'
 import UserCenterComponent from './userCenter-component.js'
 import { withRouter } from 'react-router-dom'
 import { getMyTransaction } from '../../reducers/shop'
+import { signIn, refreshUserInfo } from '../../reducers/user'
 
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+
+        refreshUser() {
+            refreshUserInfo()
+        },
+
         goBack() {
             props.history.replace('/')
         },
@@ -38,6 +44,10 @@ const mapDispatchToProps = (dispatch, props) => {
         
         goHelpSuggest() {
             props.history.push('/helpSuggest')
+        },
+
+        signIn(callback) {
+            signIn(callback)
         }
     }
 }
@@ -45,7 +55,8 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
-        userInfos: state.UserReducer.userInfos
+        userInfos: state.UserReducer.userInfos,
+        isSign: state.UserReducer.isSign
     }
 }
 

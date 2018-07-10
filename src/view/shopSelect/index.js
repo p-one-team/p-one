@@ -1,21 +1,20 @@
 import { connect } from 'react-redux'
 import SelectComponent from './select-component.js'
-import { getMallList, getMallProdItem } from '../../reducers/shop'
+import { getMallProdItem } from '../../reducers/shop'
+import store from '../../store'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
         chooseAttribute(id,text){
-            getMallList({
-                GameType: "570",
-                AttributeID: id,
-                AttributeValue: text,
-                KeyWords: "",
-                PageIndex: 0,
-                PageSize: 100
-            }, () => {
-                props.history.goBack()
+            store.dispatch({
+                type:"MALL_LIST_PARAM",
+                paramAttributeId: id,
+                paramAttributeValue: text,
+                paramKeywords: "",
+                paramPageIndex: 1
             })
+            props.history.push('/shop')
         },
 
         goItemDetail(hashName) {

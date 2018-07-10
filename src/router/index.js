@@ -26,6 +26,7 @@ import ShopSelect from '../view/shopSelect'
 import Feedback from '../view/feedback'
 import SteamInventory from '../view/steamInventory'
 import MatchForecast from '../view/matchForecast'
+import PublishBuy from '../view/publishBuy'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -119,6 +120,10 @@ const routes_config = [
 	{
 		path: '/matchForecast',
 		component: MatchForecast
+	},
+	{
+		path: '/publishBuy',
+		component: PublishBuy
 	}
 ]
 
