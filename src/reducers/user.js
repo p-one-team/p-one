@@ -52,6 +52,11 @@ const loginAction = (data, callback) => {
                     userInfos: res.Data
                 })
 
+                store.dispatch({
+                    type: "SIGN_FLAG",
+                    isSign: res.Data.IsCheckIn
+                })
+
                 callback ? callback() : ""
             }
         })
@@ -117,6 +122,11 @@ const registerAction = (data, callback) => {
                     userInfos: res.Data
                 })
 
+                store.dispatch({
+                    type: "SIGN_FLAG",
+                    isSign: res.Data.IsCheckIn
+                })
+
                 callback ? callback() : ""
             }
         })
@@ -141,6 +151,11 @@ const resetPsdAction = (data, callback) => {
                 store.dispatch({
                     type: "USER_INFO",
                     userInfos: res.Data
+                })
+
+                store.dispatch({
+                    type: "SIGN_FLAG",
+                    isSign: res.Data.IsCheckIn
                 })
 
                 callback ? callback() : ""
@@ -182,6 +197,11 @@ const refreshUserInfo = (callback) => {
                 store.dispatch({
                     type: "USER_INFO",
                     userInfos: res.Data
+                })
+
+                store.dispatch({
+                    type: "SIGN_FLAG",
+                    isSign: res.Data.IsCheckIn
                 })
 
                 callback ? callback() : ""

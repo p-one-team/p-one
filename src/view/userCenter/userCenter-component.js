@@ -9,11 +9,17 @@ class UserCenterComponent extends Component {
 	constructor(props) {
 		super(props)
 
-		this.props.refreshUser()
-
 		this.state = {
-			isSign: this.props.isSign
+			isSign: false
 		}
+	}
+
+	componentWillMount(){
+		this.props.refreshUser(()=>{
+			this.setState({
+				isSign: this.props.isSign
+			})
+		})
 	}
 
 	sign = () => {

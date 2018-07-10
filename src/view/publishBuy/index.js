@@ -1,10 +1,15 @@
 import { connect } from 'react-redux'
 import BuyComponent from './buy-component.js'
 import { getMallList, publishBuyOrSale, getOrnamentAttributes } from '../../reducers/shop'
+import { refreshUserInfo } from '../../reducers/user'
 
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+        refreshUser(callback) {
+            refreshUserInfo(callback)
+        },
+
         publishBuy(data,callback){
             publishBuyOrSale(data,callback)
         },
@@ -34,6 +39,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
+        userInfos: state.UserReducer.userInfos,
         shopInfos: state.ShopReducer.shopInfos,
         paramAttributeId: state.ShopReducer.paramAttributeId,
         paramAttributeValue: state.ShopReducer.paramAttributeValue,

@@ -16,6 +16,7 @@ class BuyComponent extends Component {
             buyProduct: {},
             buyUnitPrice: 0,
             buyNumber: 0,
+            totalPrice: 0,
 			value: '',
 			pageIndex: this.props.paramPageIndex,
 			shopList: [],
@@ -102,11 +103,14 @@ class BuyComponent extends Component {
     }
     
     showBuyAlert = (info) => {
-        this.setState({
-            canBuyAlertShow: true,
-            buyProduct: info,
-            buyUnitPrice: info.TPrice,
-            buyNumber: 1
+        this.props.refreshUser(()=>{
+            this.setState({
+                canBuyAlertShow: true,
+                buyProduct: info,
+                buyUnitPrice: info.TPrice,
+                buyNumber: 1,
+                totalPrice: info.TPrice * 1
+            })
         })
     }
 
@@ -115,19 +119,22 @@ class BuyComponent extends Component {
             canBuyAlertShow: false,
             buyProduct: {},
             buyUnitPrice: 0,
-            buyNumber: 0
+            buyNumber: 0,
+            totalPrice: 0
         })
     }
 
     onChangePrice = (event) => {
         this.setState({
-            buyUnitPrice: event.target.value
+            buyUnitPrice: event.target.value,
+            totalPrice: event.target.value * this.state.buyNumber
         })
     }
 
     onChangeNumber = (event) => {
         this.setState({
-            buyNumber: event.target.value
+            buyNumber: event.target.value,
+            totalPrice: event.target.value * this.state.buyUnitPrice
         })
     }
 
@@ -152,10 +159,13 @@ class BuyComponent extends Component {
                 <div>
                     <p>{this.state.buyProduct.Name}</p>
                     <p>市场参考价：{this.state.buyProduct.TPrice} T豆</p>
+                    <p>账户余额：<span>{this.props.userInfos.TBeansCount}</span></p>
                 </div>
             </div>
             <div styleName="inputPart">求购单价：<input type="tel" value={this.state.buyUnitPrice} onChange={this.onChangePrice.bind(this)}/></div>
             <div styleName="inputPart">求购数量：<input type="tel" value={this.state.buyNumber} onChange={this.onChangeNumber.bind(this)}/></div>
+            <div styleName="total">总    价：<span>{this.state.totalPrice} T</span></div>
+            <p styleName="tips">*注：发布后将同步扣除T豆，交易失败或取消时将退还</p>
             <div styleName="btn" onClick={()=>this.publishBuy()}>发布求购</div>
         </div>
     </div>)
