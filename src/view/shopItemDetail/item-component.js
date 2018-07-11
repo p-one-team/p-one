@@ -10,15 +10,112 @@ class ShopItemDetailComponent extends Component {
     constructor(props) {
         super(props)
 
-        //获取出售列表
-        this.props.getRecords("1", this.props.shopItem.MarketHashName)
-
         this.state = {
             tabs: [
-                { title: "出售", sub: '1' },
-                { title: '求购', sub: '2' },
-                { title: '成交记录', sub: '3' }
-            ]
+                { title: "出售", sub: 1 },
+                { title: '求购', sub: 2 },
+                { title: '成交记录', sub: 3 }
+            ],
+            pageIndex: 1,
+            chosenTab: 1,
+            saleList: [],
+            isSaleMore: false,
+            buyList: [],
+            isBuyMore: false,
+            dealList: [],
+            isDealMore: false
+        }
+    }
+
+    componentWillMount(){
+        this.props.getSaleRecords({
+            MarketHashName: this.props.shopItem.MarketHashName,
+            PageIndex: 1
+        },()=>{
+            this.setState({
+                pageIndex: 1,
+                chosenTab: 1,
+                saleList: this.props.saleRecordInfo.PublishRecords,
+                isSaleMore: this.props.saleRecordInfo.IsMore
+            })
+        })
+    }
+
+    changeTab = (sub) => {
+        if(sub == 1){
+            this.props.getSaleRecords({
+                MarketHashName: this.props.shopItem.MarketHashName,
+                PageIndex: 1
+            },()=>{
+                this.setState({
+                    pageIndex: 1,
+                    chosenTab: 1,
+                    saleList: this.props.saleRecordInfo.PublishRecords,
+                    isSaleMore: this.props.saleRecordInfo.IsMore
+                })
+            })
+        }else if(sub == 2){
+            this.props.getBuyRecords({
+                MarketHashName: this.props.shopItem.MarketHashName,
+                PageIndex: 1
+            },()=>{
+                this.setState({
+                    pageIndex: 1,
+                    chosenTab: 2,
+                    buyList: this.props.buyRecordInfo.PublishRecords,
+                    isBuyMore: this.props.buyRecordInfo.IsMore
+                })
+            })
+        }else if(sub == 3){
+            this.props.getDealRecords({
+                MarketHashName: this.props.shopItem.MarketHashName,
+                PageIndex: 1
+            },()=>{
+                this.setState({
+                    pageIndex: 1,
+                    chosenTab: 3,
+                    dealList: this.props.dealRecordInfo.TransactionRecords,
+                    isDealMore: this.props.dealRecordInfo.IsMore
+                })
+            })
+        }
+
+    }
+
+    loadMoreFn = () => {
+        if(this.state.chosenTab == 1){
+            this.props.getSaleRecords({
+                MarketHashName: this.props.shopItem.MarketHashName,
+                PageIndex: this.state.pageIndex + 1
+            },()=>{
+                this.setState({
+                    pageIndex: this.state.pageIndex + 1,
+                    saleList: this.state.saleList.concat(this.props.saleRecordInfo.PublishRecords),
+                    isSaleMore: this.props.saleRecordInfo.IsMore
+                })
+            })
+        }else if(this.state.chosenTab == 2){
+            this.props.getBuyRecords({
+                MarketHashName: this.props.shopItem.MarketHashName,
+                PageIndex: this.state.pageIndex + 1
+            },()=>{
+                this.setState({
+                    pageIndex: this.state.pageIndex + 1,
+                    buyList: this.state.buyList.concat(this.props.buyRecordInfo.PublishRecords),
+                    isBuyMore: this.props.buyRecordInfo.IsMore
+                })
+            })
+        }else if(this.state.chosenTab == 3){
+            this.props.getDealRecords({
+                MarketHashName: this.props.shopItem.MarketHashName,
+                PageIndex: this.state.pageIndex + 1
+            },()=>{
+                this.setState({
+                    pageIndex: this.state.pageIndex + 1,
+                    dealList: this.state.dealList.concat(this.props.dealRecordInfo.TransactionRecords),
+                    isDealMore: this.props.dealRecordInfo.IsMore
+                })
+            })
         }
     }
 
@@ -40,8 +137,8 @@ class ShopItemDetailComponent extends Component {
         })
     }
 
-    tabContent(type, tPrice, price, list){
-        if(type == "sale"){
+    tabContent(tPrice, price, list, isMore){
+        if(this.state.chosenTab == 1){
             if(list){
                 return (<div>
                     <div styleName="evaluate">市场价：<span>{tPrice}</span><label>T豆&nbsp;({price})</label></div>
@@ -64,6 +161,7 @@ class ShopItemDetailComponent extends Component {
                                 </div>
                             </div>
                         ))}
+                        {isMore ? <div styleName="loadMore" onClick={()=>this.loadMoreFn()}>点击加载更多</div> : <div styleName="loadMore">无更多</div>}
                     </div>
                     : <div styleName="noInfo">暂无出售信息</div>}
                 </div>)
@@ -71,7 +169,7 @@ class ShopItemDetailComponent extends Component {
                 return ""
             }
 
-        }else if(type=="buy"){
+        }else if(this.state.chosenTab == 2){
             if(list){
                 return (<div>
                     <div styleName="evaluate">系统估价：<span>{tPrice}</span><label>T豆&nbsp;({price})</label></div>
@@ -94,6 +192,7 @@ class ShopItemDetailComponent extends Component {
                                 </div>
                             </div>
                         ))}
+                        {isMore ? <div styleName="loadMore" onClick={()=>this.loadMoreFn()}>点击加载更多</div> : <div styleName="loadMore">无更多</div>}
                     </div>
                     : <div styleName="noInfo">暂无求购信息</div>
                     }
@@ -101,7 +200,7 @@ class ShopItemDetailComponent extends Component {
             }else{
                 return ""
             }
-        }else{
+        }else if(this.state.chosenTab == 3){
             if(list){
                 return (<div>
                     <div styleName="evaluate">系统估价：<span>{tPrice}</span><label>T豆&nbsp;({price})</label></div>
@@ -123,6 +222,7 @@ class ShopItemDetailComponent extends Component {
                                 <div>{item.TransactionDate}</div>
                             </div>
                         ))}
+                        {isMore ? <div styleName="loadMore" onClick={()=>this.loadMoreFn()}>点击加载更多</div> : <div styleName="loadMore">无更多</div>}
                     </div>
                     : <div styleName="noInfo">暂无成交记录</div>
                     }
@@ -160,16 +260,16 @@ class ShopItemDetailComponent extends Component {
                     <div styleName="mainPart">
                         <Tabs tabs={this.state.tabs}
                             initialPage={0}
-                            onTabClick={(tab) => { this.props.getRecords(tab.sub, prodDetail.MarketHashName)} }
+                            onTabClick={(tab) => this.changeTab(tab.sub) }
                         >
                             <div styleName="listPart">
-                                {this.tabContent("sale", prodDetail.TPrice, prodDetail.Price, this.props.saleRecordInfo.PublishRecords)}
+                                {this.tabContent(prodDetail.TPrice, prodDetail.Price, this.state.saleList,this.state.isSaleMore)}
                             </div>
                             <div styleName="listPart">
-                                {this.tabContent("buy", prodDetail.TPrice, prodDetail.Price, this.props.buyRecordInfo.PublishRecords)}
+                                {this.tabContent(prodDetail.TPrice, prodDetail.Price, this.state.buyList,this.state.isBuyMore)}
                             </div>
                             <div styleName="listPart">
-                                {this.tabContent("deal", prodDetail.TPrice, prodDetail.Price, this.props.dealRecordInfo.TransactionRecords)}
+                                {this.tabContent(prodDetail.TPrice, prodDetail.Price, this.state.dealList,this.state.isDealMore)}
                             </div>
                         </Tabs>
                     </div>

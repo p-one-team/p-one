@@ -22,7 +22,7 @@ class GuessRankComponentWrapper extends Component {
 
     }
 
-    TabExample(list,isMore) {
+    TabExample(list) {
         if(list && list.length > 0){
             let listDetail = list.map((item,index) => {
                 let rankNum = ""
@@ -61,7 +61,6 @@ class GuessRankComponentWrapper extends Component {
                         <div>&nbsp;&nbsp;&nbsp;&nbsp;玩家</div><div>胜率</div><div>收菜</div>
                     </div>
                     {listDetail}
-                    {isMore ? <div styleName="loadMore">点击加载更多</div> : <div styleName="loadMore">无更多</div>}
                 </div>
             )
         }else{
@@ -85,11 +84,11 @@ class GuessRankComponentWrapper extends Component {
                     >
 
                         <div styleName="beacon-list">
-                            {this.TabExample(this.props.guessRankLight.Players, this.props.guessRankLight.IsMore)}
+                            {this.TabExample(this.props.guessRankLight.Players)}
                         </div>
 
                         <div styleName="beacon-list">
-                            {this.TabExample(this.props.guessRankDark.Players, this.props.guessRankDark.IsMore)}
+                            {this.TabExample(this.props.guessRankDark.Players)}
                         </div>
                     </Tabs>
 

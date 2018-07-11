@@ -20,15 +20,112 @@ class myForecastComponent extends Component {
             tabs: [
                 { title: <div className="left">本周</div>, sub: 0 },
                 { title: <div className="right">本月</div>, sub: 1 }
-            ]
+            ],
+            pageIndex: 1,
+            chosenTab: 0,
+            guessInfo: {
+                guessCount:0,
+                guessIncome:0,
+                guessWinRate:"0.0%",
+            },
+            weekList: [],
+            isWeekMore: false,
+            monthList: [],
+            isMonthMore: false
         }
     }
 
-    TabExample = (info) => {
+    componentWillMount(){
+        //初始获取本周
+        this.props.getGuessRecord({
+            DayType: 0,
+            PageIndex: 1
+        },()=>{
+            this.setState({
+                pageIndex: 1,
+                chosenTab: 0,
+                guessInfo: {
+                    guessCount: this.props.guessRecordWeek.GuessCount,
+                    guessIncome:this.props.guessRecordWeek.GuessIncome,
+                    guessWinRate: this.props.guessRecordWeek.GuessWinRate
+                },
+                weekList: this.props.guessRecordWeek.BetDetails,
+                isWeekMore: this.props.guessRecordWeek.IsMore
+            })
+        })
+    }
+
+    changeTab = (type) => {
+        if(type == 0){
+            this.props.getGuessRecord({
+                DayType: 0,
+                PageIndex: 1
+            },()=>{
+                this.setState({
+                    pageIndex: 1,
+                    chosenTab: 0,
+                    guessInfo: {
+                        guessCount: this.props.guessRecordWeek.GuessCount,
+                        guessIncome:this.props.guessRecordWeek.GuessIncome,
+                        guessWinRate: this.props.guessRecordWeek.GuessWinRate
+                    },
+                    weekList: this.props.guessRecordWeek.BetDetails,
+                    isWeekMore: this.props.guessRecordWeek.IsMore
+                })
+            })
+        }else if(type == 1){
+            this.props.getGuessRecord({
+                DayType: 1,
+                PageIndex: 1
+            },()=>{
+                this.setState({
+                    pageIndex: 1,
+                    chosenTab: 1,
+                    guessInfo: {
+                        guessCount: this.props.guessRecordMonth.GuessCount,
+                        guessIncome:this.props.guessRecordMonth.GuessIncome,
+                        guessWinRate: this.props.guessRecordMonth.GuessWinRate
+                    },
+                    monthList: this.props.guessRecordMonth.BetDetails,
+                    isMonthMore: this.props.guessRecordMonth.IsMore
+                })
+            })
+        }
+
+    }
+
+    loadMoreFn = () => {
+        if(this.state.chosenTab == 0){
+            this.props.getGuessRecord({
+                DayType: 0,
+                PageIndex: this.state.pageIndex + 1,
+            },()=>{
+                this.setState({
+                    pageIndex: this.state.pageIndex + 1,
+                    weekList: this.state.weekList.concat(this.props.guessRecordWeek.BetDetails),
+                    isWeekMore: this.props.guessRecordWeek.IsMore
+                })
+            })
+        }else if(this.state.chosenTab == 1){
+            this.props.getGuessRecord({
+                DayType: 1,
+                PageIndex: this.state.pageIndex + 1
+            },()=>{
+                this.setState({
+                    pageIndex: this.state.pageIndex + 1,
+                    monthList: this.state.monthList.concat(this.props.guessRecordMonth.BetDetails),
+                    isMonthMore: this.props.guessRecordMonth.IsMore
+                })
+            })
+        }
+
+    }
+
+    TabExample = (info,list,isMore) => {
         if(info){
             let historyList;
             
-            if(info.BetDetails && info.BetDetails.length>0){
+            if(list && list.length>0){
                 historyList = (<div>
                     <div className="list_title">
                         <span>状态</span>
@@ -36,7 +133,7 @@ class myForecastComponent extends Component {
                         <span>队伍</span>
                         <span>收益</span>
                     </div>
-                    {info.BetDetails.map((item,index) => (
+                    {list.map((item,index) => (
                         <div key={index} className="list-item">
                             <div>
                                 <p>{item.SettlementStatus}</p>
@@ -59,6 +156,7 @@ class myForecastComponent extends Component {
                             <div>{item.SettlementAmount}</div>
                         </div>
                     ))}
+                    {isMore ? <div className="loanMore" onClick={()=>this.loadMoreFn()}>点击加载更多</div> : <div className="loanMore">无更多</div>}
                 </div>)
             }else{
                 historyList = (<div className="noRecord">暂无预测记录</div>)
@@ -67,15 +165,15 @@ class myForecastComponent extends Component {
             return (<div>
                 <div className="title_part">
                     <div>
-                        <p>{info.GuessCount}</p>
+                        <p>{info.guessCount}</p>
                         <p>预测场次</p>
                     </div>
                     <div>
-                        <p>{info.GuessWinRate}</p>
+                        <p>{info.guessWinRate}</p>
                         <p>胜率</p>
                     </div>
                     <div>
-                        <p>{info.GuessIncome}</p>
+                        <p>{info.guessIncome}</p>
                         <p>收益</p>
                     </div>
                 </div>
@@ -109,15 +207,15 @@ class myForecastComponent extends Component {
 
                     <Tabs tabs={this.state.tabs}
                         initialPage={0}
-                        onTabClick={(tab) => { this.props.getGuessRecord({DayType: tab.sub, PageIndex: 0})}}
+                        onTabClick={(tab) => this.changeTab(tab.sub)}
                     >
 
                         <div>
-                            {this.TabExample(this.props.guessRecordWeek)}
+                            {this.TabExample(this.state.guessInfo,this.state.weekList,this.state.isWeekMore)}
                         </div>
 
                         <div>
-                            {this.TabExample(this.props.guessRecordMonth)}
+                            {this.TabExample(this.state.guessInfo,this.state.monthList,this.state.isMonthMore)}
                         </div>
 
                     </Tabs>

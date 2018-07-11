@@ -8,23 +8,16 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/inventory')
         },
 
-        getRecords(tab, name){
-            if(tab == "1"){
-                getSalePublishRecords({
-                    MarketHashName: name,
-                    PageIndex: 0
-                })
-            }else if(tab == "2"){
-                getBuyPublishRecords({
-                    MarketHashName: name,
-                    PageIndex: 0
-                })
-            }else{
-                getTransactionRecords({
-                    MarketHashName: name,
-                    PageIndex: 0
-                })
-            }
+        getSaleRecords(data,callback){
+            getSalePublishRecords(data,callback)
+        },
+
+        getBuyRecords(data,callback){
+            getBuyPublishRecords(data,callback)
+        },
+
+        getDealRecords(data,callback){
+            getTransactionRecords(data,callback)
         },
 
         publishBuySale(data){

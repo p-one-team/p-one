@@ -9,8 +9,8 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/list')
         },
 
-        getGuessRecord(data){
-            getMyGuessRecords(data)
+        getGuessRecord(data,callback){
+            getMyGuessRecords(data,callback)
         }
     }
 }
