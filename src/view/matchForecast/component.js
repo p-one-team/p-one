@@ -29,6 +29,8 @@ class MatchForecastComponent extends Component {
             RaritySort: 0
         })
 
+        this.props.refreshUserInfo()
+
         this.state = {
             tabs: [
                 { title: 'DOTA2预测',index:0 },
@@ -194,6 +196,22 @@ class MatchForecastComponent extends Component {
                     HandicapID: this.props.gameItemId,
                     SelectedEdge: selectEdge,
                     GameTeamID:teamId
+                },()=>{
+                    store.dispatch({
+                        type: "DOTA_CHOSEN_FORECAST_INVENTORY",
+                        dotaChosenForecastInventory: []
+                    })
+                    this.setState({
+                        canChoose: false,
+                        tbeanCount: 0
+                    })
+                    this.props.getInventory({
+                        GameType: "570",
+                        DateSort: 0,
+                        PriceSort: 0,
+                        QualitySort: 0,
+                        RaritySort: 0
+                    })
                 })
             }else{
                 AlertWindow.Prompt("请选择库存",()=>{return false})
@@ -206,6 +224,15 @@ class MatchForecastComponent extends Component {
                     HandicapID: this.props.gameItemId,
                     SelectedEdge: selectEdge,
                     GameTeamID:teamId
+                },()=>{
+                    store.dispatch({
+                        type: "DOTA_CHOSEN_FORECAST_INVENTORY",
+                        dotaChosenForecastInventory: []
+                    })
+                    this.setState({
+                        canChoose: false,
+                        tbeanCount: 0
+                    })
                 })
             }else{
                 AlertWindow.Prompt("请输入预测的T豆数",()=>{return false})

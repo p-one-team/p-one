@@ -103,7 +103,7 @@ class BuyComponent extends Component {
     }
     
     showBuyAlert = (info) => {
-        this.props.refreshUser(()=>{
+        this.props.refreshUserInfo('',()=>{
             this.setState({
                 canBuyAlertShow: true,
                 buyProduct: info,

@@ -284,7 +284,7 @@ class InventoryComponent extends Component {
             if(info.Ornaments && info.Ornaments.length==0){
                 ornamentList = (<div styleName="go_buy">
                     <div onClick={()=>this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
-                    <div>去Steam存入<span className="iconfont icon-previewright"></span></div>
+                    <div onClick={()=>this.props.goToSteamInventory()}>去Steam存入<span className="iconfont icon-previewright"></span></div>
                 </div>)
 
             }else{

@@ -61,7 +61,7 @@ class GuessRankComponentWrapper extends Component {
                         <div>&nbsp;&nbsp;&nbsp;&nbsp;玩家</div><div>胜率</div><div>收菜</div>
                     </div>
                     {listDetail}
-                    {isMore ? <div styleName="loadMore">加载更多...</div> : <div styleName="loadMore">无更多</div>}
+                    {isMore ? <div styleName="loadMore">点击加载更多</div> : <div styleName="loadMore">无更多</div>}
                 </div>
             )
         }else{

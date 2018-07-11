@@ -6,8 +6,8 @@ import { refreshUserInfo } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        refreshUser(callback) {
-            refreshUserInfo(callback)
+        refreshUserInfo(data,callback) {
+            refreshUserInfo(data,callback)
         },
 
         publishBuy(data,callback){

@@ -10,23 +10,29 @@ class UserCenterComponent extends Component {
 		super(props)
 
 		this.state = {
-			isSign: false
+			isSign: this.props.userInfos.IsCheckIn
 		}
 	}
 
 	componentWillMount(){
-		this.props.refreshUser(()=>{
+		this.props.refreshUserInfo('',()=>{
 			this.setState({
-				isSign: this.props.isSign
+				isSign: this.props.userInfos.IsCheckIn
+			})
+		})
+	}
+
+	updateUserInfo = () => {
+		this.props.refreshUserInfo('',()=>{
+			this.setState({
+				isSign: this.props.userInfos.IsCheckIn
 			})
 		})
 	}
 
 	sign = () => {
-		this.props.signIn(()=>{
-			this.setState({
-				isSign: this.props.isSign
-			})
+		this.props.signIn('',()=>{
+			this.updateUserInfo()
 		})
 	}
 

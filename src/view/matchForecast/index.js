@@ -3,9 +3,14 @@ import { connect } from 'react-redux'
 import { getMyInventory } from '../../reducers/inventory'
 import { useTBeanForecast,useOrnamentForecast } from '../../reducers/match'
 import store from '../../store'
+import { refreshUserInfo } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+        refreshUserInfo(){
+            refreshUserInfo()
+        },
+
         goStore() {
             store.dispatch({
                 type:"MALL_LIST_PARAM",
@@ -21,12 +26,12 @@ const mapDispatchToProps = (dispatch, props) => {
             getMyInventory(data)
         },
 
-        tBeanForecast(data){
-            useTBeanForecast(data)
+        tBeanForecast(data,callback){
+            useTBeanForecast(data,callback)
         },
 
-        ornamentForecast(data){
-            useOrnamentForecast(data)
+        ornamentForecast(data,callback){
+            useOrnamentForecast(data,callback)
         }
     }
 }

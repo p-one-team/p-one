@@ -20,25 +20,25 @@ const InventoryReducer = (state = initInventoryInfo, action) => {
 
     switch (action.type) {
         case 'DOTA_INVENTORY':
-            return Object.assign({}, state, {dotaInventory: action.dotaInventory})
+            return Object.assign({}, state, { dotaInventory: action.dotaInventory })
 
         case 'CSGO_INVENTORY':
-            return Object.assign({}, state, {csgoInventory: action.csgoInventory})
-            
+            return Object.assign({}, state, { csgoInventory: action.csgoInventory })
+
         case 'PUBG_INVENTORY':
-            return Object.assign({}, state, {pubgInventory: action.pubgInventory})
+            return Object.assign({}, state, { pubgInventory: action.pubgInventory })
 
         case 'DOTA_STEAM_INVENTORY':
-            return Object.assign({}, state, {dotaSteamInventory: action.dotaSteamInventory})
+            return Object.assign({}, state, { dotaSteamInventory: action.dotaSteamInventory })
 
         case 'DOTA_CHOSEN_INVENTORY':
-            return Object.assign({}, state, {dotaChosenInventory: action.dotaChosenInventory})
+            return Object.assign({}, state, { dotaChosenInventory: action.dotaChosenInventory })
 
         case 'DOTA_CHOSEN_VIP_INVENTORY':
-            return Object.assign({}, state, {dotaChosenVipInventory: action.dotaChosenVipInventory})
-        
+            return Object.assign({}, state, { dotaChosenVipInventory: action.dotaChosenVipInventory })
+
         case 'DOTA_CHOSEN_FORECAST_INVENTORY':
-            return Object.assign({}, state, {dotaChosenForecastInventory: action.dotaChosenForecastInventory})
+            return Object.assign({}, state, { dotaChosenForecastInventory: action.dotaChosenForecastInventory })
 
         default:
             return state
@@ -53,100 +53,100 @@ const InventoryReducer = (state = initInventoryInfo, action) => {
 //我的库存
 const getMyInventory = (data, callback) => {
     axios.post('/Game/MyStockResponse', {
-        GameType: data.GameType,
-        DateSort: data.DateSort,
-        PriceSort: data.PriceSort,
-        QualitySort: data.QualitySort,
-        RaritySort: data.RaritySort
-    })
-    .then(function (res) {
-        if(res){
+            GameType: data.GameType,
+            DateSort: data.DateSort,
+            PriceSort: data.PriceSort,
+            QualitySort: data.QualitySort,
+            RaritySort: data.RaritySort
+        })
+        .then(function(res) {
+            if (res) {
 
-            if(data.GameType=="570"){
-                store.dispatch({
-                    type: "DOTA_INVENTORY",
-                    dotaInventory: res.Data
-                })
-            }else if(data.GameType=="730"){
-                store.dispatch({
-                    type: "CSGO_INVENTORY",
-                    csgoInventory: res.Data
-                })
-            }else if(data.GameType=="578080"){
-                store.dispatch({
-                    type: "PUBG_INVENTORY",
-                    pubgInventory: res.Data
-                })
+                if (data.GameType == "570") {
+                    store.dispatch({
+                        type: "DOTA_INVENTORY",
+                        dotaInventory: res.Data
+                    })
+                } else if (data.GameType == "730") {
+                    store.dispatch({
+                        type: "CSGO_INVENTORY",
+                        csgoInventory: res.Data
+                    })
+                } else if (data.GameType == "578080") {
+                    store.dispatch({
+                        type: "PUBG_INVENTORY",
+                        pubgInventory: res.Data
+                    })
+                }
+
+                callback ? callback() : ""
             }
-
-            callback ? callback() : ""
-        }
-    })
-    .catch(function (error) {
-        Toast.fail('获取失败，请稍后重试！');
-        console.log('error', error);
-    });
+        })
+        .catch(function(error) {
+            Toast.fail('获取失败，请稍后重试！');
+            console.log('error', error);
+        });
 }
 
 //查询用户steam库存
 const getMySteamInventory = (data, callback) => {
     axios.post('/Ornament/GetUserInventory', {
-        GameCode: data.GameCode
-    })
-    .then(function (res) {
-        if(res){
+            GameCode: data.GameCode
+        })
+        .then(function(res) {
+            if (res) {
 
-            if(data.GameCode=="570"){
-                store.dispatch({
-                    type: "DOTA_STEAM_INVENTORY",
-                    dotaSteamInventory: res.Data
-                })
+                if (data.GameCode == "570") {
+                    store.dispatch({
+                        type: "DOTA_STEAM_INVENTORY",
+                        dotaSteamInventory: res.Data
+                    })
+                }
+
+                callback ? callback() : ""
             }
-
-            callback ? callback() : ""
-        }
-    })
-    .catch(function (error) {
-        Toast.fail('获取失败，请稍后重试！');
-        console.log('error', error);
-    });
+        })
+        .catch(function(error) {
+            Toast.fail('获取失败，请稍后重试！');
+            console.log('error', error);
+        });
 }
 
 //添加饰品到VIP库存
 const addToMyInventory = (data, callback) => {
     axios.post('/Offer/AddToUser', {
-        AppId: data.AppId,
-        Items: data.Items
-    })
-    .then(function (res) {
-        if(res){
-            callback ? callback() : ""
-        }
-    })
-    .catch(function (error) {
-        Toast.fail('添加失败，请稍后重试！');
-        console.log('error', error);
-    });
+            AppId: data.AppId,
+            Items: data.Items
+        })
+        .then(function(res) {
+            if (res) {
+                callback ? callback() : ""
+            }
+        })
+        .catch(function(error) {
+            Toast.fail('添加失败，请稍后重试！');
+            console.log('error', error);
+        });
 }
 
 //从VIP库存提取到STEAM
 const addToSteamInventory = (data, callback) => {
     axios.post('/Offer/AddToMine', {
-        AppId: data.AppId,
-        Items: data.Items
-    })
-    .then(function (res) {
-        if(res){
-            callback ? callback(res) : ""
-        }
-    })
-    .catch(function (error) {
-        Toast.fail('添加失败，请稍后重试！');
-        console.log('error', error);
-    });
+            AppId: data.AppId,
+            Items: data.Items
+        })
+        .then(function(res) {
+            if (res) {
+                callback ? callback(res) : ""
+            }
+        })
+        .catch(function(error) {
+            Toast.fail('添加失败，请稍后重试！');
+            console.log('error', error);
+        });
 }
 
-export { 
+export {
     InventoryReducer,
     getMyInventory,
     getMySteamInventory,

@@ -8,20 +8,17 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/matchForecast')
         },
 
-        getGuessList(id){
-            getOrnamentsGuessOfGameItem({
-                HandicapID: id,
-                PageIndex: 1
-            })
-            getTBeansGuessOfGameItem({
-                HandicapID: id,
-                PageIndex: 1
-            })
-            getVulgarTycoonGuessOfGameItem({
-                HandicapID: id,
-                PageIndex: 1
-            })
-        }
+        getOrnamentsGuessList(data,callback){
+            getOrnamentsGuessOfGameItem(data,callback)
+        },
+
+        getTBeansGuessList(data,callback){
+            getTBeansGuessOfGameItem(data,callback)
+        },
+
+        getTycoonGuessList(data,callback){
+            getVulgarTycoonGuessOfGameItem(data,callback)
+        },
     }
 }
 

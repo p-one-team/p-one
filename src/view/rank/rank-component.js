@@ -155,7 +155,7 @@ class RankComponentWrapper extends Component {
                             <div>{index+1}</div>
                         </div>
                     ))}
-                    {isMore ? <div styleName="loadMore" ref={(c) => { this.wrapper = c; }} onClick={this.loadMoreDataFn.bind(this, this)}>加载更多...</div> : <div styleName="loadMore">无更多</div>}
+                    {isMore ? <div styleName="loadMore" ref={(c) => { this.wrapper = c; }} onClick={this.loadMoreDataFn.bind(this, this)}>点击加载更多</div> : <div styleName="loadMore">无更多</div>}
                 </div>
             )
         }else{

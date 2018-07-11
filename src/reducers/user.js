@@ -9,7 +9,6 @@ import store from '../store'
 const initUserInfo = {
     userInfos: {},
     isForgetPsd: false,
-    isSign: false
 }
 
 const UserReducer = (state = initUserInfo, action) => {
@@ -20,9 +19,6 @@ const UserReducer = (state = initUserInfo, action) => {
 
         case 'USER_FORGET_PSD':
             return Object.assign({}, state, { isForgetPsd: action.isForgetPsd })
-
-        case 'SIGN_FLAG':
-            return Object.assign({}, state, { isSign: action.isSign })
 
         default:
             return state
@@ -50,11 +46,6 @@ const loginAction = (data, callback) => {
                 store.dispatch({
                     type: "USER_INFO",
                     userInfos: res.Data
-                })
-
-                store.dispatch({
-                    type: "SIGN_FLAG",
-                    isSign: res.Data.IsCheckIn
                 })
 
                 callback ? callback() : ""
@@ -122,11 +113,6 @@ const registerAction = (data, callback) => {
                     userInfos: res.Data
                 })
 
-                store.dispatch({
-                    type: "SIGN_FLAG",
-                    isSign: res.Data.IsCheckIn
-                })
-
                 callback ? callback() : ""
             }
         })
@@ -153,11 +139,6 @@ const resetPsdAction = (data, callback) => {
                     userInfos: res.Data
                 })
 
-                store.dispatch({
-                    type: "SIGN_FLAG",
-                    isSign: res.Data.IsCheckIn
-                })
-
                 callback ? callback() : ""
             }
         })
@@ -168,15 +149,10 @@ const resetPsdAction = (data, callback) => {
 }
 
 //签到
-const signIn = (callback) => {
+const signIn = (data,callback) => {
     axios.get('/User/CheckIn')
         .then(function(res) {
             if (res) {
-                store.dispatch({
-                    type: "SIGN_FLAG",
-                    isSign: true
-                })
-
                 Toast.success(res.Msg);
                 callback ? callback() : ""
             }
@@ -188,7 +164,7 @@ const signIn = (callback) => {
 }
 
 //刷新用户信息
-const refreshUserInfo = (callback) => {
+const refreshUserInfo = (data,callback) => {
     axios.get('/User/RefreshUserInfo')
         .then(function(res) {
             if (res) {
@@ -197,11 +173,6 @@ const refreshUserInfo = (callback) => {
                 store.dispatch({
                     type: "USER_INFO",
                     userInfos: res.Data
-                })
-
-                store.dispatch({
-                    type: "SIGN_FLAG",
-                    isSign: res.Data.IsCheckIn
                 })
 
                 callback ? callback() : ""

@@ -8,8 +8,8 @@ import { signIn, refreshUserInfo } from '../../reducers/user'
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
-        refreshUser() {
-            refreshUserInfo()
+        refreshUserInfo(data,callback) {
+            refreshUserInfo(data,callback)
         },
 
         goBack() {
@@ -46,8 +46,8 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/helpSuggest')
         },
 
-        signIn(callback) {
-            signIn(callback)
+        signIn(data,callback) {
+            signIn(data,callback)
         }
     }
 }
@@ -56,7 +56,6 @@ const mapDispatchToProps = (dispatch, props) => {
 const mapStateToProps = (state) => {
     return {
         userInfos: state.UserReducer.userInfos,
-        isSign: state.UserReducer.isSign
     }
 }
 
