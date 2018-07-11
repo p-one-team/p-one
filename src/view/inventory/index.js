@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import InventoryComponent from './inventory-component'
 import { getMyInventory,addToSteamInventory } from '../../reducers/inventory'
-import AlertWindow from '../../module/mo-alertWindow';
 import store from '../../store'
 import { publishBuyOrSale } from '../../reducers/shop'
 
@@ -30,12 +29,8 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/steamInventory')
         },
 
-        addVipToSteamInventory(data){
-            addToSteamInventory(data, (rs) => {
-                AlertWindow.Prompt(rs.Msg,()=>{
-                    return false
-                })
-            })
+        addVipToSteamInventory(data,callback){
+            addToSteamInventory(data,callback)
         }
     }
 }

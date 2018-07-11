@@ -120,6 +120,7 @@ const addToMyInventory = (data, callback) => {
         })
         .then(function(res) {
             if (res) {
+                Toast.success(res.Msg)
                 callback ? callback() : ""
             }
         })
@@ -137,6 +138,7 @@ const addToSteamInventory = (data, callback) => {
         })
         .then(function(res) {
             if (res) {
+                Toast.success(res.Msg)
                 callback ? callback(res) : ""
             }
         })

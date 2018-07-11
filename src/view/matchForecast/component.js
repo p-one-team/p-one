@@ -233,6 +233,7 @@ class MatchForecastComponent extends Component {
                         canChoose: false,
                         tbeanCount: 0
                     })
+                    this.props.refreshUserInfo()
                 })
             }else{
                 AlertWindow.Prompt("请输入预测的T豆数",()=>{return false})

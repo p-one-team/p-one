@@ -11,6 +11,10 @@ const initShopInfo = {
     paramAttributeValue: "",
     paramKeywords: "",
     paramPageIndex: 1,
+    publishAttributeId: 0,
+    publishAttributeValue: "",
+    publishKeywords: "",
+    publishPageIndex: 1,
     shopInfos: {},
     shopItem: {},
     saleRecordInfo: {},
@@ -18,14 +22,21 @@ const initShopInfo = {
     dealRecordInfo: {},
     myTransactionInfo: {},
     myTransactionHistory: [],
-    prodAttribute: {}
+    prodAttribute: {},
+    selectEnter: ""
 }
 
 const ShopReducer = (state = initShopInfo, action) => {
 
     switch (action.type) {
+        case "SELECT_ENTER":
+            return Object.assign({}, state, { selectEnter: action.selectEnter })
+
         case 'MALL_LIST_PARAM':
             return Object.assign({}, state, { paramAttributeId: action.paramAttributeId, paramAttributeValue: action.paramAttributeValue, paramKeywords: action.paramKeywords, paramPageIndex: action.paramPageIndex })
+
+        case 'MALL_LIST_PUBLISH':
+            return Object.assign({}, state, { publishAttributeId: action.publishAttributeId, publishAttributeValue: action.publishAttributeValue, publishKeywords: action.publishKeywords, publishPageIndex: action.publishPageIndex })
 
         case 'MALL_LIST':
             return Object.assign({}, state, { shopInfos: action.shopInfos })

@@ -27,6 +27,10 @@ const mapDispatchToProps = (dispatch, props) => {
 
         select() {
             getOrnamentAttributes({}, () => {
+                dispatch({
+                    type: "SELECT_ENTER",
+                    selectEnter: "publishBuy"
+                })
                 props.history.push("/shopSelect")
             })
         },
@@ -41,10 +45,10 @@ const mapStateToProps = (state) => {
     return {
         userInfos: state.UserReducer.userInfos,
         shopInfos: state.ShopReducer.shopInfos,
-        paramAttributeId: state.ShopReducer.paramAttributeId,
-        paramAttributeValue: state.ShopReducer.paramAttributeValue,
-        paramKeywords: state.ShopReducer.paramKeywords,
-        paramPageIndex: state.ShopReducer.paramPageIndex
+        publishAttributeId: state.ShopReducer.publishAttributeId,
+        publishAttributeValue: state.ShopReducer.publishAttributeValue,
+        publishKeywords: state.ShopReducer.publishKeywords,
+        publishPageIndex: state.ShopReducer.publishPageIndex
     }
 }
 

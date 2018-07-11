@@ -18,7 +18,7 @@ class BuyComponent extends Component {
             buyNumber: 0,
             totalPrice: 0,
 			value: '',
-			pageIndex: this.props.paramPageIndex,
+			pageIndex: this.props.publishPageIndex,
 			shopList: [],
 			isShopMore: false,
 			isLoadingMore: false
@@ -26,7 +26,7 @@ class BuyComponent extends Component {
 	}
 
 	componentWillMount(){
-		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue, this.props.paramKeywords, this.props.paramPageIndex,()=>{
+		this.props.getShopList(this.props.publishAttributeId, this.props.publishAttributeValue, this.props.publishKeywords, this.props.publishPageIndex,()=>{
 			this.setState({
 				shopList: this.props.shopInfos.Ornaments,
 				isShopMore: this.props.shopInfos.IsMore
@@ -74,7 +74,7 @@ class BuyComponent extends Component {
 			pageIndex: this.state.pageIndex + 1
 		})
 
-		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue, this.props.paramKeywords, this.state.pageIndex, ()=>{
+		this.props.getShopList(this.props.publishAttributeId, this.props.publishAttributeValue, this.props.publishKeywords, this.state.pageIndex, ()=>{
 			this.setState({
 				isLoadingMore: false,
 				shopList: this.state.shopList.concat(this.props.shopInfos.Ornaments),
@@ -207,14 +207,14 @@ class BuyComponent extends Component {
 
 	showGetMallList = () => {
 		store.dispatch({
-			type:"MALL_LIST_PARAM",
-			paramAttributeId: this.props.paramAttributeId,
-			paramAttributeValue: this.props.paramAttributeValue,
-			paramKeywords: this.state.value,
-			paramPageIndex: 1
+			type:"MALL_LIST_PUBLISH",
+			publishAttributeId: this.props.publishAttributeId,
+			publishAttributeValue: this.props.publishAttributeValue,
+			publishKeywords: this.state.value,
+			publishPageIndex: 1
 		})
 
-		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue, this.state.value, 1,()=>{
+		this.props.getShopList(this.props.publishAttributeId, this.props.publishAttributeValue, this.state.value, 1,()=>{
 			this.setState({
 				pageIndex: 1,
 				isLoadingMore: false,
@@ -226,14 +226,14 @@ class BuyComponent extends Component {
 
 	searchCancel = () => {
 		store.dispatch({
-			type:"MALL_LIST_PARAM",
-			paramAttributeId: this.props.paramAttributeId,
-			paramAttributeValue: this.props.paramAttributeValue,
-			paramKeywords: "",
-			paramPageIndex: 1
+			type:"MALL_LIST_PUBLISH",
+			publishAttributeId: this.props.publishAttributeId,
+			publishAttributeValue: this.props.publishAttributeValue,
+			publishKeywords: "",
+			publishPageIndex: 1
 		})
 
-		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue,"", 1,()=>{
+		this.props.getShopList(this.props.publishAttributeId, this.props.publishAttributeValue,"", 1,()=>{
 			this.setState({
 				pageIndex: 1,
 				value: "",

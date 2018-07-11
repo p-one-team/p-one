@@ -4,8 +4,9 @@ import { getMySteamInventory, addToMyInventory } from '../../reducers/inventory'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        addToInventory(data){
+        addToInventory(data,callback){
             addToMyInventory(data,()=>{
+                callback ? callback() : null
                 props.history.goBack()
             })
         },

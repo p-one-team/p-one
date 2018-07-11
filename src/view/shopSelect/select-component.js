@@ -25,9 +25,9 @@ class SelectComponent extends Component {
         const self = this
         if(list){
             return (<div className="list-item">
-                <span onClick={()=>self.props.chooseAttribute(attributeId,"")}>不限</span>
+                <span onClick={()=>self.props.chooseAttribute(this.props.selectEnter,attributeId,"")}>不限</span>
                 {list.map((item,index) => (
-                    <span key={index} onClick={()=>self.props.chooseAttribute(attributeId,item)}>{item}</span>
+                    <span key={index} onClick={()=>self.props.chooseAttribute(this.props.selectEnter,attributeId,item)}>{item}</span>
                 ))}
             </div>)
         }else{
