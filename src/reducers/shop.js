@@ -21,6 +21,8 @@ const initShopInfo = {
     buyRecordInfo: {},
     dealRecordInfo: {},
     myTransactionInfo: {},
+    myHistoryStart: "",
+    myHistoryEnd: "",
     myTransactionHistory: [],
     prodAttribute: {},
     selectEnter: ""
@@ -60,7 +62,7 @@ const ShopReducer = (state = initShopInfo, action) => {
             return Object.assign({}, state, { myTransactionInfo: action.myTransactionInfo })
 
         case 'MY_TRANSACTION_HISTORY':
-            return Object.assign({}, state, { myTransactionHistory: action.myTransactionHistory })
+            return Object.assign({}, state, { myHistoryStart: action.myHistoryStart, myHistoryEnd: action.myHistoryEnd, myTransactionHistory: action.myTransactionHistory })
 
 
         default:
@@ -243,6 +245,8 @@ const queryMyTransHistory = (data, callback) => {
             if (res) {
                 store.dispatch({
                     type: "MY_TRANSACTION_HISTORY",
+                    myHistoryStart: data.TransactionStartDate,
+                    myHistoryEnd: data.TransactionEndDate,
                     myTransactionHistory: res.Data.TransactonRecords
                 })
 
@@ -265,11 +269,29 @@ const publishBuyOrSale = (data, callback) => {
         })
         .then(function(res) {
             if (res) {
-                if(data.PublishType==1){
+                if (data.PublishType == 1) {
                     Toast.success("发布出售成功！")
-                }else{
+                } else {
                     Toast.success("发布求购成功！")
                 }
+
+                callback ? callback() : ""
+            }
+        })
+        .catch(function(error) {
+            Toast.fail('请求失败，请稍后重试！');
+            console.log('error', error);
+        });
+}
+
+//商城交易
+const mallTransaction = (data, callback) => {
+    axios.post('/Game/MallTransaction', {
+            PublishRecordID: data.PublishRecordID,
+            TransactionCount: data.TransactionCount
+        })
+        .then(function(res) {
+            if (res) {
 
                 callback ? callback() : ""
             }
@@ -290,5 +312,6 @@ export {
     getMyTransaction,
     queryMyTransHistory,
     getOrnamentAttributes,
-    publishBuyOrSale
+    publishBuyOrSale,
+    mallTransaction
 }

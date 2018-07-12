@@ -26,7 +26,9 @@ class matchDetail extends Component {
             tbeansGuessList: [],
             isTbeansMore: false,
             tycoonGuessList: [],
-            isTycoonMore: false
+            isTycoonMore: false,
+            isUserGuessShow: false,
+            myGuessList: []
         }
     }
 
@@ -40,6 +42,81 @@ class matchDetail extends Component {
                 chosenTab: 1,
                 ornamentsGuessList: this.props.gameItemOrnamentsGuessInfo.OrnamentsGuessOfGameItems,
                 isOrnamentsMore: this.props.gameItemOrnamentsGuessInfo.IsMore,
+            })
+        })
+
+        this.props.getUserGuessList({
+            HandicapID: this.props.gameItemId
+        },()=>{
+            if(this.props.userGuessList&&this.props.userGuessList.length>0){
+                this.setState({
+                    isUserGuessShow: true,
+                    myGuessList: this.props.userGuessList
+                })
+            }else{
+                this.setState({
+                    isUserGuessShow: false,
+                    myGuessList: []
+                })
+            }
+        })
+    }
+
+    userGuess = () => (<div styleName="guessPart">
+        <p styleName="title"><span></span><label>我的预测</label></p>
+        {this.state.myGuessList.map((item,index) => (
+            <div key={index} styleName="guess-item">
+                <p>我猜：{item.GuessTeam}<label>{item.GuessAmount}</label></p>
+                <div>
+                    <span>预计可得 {item.GuessExpectedAmount}</span>
+                    <i></i>
+                    <label onClick={()=>this.changeGuess(item.GuessID)}>更换队伍</label>
+                    <label onClick={()=>this.cancelGuess(item.GuessID)}>取消</label>
+                </div>
+            </div>
+        ))}
+    </div>)
+
+    cancelGuess = (id) => {
+        this.props.cancelMyGuess({
+            GuessID: id
+        },()=>{
+            this.props.getUserGuessList({
+                HandicapID: this.props.gameItemId
+            },()=>{
+                if(this.props.userGuessList&&this.props.userGuessList.length>0){
+                    this.setState({
+                        isUserGuessShow: true,
+                        myGuessList: this.props.userGuessList
+                    })
+                }else{
+                    this.setState({
+                        isUserGuessShow: false,
+                        myGuessList: []
+                    })
+                }
+            })
+        })
+    }
+
+    changeGuess = (id) => {
+        this.props.changeMyGuess({
+            GuessID: id
+        },()=>{
+            this.props.getUserGuessList({
+                HandicapID: this.props.gameItemId
+            },()=>{
+                if(this.props.userGuessList&&this.props.userGuessList.length>0){
+                    this.setState({
+                        isUserGuessShow: true,
+                        myGuessList: this.props.userGuessList
+                    })
+                }else{
+                    this.setState({
+                        isUserGuessShow: false,
+                        myGuessList: []
+                    })
+                }
             })
         })
     }
@@ -64,7 +141,7 @@ class matchDetail extends Component {
                             <Accordion.Panel header={this.userPart(item,index+1)} className="pad">
                                 <div className="ornament_list">
                                     {item.Ornaments.map((_item,_index)=>(
-                                        <img key={_index} src={_item.IconUrl.indexOf("https")>=0 ? _item.IconUrl : "https://steamcommunity-a.akamaihd.net/economy/image/"+_item.IconUrl} alt=""/>
+                                        <img key={_index} src={_item.IconUrl} alt=""/>
                                     ))}
                                 </div>
                             </Accordion.Panel>
@@ -248,6 +325,8 @@ class matchDetail extends Component {
                     </div>
                     {gameItemInfos.IsForecast ? (<div styleName="forecastCanClick" onClick={()=>this.props.goForecast()}>预测</div>) : (<div styleName="forecast">预测</div>)}
                 </div>
+
+                {this.state.isUserGuessShow ? this.userGuess() : null}
 
                 <div styleName="rankList">
                     {this.TabExample()}

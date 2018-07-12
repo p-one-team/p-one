@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './item.less'
 import { NavBar, Icon,Tabs } from 'antd-mobile';
+import AlertWindow from '../../module/mo-alertWindow'
 
 
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
@@ -23,7 +24,11 @@ class ShopItemDetailComponent extends Component {
             buyList: [],
             isBuyMore: false,
             dealList: [],
-            isDealMore: false
+            isDealMore: false,
+            isTransactionAlertShow: false,
+            transactionInfo: {},
+            transactionCount: 0,
+            totalPrice: 0
         }
     }
 
@@ -119,22 +124,95 @@ class ShopItemDetailComponent extends Component {
         }
     }
 
-    publishSale = (count,price) => {
-        this.props.publishBuySale({
-            PublishType: 1,//出售
-            MarketHashName: this.props.shopItem.MarketHashName,
-            OrnamentPrice: price,
-            OrnamentCount: count
+    showTransactionAlert = (type,id,price,count) => {
+        this.props.refreshUserInfo('',()=>{
+            this.setState({
+                isTransactionAlertShow: true,
+                transactionInfo: {
+                    type: type,
+                    id: id,
+                    price: price,
+                    count: count
+                },
+                transactionCount: 1,
+                totalPrice: price
+            })
         })
     }
 
-    publishBuy = (count,price) => {
-        this.props.publishBuySale({
-            PublishType: 2,//求购
-            MarketHashName: this.props.shopItem.MarketHashName,
-            OrnamentPrice: price,
-            OrnamentCount: count
+    closeTransactionAlert = () => {
+        this.setState({
+            isTransactionAlertShow: false,
+            transactionInfo: {}
         })
+    }
+
+    onChange = (event) => {
+        this.setState({
+            transactionCount: event.target.value,
+            totalPrice: this.state.transactionInfo.price * event.target.value
+        })
+    }
+
+    transactionAlert = () => (<div styleName="transactionAlert">
+        { this.state.transactionInfo.type == "sale" 
+        ? (<div styleName="inner">
+            <div styleName="close">
+                <span className="iconfont icon-guanbi" onClick={()=>this.closeTransactionAlert()}></span>
+            </div>
+            <div styleName="price">
+                <span>物品单价</span>
+                <label>{this.state.transactionInfo.price} T豆</label>
+            </div>
+            <div styleName="count">
+                <span>出售件数(库存{this.state.transactionInfo.count}件)</span>
+                <input type="tel" value={this.state.transactionCount} onChange={this.onChange.bind(this)}/>
+            </div>
+            <div styleName="total">
+                <span>订单总额</span>
+                <label>{this.state.totalPrice} T豆</label>
+            </div>
+            <div styleName="btn" onClick={()=>this.saleBuyFn()}>出售</div>
+        </div>)
+
+        : (<div styleName="inner">
+            <div styleName="close">
+                <span className="iconfont icon-guanbi" onClick={()=>this.closeTransactionAlert()}></span>
+            </div>
+            <div styleName="price">
+                <span>物品单价</span>
+                <label>{this.state.transactionInfo.price} T豆</label>
+            </div>
+            <div styleName="count">
+                <span>购买件数(库存{this.state.transactionInfo.count}件)</span>
+                <input type="tel" value={this.state.transactionCount} onChange={this.onChange.bind(this)}/>
+            </div>
+            <div styleName="tbean">
+                <span>T豆余额</span>
+                <label>{this.props.userInfos.TBeansCount} T豆</label>
+            </div>
+            <div styleName="total">
+                <span>订单总额</span>
+                <label>{this.state.totalPrice} T豆</label>
+            </div>
+            <div styleName="btn" onClick={()=>this.saleBuyFn()}>购买</div>
+        </div>)}
+    </div>)
+    
+
+    saleBuyFn = () => {
+        if(parseInt(this.state.transactionCount)>parseInt(this.state.transactionInfo.count)){
+            AlertWindow.Prompt("您输入的交易数量超过库存",()=>{
+                return false
+            })
+        }else{
+            this.props.mallTransaction({
+                PublishRecordID: this.state.transactionInfo.id,
+                TransactionCount: parseInt(this.state.transactionCount)
+            },()=>{
+                this.changeTab(this.state.chosenTab)
+            })
+        }
     }
 
     tabContent(tPrice, price, list, isMore){
@@ -157,7 +235,7 @@ class ShopItemDetailComponent extends Component {
                                 <div>{item.OrnamentCount}</div>
                                 <div>
                                     <span>{item.OrnamentPrice}</span>
-                                    <label onClick={()=>this.publishBuy(item.OrnamentCount,item.OrnamentPrice)}>购买</label>
+                                    <label onClick={()=>this.showTransactionAlert("buy",item.PublishID,item.OrnamentPrice,item.OrnamentCount)}>购买</label>
                                 </div>
                             </div>
                         ))}
@@ -188,7 +266,7 @@ class ShopItemDetailComponent extends Component {
                                 <div>{item.OrnamentCount}</div>
                                 <div>
                                     <span>{item.OrnamentPrice}</span>
-                                    <label onClick={()=>this.publishSale(item.OrnamentCount,item.OrnamentPrice)}>出售</label>
+                                    <label onClick={()=>this.showTransactionAlert("sale",item.PublishID,item.OrnamentPrice,item.OrnamentCount)}>出售</label>
                                 </div>
                             </div>
                         ))}
@@ -274,6 +352,9 @@ class ShopItemDetailComponent extends Component {
                         </Tabs>
                     </div>
                 </div>
+
+                {this.state.isTransactionAlertShow ? this.transactionAlert() : null}
+                
             </div>
         )
     }

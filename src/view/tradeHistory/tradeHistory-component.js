@@ -12,8 +12,8 @@ class TradeHistoryComponent extends Component {
         super(props)
 
         this.state = {
-            startDate: "",
-            endDate: ""
+            startDate: this.props.myHistoryStart,
+            endDate: this.props.myHistoryEnd
         }
     }
 
@@ -23,9 +23,8 @@ class TradeHistoryComponent extends Component {
                 <div styleName="title">
                     <label>时间</label>
                     <label>操作</label>
-                    <label>饰品</label>
-                    <label>件数</label>
-                    <label>价格</label>
+                    <label>数量</label>
+                    <label>T豆</label>
                     <label>交易状态</label>
                 </div>
                 <ul>
@@ -33,7 +32,6 @@ class TradeHistoryComponent extends Component {
                         <li key={index}>
                             <label>{item.TransactionDate}</label>
                             <label>{item.TransactionContent}</label>
-                            <label>{item.prodName}</label>
                             <label>{item.TransactionCount}</label>
                             <label>{item.TransactionAmount}</label>
                             <label>{item.TransactionStatus}</label>

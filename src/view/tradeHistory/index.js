@@ -21,6 +21,8 @@ const mapDispatchToProps = (dispatch, props) => {
 const mapStateToProps = (state) => {
     return {
         myTransactionInfo: state.ShopReducer.myTransactionInfo,
+        myHistoryStart: state.ShopReducer.myHistoryStart,
+        myHistoryEnd: state.ShopReducer.myHistoryEnd,
         myTransactionHistory: state.ShopReducer.myTransactionHistory
     }
 }

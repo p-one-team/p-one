@@ -1,9 +1,21 @@
 import matchDetailComponent from './match-detail-component'
 import { connect } from 'react-redux'
-import { getOrnamentsGuessOfGameItem,getTBeansGuessOfGameItem,getVulgarTycoonGuessOfGameItem } from '../../reducers/match'
+import { getUserGuessList,cancelMyGuess,changeMyGuess,getOrnamentsGuessOfGameItem,getTBeansGuessOfGameItem,getVulgarTycoonGuessOfGameItem } from '../../reducers/match'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+        getUserGuessList(data,callback){
+            getUserGuessList(data,callback)            
+        },
+
+        cancelMyGuess(data,callback){
+            cancelMyGuess(data,callback)
+        },
+
+        changeMyGuess(data,callback){
+            changeMyGuess(data,callback)
+        },
+
         goForecast() {
             props.history.push('/matchForecast')
         },
@@ -24,6 +36,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
+        userGuessList: state.MatchReducer.userGuessList,
         gameItemId: state.MatchReducer.gameItemId,
         gameItemInfos: state.MatchReducer.gameItemInfos,
         gameItemOrnamentsGuessInfo: state.MatchReducer.gameItemOrnamentsGuessInfo,

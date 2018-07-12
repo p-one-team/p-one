@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import ShopItemDetailComponent from './item-component.js'
-import { getSalePublishRecords, getBuyPublishRecords, getTransactionRecords, publishBuyOrSale } from '../../reducers/shop'
+import { getSalePublishRecords, getBuyPublishRecords, getTransactionRecords, mallTransaction } from '../../reducers/shop'
+import { refreshUserInfo } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -20,14 +21,19 @@ const mapDispatchToProps = (dispatch, props) => {
             getTransactionRecords(data,callback)
         },
 
-        publishBuySale(data){
-            publishBuyOrSale(data)
-        }
+        mallTransaction(data,callback){
+            mallTransaction(data,callback)
+        },
+
+        refreshUserInfo(data,callback) {
+            refreshUserInfo(data,callback)
+        },
     }
 }
 
 const mapStateToProps = (state) => {
     return {
+        userInfos: state.UserReducer.userInfos,
         shopItem: state.ShopReducer.shopItem,
         saleRecordInfo: state.ShopReducer.saleRecordInfo,
         buyRecordInfo: state.ShopReducer.buyRecordInfo,
