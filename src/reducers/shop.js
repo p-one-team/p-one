@@ -292,7 +292,7 @@ const mallTransaction = (data, callback) => {
         })
         .then(function(res) {
             if (res) {
-
+                Toast.success(res.Msg)
                 callback ? callback() : ""
             }
         })

@@ -37,7 +37,7 @@ axios.interceptors.response.use(function (res) {
 
 const _baseURL = "http://112.33.11.107:61680/api"
 
-window.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9tb2JpbGVwaG9uZSI6IjEzMzEyMzQ1Njc4IiwiZXhwIjoxNTMxOTY0NDI3LCJpc3MiOiJndGRpYW5qaW5nLmNvbSIsImF1ZCI6Imd0ZGlhbmppbmcuY29tIn0.2Q1w9OaUbX53e8Azxyp3ioK6ntgo5E7uKFETpkN-k9k"
+// window.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9tb2JpbGVwaG9uZSI6IjEzMzEyMzQ1Njc4IiwiZXhwIjoxNTMxOTc5NjAxLCJpc3MiOiJndGRpYW5qaW5nLmNvbSIsImF1ZCI6Imd0ZGlhbmppbmcuY29tIn0.sa6ucIuIHS3ZMwuQbdFL_DAkg_Er62HEBD0bAKTDE4w"
 
 export default {
     post(url, params) {
