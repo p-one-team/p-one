@@ -28,7 +28,8 @@ class matchDetail extends Component {
             tycoonGuessList: [],
             isTycoonMore: false,
             isUserGuessShow: false,
-            myGuessList: []
+            myGuessList: [],
+            isAddForecast: false
         }
     }
 
@@ -51,12 +52,14 @@ class matchDetail extends Component {
             if(this.props.userGuessList&&this.props.userGuessList.length>0){
                 this.setState({
                     isUserGuessShow: true,
-                    myGuessList: this.props.userGuessList
+                    myGuessList: this.props.userGuessList,
+                    isAddForecast: true
                 })
             }else{
                 this.setState({
                     isUserGuessShow: false,
-                    myGuessList: []
+                    myGuessList: [],
+                    isAddForecast: false
                 })
             }
         })
@@ -87,15 +90,19 @@ class matchDetail extends Component {
                 if(this.props.userGuessList&&this.props.userGuessList.length>0){
                     this.setState({
                         isUserGuessShow: true,
-                        myGuessList: this.props.userGuessList
+                        myGuessList: this.props.userGuessList,
+                        isAddForecast: true
                     })
                 }else{
                     this.setState({
                         isUserGuessShow: false,
-                        myGuessList: []
+                        myGuessList: [],
+                        isAddForecast: false
                     })
                 }
             })
+
+            this.changeTab(this.state.chosenTab)
         })
     }
 
@@ -109,15 +116,19 @@ class matchDetail extends Component {
                 if(this.props.userGuessList&&this.props.userGuessList.length>0){
                     this.setState({
                         isUserGuessShow: true,
-                        myGuessList: this.props.userGuessList
+                        myGuessList: this.props.userGuessList,
+                        isAddForecast: true
                     })
                 }else{
                     this.setState({
                         isUserGuessShow: false,
-                        myGuessList: []
+                        myGuessList: [],
+                        isAddForecast: false
                     })
                 }
             })
+
+            this.changeTab(this.state.chosenTab)
         })
     }
 
@@ -292,7 +303,7 @@ class matchDetail extends Component {
                     <div styleName="des">
                         <p>{gameItemInfos.GameItemTitle}</p>
                         <p>猜输赢</p>
-                        <p>{gameItemInfos.IsForecast?"进行中":"已结算"}</p>
+                        <p>{gameItemInfos.IsForecast ? gameItemInfos.GameItemDate : "进行中"}</p>
                     </div>
                     <div styleName="teamR">
                         <img src={gameItemInfos.GameTeam.RightTeamImage} alt="" />
@@ -323,7 +334,7 @@ class matchDetail extends Component {
                         <label></label>
                         <span style={{ width: parseFloat(gameItemInfos.GameTeam.RightTeamRate)+"%" }}></span>
                     </div>
-                    {gameItemInfos.IsForecast ? (<div styleName="forecastCanClick" onClick={()=>this.props.goForecast()}>预测</div>) : (<div styleName="forecast">预测</div>)}
+                    {gameItemInfos.IsForecast ? (<div styleName="forecastCanClick" onClick={()=>this.props.goForecast()}>{this.state.isAddForecast?"加注":"预测"}</div>) : (<div styleName="forecast">{this.state.isAddForecast?"加注":"预测"}</div>)}
                 </div>
 
                 {this.state.isUserGuessShow ? this.userGuess() : null}
