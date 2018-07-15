@@ -17,17 +17,17 @@ class TabBarExample extends React.Component {
 
         this.state = {
             gameTypes: [
-                {GameCode: "570", GameName: "Dota2"},
-                {GameCode: "730", GameName: "CSGO"},
-                {GameCode: "578080", GameName: "PUBG"},
-                {GameCode: "Sports", GameName: "体育"}
+                { GameCode: "570", GameName: "Dota2" },
+                { GameCode: "730", GameName: "CSGO" },
+                { GameCode: "lol", GameName: "LOL" },
+                { GameCode: "Sports", GameName: "体育" }
             ],
             hidden: false,
             gridData: [
-                {text: '我的库存'},
-                {text: '收菜排行'},
-                {text: '我的预测'},
-                {text: '商城'}
+                { text: '我的库存' },
+                { text: '收菜排行' },
+                { text: '我的预测' },
+                { text: '商城' }
             ]
         }
     }
@@ -43,11 +43,11 @@ class TabBarExample extends React.Component {
                 mode="dark"
             >赛事预测</NavBar>
             <div styleName="topMenu">
-                <Grid 
-                    data={this.state.gridData} 
+                <Grid
+                    data={this.state.gridData}
                     hasLine={false}
-                    activeStyle={{backgroundColor:"#2c2c32","color":"#fff",fontSize:"3.2vw"}}
-                    onClick={(_el, index) => { this.props.goPage(_el, index) }} 
+                    activeStyle={{ backgroundColor: "#2c2c32", "color": "#fff", fontSize: "3.2vw" }}
+                    onClick={(_el, index) => { this.props.goPage(_el, index) }}
                 />
             </div>
             <Tabs tabs={_gameTypes}
@@ -61,7 +61,7 @@ class TabBarExample extends React.Component {
                     <MatchList detailList={this.props.gameInfos_730} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <MatchList detailList={this.props.gameInfos_578080} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
+                    <MatchList detailList={this.props.gameInfos_lol} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
                     <MatchList detailList={this.props.gameInfos_Sports} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
@@ -75,7 +75,7 @@ class TabBarExample extends React.Component {
         <NavBar
             mode="dark"
         >推单</NavBar>
-        <p style={{marginTop:50}}>推单部分</p>
+        <p style={{ marginTop: 50 }}>推单部分</p>
     </div>);
 
     render() {

@@ -21,7 +21,7 @@ const mapStateToProps = (state) => {
     return {
         gameInfos_570: state.MatchReducer.gameInfos_570,
         gameInfos_730: state.MatchReducer.gameInfos_730,
-        gameInfos_578080: state.MatchReducer.gameInfos_578080,
+        gameInfos_lol: state.MatchReducer.gameInfos_lol,
         gameInfos_Sports: state.MatchReducer.gameInfos_Sports,
 
         gameItems: state.MatchReducer.gameItems,

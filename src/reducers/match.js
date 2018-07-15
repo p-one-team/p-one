@@ -9,7 +9,7 @@ const initMatchInfo = {
     // gameTypes: [],
     gameInfos_570: [],
     gameInfos_730: [],
-    gameInfos_578080: [],
+    gameInfos_lol: [],
     gameInfos_Sports: [],
     gameItems: {},
     gameItemId: "",
@@ -29,8 +29,8 @@ const MatchReducer = (state = initMatchInfo, action) => {
             return Object.assign({}, state, { gameInfos_570: action.gameInfos_570 })
         case 'GAME_INFO_730':
             return Object.assign({}, state, { gameInfos_730: action.gameInfos_730 })
-        case 'GAME_INFO_578080':
-            return Object.assign({}, state, { gameInfos_578080: action.gameInfos_578080 })
+        case 'GAME_INFO_lol':
+            return Object.assign({}, state, { gameInfos_lol: action.gameInfos_lol })
         case 'GAME_INFO_Sports':
             return Object.assign({}, state, { gameInfos_Sports: action.gameInfos_Sports })
 
@@ -77,12 +77,12 @@ const MatchReducer = (state = initMatchInfo, action) => {
 //     });
 // }
 
-//赛事列表：dota csgo pubg 体育
+//赛事列表：dota csgo lol 体育
 const getGameInfos = (type) => {
     axios.post("/Game/GetGameInfos", {
-            GameType: type
-        })
-        .then(function(res) {
+        GameType: type
+    })
+        .then(function (res) {
             if (res) {
                 switch (type) {
                     case "570":
@@ -97,10 +97,10 @@ const getGameInfos = (type) => {
                             gameInfos_730: res.Data.GameInfos
                         })
                         break;
-                    case "578080":
+                    case "lol":
                         store.dispatch({
-                            type: 'GAME_INFO_578080',
-                            gameInfos_578080: res.Data.GameInfos
+                            type: 'GAME_INFO_lol',
+                            gameInfos_lol: res.Data.GameInfos
                         })
                         break;
                     case "Sports":
@@ -114,7 +114,7 @@ const getGameInfos = (type) => {
                 }
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('获取失败，请稍后重试！');
             console.log('error', error);
         });
@@ -123,9 +123,9 @@ const getGameInfos = (type) => {
 // 主赛事的预测列表
 const getGameItems = (id) => {
     axios.post("/Game/GetGameItems", {
-            AgendaId: id
-        })
-        .then(function(res) {
+        AgendaId: id
+    })
+        .then(function (res) {
             if (res) {
                 store.dispatch({
                     type: 'GAME_ITEM',
@@ -136,7 +136,7 @@ const getGameItems = (id) => {
                 })
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('获取失败，请稍后重试！');
             console.log('error', error);
         });
@@ -145,9 +145,9 @@ const getGameItems = (id) => {
 //赛事预测详情
 const getGameItemInfo = (id, callback) => {
     axios.post("/Game/GetGameItemInfo", {
-            HandicapID: id
-        })
-        .then(function(res) {
+        HandicapID: id
+    })
+        .then(function (res) {
             if (res) {
                 store.dispatch({
                     type: 'GAME_ITEM_INFO',
@@ -157,7 +157,7 @@ const getGameItemInfo = (id, callback) => {
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('获取失败，请稍后重试！');
             console.log('error', error);
         });
@@ -166,11 +166,11 @@ const getGameItemInfo = (id, callback) => {
 //饰品竞猜列表
 const getOrnamentsGuessOfGameItem = (data, callback) => {
     axios.post("/Game/GetOrnamentsGuessOfGameItem", {
-            HandicapID: data.HandicapID,
-            PageIndex: data.PageIndex,
-            PageSize: 20
-        })
-        .then(function(res) {
+        HandicapID: data.HandicapID,
+        PageIndex: data.PageIndex,
+        PageSize: 20
+    })
+        .then(function (res) {
             if (res) {
                 store.dispatch({
                     type: 'GAME_ITEM_ORNAMENT_GUESS_INFO',
@@ -180,7 +180,7 @@ const getOrnamentsGuessOfGameItem = (data, callback) => {
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('获取失败，请稍后重试！');
             console.log('error', error);
         });
@@ -189,11 +189,11 @@ const getOrnamentsGuessOfGameItem = (data, callback) => {
 //T豆竞猜列表
 const getTBeansGuessOfGameItem = (data, callback) => {
     axios.post("/Game/GetTBeasGuessOfGameItem", {
-            HandicapID: data.HandicapID,
-            PageIndex: data.PageIndex,
-            PageSize: 20
-        })
-        .then(function(res) {
+        HandicapID: data.HandicapID,
+        PageIndex: data.PageIndex,
+        PageSize: 20
+    })
+        .then(function (res) {
             if (res) {
                 store.dispatch({
                     type: 'GAME_ITEM_TBEANS_GUESS_INFO',
@@ -203,7 +203,7 @@ const getTBeansGuessOfGameItem = (data, callback) => {
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('获取失败，请稍后重试！');
             console.log('error', error);
         });
@@ -212,11 +212,11 @@ const getTBeansGuessOfGameItem = (data, callback) => {
 //土豪榜列表
 const getVulgarTycoonGuessOfGameItem = (data, callback) => {
     axios.post("/Game/GetVulgarTycoonGuessOfGameItem", {
-            HandicapID: data.HandicapID,
-            PageIndex: data.PageIndex,
-            PageSize: 20
-        })
-        .then(function(res) {
+        HandicapID: data.HandicapID,
+        PageIndex: data.PageIndex,
+        PageSize: 20
+    })
+        .then(function (res) {
             if (res) {
                 store.dispatch({
                     type: 'GAME_ITEM_TYCOON_GUESS_INFO',
@@ -226,7 +226,7 @@ const getVulgarTycoonGuessOfGameItem = (data, callback) => {
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('获取失败，请稍后重试！');
             console.log('error', error);
         });
@@ -235,19 +235,19 @@ const getVulgarTycoonGuessOfGameItem = (data, callback) => {
 // t豆预测
 const useTBeanForecast = (data, callback) => {
     axios.post("/Game/GuessTBeans", {
-            TBeans: data.TBeans,
-            HandicapID: data.HandicapID,
-            SelectedEdge: data.SelectedEdge,
-            GameTeamID: data.GameTeamID,
-        })
-        .then(function(res) {
+        TBeans: data.TBeans,
+        HandicapID: data.HandicapID,
+        SelectedEdge: data.SelectedEdge,
+        GameTeamID: data.GameTeamID,
+    })
+        .then(function (res) {
             if (res) {
                 Toast.success(res.Msg)
 
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('请求失败，请稍后重试！');
             console.log('error', error);
         });
@@ -256,19 +256,19 @@ const useTBeanForecast = (data, callback) => {
 // 饰品预测
 const useOrnamentForecast = (data, callback) => {
     axios.post("/Game/GuessOrnaments", {
-            Ornaments: data.Ornaments,
-            HandicapID: data.HandicapID,
-            SelectedEdge: data.SelectedEdge,
-            GameTeamID: data.GameTeamID,
-        })
-        .then(function(res) {
+        Ornaments: data.Ornaments,
+        HandicapID: data.HandicapID,
+        SelectedEdge: data.SelectedEdge,
+        GameTeamID: data.GameTeamID,
+    })
+        .then(function (res) {
             if (res) {
                 Toast.success(res.Msg)
 
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('请求失败，请稍后重试！');
             console.log('error', error);
         });
@@ -277,9 +277,9 @@ const useOrnamentForecast = (data, callback) => {
 //赛事-我的预测列表
 const getUserGuessList = (data, callback) => {
     axios.post("/Game/MyGuessOfGameItem", {
-            HandicapID: data.HandicapID,
-        })
-        .then(function(res) {
+        HandicapID: data.HandicapID,
+    })
+        .then(function (res) {
             if (res) {
                 store.dispatch({
                     type: 'USER_GUESS_LIST',
@@ -289,7 +289,7 @@ const getUserGuessList = (data, callback) => {
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('请求失败，请稍后重试！');
             console.log('error', error);
         });
@@ -298,16 +298,16 @@ const getUserGuessList = (data, callback) => {
 //取消投注
 const cancelMyGuess = (data, callback) => {
     axios.post("/Game/CancelMyGuess", {
-            GuessID: data.GuessID,
-        })
-        .then(function(res) {
+        GuessID: data.GuessID,
+    })
+        .then(function (res) {
             if (res) {
                 Toast.success(res.Msg)
 
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('请求失败，请稍后重试！');
             console.log('error', error);
         });
@@ -316,16 +316,16 @@ const cancelMyGuess = (data, callback) => {
 //换边
 const changeMyGuess = (data, callback) => {
     axios.post("/Game/ChangingMyGuess", {
-            GuessID: data.GuessID,
-        })
-        .then(function(res) {
+        GuessID: data.GuessID,
+    })
+        .then(function (res) {
             if (res) {
                 Toast.success(res.Msg)
 
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('请求失败，请稍后重试！');
             console.log('error', error);
         });

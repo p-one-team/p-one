@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './inventory.less'
-import { Tabs, NavBar, Icon,  } from 'antd-mobile';
+import { Tabs, NavBar, Icon, } from 'antd-mobile';
 import InventoryItem from '../../layout/inventory-item'
 import store from '../../store'
 import AlertWindow from '../../module/mo-alertWindow';
@@ -32,10 +32,10 @@ class InventoryComponent extends Component {
             saleUnitPrice: 0,
             saleNumber: 0,
             tabs: [
-                { title: 'Dota2', sub: '1' ,type: "570"},
+                { title: 'Dota2', sub: '1', type: "570" },
                 // { title: 'CS:GO', sub: '2' ,type: "730"},
-                // { title: 'PUBG', sub: '3' ,type: "578080"},
-                { title: 'G钻/T豆', sub: '4',type: "tbean" }
+                // { title: 'LOL', sub: '3' ,type: "lol"},
+                { title: 'G钻/T豆', sub: '4', type: "tbean" }
             ],
             dotaSort: {
                 DateSort: 0,
@@ -60,11 +60,11 @@ class InventoryComponent extends Component {
     }
 
     changeBtnPart = () => {
-        if(this.props.dotaChosenVipInventory.length>0){
+        if (this.props.dotaChosenVipInventory.length > 0) {
             this.setState({
                 isDotaCanSale: true
             })
-        }else{
+        } else {
             this.setState({
                 isDotaCanSale: false
             })
@@ -72,107 +72,107 @@ class InventoryComponent extends Component {
     }
 
     changeDotaSort = (type) => {
-        if(type==1){
+        if (type == 1) {
             this.setState({
                 dotaSort: {
-                    DateSort: this.state.dotaSort.DateSort==0?1:0,
+                    DateSort: this.state.dotaSort.DateSort == 0 ? 1 : 0,
                     PriceSort: 0,
                     QualitySort: 0,
                     RaritySort: 0
                 }
-            },()=>{
+            }, () => {
                 this.updateInventory("570")
             })
-        }else if(type==2){
+        } else if (type == 2) {
             this.setState({
                 dotaSort: {
                     DateSort: 0,
-                    PriceSort: this.state.dotaSort.PriceSort==0?1:0,
+                    PriceSort: this.state.dotaSort.PriceSort == 0 ? 1 : 0,
                     QualitySort: 0,
                     RaritySort: 0
                 }
-            },()=>{
+            }, () => {
                 this.updateInventory("570")
             })
-        }else if(type==3){
+        } else if (type == 3) {
             this.setState({
                 dotaSort: {
                     DateSort: 0,
                     PriceSort: 0,
-                    QualitySort: this.state.dotaSort.QualitySort==0?1:0,
+                    QualitySort: this.state.dotaSort.QualitySort == 0 ? 1 : 0,
                     RaritySort: 0
                 }
-            },()=>{
+            }, () => {
                 this.updateInventory("570")
             })
-        }else if(type==4){
+        } else if (type == 4) {
             this.setState({
                 dotaSort: {
                     DateSort: 0,
                     PriceSort: 0,
                     QualitySort: 0,
-                    RaritySort: this.state.dotaSort.RaritySort==0?1:0
+                    RaritySort: this.state.dotaSort.RaritySort == 0 ? 1 : 0
                 }
-            },()=>{
+            }, () => {
                 this.updateInventory("570")
             })
         }
     }
 
     changeCsgoSort = (type) => {
-        if(type==1){
+        if (type == 1) {
             this.setState({
                 csgoSort: {
-                    DateSort: this.state.csgoSort.DateSort==0?1:0,
+                    DateSort: this.state.csgoSort.DateSort == 0 ? 1 : 0,
                     PriceSort: 0,
                     QualitySort: 0,
                     RaritySort: 0
                 }
-            },()=>{
+            }, () => {
                 this.updateInventory("730")
             })
-        }else if(type==2){
+        } else if (type == 2) {
             this.setState({
                 csgoSort: {
                     DateSort: 0,
-                    PriceSort: this.state.csgoSort.PriceSort==0?1:0,
+                    PriceSort: this.state.csgoSort.PriceSort == 0 ? 1 : 0,
                     QualitySort: 0,
                     RaritySort: 0
                 }
-            },()=>{
+            }, () => {
                 this.updateInventory("730")
             })
         }
     }
 
     changePubgSort = (type) => {
-        if(type==1){
+        if (type == 1) {
             this.setState({
                 pubgSort: {
-                    DateSort: this.state.pubgSort.DateSort==0?1:0,
+                    DateSort: this.state.pubgSort.DateSort == 0 ? 1 : 0,
                     PriceSort: 0,
                     QualitySort: 0,
                     RaritySort: 0
                 }
-            },()=>{
-                this.updateInventory("578080")
+            }, () => {
+                this.updateInventory("lol")
             })
-        }else if(type==2){
+        } else if (type == 2) {
             this.setState({
                 pubgSort: {
                     DateSort: 0,
-                    PriceSort: this.state.pubgSort.PriceSort==0?1:0,
+                    PriceSort: this.state.pubgSort.PriceSort == 0 ? 1 : 0,
                     QualitySort: 0,
                     RaritySort: 0
                 }
-            },()=>{
-                this.updateInventory("578080")
+            }, () => {
+                this.updateInventory("lol")
             })
         }
     }
 
     updateInventory = (type) => {
-        if(type=="570"){
+        if (type == "570") {
             this.props.getInventory({
                 GameType: "570",
                 DateSort: this.state.dotaSort.DateSort,
@@ -180,7 +180,7 @@ class InventoryComponent extends Component {
                 QualitySort: this.state.dotaSort.QualitySort,
                 RaritySort: this.state.dotaSort.RaritySort
             })
-        }else if(type=="730"){
+        } else if (type == "730") {
             this.props.getInventory({
                 GameType: "730",
                 DateSort: this.state.csgoSort.DateSort,
@@ -188,9 +188,9 @@ class InventoryComponent extends Component {
                 QualitySort: this.state.csgoSort.QualitySort,
                 RaritySort: this.state.csgoSort.RaritySort
             })
-        }else if(type=="578080"){
+        } else if (type == "lol") {
             this.props.getInventory({
-                GameType: "578080",
+                GameType: "lol",
                 DateSort: this.state.pubgSort.DateSort,
                 PriceSort: this.state.pubgSort.PriceSort,
                 QualitySort: this.state.pubgSort.QualitySort,
@@ -209,12 +209,12 @@ class InventoryComponent extends Component {
 
     //出售商品
     saleOrnament = () => {
-        if(this.props.dotaChosenVipInventory.length != 1){
-            AlertWindow.Prompt("单次最多出售1件饰品",()=>{return false})
-        }else{
+        if (this.props.dotaChosenVipInventory.length != 1) {
+            AlertWindow.Prompt("单次最多出售1件饰品", () => { return false })
+        } else {
             let product = {}
-            this.props.dotaInventory.Ornaments.map((item)=>{
-                if(item.AssetId == this.props.dotaChosenVipInventory[0].AssetId){
+            this.props.dotaInventory.Ornaments.map((item) => {
+                if (item.AssetId == this.props.dotaChosenVipInventory[0].AssetId) {
                     product = item
                 }
             })
@@ -254,7 +254,7 @@ class InventoryComponent extends Component {
             MarketHashName: this.state.saleProduct.MarketHashName,
             OrnamentPrice: this.state.saleUnitPrice,
             OrnamentCount: this.state.saleNumber
-        },() => {
+        }, () => {
             this.closeSaleAlert()
         })
     }
@@ -262,38 +262,38 @@ class InventoryComponent extends Component {
     saleAlert = () => (<div styleName="saleAlert">
         <div styleName="inner">
             <div styleName="close">
-                <span className="iconfont icon-guanbi" onClick={()=>this.closeSaleAlert()}></span>
+                <span className="iconfont icon-guanbi" onClick={() => this.closeSaleAlert()}></span>
             </div>
             <div styleName="prodInfo">
-                <div><img src={this.state.saleProduct.IconUrl}/></div>
+                <div><img src={this.state.saleProduct.IconUrl} /></div>
                 <div>
                     <p>{this.state.saleProduct.Name}</p>
                     <p>市场参考价：{this.state.saleProduct.TPrice} T豆</p>
                 </div>
             </div>
-            <div styleName="inputPart">出售单价：<input type="tel" value={this.state.saleUnitPrice} onChange={this.onChangePrice.bind(this)}/></div>
-            <div styleName="inputPart">出售数量：<input type="tel" value={this.state.saleNumber} onChange={this.onChangeNumber.bind(this)}/></div>
-            <div styleName="btn" onClick={()=>this.publishSale()}>发布出售</div>
+            <div styleName="inputPart">出售单价：<input type="tel" value={this.state.saleUnitPrice} onChange={this.onChangePrice.bind(this)} /></div>
+            <div styleName="inputPart">出售数量：<input type="tel" value={this.state.saleNumber} onChange={this.onChangeNumber.bind(this)} /></div>
+            <div styleName="btn" onClick={() => this.publishSale()}>发布出售</div>
         </div>
     </div>)
 
 
     dotaContent = (info) => {
-        if(info.Ornaments){
+        if (info.Ornaments) {
             let ornamentList;
-            if(info.Ornaments && info.Ornaments.length==0){
+            if (info.Ornaments && info.Ornaments.length == 0) {
                 ornamentList = (<div styleName="go_buy">
-                    <div onClick={()=>this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
-                    <div onClick={()=>this.props.goToSteamInventory()}>去Steam存入<span className="iconfont icon-previewright"></span></div>
+                    <div onClick={() => this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
+                    <div onClick={() => this.props.goToSteamInventory()}>去Steam存入<span className="iconfont icon-previewright"></span></div>
                 </div>)
 
-            }else{
+            } else {
                 ornamentList = (<div styleName="imgPart">
-                    <div styleName="goStore" onClick={()=>this.props.goStore()}>
+                    <div styleName="goStore" onClick={() => this.props.goStore()}>
                         <p className="iconfont icon-cart"></p>
                         <p>去商城购买</p>
                     </div>
-                    {info.Ornaments.map((item,index)=>(
+                    {info.Ornaments.map((item, index) => (
                         <InventoryItem
                             key={index}
                             itemInfo={item}
@@ -306,10 +306,10 @@ class InventoryComponent extends Component {
 
             return (<div>
                 <div styleName="type_title">
-                    <span onClick={()=>this.changeDotaSort(3)}>品质{this.state.dotaSort.QualitySort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
-                    <span onClick={()=>this.changeDotaSort(4)}>稀有度{this.state.dotaSort.RaritySort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
-                    <span onClick={()=>this.changeDotaSort(1)}>时间{this.state.dotaSort.DateSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
-                    <span onClick={()=>this.changeDotaSort(2)}>价值{this.state.dotaSort.PriceSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
+                    <span onClick={() => this.changeDotaSort(3)}>品质{this.state.dotaSort.QualitySort == 0 ? <label className="iconfont icon-shang"></label> : <label className="iconfont icon-xia"></label>}</span>
+                    <span onClick={() => this.changeDotaSort(4)}>稀有度{this.state.dotaSort.RaritySort == 0 ? <label className="iconfont icon-shang"></label> : <label className="iconfont icon-xia"></label>}</span>
+                    <span onClick={() => this.changeDotaSort(1)}>时间{this.state.dotaSort.DateSort == 0 ? <label className="iconfont icon-shang"></label> : <label className="iconfont icon-xia"></label>}</span>
+                    <span onClick={() => this.changeDotaSort(2)}>价值{this.state.dotaSort.PriceSort == 0 ? <label className="iconfont icon-shang"></label> : <label className="iconfont icon-xia"></label>}</span>
                 </div>
                 <div styleName="count_title">
                     <p>库存上限 <span>{info.Ornaments.length}</span>/300</p>
@@ -319,26 +319,26 @@ class InventoryComponent extends Component {
                 <div styleName="btn_part">
                     <p>注：单次最多出售<span> 1 </span>件饰品</p>
                     <div styleName="btn">
-                        <div styleName="deposit_canclick" onClick={()=>this.props.goToSteamInventory()}>存入</div>
-                        {this.state.isDotaCanSale ? <div styleName="getback_canclick" onClick={()=>this.getBackToSteam()}>取回</div> : <div>取回</div>}
-                        {this.state.isDotaCanSale ? <div styleName="sale_canclick" onClick={()=>this.saleOrnament()}>出售</div> : <div>出售</div>}
+                        <div styleName="deposit_canclick" onClick={() => this.props.goToSteamInventory()}>存入</div>
+                        {this.state.isDotaCanSale ? <div styleName="getback_canclick" onClick={() => this.getBackToSteam()}>取回</div> : <div>取回</div>}
+                        {this.state.isDotaCanSale ? <div styleName="sale_canclick" onClick={() => this.saleOrnament()}>出售</div> : <div>出售</div>}
                     </div>
                 </div>
             </div>)
-        }else{
+        } else {
             return ""
         }
     }
 
     csgoContent = (info) => {
-        if(info.Ornaments){
+        if (info.Ornaments) {
             let ornamentList;
-            if(info.Ornaments && info.Ornaments.length == 0){
+            if (info.Ornaments && info.Ornaments.length == 0) {
                 ornamentList = (<div styleName="go_buy">
-                    <div onClick={()=>this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
+                    <div onClick={() => this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
                     <div>去Steam存入<span className="iconfont icon-previewright"></span></div>
                 </div>)
-            }else{
+            } else {
                 ornamentList = ""
             }
 
@@ -347,8 +347,8 @@ class InventoryComponent extends Component {
                     <span></span>
                     <span></span>
                     <span></span>
-                    <span onClick={()=>this.changeCsgoSort(1)}>时间{this.state.csgoSort.DateSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
-                    <span onClick={()=>this.changeCsgoSort(2)}>价值{this.state.csgoSort.PriceSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
+                    <span onClick={() => this.changeCsgoSort(1)}>时间{this.state.csgoSort.DateSort == 0 ? <label className="iconfont icon-shang"></label> : <label className="iconfont icon-xia"></label>}</span>
+                    <span onClick={() => this.changeCsgoSort(2)}>价值{this.state.csgoSort.PriceSort == 0 ? <label className="iconfont icon-shang"></label> : <label className="iconfont icon-xia"></label>}</span>
                 </div>
                 <div styleName="count_title">
                     <p>库存上限 <span>0</span>/60</p>
@@ -363,19 +363,19 @@ class InventoryComponent extends Component {
                     </div>
                 </div>
             </div>)
-        }else{
+        } else {
             return ""
         }
     }
 
     pubgContent = (info) => {
-        if(info.Ornaments){
+        if (info.Ornaments) {
             let ornamentList;
-            if(info.Ornaments && info.Ornaments.length == 0){
+            if (info.Ornaments && info.Ornaments.length == 0) {
                 ornamentList = (<div styleName="go_buy">
-                    <div onClick={()=>this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
+                    <div onClick={() => this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
                 </div>)
-            }else{
+            } else {
                 ornamentList = ""
             }
 
@@ -384,8 +384,8 @@ class InventoryComponent extends Component {
                     <span></span>
                     <span></span>
                     <span></span>
-                    <span onClick={()=>this.changePubgSort(1)}>时间{this.state.pubgSort.DateSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
-                    <span onClick={()=>this.changePubgSort(2)}>价值{this.state.pubgSort.PriceSort==0?<label className="iconfont icon-shang"></label>:<label className="iconfont icon-xia"></label>}</span>
+                    <span onClick={() => this.changePubgSort(1)}>时间{this.state.pubgSort.DateSort == 0 ? <label className="iconfont icon-shang"></label> : <label className="iconfont icon-xia"></label>}</span>
+                    <span onClick={() => this.changePubgSort(2)}>价值{this.state.pubgSort.PriceSort == 0 ? <label className="iconfont icon-shang"></label> : <label className="iconfont icon-xia"></label>}</span>
                 </div>
                 <div styleName="count_title">
                     <p>库存上限 <span>0</span>/60</p>
@@ -400,7 +400,7 @@ class InventoryComponent extends Component {
                     </div>
                 </div>
             </div>)
-        }else{
+        } else {
             return ""
         }
     }
@@ -432,9 +432,9 @@ class InventoryComponent extends Component {
     </div>)
 
     onTabClick = (type) => {
-        if(type=="tbean"){
+        if (type == "tbean") {
             return false
-        }else{
+        } else {
             this.props.getInventory({
                 GameType: type,
                 DateSort: 0,

@@ -72,7 +72,7 @@ const getMyInventory = (data, callback) => {
                         type: "CSGO_INVENTORY",
                         csgoInventory: res.Data
                     })
-                } else if (data.GameType == "578080") {
+                } else if (data.GameType == "lol") {
                     store.dispatch({
                         type: "PUBG_INVENTORY",
                         pubgInventory: res.Data

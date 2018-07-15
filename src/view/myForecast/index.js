@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import myForecastComponent from './myForecast-component'
-import {getMyGuessRecords} from '../../reducers/rank'
+import { getMyGuessRecords } from '../../reducers/rank'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -9,8 +9,8 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/list')
         },
 
-        getGuessRecord(data,callback){
-            getMyGuessRecords(data,callback)
+        getGuessRecord(data, callback) {
+            getMyGuessRecords(data, callback)
         }
     }
 }
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch, props) => {
 const mapStateToProps = (state) => {
     return {
         guessRecordWeek: state.RankReducer.guessRecordWeek,
-        guessRecordMonth: state.RankReducer.guessRecordMonth,
+        guessRecordDay: state.RankReducer.guessRecordDay,
     }
 }
 
