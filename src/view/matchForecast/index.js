@@ -1,19 +1,19 @@
 import MatchForecastComponent from './component'
 import { connect } from 'react-redux'
 import { getMyInventory } from '../../reducers/inventory'
-import { useTBeanForecast,useOrnamentForecast } from '../../reducers/match'
+import { useTBeanForecast, useOrnamentForecast } from '../../reducers/match'
 import store from '../../store'
 import { refreshUserInfo } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        refreshUserInfo(){
+        refreshUserInfo() {
             refreshUserInfo()
         },
 
         goStore() {
             store.dispatch({
-                type:"MALL_LIST_PARAM",
+                type: "MALL_LIST_PARAM",
                 paramAttributeId: 0,
                 paramAttributeValue: "",
                 paramKeywords: "",
@@ -22,22 +22,23 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/shop')
         },
 
-        getInventory(data){
+        getInventory(data) {
             getMyInventory(data)
         },
 
-        tBeanForecast(data,callback){
-            useTBeanForecast(data,callback)
+        tBeanForecast(data, callback) {
+            useTBeanForecast(data, callback)
         },
 
-        ornamentForecast(data,callback){
-            useOrnamentForecast(data,callback)
+        ornamentForecast(data, callback) {
+            useOrnamentForecast(data, callback)
         }
     }
 }
 
 const mapStateToProps = (state) => {
     return {
+        userGuessList: state.MatchReducer.userGuessList,
         userInfos: state.UserReducer.userInfos,
         gameItemId: state.MatchReducer.gameItemId,
         gameItemInfos: state.MatchReducer.gameItemInfos,

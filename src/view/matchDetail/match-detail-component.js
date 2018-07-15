@@ -15,9 +15,9 @@ class matchDetail extends Component {
 
         this.state = {
             tabs: [
-                { title: '饰品竞猜',sub: 1 },
-                { title: 'T豆竞猜',sub: 2 },
-                { title: '土豪榜',sub: 3 },
+                { title: '饰品竞猜', sub: 1 },
+                { title: 'T豆竞猜', sub: 2 },
+                { title: '土豪榜', sub: 3 },
             ],
             chosenTab: 1,
             pageIndex: 1,
@@ -31,13 +31,32 @@ class matchDetail extends Component {
             myGuessList: [],
             isAddForecast: false
         }
+
+        this.interval = setInterval(
+            () => this.props.getUserGuessList({
+                HandicapID: this.props.gameItemId
+            }, () => {
+                if (this.props.userGuessList && this.props.userGuessList.length > 0) {
+                    this.setState({
+                        isUserGuessShow: true,
+                        myGuessList: this.props.userGuessList,
+                        isAddForecast: true
+                    })
+                } else {
+                    this.setState({
+                        isUserGuessShow: false,
+                        myGuessList: [],
+                        isAddForecast: false
+                    })
+                }
+            }), 60000);
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.props.getOrnamentsGuessList({
             HandicapID: this.props.gameItemId,
             PageIndex: 1
-        },()=>{
+        }, () => {
             this.setState({
                 pageIndex: 1,
                 chosenTab: 1,
@@ -48,14 +67,14 @@ class matchDetail extends Component {
 
         this.props.getUserGuessList({
             HandicapID: this.props.gameItemId
-        },()=>{
-            if(this.props.userGuessList&&this.props.userGuessList.length>0){
+        }, () => {
+            if (this.props.userGuessList && this.props.userGuessList.length > 0) {
                 this.setState({
                     isUserGuessShow: true,
                     myGuessList: this.props.userGuessList,
                     isAddForecast: true
                 })
-            }else{
+            } else {
                 this.setState({
                     isUserGuessShow: false,
                     myGuessList: [],
@@ -63,18 +82,25 @@ class matchDetail extends Component {
                 })
             }
         })
+
+
+
+
     }
 
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
     userGuess = () => (<div styleName="guessPart">
         <p styleName="title"><span></span><label>我的预测</label></p>
-        {this.state.myGuessList.map((item,index) => (
+        {this.state.myGuessList.map((item, index) => (
             <div key={index} styleName="guess-item">
                 <p>我猜：{item.GuessTeam}<label>{item.GuessAmount}</label></p>
                 <div>
                     <span>预计可得 {item.GuessExpectedAmount}</span>
                     <i></i>
-                    <label onClick={()=>this.changeGuess(item.GuessID)}>更换队伍</label>
-                    <label onClick={()=>this.cancelGuess(item.GuessID)}>取消</label>
+                    <label onClick={() => this.changeGuess(item.GuessID)}>更换队伍</label>
+                    <label onClick={() => this.cancelGuess(item.GuessID)}>取消</label>
                 </div>
             </div>
         ))}
@@ -83,17 +109,17 @@ class matchDetail extends Component {
     cancelGuess = (id) => {
         this.props.cancelMyGuess({
             GuessID: id
-        },()=>{
+        }, () => {
             this.props.getUserGuessList({
                 HandicapID: this.props.gameItemId
-            },()=>{
-                if(this.props.userGuessList&&this.props.userGuessList.length>0){
+            }, () => {
+                if (this.props.userGuessList && this.props.userGuessList.length > 0) {
                     this.setState({
                         isUserGuessShow: true,
                         myGuessList: this.props.userGuessList,
                         isAddForecast: true
                     })
-                }else{
+                } else {
                     this.setState({
                         isUserGuessShow: false,
                         myGuessList: [],
@@ -109,17 +135,17 @@ class matchDetail extends Component {
     changeGuess = (id) => {
         this.props.changeMyGuess({
             GuessID: id
-        },()=>{
+        }, () => {
             this.props.getUserGuessList({
                 HandicapID: this.props.gameItemId
-            },()=>{
-                if(this.props.userGuessList&&this.props.userGuessList.length>0){
+            }, () => {
+                if (this.props.userGuessList && this.props.userGuessList.length > 0) {
                     this.setState({
                         isUserGuessShow: true,
                         myGuessList: this.props.userGuessList,
                         isAddForecast: true
                     })
-                }else{
+                } else {
                     this.setState({
                         isUserGuessShow: false,
                         myGuessList: [],
@@ -132,7 +158,7 @@ class matchDetail extends Component {
         })
     }
 
-    userPart = (info,index) => (
+    userPart = (info, index) => (
         <div className="userImg">
             <span>{index}</span>
             {/* <img src={info.UserImage} alt="" /> */}
@@ -143,76 +169,76 @@ class matchDetail extends Component {
         </div>
     )
 
-    guessList = (guessInfo,isMore) =>{
-        if(guessInfo && guessInfo.length > 0){
+    guessList = (guessInfo, isMore) => {
+        if (guessInfo && guessInfo.length > 0) {
             return (<div>
-                {guessInfo.map((item,index)=>(
+                {guessInfo.map((item, index) => (
                     <div key={index} className="guess_list">
                         <Accordion defaultActiveKey="0" className="my-accordion  bet-info" onChange={this.onChange}>
-                            <Accordion.Panel header={this.userPart(item,index+1)} className="pad">
+                            <Accordion.Panel header={this.userPart(item, index + 1)} className="pad">
                                 <div className="ornament_list">
-                                    {item.Ornaments.map((_item,_index)=>(
-                                        <img key={_index} src={_item.IconUrl} alt=""/>
+                                    {item.Ornaments.map((_item, _index) => (
+                                        <img key={_index} src={_item.IconUrl} alt="" />
                                     ))}
                                 </div>
                             </Accordion.Panel>
                         </Accordion>
                     </div>
                 ))}
-                {isMore ? <div className="loadMore" onClick={()=>this.loadMoreFn()}>点击加载更多</div> : <div className="loadMore">无更多</div>}
+                {isMore ? <div className="loadMore" onClick={() => this.loadMoreFn()}>点击加载更多</div> : <div className="loadMore">无更多</div>}
             </div>)
-        }else{
+        } else {
             return (<div className="noRecords">暂无记录</div>)
         }
     }
 
-    tBeansList = (guessInfo,isMore) =>{
-        if(guessInfo && guessInfo.length > 0){
+    tBeansList = (guessInfo, isMore) => {
+        if (guessInfo && guessInfo.length > 0) {
             return (<div className="beans_list">
-                {guessInfo.map((item,index)=>(
+                {guessInfo.map((item, index) => (
                     <div key={index} className="inner">
-                        <span>{index+1}</span>
+                        <span>{index + 1}</span>
                         {/* <img src={info.UserImage} alt="" /> */}
                         <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg" alt="" />
                         <span>{item.UserNickname}</span>
                         <label>{item.TBeans}T豆</label>
                     </div>
                 ))}
-                {isMore ? <div className="loadMore" onClick={()=>this.loadMoreFn()}>点击加载更多</div> : <div className="loadMore">无更多</div>}
-            </div>) 
-        }else{
+                {isMore ? <div className="loadMore" onClick={() => this.loadMoreFn()}>点击加载更多</div> : <div className="loadMore">无更多</div>}
+            </div>)
+        } else {
             return (<div className="noRecords">暂无记录</div>)
         }
     }
 
     loadMoreFn = () => {
-        if(this.state.chosenTab == 1){
+        if (this.state.chosenTab == 1) {
             this.props.getOrnamentsGuessList({
                 HandicapID: this.props.gameItemId,
                 PageIndex: this.state.pageIndex + 1
-            },()=>{
+            }, () => {
                 this.setState({
                     pageIndex: this.state.pageIndex + 1,
                     ornamentsGuessList: this.state.ornamentsGuessList.concat(this.props.gameItemOrnamentsGuessInfo.OrnamentsGuessOfGameItems),
                     isOrnamentsMore: this.props.gameItemOrnamentsGuessInfo.IsMore,
                 })
             })
-        }else if(this.state.chosenTab == 2){
+        } else if (this.state.chosenTab == 2) {
             this.props.getTBeansGuessList({
                 HandicapID: this.props.gameItemId,
                 PageIndex: this.state.pageIndex + 1
-            },()=>{
+            }, () => {
                 this.setState({
                     pageIndex: this.state.pageIndex + 1,
                     tbeansGuessList: this.state.tbeansGuessList.concat(this.props.gameItemTBeansGuessInfo.BeansGuessOfGameItems),
                     isTbeansMore: this.props.gameItemTBeansGuessInfo.IsMore,
                 })
             })
-        }else if(this.state.chosenTab == 3){
+        } else if (this.state.chosenTab == 3) {
             this.props.getTycoonGuessList({
                 HandicapID: this.props.gameItemId,
                 PageIndex: this.state.pageIndex + 1
-            },()=>{
+            }, () => {
                 this.setState({
                     pageIndex: this.state.pageIndex + 1,
                     tycoonGuessList: this.state.tycoonGuessList.concat(this.props.gameItemTycoonGuessInfo.GuessOfGameItems),
@@ -223,11 +249,11 @@ class matchDetail extends Component {
     }
 
     changeTab = (sub) => {
-        if(sub == 1){
+        if (sub == 1) {
             this.props.getOrnamentsGuessList({
                 HandicapID: this.props.gameItemId,
                 PageIndex: 1
-            },()=>{
+            }, () => {
                 this.setState({
                     pageIndex: 1,
                     chosenTab: sub,
@@ -235,11 +261,11 @@ class matchDetail extends Component {
                     isOrnamentsMore: this.props.gameItemOrnamentsGuessInfo.IsMore,
                 })
             })
-        }else if(sub == 2){
+        } else if (sub == 2) {
             this.props.getTBeansGuessList({
                 HandicapID: this.props.gameItemId,
                 PageIndex: 1
-            },()=>{
+            }, () => {
                 this.setState({
                     pageIndex: 1,
                     chosenTab: sub,
@@ -247,11 +273,11 @@ class matchDetail extends Component {
                     isTbeansMore: this.props.gameItemTBeansGuessInfo.IsMore,
                 })
             })
-        }else if(sub == 3){
+        } else if (sub == 3) {
             this.props.getTycoonGuessList({
                 HandicapID: this.props.gameItemId,
                 PageIndex: 1
-            },()=>{
+            }, () => {
                 this.setState({
                     pageIndex: 1,
                     chosenTab: sub,
@@ -267,16 +293,16 @@ class matchDetail extends Component {
             <StickyContainer>
                 <Tabs tabs={this.state.tabs}
                     initalPage={0}
-                    onTabClick={(tab)=>this.changeTab(tab.sub)}
+                    onTabClick={(tab) => this.changeTab(tab.sub)}
                 >
                     <div>
-                        {this.guessList(this.state.ornamentsGuessList,this.state.isOrnamentsMore)}
+                        {this.guessList(this.state.ornamentsGuessList, this.state.isOrnamentsMore)}
                     </div>
                     <div>
-                        {this.tBeansList(this.state.tbeansGuessList,this.state.isTbeansMore)}
+                        {this.tBeansList(this.state.tbeansGuessList, this.state.isTbeansMore)}
                     </div>
                     <div>
-                        {this.guessList(this.state.tycoonGuessList,this.state.isTycoonMore)}
+                        {this.guessList(this.state.tycoonGuessList, this.state.isTycoonMore)}
                     </div>
                 </Tabs>
             </StickyContainer>
@@ -328,13 +354,13 @@ class matchDetail extends Component {
                         <span>{parseFloat(gameItemInfos.GameTeam.RightTeamRate)}%</span>
                     </div>
                     <div styleName="progress">
-                        <span style={{ width: parseFloat(gameItemInfos.GameTeam.LeftTeamRate)+"%" }}></span>
+                        <span style={{ width: parseFloat(gameItemInfos.GameTeam.LeftTeamRate) + "%" }}></span>
                         <label></label>
                         <b></b>
                         <label></label>
-                        <span style={{ width: parseFloat(gameItemInfos.GameTeam.RightTeamRate)+"%" }}></span>
+                        <span style={{ width: parseFloat(gameItemInfos.GameTeam.RightTeamRate) + "%" }}></span>
                     </div>
-                    {gameItemInfos.IsForecast ? (<div styleName="forecastCanClick" onClick={()=>this.props.goForecast()}>{this.state.isAddForecast?"加注":"预测"}</div>) : (<div styleName="forecast">{this.state.isAddForecast?"加注":"预测"}</div>)}
+                    {gameItemInfos.IsForecast ? (<div styleName="forecastCanClick" onClick={() => this.props.goForecast()}>{this.state.isAddForecast ? "加注" : "预测"}</div>) : (<div styleName="forecast">{this.state.isAddForecast ? "加注" : "预测"}</div>)}
                 </div>
 
                 {this.state.isUserGuessShow ? this.userGuess() : null}
