@@ -9,18 +9,16 @@
             font-size: 40px;
         }
     }
-
     .header {
         padding: 40px 30px;
         background: #2c2c32;
         width: 100%;
         display: flex;
         align-items: center;
-        
         .left {
-            margin-left: 6vw;
+            // margin-left: 6vw;
             flex: 1;
-
+            text-align: center;
             .user-img {
                 border-radius: 50%;
                 height: 120px;
@@ -32,8 +30,7 @@
                 color: #fff;
             }
         }
-
-        .sign{
+        .sign {
             width: 150px;
             height: 46px;
             font-size: 20px;
@@ -44,8 +41,7 @@
             background: #fff;
             margin-right: 6vw;
         }
-
-        .hasSigned{
+        .hasSigned {
             width: 150px;
             height: 46px;
             font-size: 20px;
@@ -57,13 +53,11 @@
             margin-right: 6vw;
         }
     }
-
-    ul{
+    ul {
         width: 100%;
         padding: 0 20px;
         box-sizing: border-box;
         background: #fff;
-
         li {
             display: flex;
             justify-content: space-between;
@@ -71,23 +65,37 @@
             border-bottom: 1px solid #f1f1f1;
             align-items: center;
             color: #333;
-    
-            div:first-child{
+            div:first-child {
                 font-size: 28px;
                 line-height: 40px;
-    
-                span{
+                span {
                     font-size: 40px;
                 }
             }
-
-            div:last-child{
+            div:last-child {
                 font-size: 36px;
                 color: #555;
             }
+            .sign {
+                width: 150px;
+                height: 46px;
+                font-size: 20px!important;
+                border-radius: 23px;
+                text-align: center;
+                line-height: 46px;
+                color: #fff!important;
+                background: #2c2c32;
+            }
+            .hasSigned {
+                width: 150px;
+                height: 46px;
+                font-size: 20px!important;
+                border-radius: 23px;
+                text-align: center;
+                line-height: 46px;
+                color: #cacaca!important;
+                border: 1px solid #cacaca;
+            }
         }
-
-        
     }
-    
 }
