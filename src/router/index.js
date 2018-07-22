@@ -27,6 +27,7 @@ import Feedback from '../view/feedback'
 import SteamInventory from '../view/steamInventory'
 import MatchForecast from '../view/matchForecast'
 import PublishBuy from '../view/publishBuy'
+import SteamSetting from '../view/steamSetting'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -61,7 +62,7 @@ const routes_config = [
 	{
 		path: '/matchList',
 		component: matchList
-	}, 
+	},
 	{
 		path: '/guessRank',
 		component: GuessRank
@@ -116,6 +117,10 @@ const routes_config = [
 	{
 		path: '/steamInventory',
 		component: SteamInventory
+	},
+	{
+		path: '/steamSetting',
+		component: SteamSetting
 	},
 	{
 		path: '/matchForecast',

@@ -6,17 +6,20 @@ import { logoutAction } from "../../reducers/user"
 const mapDispatchToProps = (dispatch, props) => {
 
     return {
+        goSteamSetting() {
+            props.history.push('/steamSetting')
+        },
 
-        goResetPsd(){
-			dispatch({
-				type: "USER_FORGET_PSD",
-				isForgetPsd: false
-			})
-			props.history.push('/resetPassword')
-		},
+        goResetPsd() {
+            dispatch({
+                type: "USER_FORGET_PSD",
+                isForgetPsd: false
+            })
+            props.history.push('/resetPassword')
+        },
 
-        logout(){
-            logoutAction(function(){
+        logout() {
+            logoutAction(function () {
                 //跳转到登录页
                 props.history.push('/')
             })

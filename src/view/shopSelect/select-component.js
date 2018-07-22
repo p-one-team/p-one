@@ -7,42 +7,42 @@ import { NavBar, Icon, Tabs } from 'antd-mobile';
 
 @CSSModules(style)
 class SelectComponent extends Component {
-	constructor(props) {
+    constructor(props) {
         super(props)
-        
+
         this.state = {
             tabs: [
-                {title: "稀有度"},
-                {title: "品质"},
-                {title: "种类"},
-                {title: "英雄"}
+                { title: "稀有度" },
+                { title: "品质" },
+                // {title: "种类"},
+                { title: "英雄" }
             ]
 
         }
     }
 
-    tabContent = (attributeId,list) => {
+    tabContent = (attributeId, list) => {
         const self = this
-        if(list){
+        if (list) {
             return (<div className="list-item">
-                <span onClick={()=>self.props.chooseAttribute(this.props.selectEnter,attributeId,"")}>不限</span>
-                {list.map((item,index) => (
-                    <span key={index} onClick={()=>self.props.chooseAttribute(this.props.selectEnter,attributeId,item)}>{item}</span>
+                <span onClick={() => self.props.chooseAttribute(this.props.selectEnter, attributeId, "")}>不限</span>
+                {list.map((item, index) => (
+                    <span key={index} onClick={() => self.props.chooseAttribute(this.props.selectEnter, attributeId, item)}>{item}</span>
                 ))}
             </div>)
-        }else{
+        } else {
             return ""
         }
     }
-    
-	render() {
-		return (
-			<div styleName="wrap">
-				<NavBar
-					mode="dark"
-					icon={<Icon type="left" />}
-					onLeftClick={() => this.props.history.goBack()}
-				>求购商品属性筛选</NavBar>
+
+    render() {
+        return (
+            <div styleName="wrap">
+                <NavBar
+                    mode="dark"
+                    icon={<Icon type="left" />}
+                    onLeftClick={() => this.props.history.goBack()}
+                >求购商品属性筛选</NavBar>
 
                 <Tabs tabs={this.state.tabs}
                     initalPage={0}
@@ -50,28 +50,28 @@ class SelectComponent extends Component {
                     tabDirection="vertical"
                 >
                     <div>
-                        {this.tabContent(1,this.props.prodAttribute.RarityList)}
+                        {this.tabContent(1, this.props.prodAttribute.RarityList)}
                     </div>
 
                     <div>
-                        {this.tabContent(2,this.props.prodAttribute.QualityList)}
+                        {this.tabContent(2, this.props.prodAttribute.QualityList)}
                     </div>
 
-                    <div>
+                    {/* <div>
                         {this.tabContent(3,this.props.prodAttribute.TypeList)}
-                    </div>
+                    </div> */}
 
                     <div>
-                        {this.tabContent(4,this.props.prodAttribute.HeroList)}
+                        {this.tabContent(4, this.props.prodAttribute.HeroList)}
                     </div>
                 </Tabs>
-			</div>
-		)
-	}
+            </div>
+        )
+    }
 }
 
 SelectComponent.propTypes = {
-	goItemDetail: PropTypes.func,
+    goItemDetail: PropTypes.func,
 }
 
 export default SelectComponent

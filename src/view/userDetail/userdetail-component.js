@@ -20,13 +20,13 @@ class UserDetailComponent extends Component {
 
     logout = () => {
         const self = this
-        AlertWindow.Confirm("确认退出登录吗？",()=>{self.props.logout()})
+        AlertWindow.Confirm("确认退出登录吗？", () => { self.props.logout() })
     }
 
     render() {
 
         let userInfos = this.props.userInfos
-        
+
         return (
             <div styleName="wrap">
                 <NavBar
@@ -38,7 +38,7 @@ class UserDetailComponent extends Component {
                     <ul>
                         <li>
                             <span>头像</span>
-                            <img styleName="user-img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg" alt=""/>
+                            <img styleName="user-img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524227131869&di=dcca65d33e7ce856a261f31c847ddf90&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D7d86311748ed2e73fce98624b703a16d%2Fcb514fc2d5628535ae210cb292ef76c6a6ef6365.jpg" alt="" />
                         </li>
                         <li>
                             <span>昵称</span>
@@ -52,12 +52,12 @@ class UserDetailComponent extends Component {
                         </li>
                         <li>
                             <span>实名认证</span>
-                            <label>{userInfos.UserName?userInfos.UserName:"未认证"}</label>
+                            <label>{userInfos.UserName ? userInfos.UserName : "未认证"}</label>
                             <label className="iconfont icon-previewright"></label>
                         </li>
                         <li>
                             <span>邮箱</span>
-                            <label>{userInfos.Email?userInfos.Email:"未绑定"}</label>
+                            <label>{userInfos.Email ? userInfos.Email : "未绑定"}</label>
                             <label className="iconfont icon-previewright"></label>
                         </li>
                         <li onClick={this.modifyPsd}>
@@ -65,7 +65,7 @@ class UserDetailComponent extends Component {
                             <label></label>
                             <label className="iconfont icon-previewright"></label>
                         </li>
-                        <li>
+                        <li onClick={() => this.props.goSteamSetting()}>
                             <span>Steam设置</span>
                             <label></label>
                             <label className="iconfont icon-previewright"></label>
