@@ -57,7 +57,8 @@ const getMyInventory = (data, callback) => {
             DateSort: data.DateSort,
             PriceSort: data.PriceSort,
             QualitySort: data.QualitySort,
-            RaritySort: data.RaritySort
+            RaritySort: data.RaritySort,
+            StockType: data.StockType
         })
         .then(function(res) {
             if (res) {

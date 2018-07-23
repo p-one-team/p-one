@@ -23,7 +23,8 @@ class InventoryComponent extends Component {
             DateSort: 0,
             PriceSort: 0,
             QualitySort: 0,
-            RaritySort: 0
+            RaritySort: 0,
+            StockType: 1
         })
 
         this.state = {
@@ -35,8 +36,10 @@ class InventoryComponent extends Component {
                 { title: 'Dota2', sub: '1', type: "570" },
                 // { title: 'CS:GO', sub: '2' ,type: "730"},
                 // { title: 'LOL', sub: '3' ,type: "lol"},
-                { title: 'G钻/T豆', sub: '4', type: "tbean" }
+                // { title: 'G钻/T豆', sub: '4', type: "tbean" }
             ],
+            gameType: "570",
+            stockType: 1,
             dotaSort: {
                 DateSort: 0,
                 PriceSort: 0,
@@ -172,31 +175,38 @@ class InventoryComponent extends Component {
     }
 
     updateInventory = (type) => {
-        if (type == "570") {
-            this.props.getInventory({
-                GameType: "570",
-                DateSort: this.state.dotaSort.DateSort,
-                PriceSort: this.state.dotaSort.PriceSort,
-                QualitySort: this.state.dotaSort.QualitySort,
-                RaritySort: this.state.dotaSort.RaritySort
-            })
-        } else if (type == "730") {
-            this.props.getInventory({
-                GameType: "730",
-                DateSort: this.state.csgoSort.DateSort,
-                PriceSort: this.state.csgoSort.PriceSort,
-                QualitySort: this.state.csgoSort.QualitySort,
-                RaritySort: this.state.csgoSort.RaritySort
-            })
-        } else if (type == "lol") {
-            this.props.getInventory({
-                GameType: "lol",
-                DateSort: this.state.pubgSort.DateSort,
-                PriceSort: this.state.pubgSort.PriceSort,
-                QualitySort: this.state.pubgSort.QualitySort,
-                RaritySort: this.state.pubgSort.RaritySort
-            })
-        }
+        this.setState({
+            gameType: type
+        },()=>{
+            if (type == "570") {
+                this.props.getInventory({
+                    GameType: "570",
+                    DateSort: this.state.dotaSort.DateSort,
+                    PriceSort: this.state.dotaSort.PriceSort,
+                    QualitySort: this.state.dotaSort.QualitySort,
+                    RaritySort: this.state.dotaSort.RaritySort,
+                    StockType: this.state.stockType
+                })
+            } else if (type == "730") {
+                this.props.getInventory({
+                    GameType: "730",
+                    DateSort: this.state.csgoSort.DateSort,
+                    PriceSort: this.state.csgoSort.PriceSort,
+                    QualitySort: this.state.csgoSort.QualitySort,
+                    RaritySort: this.state.csgoSort.RaritySort,
+                    StockType: this.state.stockType
+                })
+            } else if (type == "lol") {
+                this.props.getInventory({
+                    GameType: "lol",
+                    DateSort: this.state.pubgSort.DateSort,
+                    PriceSort: this.state.pubgSort.PriceSort,
+                    QualitySort: this.state.pubgSort.QualitySort,
+                    RaritySort: this.state.pubgSort.RaritySort,
+                    StockType: this.state.stockType
+                })
+            }
+        })
     }
 
     //dota从VIP库存取回至Steam
@@ -432,17 +442,37 @@ class InventoryComponent extends Component {
     </div>)
 
     onTabClick = (type) => {
-        if (type == "tbean") {
-            return false
-        } else {
+        this.setState({
+            gameType:type
+        },()=>{
+            if (type == "tbean") {
+                return false
+            } else {
+                this.props.getInventory({
+                    GameType: type,
+                    DateSort: 0,
+                    PriceSort: 0,
+                    QualitySort: 0,
+                    RaritySort: 0,
+                    StockType: this.state.stockType
+                })
+            }
+        })
+    }
+
+    chooseTitle = (type) => {
+        this.setState({
+            stockType: type
+        },()=>{
             this.props.getInventory({
-                GameType: type,
+                GameType: this.state.gameType,
                 DateSort: 0,
                 PriceSort: 0,
                 QualitySort: 0,
-                RaritySort: 0
+                RaritySort: 0,
+                StockType: this.state.stockType
             })
-        }
+        })
     }
 
     render() {
@@ -452,7 +482,10 @@ class InventoryComponent extends Component {
                     mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
-                >我的VIP库存</NavBar>
+                >
+                { this.state.stockType==1 ? (<label className="title_chosen" onClick={()=>this.chooseTitle(1)}>我的库存</label>) : (<label onClick={()=>this.chooseTitle(1)}>我的库存</label>)}
+                { this.state.stockType==2 ? (<label className="title_chosen" onClick={()=>this.chooseTitle(2)}>红锁库存</label>) : (<label onClick={()=>this.chooseTitle(2)}>红锁库存</label>)}
+                </NavBar>
 
                 <Tabs tabs={this.state.tabs}
                     initialPage={0}
@@ -473,9 +506,9 @@ class InventoryComponent extends Component {
                         {this.pubgContent(this.props.pubgInventory)}
                     </div> */}
 
-                    <div styleName="tbean_content">
+                    {/* <div styleName="tbean_content">
                         {this.tBeanContent()}
-                    </div>
+                    </div> */}
                 </Tabs>
 
                 {this.state.canSaleAlertShow ? this.saleAlert() : ""}

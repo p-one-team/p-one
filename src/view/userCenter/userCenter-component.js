@@ -65,6 +65,10 @@ class UserCenterComponent extends Component {
 						<div> <span className="iconfont icon-sponsorfill"></span>我的交易</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
+					<li onClick={() => this.props.goExchangeCenter()}>
+						<div> <span className="iconfont icon-gift1"></span>兑换中心</div>
+						<div className="iconfont icon-previewright"></div>
+					</li>
 					<li onClick={() => this.props.goFeedback()}>
 						<div> <span className="iconfont icon-writefill"></span>意见反馈</div>
 						<div className="iconfont icon-previewright"></div>

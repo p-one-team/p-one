@@ -26,7 +26,8 @@ class MatchForecastComponent extends Component {
             DateSort: 0,
             PriceSort: 0,
             QualitySort: 0,
-            RaritySort: 0
+            RaritySort: 0,
+            StockType: 1
         })
 
         this.props.refreshUserInfo()
@@ -211,7 +212,8 @@ class MatchForecastComponent extends Component {
                         DateSort: 0,
                         PriceSort: 0,
                         QualitySort: 0,
-                        RaritySort: 0
+                        RaritySort: 0,
+                        StockType: 1
                     })
                 })
             } else {

@@ -38,6 +38,10 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/feedback')
         },
 
+        goExchangeCenter() {
+            props.history.push('/exchangeCenter')
+        },
+
         goMessage() {
             props.history.push('/message')
         },

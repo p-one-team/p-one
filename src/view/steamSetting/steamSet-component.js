@@ -47,12 +47,12 @@ class SteamSetComponent extends Component {
                 <div styleName="container">
                     <p styleName="title">您的SteamID</p>
                     <div styleName="short">
-                        <input placeholder="SteamID" maxLength="20" type="text" readOnly value={this.props.userInfos.SteamId} />
+                        <input placeholder="SteamID" type="tel" readOnly value={this.props.userInfos.SteamId} />
                     </div>
 
                     <p styleName="title">Steam交易URL</p>
                     <div styleName="detail">
-                        <textarea placeholder="请输入您的Steam交易URL" maxLength="200" type="text" value={this.state.steamUrl} onChange={this.urlChange.bind(this)} />
+                        <textarea placeholder="请输入您的Steam交易URL" type="text" value={this.state.steamUrl} onChange={this.urlChange.bind(this)} />
                     </div>
                 </div>
             </div>
