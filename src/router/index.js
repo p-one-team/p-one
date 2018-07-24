@@ -28,6 +28,8 @@ import SteamInventory from '../view/steamInventory'
 import MatchForecast from '../view/matchForecast'
 import PublishBuy from '../view/publishBuy'
 import SteamSetting from '../view/steamSetting'
+import ExchangeCenter from '../view/exchangeCenter'
+import ExchangeTbeans from '../view/exchangeTbeans'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -129,6 +131,14 @@ const routes_config = [
 	{
 		path: '/publishBuy',
 		component: PublishBuy
+	},
+	{
+		path: '/exchangeCenter',
+		component: ExchangeCenter
+	},
+	{
+		path: '/exchangeTbeans',
+		component: ExchangeTbeans
 	}
 ]
 

@@ -13,7 +13,8 @@ const initInventoryInfo = {
     dotaSteamInventory: [],
     dotaChosenInventory: [],
     dotaChosenVipInventory: [],
-    dotaChosenForecastInventory: []
+    dotaChosenForecastInventory: [],
+    dotaChosenExchangeInventory: []
 }
 
 const InventoryReducer = (state = initInventoryInfo, action) => {
@@ -39,6 +40,9 @@ const InventoryReducer = (state = initInventoryInfo, action) => {
 
         case 'DOTA_CHOSEN_FORECAST_INVENTORY':
             return Object.assign({}, state, { dotaChosenForecastInventory: action.dotaChosenForecastInventory })
+
+        case 'DOTA_CHOSEN_EXCHANGE_INVENTORY':
+            return Object.assign({}, state, { dotaChosenExchangeInventory: action.dotaChosenExchangeInventory })
 
         default:
             return state
@@ -149,10 +153,28 @@ const addToSteamInventory = (data, callback) => {
         });
 }
 
+//饰品兑换T豆
+const ornamentExchangeTbeans = (data, callback) => {
+    axios.post('/Game/ExchangeTBeans', {
+            Ornaments: data.Ornaments,
+        })
+        .then(function(res) {
+            if (res) {
+                Toast.success(res.Msg)
+                callback ? callback(res) : ""
+            }
+        })
+        .catch(function(error) {
+            Toast.fail('添加失败，请稍后重试！');
+            console.log('error', error);
+        });
+}
+
 export {
     InventoryReducer,
     getMyInventory,
     getMySteamInventory,
     addToMyInventory,
-    addToSteamInventory
+    addToSteamInventory,
+    ornamentExchangeTbeans
 }

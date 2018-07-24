@@ -204,6 +204,24 @@ const feedback = (data, callback) => {
         });
 }
 
+//更新steamurl
+const updateSteamUrl = (data,callback) => {
+    axios.post('/User/UpdateSteamTradeUrl',{
+            tradeUrl: data.tradeUrl
+        })
+        .then(function(res) {
+            if (res) {
+                Toast.success(res.Msg)
+
+                callback ? callback() : ""
+            }
+        })
+        .catch(function(error) {
+            Toast.fail('请求失败，请稍后重试！');
+            console.log('error', error)
+        });
+}
+
 
 export {
     UserReducer,
@@ -214,5 +232,6 @@ export {
     resetPsdAction,
     signIn,
     refreshUserInfo,
+    updateSteamUrl,
     feedback
 }

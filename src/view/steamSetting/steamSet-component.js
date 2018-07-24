@@ -11,7 +11,7 @@ class SteamSetComponent extends Component {
         super(props)
 
         this.state = {
-            steamUrl: this.props.userInfos.SteamTradeUrl
+            steamUrl: this.props.userInfos.SteamTradeUrl ? this.props.userInfos.SteamTradeUrl : ""
         }
     }
 
@@ -22,15 +22,11 @@ class SteamSetComponent extends Component {
     }
 
     submit = () => {
-        this.props.feedBack({
-            ProblemTitle: this.state.shortDesc,
-            QQ: this.state.qqNumber,
-            ProblemContent: this.state.detailDesc
+        this.props.updateSteamUrl({
+            tradeUrl: this.state.steamUrl,
         }, () => {
-            this.setState({
-                shortDesc: "",
-                qqNumber: "",
-                detailDesc: ""
+            this.props.refreshUserInfo('',()=>{
+                window.history.back()
             })
         })
     }
@@ -55,6 +51,8 @@ class SteamSetComponent extends Component {
                         <textarea placeholder="请输入您的Steam交易URL" type="text" value={this.state.steamUrl} onChange={this.urlChange.bind(this)} />
                     </div>
                 </div>
+
+                <div styleName="btn" onClick={()=>this.submit()}>设置</div>
             </div>
         )
     }

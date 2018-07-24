@@ -4,15 +4,15 @@ import ExchangeComponent from './exchange-component'
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
-        goRankPage() {
-            props.history.push('/guessRank')
+        goExchangeTbeans() {
+            props.history.push('/exchangeTbeans')
         },
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        ...state.MatchReducer
+        userInfos: state.UserReducer.userInfos
     }
 }
 

@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
     return {
         dotaChosenInventory: state.InventoryReducer.dotaChosenInventory,
         dotaChosenVipInventory: state.InventoryReducer.dotaChosenVipInventory,
-        dotaChosenForecastInventory: state.InventoryReducer.dotaChosenForecastInventory
+        dotaChosenForecastInventory: state.InventoryReducer.dotaChosenForecastInventory,
+        dotaChosenExchangeInventory: state.InventoryReducer.dotaChosenExchangeInventory
     }
 }
 

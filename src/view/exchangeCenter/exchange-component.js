@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
-import style from './feedback.less'
+import style from './exchange.less'
 import { NavBar, Icon } from 'antd-mobile'
 
 
@@ -21,20 +21,33 @@ class ExchangeComponent extends Component {
                     mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
-                    rightContent={<span onClick={()=>this.submit()}>确认提交</span>}
-                >意见反馈</NavBar>
+                >兑换中心</NavBar>
 
                 <div styleName="container">
-                    <div styleName="short">
-                        <input placeholder="请简短描述您的问题" maxLength="20" type="text" value={this.state.shortDesc} onChange={this.shortChange.bind(this)} />
-                    </div>
-                    <div styleName="qq">
-                        <input placeholder="留下您的QQ" maxLength="12" type="tel" value={this.state.qqNumber} onChange={this.qqChange.bind(this)} />
-                    </div>
-                    <div styleName="detail">
-                        <textarea placeholder="请详细描述您的问题" maxLength="200" type="text" value={this.state.detailDesc} onChange={this.detailChange.bind(this)} />
+                    {/* <div styleName="gzuan">
+                        <p styleName="title">
+                            <span>我的G钻</span>
+                            <label>明细</label>
+                        </p>
+                        <div styleName="detail">
+                            <p>G钻余额</p>
+                            <p>0</p>
+                            <div>购买G钻</div>
+                        </div>
+                    </div> */}
+                    <div styleName="tbean">
+                        <p styleName="title">
+                            <span>兑换T豆</span>
+                            {/* <label>明细</label> */}
+                        </p>
+                        <div styleName="detail">
+                            <p>T豆余额</p>
+                            <p>{this.props.userInfos.TBeansCount}</p>
+                            <div onClick={()=>this.props.goExchangeTbeans()}>兑换T豆</div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         )
     }

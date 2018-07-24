@@ -142,13 +142,58 @@ class InventoryItemComponent extends React.Component {
         </div>
     )
 
+    exchangeChosen = (ornamentId) => {
+        this.setState({
+            isChosen: !this.state.isChosen
+        },()=>{
+            if(this.state.isChosen){
+                let list = this.props.dotaChosenExchangeInventory;
+                list.push(ornamentId)
+
+                store.dispatch({
+                    type: "DOTA_CHOSEN_EXCHANGE_INVENTORY",
+                    dotaChosenExchangeInventory: list
+                })
+                this.props.changeBtn()
+
+            }else{
+                let list = this.props.dotaChosenExchangeInventory;
+                let deleteId;
+                list.map((item,index)=>{
+                    if(item==ornamentId){
+                        deleteId = index
+                    }
+                })
+                list.splice(deleteId,1)
+
+                store.dispatch({
+                    type: "DOTA_CHOSEN_EXCHANGE_INVENTORY",
+                    dotaChosenExchangeInventory: list
+                })
+                this.props.changeBtn()
+
+            }
+        })
+    }
+
+    exchangeContent = (info) => (
+        <div styleName="inventory_item" onClick={()=>this.exchangeChosen(info.UserOrnamentId)}>
+            <img src={info.IconUrl} alt="" />
+            {this.state.isChosen ? <div styleName="chosen"><i className="iconfont icon-gou_ico"></i></div> : null}
+            <label>{info.Price}</label>                                    
+            <span>{info.Rarity}</span>
+        </div>
+    )
+
     render() {
         let info = this.props.itemInfo;
         return this.props.usageType=="steam" 
             ? this.steamContent(info) 
             : (this.props.usageType=="vip"
                 ? this.vipContent(info)
-                : this.forecastContent(info)
+                : (this.props.usageType=="exchange"
+                    ? this.exchangeContent(info)
+                    : this.forecastContent(info))
             )
         
     }

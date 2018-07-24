@@ -42,13 +42,17 @@ const mapDispatchToProps = (dispatch, props) => {
                 paramPageIndex: 1
             })
             props.history.push('/shop')
-        }
+        },
+
+        goSteamSetting() {
+            props.history.push('/steamSetting')
+        },
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        ...state.MatchReducer
+        userInfos: state.UserReducer.userInfos
     }
 }
 
