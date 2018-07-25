@@ -303,14 +303,22 @@ class InventoryComponent extends Component {
                         <p className="iconfont icon-cart"></p>
                         <p>去商城购买</p>
                     </div>
-                    {info.Ornaments.map((item, index) => (
+                    {this.state.stockType == 1 
+                    ? info.Ornaments.map((item, index) => (
                         <InventoryItem
                             key={index}
                             itemInfo={item}
                             usageType="vip"
                             changeBtn={this.changeBtnPart}
-                        />
-                    ))}
+                        />))
+                    : info.Ornaments.map((item, index) => (
+                        <InventoryItem
+                            key={index}
+                            itemInfo={item}
+                            usageType="lock"
+                            changeBtn={this.changeBtnPart}
+                        />))
+                    }
                 </div>)
             }
 
@@ -326,14 +334,17 @@ class InventoryComponent extends Component {
                     <p>总价值：{info.TotalCost}</p>
                 </div>
                 {ornamentList}
-                <div styleName="btn_part">
+                {this.state.stockType==1
+                ? (<div styleName="btn_part">
                     <p>注：单次最多出售<span> 1 </span>件饰品</p>
                     <div styleName="btn">
                         <div styleName="deposit_canclick" onClick={() => this.props.goToSteamInventory()}>存入</div>
                         {this.state.isDotaCanSale ? <div styleName="getback_canclick" onClick={() => this.getBackToSteam()}>取回</div> : <div>取回</div>}
                         {this.state.isDotaCanSale ? <div styleName="sale_canclick" onClick={() => this.saleOrnament()}>出售</div> : <div>出售</div>}
                     </div>
-                </div>
+                </div>)
+                : null}
+                
             </div>)
         } else {
             return ""

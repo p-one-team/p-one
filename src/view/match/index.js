@@ -52,7 +52,9 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
-        userInfos: state.UserReducer.userInfos
+        userInfos: state.UserReducer.userInfos,
+        userSteamAlert: state.UserReducer.userSteamAlert,
+        userUrlAlert: state.UserReducer.userUrlAlert
     }
 }
 

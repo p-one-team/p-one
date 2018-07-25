@@ -52,7 +52,11 @@ const mapDispatchToProps = (dispatch, props) => {
 
         signIn(data,callback) {
             signIn(data,callback)
-        }
+        },
+
+        goSteamSetting() {
+            props.history.push('/steamSetting')
+        },
     }
 }
 

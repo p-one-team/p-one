@@ -23,7 +23,7 @@ class SteamSetComponent extends Component {
 
     submit = () => {
         this.props.updateSteamUrl({
-            tradeUrl: this.state.steamUrl,
+            TradeUrl: this.state.steamUrl,
         }, () => {
             this.props.refreshUserInfo('',()=>{
                 window.history.back()
@@ -59,7 +59,8 @@ class SteamSetComponent extends Component {
 }
 
 SteamSetComponent.propTypes = {
-    goRankPage: PropTypes.func,
+    updateSteamUrl: PropTypes.func,
+    refreshUserInfo: PropTypes.func
 }
 
 export default SteamSetComponent

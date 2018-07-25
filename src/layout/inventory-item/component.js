@@ -185,17 +185,30 @@ class InventoryItemComponent extends React.Component {
         </div>
     )
 
+    lockContent = (info) => (
+        <div styleName="inventory_item">
+            <img src={info.IconUrl} alt="" />
+            {this.state.isChosen ? <div styleName="chosen"><i className="iconfont icon-gou_ico"></i></div> : null}
+            <label>{info.Price}</label>                                    
+            <span>{info.Rarity}</span>
+        </div>
+    )
+
     render() {
         let info = this.props.itemInfo;
-        return this.props.usageType=="steam" 
-            ? this.steamContent(info) 
-            : (this.props.usageType=="vip"
-                ? this.vipContent(info)
-                : (this.props.usageType=="exchange"
-                    ? this.exchangeContent(info)
-                    : this.forecastContent(info))
-            )
-        
+        let content;
+        if(this.props.usageType=="steam"){
+            content = this.steamContent(info) 
+        }else if(this.props.usageType=="vip"){
+            content = this.vipContent(info)
+        }else if(this.props.usageType=="exchange"){
+            content = this.exchangeContent(info)
+        }else if(this.props.usageType=="forecast"){
+            content = this.forecastContent(info)
+        }else if(this.props.usageType=="lock"){
+            content = this.lockContent(info)
+        }
+        return content;
     }
 }
 

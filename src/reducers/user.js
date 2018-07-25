@@ -1,6 +1,7 @@
 import axios from '../https'
 import { Toast } from 'antd-mobile'
 import store from '../store'
+import _ut from '../libs/my-util'
 
 
 /*-----------------------------------------------------------------*/
@@ -9,6 +10,8 @@ import store from '../store'
 const initUserInfo = {
     userInfos: {},
     isForgetPsd: false,
+    userSteamAlert: false,
+    userUrlAlert: false
 }
 
 const UserReducer = (state = initUserInfo, action) => {
@@ -19,6 +22,9 @@ const UserReducer = (state = initUserInfo, action) => {
 
         case 'USER_FORGET_PSD':
             return Object.assign({}, state, { isForgetPsd: action.isForgetPsd })
+
+        case 'USER_STEAM_ALERT':
+            return Object.assign({}, state, { userSteamAlert: action.userSteamAlert, userUrlAlert: action.userUrlAlert })
 
         default:
             return state
@@ -47,6 +53,28 @@ const loginAction = (data, callback) => {
                     type: "USER_INFO",
                     userInfos: res.Data
                 })
+
+                if(_ut.isEmpty(res.Data.SteamId)){
+                    store.dispatch({
+                        type: "USER_STEAM_ALERT",
+                        userSteamAlert: true,
+                        userUrlAlert: false
+                    })
+                }else{
+                    if(_ut.isEmpty(res.Data.SteamTradeUrl)){
+                        store.dispatch({
+                            type: "USER_STEAM_ALERT",
+                            userSteamAlert: false,
+                            userUrlAlert: true
+                        })
+                    }else{
+                        store.dispatch({
+                            type: "USER_STEAM_ALERT",
+                            userSteamAlert: false,
+                            userUrlAlert: false
+                        })
+                    }
+                }
 
                 callback ? callback() : ""
             }
@@ -112,6 +140,28 @@ const registerAction = (data, callback) => {
                     type: "USER_INFO",
                     userInfos: res.Data
                 })
+
+                if(_ut.isEmpty(res.Data.SteamId)){
+                    store.dispatch({
+                        type: "USER_STEAM_ALERT",
+                        userSteamAlert: true,
+                        userUrlAlert: false
+                    })
+                }else{
+                    if(_ut.isEmpty(res.Data.SteamTradeUrl)){
+                        store.dispatch({
+                            type: "USER_STEAM_ALERT",
+                            userSteamAlert: false,
+                            userUrlAlert: true
+                        })
+                    }else{
+                        store.dispatch({
+                            type: "USER_STEAM_ALERT",
+                            userSteamAlert: false,
+                            userUrlAlert: false
+                        })
+                    }
+                }
 
                 callback ? callback() : ""
             }
@@ -206,8 +256,8 @@ const feedback = (data, callback) => {
 
 //更新steamurl
 const updateSteamUrl = (data,callback) => {
-    axios.post('/User/UpdateSteamTradeUrl',{
-            tradeUrl: data.tradeUrl
+    axios.post('/User/UpdateSteamTradeUrl', {
+            TradeUrl: data.TradeUrl
         })
         .then(function(res) {
             if (res) {

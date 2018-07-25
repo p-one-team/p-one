@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './uc.less'
+import _ut from '../../libs/my-util'
+import store from '../../store'
 
 
 @CSSModules(style)
@@ -10,7 +12,9 @@ class UserCenterComponent extends Component {
 		super(props)
 
 		this.state = {
-			isSign: this.props.userInfos.IsCheckIn
+			isSign: this.props.userInfos.IsCheckIn,
+			showSteamAlert: false,
+            showUrlAlert: false,
 		}
 	}
 
@@ -36,6 +40,71 @@ class UserCenterComponent extends Component {
 		})
 	}
 
+	goInventory = () => {
+		if(_ut.isEmpty(this.props.userInfos.SteamId)){
+			this.setState({
+				showSteamAlert: true
+			})
+		}else{
+			if(_ut.isEmpty(this.props.userInfos.SteamTradeUrl)){
+				this.setState({
+					showUrlAlert: true
+				})
+			}else{
+				this.props.goInventory();
+			}
+		}
+	}
+
+	closeAlert = () => {
+        this.setState({
+            showSteamAlert: false,
+            showUrlAlert: false
+        },()=>{
+            store.dispatch({
+                type: "USER_STEAM_ALERT",
+                userSteamAlert: false,
+                userUrlAlert: false
+            })
+        })
+    }
+
+    steamAlert = ()=>(<div styleName="steamAlert">
+        <div styleName="inner">
+            <div styleName="prodInfo">
+                <p>绑定Steam账号</p>
+                <span>绑定Steam账号后才能继续库存操作</span>
+            </div>
+            <div styleName="btnPart">
+                <span onClick={()=>this.closeAlert()}>跳过</span>
+                <span onClick={()=>this.goBind()}>去绑定</span>
+            </div>
+        </div>
+    </div>)
+
+    goBind = () => {
+        this.closeAlert()
+        //去绑定Steam
+    }
+
+    urlAlert = () => (<div styleName="steamAlert">
+        <div styleName="inner">
+            <div styleName="prodInfo">
+                <p>设置交易URL</p>
+                <span>将完整的Steam交易URL复制到我的交易URL中</span>
+            </div>
+            <div styleName="btnPart">
+                <span onClick={()=>this.closeAlert()}>跳过</span>
+                <span onClick={()=>this.goSet()}>去设置</span>
+            </div>
+        </div>
+    </div>)
+
+    goSet = () => {
+        this.closeAlert()
+        this.props.goSteamSetting()
+    }
+
 	render() {
 		let userInfos = this.props.userInfos;
 
@@ -53,7 +122,7 @@ class UserCenterComponent extends Component {
 						<div> <span className="iconfont icon-favorfill"></span>签到送T豆</div>
 						{this.state.isSign ? <div styleName="hasSigned">已签到</div> : <div styleName="sign" onClick={() => this.sign()}>点击签到</div>}
 					</li>
-					<li onClick={() => this.props.goInventory()}>
+					<li onClick={() => this.goInventory()}>
 						<div> <span className="iconfont icon-goodsfill"></span>我的库存</div>
 						<div className="iconfont icon-previewright"></div>
 					</li>
@@ -78,6 +147,9 @@ class UserCenterComponent extends Component {
 						<div className="iconfont icon-previewright"></div>
 					</li>
 				</ul>
+
+				{this.state.showSteamAlert ? this.steamAlert(): null}
+                {this.state.showUrlAlert ? this.urlAlert(): null}
 			</div>
 		)
 	}
