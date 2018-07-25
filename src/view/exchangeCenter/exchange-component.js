@@ -24,28 +24,17 @@ class ExchangeComponent extends Component {
                 >兑换中心</NavBar>
 
                 <div styleName="container">
-                    {/* <div styleName="gzuan">
-                        <p styleName="title">
-                            <span>我的G钻</span>
-                            <label>明细</label>
-                        </p>
-                        <div styleName="detail">
-                            <p>G钻余额</p>
-                            <p>0</p>
-                            <div>购买G钻</div>
-                        </div>
-                    </div> */}
                     <div styleName="tbean">
-                        <p styleName="title">
-                            <span>兑换T豆</span>
-                            {/* <label>明细</label> */}
-                        </p>
+                        <div styleName="pic">
+                            <img src="./img/hero.jpg" />
+                        </div>
                         <div styleName="detail">
                             <p>T豆余额</p>
                             <p>{this.props.userInfos.TBeansCount}</p>
                             <div onClick={()=>this.props.goExchangeTbeans()}>兑换T豆</div>
                         </div>
                     </div>
+                    <p styleName="tips">兑换中心只支持至宝兑换</p>
                 </div>
 
             </div>

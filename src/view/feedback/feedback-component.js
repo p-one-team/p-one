@@ -70,6 +70,11 @@ class FeedbackComponent extends Component {
                         <textarea placeholder="请详细描述您的问题" maxLength="200" type="text" value={this.state.detailDesc} onChange={this.detailChange.bind(this)} />
                     </div>
                 </div>
+
+                <div styleName="tips">
+                    <p>GT官方QQ群1：809497798</p>
+                    <p>GT官方QQ群2：798150659</p>
+                </div>
             </div>
         )
     }

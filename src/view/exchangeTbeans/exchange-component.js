@@ -112,7 +112,8 @@ class ExchangeTbeansComponent extends Component {
                 </div>
 
                 {this.state.canChoose ? <div styleName="exchange" onClick={()=>this.exchange()}>兑换</div> : <div styleName="noExchange">兑换</div> }
-                
+
+                <div styleName="inventory" onClick={()=>this.props.goInventoryPage()}>管理我的库存</div>
 
             </div>
         )

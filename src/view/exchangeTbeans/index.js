@@ -21,6 +21,10 @@ const mapDispatchToProps = (dispatch, props) => {
         refreshUserInfo(data,callback) {
             refreshUserInfo(data,callback)
         },
+
+        goInventoryPage() {
+            props.history.push('/inventory')
+        },
     }
 }
 
