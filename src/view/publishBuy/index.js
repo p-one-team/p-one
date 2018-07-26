@@ -21,7 +21,8 @@ const mapDispatchToProps = (dispatch, props) => {
                 AttributeValue: attributeValue,
                 KeyWords: keywords,
                 PageIndex: pageIndex,
-                PageSize: 20
+                PageSize: 20,
+                SectionType: 1
             }, callback)
         },
 

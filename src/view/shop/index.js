@@ -6,14 +6,15 @@ import store from '../../store'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        getShopList(attributeId, attributeValue, keywords, pageIndex, callback) {
+        getShopList(attributeId, attributeValue, keywords, pageIndex, sectionType, callback) {
             getMallList({
                 GameType: "570",
                 AttributeID: attributeId,
                 AttributeValue: attributeValue,
                 KeyWords: keywords,
                 PageIndex: pageIndex,
-                PageSize: 20
+                PageSize: 20,
+                SectionType: sectionType
             }, callback)
         },
 

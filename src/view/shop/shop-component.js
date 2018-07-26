@@ -16,12 +16,13 @@ class ShopComponent extends Component {
 			pageIndex: this.props.paramPageIndex,
 			shopList: [],
 			isShopMore: false,
-			isLoadingMore: false
+			isLoadingMore: false,
+			sectionType: 1
 		}
 	}
 
 	componentWillMount(){
-		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue, this.props.paramKeywords, this.props.paramPageIndex,()=>{
+		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue, this.props.paramKeywords, this.props.paramPageIndex, this.state.sectionType, ()=>{
 			this.setState({
 				shopList: this.props.shopInfos.Ornaments,
 				isShopMore: this.props.shopInfos.IsMore
@@ -69,7 +70,7 @@ class ShopComponent extends Component {
 			pageIndex: this.state.pageIndex + 1
 		})
 
-		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue, this.props.paramKeywords, this.state.pageIndex, ()=>{
+		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue, this.props.paramKeywords, this.state.pageIndex, this.state.sectionType, ()=>{
 			this.setState({
 				isLoadingMore: false,
 				shopList: this.state.shopList.concat(this.props.shopInfos.Ornaments),
@@ -100,7 +101,7 @@ class ShopComponent extends Component {
 	renderContent = () => {
 		if (this.state.shopList) {
 			return (
-				<div style={{ backgroundColor: 'white', width: '100%', height: '100%', textAlign: 'center' }}>
+				<div style={{ backgroundColor: 'white', width: '100%', height: '100%' }}>
 					<ul styleName="item-list">
 						{this.state.shopList.map((item, index) => (
 							<li key={index}>
@@ -141,7 +142,7 @@ class ShopComponent extends Component {
 			paramPageIndex: 1
 		})
 
-		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue, this.state.value, 1,()=>{
+		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue, this.state.value, 1, this.state.sectionType, ()=>{
 			this.setState({
 				pageIndex: 1,
 				isLoadingMore: false,
@@ -160,11 +161,23 @@ class ShopComponent extends Component {
 			paramPageIndex: 1
 		})
 
-		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue,"", 1,()=>{
+		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue,"", 1, this.state.sectionType, ()=>{
 			this.setState({
 				pageIndex: 1,
 				value: "",
 				isLoadingMore: false,
+				shopList: this.props.shopInfos.Ornaments,
+				isShopMore: this.props.shopInfos.IsMore
+			})
+		})
+	}
+
+	tyrantPart = () => {
+		this.props.getShopList(0, "", "", 1, 2, ()=>{
+			this.setState({
+				value: '',
+				pageIndex: 1,
+				sectionType: 2,
 				shopList: this.props.shopInfos.Ornaments,
 				isShopMore: this.props.shopInfos.IsMore
 			})
@@ -179,6 +192,7 @@ class ShopComponent extends Component {
 					mode="dark"
 					icon={<Icon type="left" />}
 					onLeftClick={() => this.props.history.goBack()}
+					rightContent={<span onClick={()=>this.tyrantPart()}>土豪区</span>}
 				>商城</NavBar>
 
 				<div styleName="btnPart">

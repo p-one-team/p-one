@@ -83,7 +83,8 @@ const getMallList = (data, callback) => {
             AttributeValue: data.AttributeValue,
             KeyWords: data.KeyWords,
             PageIndex: data.PageIndex,
-            PageSize: data.PageSize
+            PageSize: data.PageSize,
+            SectionType: data.SectionType
         })
         .then(function(res) {
             if (res) {
