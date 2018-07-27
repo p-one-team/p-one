@@ -192,7 +192,7 @@ class ShopComponent extends Component {
 					mode="dark"
 					icon={<Icon type="left" />}
 					onLeftClick={() => this.props.history.goBack()}
-					rightContent={<span onClick={()=>this.tyrantPart()}>土豪区</span>}
+					rightContent={<span onClick={()=>this.tyrantPart()}><label className="iconfont icon-zuanshi"></label>土豪区</span>}
 				>商城</NavBar>
 
 				<div styleName="btnPart">
