@@ -17,7 +17,8 @@ class ShopComponent extends Component {
 			shopList: [],
 			isShopMore: false,
 			isLoadingMore: false,
-			sectionType: 1
+			sectionType: 1,
+			title: "商城 - 普通区"
 		}
 	}
 
@@ -178,10 +179,32 @@ class ShopComponent extends Component {
 				value: '',
 				pageIndex: 1,
 				sectionType: 2,
+				title: "商城 - 土豪区",
 				shopList: this.props.shopInfos.Ornaments,
 				isShopMore: this.props.shopInfos.IsMore
 			})
 		})
+	}
+
+	commonPart = () => {
+		this.props.getShopList(0, "", "", 1, 1, ()=>{
+			this.setState({
+				value: '',
+				pageIndex: 1,
+				sectionType: 1,
+				title: "商城 - 普通区",
+				shopList: this.props.shopInfos.Ornaments,
+				isShopMore: this.props.shopInfos.IsMore
+			})
+		})
+	}
+
+	titleContent = () => {
+		if(this.state.sectionType==1){
+			return (<span onClick={()=>this.tyrantPart()}><label className="iconfont icon-zuanshi"></label>土豪区</span>)
+		}else if(this.state.sectionType==2){
+			return <span onClick={()=>this.commonPart()}>普通区</span>
+		}
 	}
 
 
@@ -192,8 +215,8 @@ class ShopComponent extends Component {
 					mode="dark"
 					icon={<Icon type="left" />}
 					onLeftClick={() => this.props.history.goBack()}
-					rightContent={<span onClick={()=>this.tyrantPart()}><label className="iconfont icon-zuanshi"></label>土豪区</span>}
-				>商城</NavBar>
+					rightContent={this.titleContent()}
+				>{this.state.title}</NavBar>
 
 				<div styleName="btnPart">
 					<span onClick={()=>this.props.goInventoryPage()}>出售</span>
