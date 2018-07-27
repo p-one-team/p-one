@@ -71,12 +71,21 @@ class UserCenterComponent extends Component {
 
     steamAlert = ()=>(<div styleName="steamAlert">
         <div styleName="inner">
-            <div styleName="prodInfo">
+            <div styleName="close">
                 <p>绑定Steam账号</p>
-                <span>绑定Steam账号后才能继续库存操作</span>
+                <span onClick={()=>this.closeAlert()}>跳过</span>
+            </div>
+            <div styleName="prodInfo">
+                <div>
+                    <label></label>
+                    <span className="iconfont icon-steamsquare"></span>
+                    <span className="iconfont icon-jiaohuan1"></span>
+                    <span className="iconfont icon-dota"></span>
+                    <label></label>
+                </div>
+                <p>绑定Steam账号后才能继续库存操作</p>
             </div>
             <div styleName="btnPart">
-                <span onClick={()=>this.closeAlert()}>跳过</span>
                 <span onClick={()=>this.goBind()}>去绑定</span>
             </div>
         </div>
@@ -89,12 +98,21 @@ class UserCenterComponent extends Component {
 
     urlAlert = () => (<div styleName="steamAlert">
         <div styleName="inner">
-            <div styleName="prodInfo">
+            <div styleName="close">
                 <p>设置交易URL</p>
-                <span>将完整的Steam交易URL复制到我的交易URL中</span>
+                <span onClick={()=>this.closeAlert()}>跳过</span>
+            </div>
+            <div styleName="prodInfo">
+                <div>
+                    <label></label>
+                    <span className="iconfont icon-steamsquare"></span>
+                    <span className="iconfont icon-jiaohuan1"></span>
+                    <span className="iconfont icon-dota"></span>
+                    <label></label>
+                </div>
+                <p>将完整的Steam交易URL复制到我的交易URL中</p>
             </div>
             <div styleName="btnPart">
-                <span onClick={()=>this.closeAlert()}>跳过</span>
                 <span onClick={()=>this.goSet()}>去设置</span>
             </div>
         </div>
