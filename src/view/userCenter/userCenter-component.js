@@ -4,7 +4,7 @@ import CSSModules from 'react-css-modules'
 import style from './uc.less'
 import _ut from '../../libs/my-util'
 import store from '../../store'
-
+import { steamLogin } from '../../common'
 
 @CSSModules(style)
 class UserCenterComponent extends Component {
@@ -14,7 +14,7 @@ class UserCenterComponent extends Component {
 		this.state = {
 			isSign: this.props.userInfos.IsCheckIn,
 			showSteamAlert: false,
-            showUrlAlert: false,
+			showUrlAlert: false,
 		}
 	}
 
@@ -41,87 +41,88 @@ class UserCenterComponent extends Component {
 	}
 
 	goInventory = () => {
-		if(_ut.isEmpty(this.props.userInfos.SteamId)){
+		if (_ut.isEmpty(this.props.userInfos.SteamId)) {
 			this.setState({
 				showSteamAlert: true
 			})
-		}else{
-			if(_ut.isEmpty(this.props.userInfos.SteamTradeUrl)){
+		} else {
+			if (_ut.isEmpty(this.props.userInfos.SteamTradeUrl)) {
 				this.setState({
 					showUrlAlert: true
 				})
-			}else{
+			} else {
 				this.props.goInventory();
 			}
 		}
 	}
 
 	closeAlert = () => {
-        this.setState({
-            showSteamAlert: false,
-            showUrlAlert: false
-        },()=>{
-            store.dispatch({
-                type: "USER_STEAM_ALERT",
-                userSteamAlert: false,
-                userUrlAlert: false
-            })
-        })
-    }
+		this.setState({
+			showSteamAlert: false,
+			showUrlAlert: false
+		}, () => {
+			store.dispatch({
+				type: "USER_STEAM_ALERT",
+				userSteamAlert: false,
+				userUrlAlert: false
+			})
+		})
+	}
 
-    steamAlert = ()=>(<div styleName="steamAlert">
-        <div styleName="inner">
-            <div styleName="close">
-                <p>绑定Steam账号</p>
-                <span onClick={()=>this.closeAlert()}>跳过</span>
-            </div>
-            <div styleName="prodInfo">
-                <div>
-                    <label></label>
-                    <span className="iconfont icon-steamsquare"></span>
-                    <span className="iconfont icon-jiaohuan1"></span>
-                    <span className="iconfont icon-dota"></span>
-                    <label></label>
-                </div>
-                <p>绑定Steam账号后才能继续库存操作</p>
-            </div>
-            <div styleName="btnPart">
-                <span onClick={()=>this.goBind()}>去绑定</span>
-            </div>
-        </div>
-    </div>)
+	steamAlert = () => (<div styleName="steamAlert">
+		<div styleName="inner">
+			<div styleName="close">
+				<p>绑定Steam账号</p>
+				<span onClick={() => this.closeAlert()}>跳过</span>
+			</div>
+			<div styleName="prodInfo">
+				<div>
+					<label></label>
+					<span className="iconfont icon-steamsquare"></span>
+					<span className="iconfont icon-jiaohuan1"></span>
+					<span className="iconfont icon-dota"></span>
+					<label></label>
+				</div>
+				<p>绑定Steam账号后才能继续库存操作</p>
+			</div>
+			<div styleName="btnPart">
+				<span onClick={() => this.goBind()}>去绑定</span>
+			</div>
+		</div>
+	</div>)
 
-    goBind = () => {
-        this.closeAlert()
-        //去绑定Steam
-    }
+	goBind = () => {
+		this.closeAlert();
+		window.location.href = `${steamLogin}?userId=${this.props.userInfos.UserId}&mobile=${this.props.userInfos.Mobile}`;
+		//去绑定Steam
+	}
 
-    urlAlert = () => (<div styleName="steamAlert">
-        <div styleName="inner">
-            <div styleName="close">
-                <p>设置交易URL</p>
-                <span onClick={()=>this.closeAlert()}>跳过</span>
-            </div>
-            <div styleName="prodInfo">
-                <div>
-                    <label></label>
-                    <span className="iconfont icon-steamsquare"></span>
-                    <span className="iconfont icon-jiaohuan1"></span>
-                    <span className="iconfont icon-dota"></span>
-                    <label></label>
-                </div>
-                <p>将完整的Steam交易URL复制到我的交易URL中</p>
-            </div>
-            <div styleName="btnPart">
-                <span onClick={()=>this.goSet()}>去设置</span>
-            </div>
-        </div>
-    </div>)
+	urlAlert = () => (<div styleName="steamAlert">
+		<div styleName="inner">
+			<div styleName="close">
+				<p>设置交易URL</p>
+				<span onClick={() => this.closeAlert()}>跳过</span>
+			</div>
+			<div styleName="prodInfo">
+				<div>
+					<label></label>
+					<span className="iconfont icon-steamsquare"></span>
+					<span className="iconfont icon-jiaohuan1"></span>
+					<span className="iconfont icon-dota"></span>
+					<label></label>
+				</div>
+				<p>将完整的Steam交易URL复制到我的交易URL中</p>
+			</div>
+			<div styleName="btnPart">
+				<span onClick={() => this.goSet()}>去设置</span>
+			</div>
+		</div>
+	</div>)
 
-    goSet = () => {
-        this.closeAlert()
-        this.props.goSteamSetting()
-    }
+	goSet = () => {
+		this.closeAlert()
+		this.props.goSteamSetting()
+	}
 
 	render() {
 		let userInfos = this.props.userInfos;
@@ -166,8 +167,8 @@ class UserCenterComponent extends Component {
 					</li>
 				</ul>
 
-				{this.state.showSteamAlert ? this.steamAlert(): null}
-                {this.state.showUrlAlert ? this.urlAlert(): null}
+				{this.state.showSteamAlert ? this.steamAlert() : null}
+				{this.state.showUrlAlert ? this.urlAlert() : null}
 			</div>
 		)
 	}

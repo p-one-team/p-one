@@ -6,6 +6,7 @@ import BottomTab from '../../layout/bottom-tab'
 import { Grid } from 'antd-mobile'
 import _ut from '../../libs/my-util'
 import store from '../../store'
+import { steamLogin } from '../../common'
 
 
 @CSSModules(style)
@@ -15,10 +16,10 @@ class MatchComponent extends Component {
 
         this.state = {
             gridData: [
-                {text: '我的库存'},
-                {text: '收菜排行'},
-                {text: '我的预测'},
-                {text: '商城'}
+                { text: '我的库存' },
+                { text: '收菜排行' },
+                { text: '我的预测' },
+                { text: '商城' }
             ],
             showSteamAlert: this.props.userSteamAlert,
             showUrlAlert: this.props.userUrlAlert,
@@ -28,16 +29,16 @@ class MatchComponent extends Component {
     goPage(el, index) {
         switch (index) {
             case 0:
-                if(_ut.isEmpty(this.props.userInfos.SteamId)){
+                if (_ut.isEmpty(this.props.userInfos.SteamId)) {
                     this.setState({
                         showSteamAlert: true
                     })
-                }else{
-                    if(_ut.isEmpty(this.props.userInfos.SteamTradeUrl)){
+                } else {
+                    if (_ut.isEmpty(this.props.userInfos.SteamTradeUrl)) {
                         this.setState({
                             showUrlAlert: true
                         })
-                    }else{
+                    } else {
                         this.props.goInventoryPage();
                     }
                 }
@@ -56,11 +57,11 @@ class MatchComponent extends Component {
 
     GridExample = () => (
         <div styleName="topMenu">
-            <Grid 
-                data={this.state.gridData} 
+            <Grid
+                data={this.state.gridData}
                 hasLine={false}
-                activeStyle={{backgroundColor:"#2c2c32","color":"#fff",fontSize:"3.2vw"}}
-                onClick={(_el, index) => { this.goPage(_el, index) }} 
+                activeStyle={{ backgroundColor: "#2c2c32", "color": "#fff", fontSize: "3.2vw" }}
+                onClick={(_el, index) => { this.goPage(_el, index) }}
             />
         </div>
     )
@@ -69,7 +70,7 @@ class MatchComponent extends Component {
         this.setState({
             showSteamAlert: false,
             showUrlAlert: false
-        },()=>{
+        }, () => {
             store.dispatch({
                 type: "USER_STEAM_ALERT",
                 userSteamAlert: false,
@@ -78,11 +79,11 @@ class MatchComponent extends Component {
         })
     }
 
-    steamAlert = ()=>(<div styleName="steamAlert">
+    steamAlert = () => (<div styleName="steamAlert">
         <div styleName="inner">
             <div styleName="close">
                 <p>绑定Steam账号</p>
-                <span onClick={()=>this.closeAlert()}>跳过</span>
+                <span onClick={() => this.closeAlert()}>跳过</span>
             </div>
             <div styleName="prodInfo">
                 <div>
@@ -95,13 +96,14 @@ class MatchComponent extends Component {
                 <p>绑定Steam账号后才能继续库存操作</p>
             </div>
             <div styleName="btnPart">
-                <span onClick={()=>this.goBind()}>去绑定</span>
+                <span onClick={() => this.goBind()}>去绑定</span>
             </div>
         </div>
     </div>)
 
     goBind = () => {
         this.closeAlert()
+        window.location.href = `${steamLogin}?userId=${this.props.userInfos.UserId}&mobile=${this.props.userInfos.Mobile}`
         //去绑定Steam
     }
 
@@ -109,7 +111,7 @@ class MatchComponent extends Component {
         <div styleName="inner">
             <div styleName="close">
                 <p>设置交易URL</p>
-                <span onClick={()=>this.closeAlert()}>跳过</span>
+                <span onClick={() => this.closeAlert()}>跳过</span>
             </div>
             <div styleName="prodInfo">
                 <div>
@@ -122,7 +124,7 @@ class MatchComponent extends Component {
                 <p>将完整的Steam交易URL复制到我的交易URL中</p>
             </div>
             <div styleName="btnPart">
-                <span onClick={()=>this.goSet()}>去设置</span>
+                <span onClick={() => this.goSet()}>去设置</span>
             </div>
         </div>
     </div>)
@@ -136,11 +138,11 @@ class MatchComponent extends Component {
         return (
             <div styleName="wrap">
                 {/* {this.GridExample()} */}
-                <BottomTab goPage={(_el,index)=>this.goPage(_el,index)} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(id) => this.props.showGameDetail(id)} />
+                <BottomTab goPage={(_el, index) => this.goPage(_el, index)} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(id) => this.props.showGameDetail(id)} />
 
-                {this.state.showSteamAlert ? this.steamAlert(): null}
-                {this.state.showUrlAlert ? this.urlAlert(): null}
-                
+                {this.state.showSteamAlert ? this.steamAlert() : null}
+                {this.state.showUrlAlert ? this.urlAlert() : null}
+
             </div>
         )
     }

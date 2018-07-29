@@ -39,35 +39,35 @@ const UserReducer = (state = initUserInfo, action) => {
 // 登录
 const loginAction = (data, callback) => {
     axios.post('/User/Login', {
-            Phone: data.Phone,
-            SmsCode: data.SmsCode,
-            Password: data.Password,
-            UseSmsCode: data.UseSmsCode
-        })
-        .then(function(res) {
+        Phone: data.Phone,
+        SmsCode: data.SmsCode,
+        Password: data.Password,
+        UseSmsCode: data.UseSmsCode
+    })
+        .then(function (res) {
             if (res) {
                 // Toast.success('登录成功！');
                 window.token = res.Data.Token
-
+                setCookie(res.Data.Token)
                 store.dispatch({
                     type: "USER_INFO",
                     userInfos: res.Data
                 })
 
-                if(_ut.isEmpty(res.Data.SteamId)){
+                if (_ut.isEmpty(res.Data.SteamId)) {
                     store.dispatch({
                         type: "USER_STEAM_ALERT",
                         userSteamAlert: true,
                         userUrlAlert: false
                     })
-                }else{
-                    if(_ut.isEmpty(res.Data.SteamTradeUrl)){
+                } else {
+                    if (_ut.isEmpty(res.Data.SteamTradeUrl)) {
                         store.dispatch({
                             type: "USER_STEAM_ALERT",
                             userSteamAlert: false,
                             userUrlAlert: true
                         })
-                    }else{
+                    } else {
                         store.dispatch({
                             type: "USER_STEAM_ALERT",
                             userSteamAlert: false,
@@ -79,7 +79,7 @@ const loginAction = (data, callback) => {
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('登录失败，请稍后重试！');
             console.log('error', error);
         });
@@ -88,14 +88,14 @@ const loginAction = (data, callback) => {
 // 获取验证码
 const getMsgCode = (data) => {
     axios.post('/User/GetSmsCode', {
-            phone: data.phone
-        })
-        .then(function(res) {
+        phone: data.phone
+    })
+        .then(function (res) {
             if (res) {
                 Toast.success('短信验证码获取成功！');
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('短信验证码获取失败，请稍后重试！');
             console.log('error', error);
         });
@@ -104,7 +104,7 @@ const getMsgCode = (data) => {
 // 登出
 const logoutAction = (callback) => {
     axios.get("/User/Logout")
-        .then(function(res) {
+        .then(function (res) {
             if (res) {
                 // Toast.success('退出登录成功！');
                 window.token = ""
@@ -117,7 +117,7 @@ const logoutAction = (callback) => {
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('退出登录失败！');
             console.log('error', error)
         });
@@ -126,35 +126,36 @@ const logoutAction = (callback) => {
 // 注册
 const registerAction = (data, callback) => {
     axios.post('/User/Register', {
-            Phone: data.Phone,
-            SmsCode: data.SmsCode,
-            Password: data.Password,
-            ConfirmPassword: data.ConfirmPassword
-        })
-        .then(function(res) {
+        Phone: data.Phone,
+        SmsCode: data.SmsCode,
+        Password: data.Password,
+        ConfirmPassword: data.ConfirmPassword
+    })
+        .then(function (res) {
             if (res) {
                 // Toast.success('注册成功！');
                 window.token = res.Data.Token;
+                setCookie(res.Data.Token)
 
                 store.dispatch({
                     type: "USER_INFO",
                     userInfos: res.Data
                 })
 
-                if(_ut.isEmpty(res.Data.SteamId)){
+                if (_ut.isEmpty(res.Data.SteamId)) {
                     store.dispatch({
                         type: "USER_STEAM_ALERT",
                         userSteamAlert: true,
                         userUrlAlert: false
                     })
-                }else{
-                    if(_ut.isEmpty(res.Data.SteamTradeUrl)){
+                } else {
+                    if (_ut.isEmpty(res.Data.SteamTradeUrl)) {
                         store.dispatch({
                             type: "USER_STEAM_ALERT",
                             userSteamAlert: false,
                             userUrlAlert: true
                         })
-                    }else{
+                    } else {
                         store.dispatch({
                             type: "USER_STEAM_ALERT",
                             userSteamAlert: false,
@@ -166,7 +167,7 @@ const registerAction = (data, callback) => {
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('注册失败，请稍后重试！');
             console.log('error', error)
         });
@@ -175,15 +176,15 @@ const registerAction = (data, callback) => {
 // 重置密码
 const resetPsdAction = (data, callback) => {
     axios.post('/User/ResetPassword', {
-            Phone: data.Phone,
-            SmsCode: data.SmsCode,
-            Password: data.Password,
-            ConfirmPassword: data.ConfirmPassword
-        })
-        .then(function(res) {
+        Phone: data.Phone,
+        SmsCode: data.SmsCode,
+        Password: data.Password,
+        ConfirmPassword: data.ConfirmPassword
+    })
+        .then(function (res) {
             if (res) {
                 window.token = res.Data.Token
-
+                setCookie(res.Data.Token)
                 store.dispatch({
                     type: "USER_INFO",
                     userInfos: res.Data
@@ -192,34 +193,34 @@ const resetPsdAction = (data, callback) => {
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('重置密码失败，请稍后重试！');
             console.log('error', error)
         });
 }
 
 //签到
-const signIn = (data,callback) => {
+const signIn = (data, callback) => {
     axios.get('/User/CheckIn')
-        .then(function(res) {
+        .then(function (res) {
             if (res) {
                 Toast.success(res.Msg);
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('请求失败，请稍后重试！');
             console.log('error', error)
         });
 }
 
 //刷新用户信息
-const refreshUserInfo = (data,callback) => {
+const refreshUserInfo = (data, callback) => {
     axios.get('/User/RefreshUserInfo')
-        .then(function(res) {
+        .then(function (res) {
             if (res) {
                 window.token = res.Data.Token;
-
+                setCookie(res.Data.Token);
                 store.dispatch({
                     type: "USER_INFO",
                     userInfos: res.Data
@@ -228,7 +229,7 @@ const refreshUserInfo = (data,callback) => {
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('请求失败，请稍后重试！');
             console.log('error', error)
         });
@@ -237,39 +238,45 @@ const refreshUserInfo = (data,callback) => {
 // 用户反馈
 const feedback = (data, callback) => {
     axios.post('/User/Feedback', {
-            ProblemTitle: data.ProblemTitle,
-            QQ: data.QQ,
-            ProblemContent: data.ProblemContent
-        })
-        .then(function(res) {
+        ProblemTitle: data.ProblemTitle,
+        QQ: data.QQ,
+        ProblemContent: data.ProblemContent
+    })
+        .then(function (res) {
             if (res) {
                 Toast.success(res.Msg)
 
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('重置密码失败，请稍后重试！');
             console.log('error', error)
         });
 }
 
 //更新steamurl
-const updateSteamUrl = (data,callback) => {
+const updateSteamUrl = (data, callback) => {
     axios.post('/User/UpdateSteamTradeUrl', {
-            TradeUrl: data.TradeUrl
-        })
-        .then(function(res) {
+        TradeUrl: data.TradeUrl
+    })
+        .then(function (res) {
             if (res) {
                 Toast.success(res.Msg)
 
                 callback ? callback() : ""
             }
         })
-        .catch(function(error) {
+        .catch(function (error) {
             Toast.fail('请求失败，请稍后重试！');
             console.log('error', error)
         });
+}
+
+const setCookie = (value, expiredays) => {
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate + expiredays);
+    document.cookie = "token=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
 }
 
 

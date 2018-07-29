@@ -6,6 +6,7 @@ import style from './bottom-tab.less'
 import MatchList from '../match-list'
 import UserCenter from '../../view/userCenter'
 import Rank from '../../view/rank'
+import { doudizhu } from '../../common'
 
 
 @CSSModules(style)
@@ -74,8 +75,8 @@ class TabBarExample extends React.Component {
     recommendPart = () => (<div style={{ backgroundColor: '#fff', height: '100%', textAlign: 'center' }}>
         <NavBar
             mode="dark"
-        >推单</NavBar>
-        <p style={{ marginTop: 50 }}>推单部分</p>
+        >斗地主</NavBar>
+        <p style={{ marginTop: 50 }}>斗地主部分</p>
     </div>);
 
     render() {
@@ -88,7 +89,7 @@ class TabBarExample extends React.Component {
                     hidden={this.props.hidden}
                 >
                     <TabBar.Item
-                        title="推单"
+                        title="斗地主"
                         key="recommend"
                         icon={<div style={{
                             width: '6.5vw',
@@ -107,6 +108,7 @@ class TabBarExample extends React.Component {
                         selected={this.props.currentPage === 'recommend'}
                         onPress={() => {
                             this.props.changePage('recommend');
+                            window.location.href = doudizhu;
                         }}
                         data-seed="logId"
                     >
