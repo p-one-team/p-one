@@ -16,7 +16,7 @@
         color: #cacaca!important;
     }
     :global {
-        .am-list-item{
+        .am-list-item {
             height: 80px;
             padding-left: 0;
             border-bottom: 1PX solid #ddd;
@@ -50,12 +50,25 @@
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #fff;
     font-size: 60px;
     text-align: center;
     width: 100%;
-    padding-top: 300px;
-    font-style: italic;
+    padding-top: 240px;
+    .logo-img {
+        height: 120px;
+        border-radius: 8Px;
+    }
+    span {
+        margin-left: 30px;
+        display: inline-block;
+        line-height: 120px;
+        height: 120px;
+        font-style: italic;
+    }
 }
 
 .main {
@@ -64,21 +77,18 @@
     background: #fff;
     border-radius: 10px;
     padding: 1px 30px;
- 
     :global {
-        .am-list-body{
-            .codeInput{
+        .am-list-body {
+            .codeInput {
                 float: left;
                 width: 70%;
                 height: 80px;
                 border-bottom: 1PX solid #ddd;
-
                 .am-list-line {
                     height: 80px;
                 }
             }
-
-            .getCode{
+            .getCode {
                 width: 30%;
                 float: right;
                 height: 80px;

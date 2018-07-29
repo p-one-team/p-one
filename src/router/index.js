@@ -20,7 +20,6 @@ import ShopItemDetail from '../view/shopItemDetail'
 import UserDetail from '../view/userDetail'
 import TradeHistory from '../view/tradeHistory'
 import HelpSuggest from '../view/helpSuggest'
-import Message from '../view/message'
 import ResetPassword from '../view/resetPassword'
 import ShopSelect from '../view/shopSelect'
 import Feedback from '../view/feedback'
@@ -30,6 +29,7 @@ import PublishBuy from '../view/publishBuy'
 import SteamSetting from '../view/steamSetting'
 import ExchangeCenter from '../view/exchangeCenter'
 import ExchangeTbeans from '../view/exchangeTbeans'
+import MessageDetail from '../view/messageDetail'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -97,10 +97,6 @@ const routes_config = [
 		component: TradeHistory
 	},
 	{
-		path: '/message',
-		component: Message
-	},
-	{
 		path: '/helpSuggest',
 		component: HelpSuggest
 	},
@@ -139,6 +135,10 @@ const routes_config = [
 	{
 		path: '/exchangeTbeans',
 		component: ExchangeTbeans
+	},
+	{
+		path: '/messageDetail',
+		component: MessageDetail
 	}
 ]
 

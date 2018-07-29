@@ -123,10 +123,10 @@ class signUpComponent extends Component {
             confirmPsd: value
         });
     }
-    
-     //获取验证码
-     getCode = () => {
-        if (this.state.hasPhoneError || this.state.phoneNumber.length == 0){
+
+    //获取验证码
+    getCode = () => {
+        if (this.state.hasPhoneError || this.state.phoneNumber.length == 0) {
             Toast.info('请正确填写注册手机号码');
             return false
         }
@@ -138,22 +138,22 @@ class signUpComponent extends Component {
 
     //注册
     register = () => {
-        if (this.state.hasPhoneError || this.state.phoneNumber.length == 0){
+        if (this.state.hasPhoneError || this.state.phoneNumber.length == 0) {
             Toast.info('请正确填写注册手机号码');
             return false
         }
 
-        if(this.state.hasCodeError || this.state.messageCode.length == 0){
+        if (this.state.hasCodeError || this.state.messageCode.length == 0) {
             Toast.info('请正确填写验证码!');
             return false
         }
 
-        if(this.state.hasPsdError || this.state.loginPsd.length == 0){
+        if (this.state.hasPsdError || this.state.loginPsd.length == 0) {
             Toast.info('请正确填写登录密码!');
             return false
         }
 
-        if(this.state.hasConfirmError || this.state.confirmPsd.length == 0){
+        if (this.state.hasConfirmError || this.state.confirmPsd.length == 0) {
             Toast.info('请正确确认登录密码!');
             return false
         }
@@ -172,7 +172,10 @@ class signUpComponent extends Component {
 
         return (
             <div styleName="wrap">
-                <p styleName="logo">GT</p>
+                <p styleName="logo">
+                    <img styleName="logo-img" src="./img/logo.jpg" />
+                    <span>GT</span>
+                </p>
 
                 <div styleName="main">
                     <List>
@@ -191,7 +194,7 @@ class signUpComponent extends Component {
                             className="codeInput"
                             {...getFieldProps('messageCode')}
                             type="number"
-                            placeholder="请输入您的验证码"                            
+                            placeholder="请输入您的验证码"
                             maxLength={4}
                             clear
                             error={this.state.hasCodeError}
@@ -200,7 +203,7 @@ class signUpComponent extends Component {
                             value={this.state.messageCode}
                         >验证码</InputItem>
                         <span className="getCode" onClick={this.getCode}>获取验证码</span>
-                        <div style={{clear:"both"}}></div>
+                        <div style={{ clear: "both" }}></div>
                         <InputItem
                             {...getFieldProps('loginPsd')}
                             type="password"

@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
+        userInfos: state.UserReducer.userInfos,
         guessRecordWeek: state.RankReducer.guessRecordWeek,
         guessRecordDay: state.RankReducer.guessRecordDay,
     }

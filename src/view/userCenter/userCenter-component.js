@@ -134,7 +134,6 @@ class UserCenterComponent extends Component {
 						<img styleName="user-img" src={userInfos.AvatarUrl} alt="" />
 						<div styleName="user-info">{userInfos.NickName}</div>
 					</div>
-					{/* {this.state.isSign ? <div styleName="hasSigned">已签到</div> : <div styleName="sign" onClick={() => this.sign()}>点击签到</div>} */}
 				</div>
 				<ul>
 					<li>

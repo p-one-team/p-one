@@ -5,6 +5,7 @@ import CSSModules from 'react-css-modules'
 import style from './bottom-tab.less'
 import MatchList from '../match-list'
 import UserCenter from '../../view/userCenter'
+// import Message from '../../view/message'
 import Rank from '../../view/rank'
 import { doudizhu } from '../../common'
 
@@ -160,7 +161,7 @@ class TabBarExample extends React.Component {
                             }}
                             />
                         }
-                        title="排行榜"
+                        title="咨询"
                         key="rank"
                         selected={this.props.currentPage === 'rank'}
                         onPress={() => {

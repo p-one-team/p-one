@@ -11,7 +11,9 @@ const initUserInfo = {
     userInfos: {},
     isForgetPsd: false,
     userSteamAlert: false,
-    userUrlAlert: false
+    userUrlAlert: false,
+    noticesList: {},
+    noticesDetail: {}
 }
 
 const UserReducer = (state = initUserInfo, action) => {
@@ -25,6 +27,12 @@ const UserReducer = (state = initUserInfo, action) => {
 
         case 'USER_STEAM_ALERT':
             return Object.assign({}, state, { userSteamAlert: action.userSteamAlert, userUrlAlert: action.userUrlAlert })
+
+        case 'NOTICES_LIST':
+            return Object.assign({}, state, { noticesList: action.noticesList })
+
+        case 'NOTICES_DETAIL':
+            return Object.assign({}, state, { noticesDetail: action.noticesDetail })
 
         default:
             return state
@@ -118,7 +126,7 @@ const logoutAction = (callback) => {
             }
         })
         .catch(function (error) {
-            Toast.fail('退出登录失败！');
+            Toast.fail('退出登录失败，请稍后重试！');
             console.log('error', error)
         });
 }
@@ -250,7 +258,29 @@ const feedback = (data, callback) => {
             }
         })
         .catch(function (error) {
-            Toast.fail('重置密码失败，请稍后重试！');
+            Toast.fail('请求失败，请稍后重试！');
+            console.log('error', error)
+        });
+}
+
+//获取系统公告
+const getNotices = (data, callback) => {
+    axios.post('/User/GetNotices', {
+        Page: data.Page,
+        PageSize: data.PageSize,
+    })
+        .then(function (res) {
+            if (res) {
+                store.dispatch({
+                    type: "NOTICES_LIST",
+                    noticesList: res.Data
+                })
+
+                callback ? callback() : ""
+            }
+        })
+        .catch(function (error) {
+            Toast.fail('请求失败，请稍后重试！');
             console.log('error', error)
         });
 }
@@ -290,5 +320,6 @@ export {
     signIn,
     refreshUserInfo,
     updateSteamUrl,
-    feedback
+    feedback,
+    getNotices
 }

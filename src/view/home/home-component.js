@@ -37,20 +37,20 @@ class HomeComponent extends Component {
 
     //切换登录方式
     changeMode = () => {
-        this.state.useMessageCode ? 
-        this.setState({ 
-            useMessageCode: false,
-            loginPsd: '',
-            hasPsdError: false,
-            messageCode: '',
-            hasCodeError: false
-        }) : this.setState({ 
-            useMessageCode: true,
-            loginPsd: '',
-            hasPsdError: false,
-            messageCode: '',
-            hasCodeError: false
-        })
+        this.state.useMessageCode ?
+            this.setState({
+                useMessageCode: false,
+                loginPsd: '',
+                hasPsdError: false,
+                messageCode: '',
+                hasCodeError: false
+            }) : this.setState({
+                useMessageCode: true,
+                loginPsd: '',
+                hasPsdError: false,
+                messageCode: '',
+                hasCodeError: false
+            })
     }
 
     //手机号相关
@@ -128,7 +128,7 @@ class HomeComponent extends Component {
 
     //获取验证码
     getCode = () => {
-        if (this.state.hasPhoneError || this.state.phoneNumber.length == 0){
+        if (this.state.hasPhoneError || this.state.phoneNumber.length == 0) {
             Toast.info('请正确填写登录手机号码');
             return false
         }
@@ -140,17 +140,17 @@ class HomeComponent extends Component {
 
     //登录
     login = () => {
-        if (this.state.hasPhoneError || this.state.phoneNumber.length == 0){
+        if (this.state.hasPhoneError || this.state.phoneNumber.length == 0) {
             Toast.info('请正确填写登录手机号码');
             return false
         }
 
-        if(this.state.useMessageCode && (this.state.hasCodeError || this.state.messageCode.length == 0)){
+        if (this.state.useMessageCode && (this.state.hasCodeError || this.state.messageCode.length == 0)) {
             Toast.info('请正确填写验证码!');
             return false
         }
 
-        if(!this.state.useMessageCode && (this.state.hasPsdError || this.state.phoneNumber.length == 0)){
+        if (!this.state.useMessageCode && (this.state.hasPsdError || this.state.phoneNumber.length == 0)) {
             Toast.info('请正确填写登录密码!');
             return false
         }
@@ -158,7 +158,7 @@ class HomeComponent extends Component {
         this.props.login({
             Phone: this.state.phoneNumber.replace(/\s/g, ''),
             Password: this.state.loginPsd,
-            SmsCode: this.state.messageCode, 
+            SmsCode: this.state.messageCode,
             UseSmsCode: this.state.useMessageCode
         })
     }
@@ -168,7 +168,10 @@ class HomeComponent extends Component {
 
         return (
             <div styleName="wrap">
-                <p styleName="logo">GT</p>
+                <p styleName="logo">
+                    <img styleName="logo-img" src="./img/logo.jpg" />
+                    <span>GT</span>
+                </p>
                 <div styleName="main">
                     <InputItem
                         {...getFieldProps('phoneNumber')}
@@ -182,7 +185,7 @@ class HomeComponent extends Component {
                         value={this.state.phoneNumber}
                     ></InputItem>
                     {
-                        this.state.useMessageCode==false
+                        this.state.useMessageCode == false
                             ?
                             <InputItem
                                 {...getFieldProps('loginPsd')}
@@ -211,7 +214,7 @@ class HomeComponent extends Component {
                     }
                 </div>
 
-                {this.state.useMessageCode==false ? <div styleName="forget" onClick={this.goResetPsd}>忘记密码？</div> : <div styleName="getcode" onClick={this.getCode}>获取验证码</div>}
+                {this.state.useMessageCode == false ? <div styleName="forget" onClick={this.goResetPsd}>忘记密码？</div> : <div styleName="getcode" onClick={this.getCode}>获取验证码</div>}
 
                 <div styleName="login-btn" onClick={this.login}>登录</div>
                 <div styleName="bottom">
@@ -228,7 +231,7 @@ class HomeComponent extends Component {
 
 HomeComponent.propTypes = {
     phoneNumber: PropTypes.string,
-    loginPsd: PropTypes.string,    
+    loginPsd: PropTypes.string,
     messageCode: PropTypes.string,
     useMessageCode: PropTypes.bool
 }

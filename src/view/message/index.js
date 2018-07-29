@@ -1,20 +1,32 @@
 import { connect } from 'react-redux'
 import MessageComponent from './message-component'
+import { getNotices } from '../../reducers/user'
+import { withRouter } from 'react-router-dom'
 
 const mapDispatchToProps = (dispatch, props) => {
-
     return {
-        goListPage(){
-            props.history.push('/list')
-        }
+        goMessageDetail() {
+            props.history.push('/messageDetail');
+        },
 
+        getNotices(data, callback) {
+            getNotices({
+                Page: data.pageIndex,
+                PageSize: 20,
+            }, callback)
+        },
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        noticesList: state.UserReducer.noticesList,
+    }
+}
 
-const Message = connect(
-    null,
+const Message = withRouter(connect(
+    mapStateToProps,
     mapDispatchToProps
-)(MessageComponent)
+)(MessageComponent))
 
 export default Message;

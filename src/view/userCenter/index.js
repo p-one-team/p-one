@@ -8,8 +8,8 @@ import { signIn, refreshUserInfo } from '../../reducers/user'
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
-        refreshUserInfo(data,callback) {
-            refreshUserInfo(data,callback)
+        refreshUserInfo(data, callback) {
+            refreshUserInfo(data, callback)
         },
 
         goBack() {
@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         goTradeHistory() {
-            getMyTransaction({},()=>{
+            getMyTransaction({}, () => {
                 props.history.push('/tradeHistory')
             })
         },
@@ -42,16 +42,12 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/exchangeCenter')
         },
 
-        goMessage() {
-            props.history.push('/message')
-        },
-        
         goHelpSuggest() {
             props.history.push('/helpSuggest')
         },
 
-        signIn(data,callback) {
-            signIn(data,callback)
+        signIn(data, callback) {
+            signIn(data, callback)
         },
 
         goSteamSetting() {
