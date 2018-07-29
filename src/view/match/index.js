@@ -2,16 +2,21 @@ import { connect } from 'react-redux'
 import MatchComponent from './match-component'
 import { getGameItems, getGameItemInfo } from '../../reducers/match'
 import store from '../../store'
+import { refreshUserInfo } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+
+        refreshUserInfo(data, callback) {
+            refreshUserInfo(data, callback)
+        },
 
         goMatchDetail(id) {
             store.dispatch({
                 type: 'GAME_ITEM_ID',
                 gameItemId: id
             })
-            
+
             getGameItemInfo(id, () => {
                 props.history.push('/matchDetail')
             })
@@ -35,7 +40,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
         goShop() {
             store.dispatch({
-                type:"MALL_LIST_PARAM",
+                type: "MALL_LIST_PARAM",
                 paramAttributeId: 0,
                 paramAttributeValue: "",
                 paramKeywords: "",

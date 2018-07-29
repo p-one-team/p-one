@@ -26,6 +26,10 @@ class MatchComponent extends Component {
         }
     }
 
+    componentWillMount() {
+        this.props.refreshUserInfo('', () => { return false })
+    }
+
     goPage(el, index) {
         switch (index) {
             case 0:
