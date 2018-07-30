@@ -161,7 +161,7 @@ class TabBarExample extends React.Component {
                             }}
                             />
                         }
-                        title="咨询"
+                        title="资讯公告"
                         key="rank"
                         selected={this.props.currentPage === 'rank'}
                         onPress={() => {

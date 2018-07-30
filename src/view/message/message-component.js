@@ -77,7 +77,7 @@ class MessageComponent extends Component {
                 </div>
             )
         } else {
-            return (<div styleName="noInfo">暂无咨询</div>)
+            return (<div styleName="noInfo">暂无资讯公告</div>)
         }
     }
 
@@ -87,7 +87,7 @@ class MessageComponent extends Component {
             <div styleName="wrap">
                 <NavBar
                     mode="dark"
-                >咨询</NavBar>
+                >资讯公告</NavBar>
 
                 <div className="container">
                     <div styleName="header">
