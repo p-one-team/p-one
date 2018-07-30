@@ -5,8 +5,8 @@ import CSSModules from 'react-css-modules'
 import style from './bottom-tab.less'
 import MatchList from '../match-list'
 import UserCenter from '../../view/userCenter'
-// import Message from '../../view/message'
-import Rank from '../../view/rank'
+import Message from '../../view/message'
+// import Rank from '../../view/rank'
 import { doudizhu } from '../../common'
 
 
@@ -168,7 +168,7 @@ class TabBarExample extends React.Component {
                             this.props.changePage('rank');
                         }}
                     >
-                        <Rank />
+                        <Message />
                     </TabBar.Item>
 
                     <TabBar.Item
