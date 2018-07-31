@@ -173,7 +173,7 @@ class signUpComponent extends Component {
         return (
             <div styleName="wrap">
                 <p styleName="logo">
-                    <img styleName="logo-img" src="./img/logo.jpg" />
+                    <img styleName="logo-img" src="./img/logo.png" />
                     <span>GT</span>
                 </p>
 
