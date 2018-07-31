@@ -88,48 +88,57 @@
             border-bottom: 0;
             height: 8vw;
             background-color: #fff;
-        }
-        .am-search-input {
-            height: 7vw;
-        }
-        .am-search-input .am-search-synthetic-ph {
-            height: 7vw;
-            line-height: 7vw;
-            border-radius: 5vw!important;
-            background-color: rgba(0, 0, 0, .05)!important;
-        }
-        .am-search.am-search-start .am-search-input .am-search-synthetic-ph {
-            border-radius: 0vw !important;
-            background-color: transparent !important;
-        }
-        .am-search-input input[type="search"] {
-            height: 100%;
-        }
-        .am-search-input input[type="search"] {
-            border-radius: 5vw !important;
-            background-color: rgba(0, 0, 0, 0.1) !important;
-        }
-        .am-search.am-search-start .am-search-input input[type="search"] {
-            padding: 0 6vw 0 10.5vw;
-        }
-        .am-search-input .am-search-synthetic-ph-icon {
-            display: inline-block;
-            margin-right: .66667vw;
-            width: 5vw;
-            height: 5vw;
-            overflow: hidden;
-            background-repeat: no-repeat;
-            background-size: 4.5vw auto;
-            vertical-align: -1.7vw;
-        }
-        .am-search.am-search-start .am-search-input .am-search-synthetic-ph {
-            padding-left: 5.5vw;
-            width: auto;
-        }
-        .am-search-clear {
-            width: 5vw;
-            height: 5vw;
-            background-size: 3vw 3vw;
+
+            .am-search-input {
+                height: 7vw;
+
+                .am-search-synthetic-ph {
+                    width: 100%!important;
+                    height: 7vw;
+                    line-height: 7vw;
+                    border-radius: 5vw!important;
+                    background-color: rgba(0, 0, 0, .05)!important;
+                    box-sizing: border-box;
+                    padding-left: 3.5vw;
+                    text-align: left;
+                    display: flex;
+                    align-items: center;
+
+                    .am-search-synthetic-ph-container{
+                        .am-search-synthetic-ph-icon {
+                            display: inline-block;
+                            margin-right: .66667vw;
+                            width: 5vw;
+                            height: 5vw;
+                            overflow: hidden;
+                            background-repeat: no-repeat;
+                            background-size: 4.5vw auto;
+                            vertical-align: -1.7vw;
+                        }
+                        .am-search-synthetic-ph-placeholder{
+                            font-size: 24px;
+                        }
+                    }
+                }
+
+                input[type="search"] {
+                    height: 100%;
+                    font-size: 24px;
+                    padding: 0 6vw 0 8.5vw;
+                    border-radius: 5vw !important;
+                    background-color: rgba(0, 0, 0, 0.1) !important;
+                }
+            }
+
+            .am-search-cancel{
+                font-size: 24px;
+            }
+
+            .am-search-clear {
+                width: 5vw;
+                height: 5vw;
+                background-size: 3vw 3vw;
+            }
         }
         .am-tabs-bottom {
             -webkit-box-orient: vertical;
@@ -221,8 +230,9 @@
     }
     .loadMore {
         line-height: 120px;
-        font-size: 12px;
+        font-size: 20px;
         color: #666;
+        text-align: center;
     }
 
     .buyAlert{
