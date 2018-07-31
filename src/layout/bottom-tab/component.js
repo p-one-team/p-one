@@ -133,7 +133,7 @@ class TabBarExample extends React.Component {
                             }}
                             />
                         }
-                        title="菠菜"
+                        title="赛事"
                         key="lottery"
                         selected={this.props.currentPage === 'lottery'}
                         onPress={() => {

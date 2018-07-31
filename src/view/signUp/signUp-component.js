@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './signUp.less'
 
-import { List, InputItem, Checkbox, Toast } from 'antd-mobile';
+import { List, InputItem, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
 
 
@@ -22,6 +22,7 @@ class signUpComponent extends Component {
             hasPsdError: false,
             confirmPsd: '', //第二遍密码
             hasConfirmError: false,
+            checkboxState: true
         }
     }
 
@@ -158,6 +159,11 @@ class signUpComponent extends Component {
             return false
         }
 
+        if(!this.state.checkboxState){
+            Toast.info('请同意平台服务协议!');
+            return false
+        }
+
         this.props.register({
             Phone: this.state.phoneNumber.replace(/\s/g, ''),
             SmsCode: this.state.messageCode,
@@ -166,9 +172,14 @@ class signUpComponent extends Component {
         })
     }
 
+    changeCheckbox = () => {
+        this.setState({
+            checkboxState: !this.state.checkboxState
+        })
+    }
+
     render() {
         const { getFieldProps } = this.props.form;
-        const AgreeItem = Checkbox.AgreeItem;
 
         return (
             <div styleName="wrap">
@@ -229,9 +240,10 @@ class signUpComponent extends Component {
                         >确认密码</InputItem>
                     </List>
                 </div>
-                <AgreeItem data-seed="logId" onChange={e => console.log('checkbox', e)} defaultChecked>
-                    <a onClick={(e) => { e.preventDefault(); alert('agree it'); }}>同意平台服务协议</a>
-                </AgreeItem>
+                <div styleName="checkboxPart" onClick={()=>this.changeCheckbox()}>
+                    {this.state.checkboxState ? <label className="iconfont icon-fangxingxuanzhongfill"></label> : <label className="iconfont icon-fangxingweixuanzhong"></label> }
+                    <span>同意平台服务协议</span>
+                </div>
                 <div styleName="register-btn" onClick={this.register}>注册</div>
                 <p styleName="login" onClick={this.goLogin}>已有账号，去登录</p>
             </div>
