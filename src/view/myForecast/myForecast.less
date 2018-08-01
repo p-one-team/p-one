@@ -32,10 +32,12 @@
         }
         .am-tabs{
             background-color: #fff;
-            // height: 10vw;
+            margin-top: -1Px;
+
 
             .am-tabs-default-bar-tab{
-                background: #fff;
+                background-color: #fff!important;
+                height: 8.5vw;
 
                 div{
                     width: 50%;
@@ -55,6 +57,9 @@
                 .right{
                     margin-right: 30%
                 }
+            }
+            .am-tabs-default-bar-top .am-tabs-default-bar-tab::after{
+                background-color: #fff;
             }
 
             .am-tabs-default-bar-tab-active{
@@ -76,192 +81,205 @@
                 display: none;
             }
 
-            .title_part{
-                width: 100%;
-                display: flex;
-                padding: 15px 0;
-                border-top: 1px solid #f1f1f1;
-
-                div{
-                    flex: 1;
-                    text-align: center;
-
-                    p:first-child{
-                        color: orange;
-                        font-size: 36px;
-                    }
-
-                    p:nth-child(2){
-                        margin-top: 10px;
-                        color: #2c2c32;
-                        font-size: 24px;
-                    }
-                }
+            .am-tabs-content-wrap{
+                margin-top: -1Px;
             }
+            
+        }
+    }
 
-            .history{
-                .history_title{
-                    padding-left: 30px;
-                    box-sizing: border-box;
-                    width: 100%;
-                    background: #fff;
-                    line-height: 10vw;
+    .header {
+        width: 100%;
+        background-color: #2c2c32;
+        color: #fff;
+        text-align: center;
+        padding: 30px 0;
+    
+        img{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+    }
+
+    .tab_part{
+        .tab_title{
+            padding-left: 30px;
+            box-sizing: border-box;
+            width: 100%;
+            background: #fff;
+            line-height: 10vw;
+            color: #2c2c32;
+            font-size: 24px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .title_part{
+            width: 100%;
+            display: flex;
+            padding: 15px 0;
+            border-top: 1px solid #f1f1f1;
+    
+            div{
+                flex: 1;
+                text-align: center;
+    
+                p:first-child{
+                    color: orange;
+                    font-size: 36px;
+                }
+    
+                p:nth-child(2){
+                    margin-top: 10px;
                     color: #2c2c32;
                     font-size: 24px;
-                    border-top: 1px solid #f1f1f1;
                 }
+            }
+        }
 
-                .noRecord{
-                    width: 100%;
-                    font-size: 27px;
-                    line-height: 300px;
-                    text-align: center;
-                    color: #2c2c32;
-                }
-
-                .list_title{
-                    width: 100%;
-                    display: flex;
-                    padding: 10px 0;                    
-
-                    span{
-                        font-size: 20px;
-                        color: #2c2c32;
-                        text-align: center;
-                    }
-
-                    span:nth-child(1){
-                        flex: 1;
-                    }
-
-                    span:nth-child(2){
-                        flex: 3;
-                    }
-
-                    span:nth-child(3){
-                        flex: 1;
-                    }
-
-                    span:nth-child(4){
-                        flex: 1;
-                    }
-                }
-
-                .list-item{
-                    width: 100%;
-                    display: flex;
-                    padding: 10px 0;
-                    text-align: center;
-                    align-items: center;
-
-                    div:nth-child(1){
-                        flex: 1;
-                        
-
-                        p{
-                            font-size: 20px;
-                            color: #989898;
-                        }
-
-                        p:first-child{
-                            font-size: 24px;
-                            line-height: 45px;
-                        }
-                    }
-                    div:nth-child(2){
-                        flex: 3;
-
-                        div:first-child{
-                            font-size: 0;
-                            position: relative;
-                            height: 45px;
-
-                            img{
-                                display: inline-block;
-                                width: 45px;
-                                height: 45px;
-                            }
-
-                            label{
-                                position: relative;
-                                top: -2vw;
-                                display: inline-block;
-                                width: 45px;
-                                height: 45px;
-                                line-height: 45px;
-                                text-align: center;
-                                font-size: 20px;
-                                color: #989898;
-                                margin: 0 20px;
-                            }
-                        }
-                        p{
-                            font-size: 20px;
-                            color: #989898;
-                        }
-                    }
-                    div:nth-child(3){
-                        flex: 1;
-
-                        div{
-                            height: 45px;
-
-                            img{
-                                width: 40px;
-                                height: 40px;
-                            }
-                        }
-                        
-
-                        p{
-                            color: #ff5a5f;
-                            font-size: 20px;
-                        }
-                    }
-                    div:nth-child(4){
-                        flex: 1;
-                        color: #ff5a5f;
-                        font-size: 20px;
-                    }
-                }
-
-                .loanMore{
-                    width: 100%;
-                    padding: 30px 0;
-                    margin-bottom: 20px;
+        .history{
+            .history_title{
+                padding-left: 30px;
+                box-sizing: border-box;
+                width: 100%;
+                background: #fff;
+                line-height: 10vw;
+                color: #2c2c32;
+                font-size: 24px;
+                border-top: 1px solid #f1f1f1;
+            }
+    
+            .noRecord{
+                width: 100%;
+                font-size: 27px;
+                line-height: 300px;
+                text-align: center;
+                color: #2c2c32;
+            }
+    
+            .list_title{
+                width: 100%;
+                display: flex;
+                padding: 10px 0;                    
+    
+                span{
                     font-size: 20px;
                     color: #2c2c32;
                     text-align: center;
                 }
+    
+                span:nth-child(1){
+                    flex: 1;
+                }
+    
+                span:nth-child(2){
+                    flex: 3;
+                }
+    
+                span:nth-child(3){
+                    flex: 1;
+                }
+    
+                span:nth-child(4){
+                    flex: 1;
+                }
+            }
+    
+            .list-item{
+                width: 100%;
+                display: flex;
+                padding: 10px 0;
+                text-align: center;
+                align-items: center;
+    
+                div:nth-child(1){
+                    flex: 1;
+                    
+    
+                    p{
+                        font-size: 20px;
+                        color: #989898;
+                    }
+    
+                    p:first-child{
+                        font-size: 24px;
+                        line-height: 45px;
+                    }
+                }
+                div:nth-child(2){
+                    flex: 3;
+    
+                    div:first-child{
+                        font-size: 0;
+                        position: relative;
+                        height: 45px;
+    
+                        img{
+                            display: inline-block;
+                            width: 45px;
+                            height: 45px;
+                        }
+    
+                        label{
+                            position: relative;
+                            top: -2vw;
+                            display: inline-block;
+                            width: 45px;
+                            height: 45px;
+                            line-height: 45px;
+                            text-align: center;
+                            font-size: 20px;
+                            color: #989898;
+                            margin: 0 20px;
+                        }
+                    }
+                    p{
+                        font-size: 20px;
+                        color: #989898;
+                    }
+                }
+                div:nth-child(3){
+                    flex: 1;
+    
+                    div{
+                        height: 45px;
+    
+                        img{
+                            width: 40px;
+                            height: 40px;
+                        }
+                    }
+                    
+    
+                    p{
+                        color: #ff5a5f;
+                        font-size: 20px;
+                    }
+                }
+                div:nth-child(4){
+                    flex: 1;
+                    color: #ff5a5f;
+                    font-size: 20px;
+                }
+            }
+    
+            .loanMore{
+                width: 100%;
+                padding: 30px 0;
+                margin-bottom: 20px;
+                font-size: 20px;
+                color: #2c2c32;
+                text-align: center;
             }
         }
     }
+
+    
+
+    
 }
 
-.header {
-    width: 100%;
-    background-color: #2c2c32;
-    color: #fff;
-    text-align: center;
-    padding: 30px 0;
 
-    img{
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-    }
-}
 
-.tab_part{
-    .tab_title{
-        padding-left: 30px;
-        box-sizing: border-box;
-        width: 100%;
-        background: #fff;
-        line-height: 10vw;
-        color: #2c2c32;
-        font-size: 24px;
-        border-bottom: 1px solid #f1f1f1;
-    }
-}
+
 

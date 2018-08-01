@@ -29,24 +29,53 @@
             }
         }
 
-        .am-tabs-pane-wrap>div{
-            height: auto!important;
+        .am-tabs{
+            .am-tabs-tab-bar-wrap{
+                .am-tabs-default-bar{
+                    .am-tabs-default-bar-content{
+                        background: #fff!important;
+
+                        .am-tabs-default-bar-tab {
+                            font-size: 24px;
+                            height: 80px;
+                        }
+                    }
+                }
+            }
+
+            .am-tabs-content-wrap{
+                .am-tabs-pane-wrap {
+                    div{
+                        height: auto!important;
+                    }
+                }
+            }
+
+
         }
 
-        .am-tabs-default-bar-content{
-            background: #fff!important;
-        }
-        
-        .bet-info{
+        .am-accordion{
             width: 100%;
+
+            .am-accordion-item{
+                .am-accordion-header{
+                    height: 60px!important;
+
+                    .am-accordion-header{
+                        background-color: #fff!important;
+                    }        
+                }
+
+                .am-accordion-content{
+                    .am-accordion-content-box{
+                        background-color: #fff!important;
+                    }
+                }
+            }
         }
 
         .userPart{
             width: 100%;
-
-            .am-accordion-header{
-                height: 60px!important;
-            }
 
             .guess_list{
                 width: 100%;
@@ -162,6 +191,9 @@
             }
         }
     }
+
+
+    
     .detailCard {
         background-color: #2c2c32;
         display: flex;

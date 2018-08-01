@@ -44,7 +44,7 @@ class TabBarExample extends React.Component {
             <NavBar
                 mode="dark"
             >赛事预测</NavBar>
-            <div styleName="topMenu">
+            <div className="topMenu">
                 <Grid
                     data={this.state.gridData}
                     hasLine={false}

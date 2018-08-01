@@ -127,14 +127,14 @@ class myForecastComponent extends Component {
 
             if (list && list.length > 0) {
                 historyList = (<div>
-                    <div className="list_title">
+                    <div styleName="list_title">
                         <span>状态</span>
                         <span>比赛</span>
                         <span>队伍</span>
                         <span>收益</span>
                     </div>
                     {list.map((item, index) => (
-                        <div key={index} className="list-item">
+                        <div key={index} styleName="list-item">
                             <div>
                                 <p>{item.SettlementStatus}</p>
                                 <p>{item.HandicapDate}</p>
@@ -156,14 +156,14 @@ class myForecastComponent extends Component {
                             <div>{item.SettlementAmount}</div>
                         </div>
                     ))}
-                    {isMore ? <div className="loanMore" onClick={() => this.loadMoreFn()}>点击加载更多</div> : <div className="loanMore">无更多</div>}
+                    {isMore ? <div styleName="loanMore" onClick={() => this.loadMoreFn()}>点击加载更多</div> : <div styleName="loanMore">无更多</div>}
                 </div>)
             } else {
-                historyList = (<div className="noRecord">暂无预测记录</div>)
+                historyList = (<div styleName="noRecord">暂无预测记录</div>)
             }
 
             return (<div>
-                <div className="title_part">
+                <div styleName="title_part">
                     <div>
                         <p>{info.guessCount}</p>
                         <p>预测场次</p>
@@ -177,8 +177,8 @@ class myForecastComponent extends Component {
                         <p>收益</p>
                     </div>
                 </div>
-                <div className="history">
-                    <div className="history_title">预测历史</div>
+                <div styleName="history">
+                    <div styleName="history_title">预测历史</div>
                     {historyList}
                 </div>
             </div>)

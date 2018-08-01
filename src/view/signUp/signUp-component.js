@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './signUp.less'
 
-import { List, InputItem, Toast } from 'antd-mobile';
+import { InputItem, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
 
 
@@ -189,56 +189,54 @@ class signUpComponent extends Component {
                 </p>
 
                 <div styleName="main">
-                    <List>
-                        <InputItem
-                            {...getFieldProps('phoneNum')}
-                            type="phone"
-                            placeholder="请输入您的手机号码"
-                            maxLength={13}
-                            clear
-                            error={this.state.hasPhoneError}
-                            onErrorClick={this.onErrorClickPhone}
-                            onChange={this.onChangePhone}
-                            value={this.state.phoneNumber}
-                        >手机号码</InputItem>
-                        <InputItem
-                            className="codeInput"
-                            {...getFieldProps('messageCode')}
-                            type="number"
-                            placeholder="请输入您的验证码"
-                            maxLength={4}
-                            clear
-                            error={this.state.hasCodeError}
-                            onErrorClick={this.onErrorClickCode}
-                            onChange={this.onChangeCode}
-                            value={this.state.messageCode}
-                        >验证码</InputItem>
-                        <span className="getCode" onClick={this.getCode}>获取验证码</span>
-                        <div style={{ clear: "both" }}></div>
-                        <InputItem
-                            {...getFieldProps('loginPsd')}
-                            type="password"
-                            placeholder="请设置您的密码(限6~18个字符)"
-                            maxLength={18}
-                            clear
-                            error={this.state.hasPsdError}
-                            onErrorClick={this.onErrorClickPsd}
-                            onChange={this.onChangePsd}
-                            value={this.state.loginPsd}
-                        >密码</InputItem>
-                        <InputItem
-                            className="confirmInput"
-                            {...getFieldProps('confirmpassword')}
-                            type="password"
-                            placeholder="请再次确认您的密码(限6~18个字符)"
-                            maxLength={18}
-                            clear
-                            error={this.state.hasConfirmError}
-                            onErrorClick={this.onErrorClickConfirm}
-                            onChange={this.onChangeConfirm}
-                            value={this.state.confirmPsd}
-                        >确认密码</InputItem>
-                    </List>
+                    <InputItem
+                        {...getFieldProps('phoneNum')}
+                        type="phone"
+                        placeholder="请输入您的手机号码"
+                        maxLength={13}
+                        clear
+                        error={this.state.hasPhoneError}
+                        onErrorClick={this.onErrorClickPhone}
+                        onChange={this.onChangePhone}
+                        value={this.state.phoneNumber}
+                    >手机号码</InputItem>
+                    <InputItem
+                        className="codeInput"
+                        {...getFieldProps('messageCode')}
+                        type="number"
+                        placeholder="请输入您的验证码"
+                        maxLength={4}
+                        clear
+                        error={this.state.hasCodeError}
+                        onErrorClick={this.onErrorClickCode}
+                        onChange={this.onChangeCode}
+                        value={this.state.messageCode}
+                    >验证码</InputItem>
+                    <span className="getCode" onClick={this.getCode}>获取验证码</span>
+                    <div style={{ clear: "both" }}></div>
+                    <InputItem
+                        {...getFieldProps('loginPsd')}
+                        type="password"
+                        placeholder="请设置您的密码(限6~18个字符)"
+                        maxLength={18}
+                        clear
+                        error={this.state.hasPsdError}
+                        onErrorClick={this.onErrorClickPsd}
+                        onChange={this.onChangePsd}
+                        value={this.state.loginPsd}
+                    >密码</InputItem>
+                    <InputItem
+                        className="confirmInput"
+                        {...getFieldProps('confirmpassword')}
+                        type="password"
+                        placeholder="请再次确认您的密码(限6~18个字符)"
+                        maxLength={18}
+                        clear
+                        error={this.state.hasConfirmError}
+                        onErrorClick={this.onErrorClickConfirm}
+                        onChange={this.onChangeConfirm}
+                        value={this.state.confirmPsd}
+                    >确认密码</InputItem>
                 </div>
                 <div styleName="checkboxPart" onClick={()=>this.changeCheckbox()}>
                     {this.state.checkboxState ? <label className="iconfont icon-fangxingxuanzhongfill"></label> : <label className="iconfont icon-fangxingweixuanzhong"></label> }

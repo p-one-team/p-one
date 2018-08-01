@@ -41,10 +41,24 @@
             top: 12vw;
             width: 100%;
             height: calc(~"100% - 12vw");
-        }
-        .am-tabs-pane-wrap {
-            height: 100%;
-            background-color: #fff;
+
+            .am-tabs-tab-bar-wrap{
+                .am-tabs-default-bar{
+                    .am-tabs-default-bar-content{
+                      .am-tabs-default-bar-tab {
+                        font-size: 24px;
+                        height: 80px;
+                      }
+                    }
+                }
+            }
+
+            .am-tabs-content-wrap{
+                .am-tabs-pane-wrap {
+                    height: 100%;
+                    background-color: #fff;
+                }
+            }
         }
     }
 
