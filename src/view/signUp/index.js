@@ -1,22 +1,22 @@
 import { connect } from 'react-redux'
 import signUpComponentWrapper from './signUp-component.js'
-import { getMsgCode, registerAction} from '../../reducers/user'
+import { getMsgCode, registerAction } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        goListPage() {
-            props.history.push('/list')
+        goProtocol() {
+            props.history.push('/protocol')
         },
 
         register(data) {
-            registerAction(data, function(){
+            registerAction(data, function() {
                 props.history.push('/match')
             })
         },
 
         getCode(data) {
-			getMsgCode(data)
-		}
+            getMsgCode(data)
+        }
     }
 }
 

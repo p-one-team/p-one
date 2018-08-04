@@ -76,8 +76,8 @@ class TabBarExample extends React.Component {
     recommendPart = () => (<div style={{ backgroundColor: '#fff', height: '100%', textAlign: 'center' }}>
         <NavBar
             mode="dark"
-        >斗地主</NavBar>
-        <p style={{ marginTop: 50 }}>斗地主部分</p>
+        >游戏</NavBar>
+        <p style={{ marginTop: 50 }}>游戏部分</p>
     </div>);
 
     render() {
@@ -90,7 +90,7 @@ class TabBarExample extends React.Component {
                     hidden={this.props.hidden}
                 >
                     <TabBar.Item
-                        title="斗地主"
+                        title="游戏"
                         key="recommend"
                         icon={<div style={{
                             width: '6.5vw',

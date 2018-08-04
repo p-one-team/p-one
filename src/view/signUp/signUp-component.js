@@ -185,13 +185,12 @@ class signUpComponent extends Component {
             <div styleName="wrap">
                 <p styleName="logo">
                     <img styleName="logo-img" src="./img/logo.png" />
-                    <span>GT</span>
                 </p>
 
                 <div styleName="main">
                     <InputItem
                         {...getFieldProps('phoneNum')}
-                        type="phone"
+                        type="digit"
                         placeholder="请输入您的手机号码"
                         maxLength={13}
                         clear
@@ -240,7 +239,7 @@ class signUpComponent extends Component {
                 </div>
                 <div styleName="checkboxPart" onClick={()=>this.changeCheckbox()}>
                     {this.state.checkboxState ? <label className="iconfont icon-fangxingxuanzhongfill"></label> : <label className="iconfont icon-fangxingweixuanzhong"></label> }
-                    <span>同意平台服务协议</span>
+                    <span>同意平台<a onClick={()=>this.props.goProtocol()}>服务协议</a></span>
                 </div>
                 <div styleName="register-btn" onClick={this.register}>注册</div>
                 <p styleName="login" onClick={this.goLogin}>已有账号，去登录</p>

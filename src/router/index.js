@@ -30,6 +30,7 @@ import SteamSetting from '../view/steamSetting'
 import ExchangeCenter from '../view/exchangeCenter'
 import ExchangeTbeans from '../view/exchangeTbeans'
 import MessageDetail from '../view/messageDetail'
+import Protocol from '../view/protocol'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -139,6 +140,10 @@ const routes_config = [
 	{
 		path: '/messageDetail',
 		component: MessageDetail
+	},
+	{
+		path: '/protocol',
+		component: Protocol
 	}
 ]
 

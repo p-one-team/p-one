@@ -170,12 +170,11 @@ class HomeComponent extends Component {
             <div styleName="wrap">
                 <p styleName="logo">
                     <img styleName="logo-img" src="./img/logo.png" />
-                    <span>GT</span>
                 </p>
                 <div styleName="main">
                     <InputItem
                         {...getFieldProps('phoneNumber')}
-                        type="phone"
+                        type="digit"
                         maxLength={13}
                         placeholder="请输入您的手机号"
                         clear
