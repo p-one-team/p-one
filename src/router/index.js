@@ -167,11 +167,11 @@ const App = () => (
 							</Switch> */}
 
 							<Switch location={location}>
-       
+
 								<Route path="/login" component={Login} />
 
-								{routes_config.map(config =>(<PrivateRoute key={config.path} path={config.path} exact={config.isExact} component={config.component} />))}
-							
+								{routes_config.map(config => (<PrivateRoute key={config.path} path={config.path} exact={config.isExact} component={config.component} />))}
+
 							</Switch>
 						</section>
 					</SlideTransition>
@@ -184,13 +184,9 @@ const App = () => (
 const PrivateRoute = ({ component: Component, ...rest }) => (
 	<Route {...rest}
 		render={props =>
-			_ut.isEmpty(window.token)&&_ut.isEmpty(getCookie('token'))
-			? (<Redirect
-				to={{
-					pathname: "/login",
-				}}
-			/>)
-			: (<Component {...props} />)
+			_ut.isEmpty(window.token) && _ut.isEmpty(getCookie('token'))
+				? (<Redirect from="/" to="/login" />)
+				: (<Component {...props} />)
 		}
 	/>
 );

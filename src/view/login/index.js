@@ -6,7 +6,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 	return {
 		//前往忘记密码页
-		goResetPsd(){
+		goResetPsd() {
 			dispatch({
 				type: "USER_FORGET_PSD",
 				isForgetPsd: true
@@ -16,8 +16,10 @@ const mapDispatchToProps = (dispatch, props) => {
 
 		//登录
 		login(data) {
-			loginAction(data, function(){
-				props.history.goBack()
+			loginAction(data, function () {
+				// props.history.goBack()
+				props.history.replace('/')
+				// location.reload();
 			})
 		},
 
