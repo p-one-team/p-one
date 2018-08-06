@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import HomeComponent from './home-component.js'
+import LoginComponent from './login-component.js'
 import { loginAction, getMsgCode } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch, props) => {
 		//登录
 		login(data) {
 			loginAction(data, function(){
-				props.history.push('/match')
+				props.history.goBack()
 			})
 		},
 
@@ -30,13 +30,13 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		...state.HomeReducer
+		...state.UserReducer
 	}
 }
 
-const Home = connect(
+const Login = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(HomeComponent)
+)(LoginComponent)
 
-export default Home;
+export default Login;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 import style from './uc.less'
 import _ut from '../../libs/my-util'
@@ -174,7 +173,8 @@ class UserCenterComponent extends Component {
 }
 
 UserCenterComponent.propTypes = {
-	goBack: PropTypes.func
+
+
 }
 
 export default UserCenterComponent

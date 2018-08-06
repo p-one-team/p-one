@@ -26,7 +26,7 @@ class SteamSetComponent extends Component {
             TradeUrl: this.state.steamUrl,
         }, () => {
             this.props.refreshUserInfo('',()=>{
-                window.history.back()
+                this.props.history.goBack()
             })
         })
     }

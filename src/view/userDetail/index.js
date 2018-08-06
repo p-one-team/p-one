@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch, props) => {
 
         logout() {
             logoutAction(function () {
-                //跳转到登录页
-                props.history.push('/')
+                //返回到主菜单页，由主菜单进行登录判断
+                props.history.goBack()
             })
         }
     }

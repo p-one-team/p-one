@@ -116,6 +116,7 @@ const logoutAction = (callback) => {
             if (res) {
                 // Toast.success('退出登录成功！');
                 window.token = ""
+                setCookie("")
 
                 store.dispatch({
                     type: "USER_INFO",

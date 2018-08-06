@@ -5,13 +5,9 @@ import { getMsgCode, resetPsdAction } from '../../reducers/user'
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
-        resetPsd(data,isForget) {
+        resetPsd(data) {
             resetPsdAction(data, function(){
-                if(isForget){
-                    props.history.push('/')
-                }else{
-                    props.history.goBack()
-                }
+                props.history.goBack()
             })
         },
 

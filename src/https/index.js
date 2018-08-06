@@ -61,7 +61,7 @@ export default {
             data: params,
             headers: {
                 'Content-Type': 'application/json-patch+json',
-                'Authorization': _ut.isEmpty(window.token) ? ("Bearer " + getCookie('token')) : "Bearer " + window.token,
+                'Authorization': _ut.isEmpty(window.token) ? getCookie('token') : "Bearer " + window.token,
                 'withCredentials': true
             }
         })
@@ -82,3 +82,5 @@ const getCookie = (c_name) => {
     }
     return "" //不存在就返回空
 }
+
+export { getCookie }

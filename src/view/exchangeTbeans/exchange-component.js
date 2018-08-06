@@ -93,7 +93,7 @@ class ExchangeTbeansComponent extends Component {
             Ornaments: this.props.dotaChosenExchangeInventory
         },()=>{
             this.props.refreshUserInfo('',()=>{
-                window.history.back()
+                this.props.history.goBack()
             })
         })
     }

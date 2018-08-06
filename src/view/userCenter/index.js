@@ -12,10 +12,6 @@ const mapDispatchToProps = (dispatch, props) => {
             refreshUserInfo(data, callback)
         },
 
-        goBack() {
-            props.history.replace('/')
-        },
-
         goDetail() {
             props.history.push('/userDetail')
         },

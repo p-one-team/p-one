@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
-import style from './home.less'
+import style from './login.less'
 // import classNames from 'classnames'
 
 import { InputItem, Toast } from 'antd-mobile';
@@ -10,7 +10,7 @@ import { createForm } from 'rc-form';
 
 
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
-class HomeComponent extends Component {
+class LoginComponent extends Component {
     constructor(props) {
         super(props)
 
@@ -228,12 +228,12 @@ class HomeComponent extends Component {
     }
 }
 
-HomeComponent.propTypes = {
+LoginComponent.propTypes = {
     phoneNumber: PropTypes.string,
     loginPsd: PropTypes.string,
     messageCode: PropTypes.string,
     useMessageCode: PropTypes.bool
 }
 
-const HomeComponentWrapper = createForm()(HomeComponent);
-export default HomeComponentWrapper
+const LoginComponentWrapper = createForm()(LoginComponent);
+export default LoginComponentWrapper

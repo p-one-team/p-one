@@ -1,5 +1,7 @@
+// import React, {Component} from 'react';
+import { Route, Redirect } from 'react-router'
 import React from 'react';
-import { Route } from 'react-router'
+// import { Route } from 'react-router'
 import { HashRouter, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { TransitionGroup } from 'react-transition-group'
@@ -7,7 +9,7 @@ import { SlideTransition } from 'mo-transtion'
 import store from '../store'
 
 /*引入页面组件*/
-import Home from '../view/home'
+import Login from '../view/login'
 import signUp from '../view/signUp'
 import Match from '../view/match'
 import matchDetail from '../view/matchDetail'
@@ -47,16 +49,16 @@ import '../styles/iconfont.css'
 const routes_config = [
 	{
 		path: '/',
-		component: Home,
+		component: Match,
 		isExact: true
 	},
+	// {
+	// 	path: '/login',
+	// 	component: Login,
+	// },
 	{
 		path: '/signUp',
 		component: signUp
-	},
-	{
-		path: '/match',
-		component: Match
 	},
 	{
 		path: '/matchDetail',
@@ -81,18 +83,15 @@ const routes_config = [
 	{
 		path: '/shop',
 		component: Shop
-	}
-	,
+	},
 	{
 		path: '/shopItem',
 		component: ShopItemDetail
-	}
-	,
+	},
 	{
 		path: '/userDetail',
 		component: UserDetail
-	}
-	,
+	},
 	{
 		path: '/tradeHistory',
 		component: TradeHistory
@@ -147,6 +146,8 @@ const routes_config = [
 	}
 ]
 
+import _ut from '../libs/my-util'
+import { getCookie } from '../https'
 
 const App = () => (
 	<Provider store={store}>
@@ -155,12 +156,22 @@ const App = () => (
 				<TransitionGroup component="main" >
 					<SlideTransition key={location.pathname}>
 						<section className={style.fill}>
+							{/* <Switch location={location}>
+
+								<Route path="/login" component={Login} />
+
+								{routes_config.map(config =>(<Route key={config.path} path={config.path} exact={config.isExact} component={config.component} />))}
+								
+								<PrivateRoute key={'/'} path={'/'} exact={true} component={Match}/>
+								
+							</Switch> */}
+
 							<Switch location={location}>
-								{
-									routes_config.map(config =>
-										<Route key={config.path} path={config.path} exact={config.isExact} component={config.component} />
-									)
-								}
+       
+								<Route path="/login" component={Login} />
+
+								{routes_config.map(config =>(<PrivateRoute key={config.path} path={config.path} exact={config.isExact} component={config.component} />))}
+							
 							</Switch>
 						</section>
 					</SlideTransition>
@@ -169,6 +180,20 @@ const App = () => (
 		</HashRouter>
 	</Provider>
 )
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+	<Route {...rest}
+		render={props =>
+			_ut.isEmpty(window.token)&&_ut.isEmpty(getCookie('token'))
+			? (<Redirect
+				to={{
+					pathname: "/login",
+				}}
+			/>)
+			: (<Component {...props} />)
+		}
+	/>
+);
 
 
 export default App
