@@ -91,7 +91,7 @@ class MessageComponent extends Component {
 
                 <div className="container">
                     <div styleName="header">
-                        <img src="./img/info.jpg" />
+                        <img src="./img/info.png" />
                     </div>
 
                     {this.content(this.state.noticeList, this.state.isMore)}

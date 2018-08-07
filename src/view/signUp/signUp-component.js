@@ -150,12 +150,12 @@ class signUpComponent extends Component {
         }
 
         if (this.state.hasPsdError || this.state.loginPsd.length == 0) {
-            Toast.info('请正确填写登录密码!');
+            Toast.info('密码必须由6~15个数字和字母组成,请正确填写!');
             return false
         }
 
         if (this.state.hasConfirmError || this.state.confirmPsd.length == 0) {
-            Toast.info('请正确确认登录密码!');
+            Toast.info('两次填写密码不一致,请重新确认登录密码!');
             return false
         }
 

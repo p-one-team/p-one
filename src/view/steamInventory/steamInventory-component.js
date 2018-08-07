@@ -41,7 +41,7 @@ class SteamInventoryComponent extends Component {
                     />
                 ))}
             </div>
-            <div styleName="transfer" onClick={()=>this.transfer()}>转入VIP库存</div>
+            <div styleName="transfer" onClick={()=>this.transfer()}>转入我的库存</div>
         </div>
     )
 
