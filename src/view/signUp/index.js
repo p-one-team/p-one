@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
         register(data) {
             registerAction(data, function() {
-                props.history.go(-2)
+                props.history.replace('/')
             })
         },
 

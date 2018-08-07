@@ -56,10 +56,10 @@ const routes_config = [
 	// 	path: '/login',
 	// 	component: Login,
 	// },
-	{
-		path: '/signUp',
-		component: signUp
-	},
+	// {
+	// 	path: '/signUp',
+	// 	component: signUp
+	// },
 	{
 		path: '/matchDetail',
 		component: matchDetail
@@ -156,23 +156,13 @@ const App = () => (
 				<TransitionGroup component="main" >
 					<SlideTransition key={location.pathname}>
 						<section className={style.fill}>
-							{/* <Switch location={location}>
-
-								<Route path="/login" component={Login} />
-
-								{routes_config.map(config =>(<Route key={config.path} path={config.path} exact={config.isExact} component={config.component} />))}
-								
-								<PrivateRoute key={'/'} path={'/'} exact={true} component={Match}/>
-								
-							</Switch> */}
 
 							<Switch location={location}>
-
 								<Route path="/login" component={Login} />
-
+								<Route path="/signUp" component={signUp} />
 								{routes_config.map(config => (<PrivateRoute key={config.path} path={config.path} exact={config.isExact} component={config.component} />))}
-
 							</Switch>
+							
 						</section>
 					</SlideTransition>
 				</TransitionGroup>
@@ -185,7 +175,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 	<Route {...rest}
 		render={props =>
 			_ut.isEmpty(window.token) && _ut.isEmpty(getCookie('token'))
-				? (<Redirect from="/" to="/login" />)
+				? (window.register ? <Redirect from='/' to='/signUp'/> : <Redirect from="/" to="/login" />)
 				: (<Component {...props} />)
 		}
 	/>

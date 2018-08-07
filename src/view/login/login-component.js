@@ -27,7 +27,8 @@ class LoginComponent extends Component {
 
     //去注册
     goSign = () => {
-        this.props.history.push('/signUp')
+        window.register = true;
+        this.props.history.replace('/')
     }
 
     //去重置密码

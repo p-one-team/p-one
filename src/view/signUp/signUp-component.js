@@ -28,7 +28,8 @@ class signUpComponent extends Component {
 
     //去登录
     goLogin = () => {
-        this.props.history.goBack()
+        window.register = false;
+        this.props.history.replace('/')
     }
 
     //手机号相关
