@@ -7,7 +7,7 @@ import MatchList from '../match-list'
 import UserCenter from '../../view/userCenter'
 import Message from '../../view/message'
 // import Rank from '../../view/rank'
-import { doudizhu } from '../../common'
+// import { doudizhu } from '../../common'
 
 
 @CSSModules(style)
@@ -109,7 +109,7 @@ class TabBarExample extends React.Component {
                         selected={this.props.currentPage === 'recommend'}
                         onPress={() => {
                             this.props.changePage('recommend');
-                            window.location.href = doudizhu;
+                            window.location.href = this.props.userInfos.ChessUrl;
                         }}
                         data-seed="logId"
                     >
