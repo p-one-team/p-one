@@ -27,7 +27,7 @@ class LoginComponent extends Component {
 
     //去注册
     goSign = () => {
-        window.register = true;
+        window.register = "register";
         this.props.history.replace('/')
     }
 

@@ -140,10 +140,10 @@ const routes_config = [
 		path: '/messageDetail',
 		component: MessageDetail
 	},
-	{
-		path: '/protocol',
-		component: Protocol
-	}
+	// {
+	// 	path: '/protocol',
+	// 	component: Protocol
+	// }
 ]
 
 import _ut from '../libs/my-util'
@@ -160,6 +160,7 @@ const App = () => (
 							<Switch location={location}>
 								<Route path="/login" component={Login} />
 								<Route path="/signUp" component={signUp} />
+								<Route path="/protocol" component={Protocol} />
 								{routes_config.map(config => (<PrivateRoute key={config.path} path={config.path} exact={config.isExact} component={config.component} />))}
 							</Switch>
 							
@@ -175,7 +176,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 	<Route {...rest}
 		render={props =>
 			_ut.isEmpty(window.token) && _ut.isEmpty(getCookie('token'))
-				? (window.register ? <Redirect from='/' to='/signUp'/> : <Redirect from="/" to="/login" />)
+				? (window.register=="protocol" 
+					? <Redirect from='/' to='/protocol'/>
+					: (window.register=="register" ? <Redirect from="/" to="/signUp" /> : <Redirect from="/" to="/login" />))
 				: (<Component {...props} />)
 		}
 	/>

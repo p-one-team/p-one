@@ -5,7 +5,8 @@ import { getMsgCode, registerAction } from '../../reducers/user'
 const mapDispatchToProps = (dispatch, props) => {
     return {
         goProtocol() {
-            props.history.push('/protocol')
+            window.register = "protocol"
+            props.history.replace('/')
         },
 
         register(data) {
