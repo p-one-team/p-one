@@ -40,7 +40,7 @@ class TabBarExample extends React.Component {
             _gameTypes[i].title = (<Badge >{_gameTypes[i].GameName}</Badge>)
         }
 
-        return (<div>
+        return (<div className="xxxxx">
             <NavBar
                 mode="dark"
             >赛事预测</NavBar>
@@ -56,17 +56,17 @@ class TabBarExample extends React.Component {
                 initialPage={0}
                 onTabClick={(tab) => { this.props.changeGameInfo(tab.GameCode) }}
             >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <MatchList detailList={this.props.gameInfos_570} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
+                <div styleName="game_outer">
+                    <MatchList detailList={this.props.gameInfos_570} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId,callback) => this.props.showGameDetail(gameId,callback)} />
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <MatchList detailList={this.props.gameInfos_730} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
+                <div styleName="game_outer">
+                    <MatchList detailList={this.props.gameInfos_730} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId,callback) => this.props.showGameDetail(gameId,callback)} />
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <MatchList detailList={this.props.gameInfos_lol} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
+                <div styleName="game_outer">
+                    <MatchList detailList={this.props.gameInfos_lol} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId,callback) => this.props.showGameDetail(gameId,callback)}/>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    <MatchList detailList={this.props.gameInfos_Sports} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId) => this.props.showGameDetail(gameId)} />
+                <div styleName="game_outer">
+                    <MatchList detailList={this.props.gameInfos_Sports} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId,callback) => this.props.showGameDetail(gameId,callback)} />
                 </div>
             </Tabs>
             <WhiteSpace />

@@ -148,7 +148,7 @@ class MatchComponent extends Component {
         return (
             <div styleName="wrap">
                 {/* {this.GridExample()} */}
-                <BottomTab goPage={(_el, index) => this.goPage(_el, index)} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(id) => this.props.showGameDetail(id)} />
+                <BottomTab goPage={(_el, index) => this.goPage(_el, index)} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(id,callback) => this.props.showGameDetail(id,callback)} />
 
                 {this.state.showSteamAlert ? this.steamAlert() : null}
                 {this.state.showUrlAlert ? this.urlAlert() : null}

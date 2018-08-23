@@ -328,7 +328,7 @@ class matchDetail extends Component {
                     </div>
                     <div styleName="des">
                         <p>{gameItemInfos.GameItemTitle}</p>
-                        <p>猜输赢</p>
+                        {/* <p>猜输赢</p> */}
                         <p>{gameItemInfos.IsForecast ? gameItemInfos.GameItemDate : "进行中"}</p>
                     </div>
                     <div styleName="teamR">
@@ -363,7 +363,7 @@ class matchDetail extends Component {
                     {gameItemInfos.IsForecast ? (<div styleName="forecastCanClick" onClick={() => this.props.goForecast()}>{this.state.isAddForecast ? "加注" : "预测"}</div>) : (<div styleName="forecast">{this.state.isAddForecast ? "加注" : "预测"}</div>)}
                 </div>
 
-                {this.state.isUserGuessShow ? this.userGuess() : null}
+                {gameItemInfos.IsForecast ? (this.state.isUserGuessShow ? this.userGuess() : null) : null}
 
                 <div styleName="rankList">
                     {this.TabExample()}

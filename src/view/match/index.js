@@ -22,8 +22,8 @@ const mapDispatchToProps = (dispatch, props) => {
             })
         },
 
-        showGameDetail(gameId) {
-            getGameItems(gameId)
+        showGameDetail(gameId,callback) {
+            getGameItems(gameId,callback)
         },
 
         goRankPage() {

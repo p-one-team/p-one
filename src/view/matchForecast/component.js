@@ -121,7 +121,8 @@ class MatchForecastComponent extends Component {
             AlertWindow.Prompt("您剩余的T豆余额不足" + num + "！", () => { return false })
         } else {
             this.setState({
-                tbeanCount: num
+                tbeanCount: num,
+                canChoose: true
             })
         }
     }

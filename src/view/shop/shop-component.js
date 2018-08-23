@@ -17,8 +17,8 @@ class ShopComponent extends Component {
 			shopList: [],
 			isShopMore: false,
 			isLoadingMore: false,
-			sectionType: 1,
-			title: "商城 - 普通区"
+			sectionType: 2,
+			title: "商城 - 土豪区"
 		}
 	}
 

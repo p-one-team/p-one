@@ -121,7 +121,7 @@ const getGameInfos = (type) => {
 }
 
 // 主赛事的预测列表
-const getGameItems = (id) => {
+const getGameItems = (id,callback) => {
     axios.post("/Game/GetGameItems", {
         AgendaId: id
     })
@@ -134,6 +134,8 @@ const getGameItems = (id) => {
                         itemList: res.Data.GameItems
                     }
                 })
+
+                callback ? callback() : null
             }
         })
         .catch(function (error) {
