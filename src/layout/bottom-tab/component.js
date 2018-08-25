@@ -57,16 +57,16 @@ class TabBarExample extends React.Component {
                 onTabClick={(tab) => { this.props.changeGameInfo(tab.GameCode) }}
             >
                 <div styleName="game_outer">
-                    <MatchList detailList={this.props.gameInfos_570} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId,callback) => this.props.showGameDetail(gameId,callback)} />
+                    <MatchList detailList={this.props.gameInfos_570} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId, callback) => this.props.showGameDetail(gameId, callback)} />
                 </div>
                 <div styleName="game_outer">
-                    <MatchList detailList={this.props.gameInfos_730} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId,callback) => this.props.showGameDetail(gameId,callback)} />
+                    <MatchList detailList={this.props.gameInfos_730} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId, callback) => this.props.showGameDetail(gameId, callback)} />
                 </div>
                 <div styleName="game_outer">
-                    <MatchList detailList={this.props.gameInfos_lol} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId,callback) => this.props.showGameDetail(gameId,callback)}/>
+                    <MatchList detailList={this.props.gameInfos_lol} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId, callback) => this.props.showGameDetail(gameId, callback)} />
                 </div>
                 <div styleName="game_outer">
-                    <MatchList detailList={this.props.gameInfos_Sports} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId,callback) => this.props.showGameDetail(gameId,callback)} />
+                    <MatchList detailList={this.props.gameInfos_Sports} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId, callback) => this.props.showGameDetail(gameId, callback)} />
                 </div>
             </Tabs>
             <WhiteSpace />
@@ -77,7 +77,7 @@ class TabBarExample extends React.Component {
         <NavBar
             mode="dark"
         >游戏</NavBar>
-        <p style={{ marginTop: 50 }}>游戏部分</p>
+        <p style={{ marginTop: 50 }}></p>
     </div>);
 
     render() {
