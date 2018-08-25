@@ -107,7 +107,13 @@ class MatchComponent extends Component {
 
     goBind = () => {
         this.closeAlert()
-        window.location.href = `${steamLogin}?userId=${this.props.userInfos.UserId}&mobile=${this.props.userInfos.Mobile}`
+        let ref = window.cordova.InAppBrowser.open(`${steamLogin}?userId=${this.props.userInfos.UserId}&mobile=${this.props.userInfos.Mobile}`, '_blank', 'location=no')
+        //  cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
+        let InAppBrowserCallback = ()=>{
+            alert('更新userInfo');
+        }
+        ref.addEventListener('exit', InAppBrowserCallback);
+
         //去绑定Steam
     }
 
@@ -142,7 +148,7 @@ class MatchComponent extends Component {
         return (
             <div styleName="wrap">
                 {/* {this.GridExample()} */}
-                <BottomTab goPage={(_el, index) => this.goPage(_el, index)} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(id) => this.props.showGameDetail(id)} />
+                <BottomTab goPage={(_el, index) => this.goPage(_el, index)} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(id,callback) => this.props.showGameDetail(id,callback)} />
 
                 {this.state.showSteamAlert ? this.steamAlert() : null}
                 {this.state.showUrlAlert ? this.urlAlert() : null}

@@ -1,17 +1,64 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import style from './match-list.less'
+import store from '../../store'
 
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
 class MatchList extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            outerList: this.props.detailList,
+            innerInfo: this.props.innerInfo
+        }
+    }
+
+    UNSAFE_componentWillReceiveProps(nextProps){
+        this.setState({
+            outerList: nextProps.detailList,
+            innerInfo: nextProps.detailItem
+        })
+    }
+
+    showDetail = (isShowDetail,id) => {
+        if(isShowDetail){
+            let _outList = this.state.outerList;
+            _outList.map((item)=>{
+                if(item.GameID == id){
+                    item.gameItemList = []
+                    item.isShowDetail = false
+                }
+            })
+            store.dispatch({
+                type: 'GAME_ITEM',
+                gameItems: {}
+            })
+        }else{
+            this.props.showGameDetail(id,()=>{
+                let _gameItems = this.props.detailItem;
+                let _gameList = this.state.outerList;
+                _gameList.map((item)=>{
+                    if(item.GameID == _gameItems.gameId){
+                        item.gameItemList = _gameItems.itemList
+                        item.isShowDetail = true
+                    }else{
+                        item.gameItemList = []
+                        item.isShowDetail = false
+                    }
+                })
+                this.setState({
+                    outerList: _gameList,
+                    innerInfo: this.props.detailItem
+                })
+            })
+        }
     }
 
     //主列表
     buildGameList = (list) => {
-        let gameList = list.map((item) => (
-            <li key={item.GameID} className={style.matchItem} onClick={() => this.props.showGameDetail(item.GameID)}>
+        let gameList = list.map((item) => {
+            return (<li key={item.GameID} className={style.matchItem} onClick={() =>this.showDetail(item.isShowDetail,item.GameID)}>
                 <div className={style.content}>
 
                     <div className={style.itemL + " " + style.itemImg}>
@@ -36,8 +83,8 @@ class MatchList extends React.Component {
                     </div>
                 </div>
                 {item.isShowDetail?(<div>{item.gameItemList ? this.buildDetailList(item.gameItemList) : ""}</div>):""}
-            </li>
-        ))
+            </li>)
+        })
         return gameList
     }
 
@@ -93,21 +140,8 @@ class MatchList extends React.Component {
     }
 
     render() {
-
-        let _gameItems = this.props.detailItem
-        let _gameList = this.props.detailList
-        _gameList.map((item)=>{
-            if(item.GameID == _gameItems.gameId){
-                item.gameItemList = _gameItems.itemList
-                item.isShowDetail = true
-            }else{
-                item.gameItemList = []
-                item.isShowDetail = false
-            }
-        })
-
         return (
-            <ul className={style.gameList}>{this.buildGameList(_gameList)}</ul>
+            <ul className={style.gameList}>{this.buildGameList(this.state.outerList)}</ul>
         );
     }
 }

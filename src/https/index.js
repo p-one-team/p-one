@@ -71,7 +71,7 @@ export default {
 }
 
 const getCookie = (c_name) => {
-    if (document.cookie.length > 10) //首先查询cookie是否是空的
+    if (document.cookie.length > 13) //首先查询cookie是否是空的
     {
         let c_start = document.cookie.indexOf(c_name + "=") //检测这个cookie是否存在
         if (c_start != -1) //如果cookie存在

@@ -19,6 +19,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
 
     return {
+        userInfos: state.UserReducer.userInfos,
         gameInfos_570: state.MatchReducer.gameInfos_570,
         gameInfos_730: state.MatchReducer.gameInfos_730,
         gameInfos_lol: state.MatchReducer.gameInfos_lol,

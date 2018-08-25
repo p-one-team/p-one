@@ -17,9 +17,7 @@ const mapDispatchToProps = (dispatch, props) => {
 		//登录
 		login(data) {
 			loginAction(data, function () {
-				// props.history.goBack()
 				props.history.replace('/')
-				// location.reload();
 			})
 		},
 

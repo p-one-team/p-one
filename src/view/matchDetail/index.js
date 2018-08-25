@@ -1,9 +1,13 @@
 import matchDetailComponent from './match-detail-component'
 import { connect } from 'react-redux'
-import { getUserGuessList,cancelMyGuess,changeMyGuess,getOrnamentsGuessOfGameItem,getTBeansGuessOfGameItem,getVulgarTycoonGuessOfGameItem } from '../../reducers/match'
+import { getGameItemInfo,getUserGuessList,cancelMyGuess,changeMyGuess,getOrnamentsGuessOfGameItem,getTBeansGuessOfGameItem,getVulgarTycoonGuessOfGameItem } from '../../reducers/match'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+        getGameItemInfo(id){
+            getGameItemInfo(id)
+        },
+
         getUserGuessList(data,callback){
             getUserGuessList(data,callback)            
         },

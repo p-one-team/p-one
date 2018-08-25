@@ -33,26 +33,32 @@ class matchDetail extends Component {
         }
 
         this.interval = setInterval(
-            () => this.props.getUserGuessList({
-                HandicapID: this.props.gameItemId
-            }, () => {
-                if (this.props.userGuessList && this.props.userGuessList.length > 0) {
-                    this.setState({
-                        isUserGuessShow: true,
-                        myGuessList: this.props.userGuessList,
-                        isAddForecast: true
-                    })
-                } else {
-                    this.setState({
-                        isUserGuessShow: false,
-                        myGuessList: [],
-                        isAddForecast: false
-                    })
-                }
-            }), 60000);
+            () => {
+                this.props.getGameItemInfo(this.props.gameItemId);
+
+                this.props.getUserGuessList({
+                    HandicapID: this.props.gameItemId
+                }, () => {
+                    if (this.props.userGuessList && this.props.userGuessList.length > 0) {
+                        this.setState({
+                            isUserGuessShow: true,
+                            myGuessList: this.props.userGuessList,
+                            isAddForecast: true
+                        })
+                    } else {
+                        this.setState({
+                            isUserGuessShow: false,
+                            myGuessList: [],
+                            isAddForecast: false
+                        })
+                    }
+                });
+            }, 60000);
     }
 
     componentWillMount() {
+        this.props.getGameItemInfo(this.props.gameItemId);
+
         this.props.getOrnamentsGuessList({
             HandicapID: this.props.gameItemId,
             PageIndex: 1
@@ -82,15 +88,12 @@ class matchDetail extends Component {
                 })
             }
         })
-
-
-
-
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
     }
+
     userGuess = () => (<div styleName="guessPart">
         <p styleName="title"><span></span><label>我的预测</label></p>
         {this.state.myGuessList.map((item, index) => (
@@ -328,7 +331,7 @@ class matchDetail extends Component {
                     </div>
                     <div styleName="des">
                         <p>{gameItemInfos.GameItemTitle}</p>
-                        <p>猜输赢</p>
+                        {/* <p>猜输赢</p> */}
                         <p>{gameItemInfos.IsForecast ? gameItemInfos.GameItemDate : "进行中"}</p>
                     </div>
                     <div styleName="teamR">
@@ -363,7 +366,7 @@ class matchDetail extends Component {
                     {gameItemInfos.IsForecast ? (<div styleName="forecastCanClick" onClick={() => this.props.goForecast()}>{this.state.isAddForecast ? "加注" : "预测"}</div>) : (<div styleName="forecast">{this.state.isAddForecast ? "加注" : "预测"}</div>)}
                 </div>
 
-                {this.state.isUserGuessShow ? this.userGuess() : null}
+                {gameItemInfos.IsForecast ? (this.state.isUserGuessShow ? this.userGuess() : null) : null}
 
                 <div styleName="rankList">
                     {this.TabExample()}

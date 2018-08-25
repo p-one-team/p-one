@@ -121,7 +121,8 @@ class MatchForecastComponent extends Component {
             AlertWindow.Prompt("您剩余的T豆余额不足" + num + "！", () => { return false })
         } else {
             this.setState({
-                tbeanCount: num
+                tbeanCount: num,
+                canChoose: true
             })
         }
     }
@@ -215,6 +216,7 @@ class MatchForecastComponent extends Component {
                         RaritySort: 0,
                         StockType: 1
                     })
+                    this.props.history.goBack()
                 })
             } else {
                 AlertWindow.Prompt("请选择库存", () => { return false })
@@ -237,7 +239,9 @@ class MatchForecastComponent extends Component {
                         tbeanCount: 0
                     })
                     this.props.refreshUserInfo()
+                    this.props.history.goBack()
                 })
+
             } else {
                 AlertWindow.Prompt("请输入预测的T豆数", () => { return false })
             }

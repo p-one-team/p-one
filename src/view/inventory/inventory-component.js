@@ -214,6 +214,20 @@ class InventoryComponent extends Component {
         this.props.addVipToSteamInventory({
             AppId: "570",
             Items: this.props.dotaChosenVipInventory
+        },()=>{
+            store.dispatch({
+                type: "DOTA_CHOSEN_VIP_INVENTORY",
+                dotaChosenVipInventory: []
+            })
+    
+            this.props.getInventory({
+                GameType: "570",
+                DateSort: this.state.dotaSort.DateSort,
+                PriceSort: this.state.dotaSort.PriceSort,
+                QualitySort: this.state.dotaSort.QualitySort,
+                RaritySort: this.state.dotaSort.RaritySort,
+                StockType: this.state.stockType
+            })
         })
     }
 
