@@ -177,7 +177,7 @@ class InventoryComponent extends Component {
     updateInventory = (type) => {
         this.setState({
             gameType: type
-        },()=>{
+        }, () => {
             if (type == "570") {
                 this.props.getInventory({
                     GameType: "570",
@@ -214,12 +214,12 @@ class InventoryComponent extends Component {
         this.props.addVipToSteamInventory({
             AppId: "570",
             Items: this.props.dotaChosenVipInventory
-        },()=>{
+        }, () => {
             store.dispatch({
                 type: "DOTA_CHOSEN_VIP_INVENTORY",
                 dotaChosenVipInventory: []
             })
-    
+
             this.props.getInventory({
                 GameType: "570",
                 DateSort: this.state.dotaSort.DateSort,
@@ -280,6 +280,20 @@ class InventoryComponent extends Component {
             OrnamentCount: this.state.saleNumber
         }, () => {
             this.closeSaleAlert()
+
+            store.dispatch({
+                type: "DOTA_CHOSEN_VIP_INVENTORY",
+                dotaChosenVipInventory: []
+            })
+
+            this.props.getInventory({
+                GameType: "570",
+                DateSort: 0,
+                PriceSort: 0,
+                QualitySort: 0,
+                RaritySort: 0,
+                StockType: 1
+            })
         })
     }
 
@@ -317,21 +331,21 @@ class InventoryComponent extends Component {
                         <p className="iconfont icon-cart"></p>
                         <p>去商城购买</p>
                     </div>
-                    {this.state.stockType == 1 
-                    ? info.Ornaments.map((item, index) => (
-                        <InventoryItem
-                            key={index}
-                            itemInfo={item}
-                            usageType="vip"
-                            changeBtn={this.changeBtnPart}
-                        />))
-                    : info.Ornaments.map((item, index) => (
-                        <InventoryItem
-                            key={index}
-                            itemInfo={item}
-                            usageType="lock"
-                            changeBtn={this.changeBtnPart}
-                        />))
+                    {this.state.stockType == 1
+                        ? info.Ornaments.map((item, index) => (
+                            <InventoryItem
+                                key={index}
+                                itemInfo={item}
+                                usageType="vip"
+                                changeBtn={this.changeBtnPart}
+                            />))
+                        : info.Ornaments.map((item, index) => (
+                            <InventoryItem
+                                key={index}
+                                itemInfo={item}
+                                usageType="lock"
+                                changeBtn={this.changeBtnPart}
+                            />))
                     }
                 </div>)
             }
@@ -348,17 +362,17 @@ class InventoryComponent extends Component {
                     <p>总价值：{info.TotalCost}</p>
                 </div>
                 {ornamentList}
-                {this.state.stockType==1
-                ? (<div styleName="btn_part">
-                    <p>注：单次最多出售<span> 1 </span>件饰品</p>
-                    <div styleName="btn">
-                        <div styleName="deposit_canclick" onClick={() => this.props.goToSteamInventory()}>存入</div>
-                        {this.state.isDotaCanSale ? <div styleName="getback_canclick" onClick={() => this.getBackToSteam()}>取回</div> : <div>取回</div>}
-                        {this.state.isDotaCanSale ? <div styleName="sale_canclick" onClick={() => this.saleOrnament()}>出售</div> : <div>出售</div>}
-                    </div>
-                </div>)
-                : null}
-                
+                {this.state.stockType == 1
+                    ? (<div styleName="btn_part">
+                        <p>注：单次最多出售<span> 1 </span>件饰品</p>
+                        <div styleName="btn">
+                            <div styleName="deposit_canclick" onClick={() => this.props.goToSteamInventory()}>存入</div>
+                            {this.state.isDotaCanSale ? <div styleName="getback_canclick" onClick={() => this.getBackToSteam()}>取回</div> : <div>取回</div>}
+                            {this.state.isDotaCanSale ? <div styleName="sale_canclick" onClick={() => this.saleOrnament()}>出售</div> : <div>出售</div>}
+                        </div>
+                    </div>)
+                    : null}
+
             </div>)
         } else {
             return ""
@@ -468,8 +482,8 @@ class InventoryComponent extends Component {
 
     onTabClick = (type) => {
         this.setState({
-            gameType:type
-        },()=>{
+            gameType: type
+        }, () => {
             if (type == "tbean") {
                 return false
             } else {
@@ -488,7 +502,7 @@ class InventoryComponent extends Component {
     chooseTitle = (type) => {
         this.setState({
             stockType: type
-        },()=>{
+        }, () => {
             this.props.getInventory({
                 GameType: this.state.gameType,
                 DateSort: 0,
@@ -508,8 +522,8 @@ class InventoryComponent extends Component {
                     icon={<Icon type="left" />}
                     onLeftClick={() => this.props.history.goBack()}
                 >
-                { this.state.stockType==1 ? (<label className="title_chosen" onClick={()=>this.chooseTitle(1)}>我的库存</label>) : (<label onClick={()=>this.chooseTitle(1)}>我的库存</label>)}
-                { this.state.stockType==2 ? (<label className="title_chosen" onClick={()=>this.chooseTitle(2)}>红锁库存</label>) : (<label onClick={()=>this.chooseTitle(2)}>红锁库存</label>)}
+                    {this.state.stockType == 1 ? (<label className="title_chosen" onClick={() => this.chooseTitle(1)}>我的库存</label>) : (<label onClick={() => this.chooseTitle(1)}>我的库存</label>)}
+                    {this.state.stockType == 2 ? (<label className="title_chosen" onClick={() => this.chooseTitle(2)}>红锁库存</label>) : (<label onClick={() => this.chooseTitle(2)}>红锁库存</label>)}
                 </NavBar>
 
                 <Tabs tabs={this.state.tabs}
