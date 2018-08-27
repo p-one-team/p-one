@@ -6,10 +6,11 @@ import store from '../../store'
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
-        chooseAttribute(enter,id,text){
+        chooseAttribute(enter,type,id,text){
             if(enter== "shop"){
                 store.dispatch({
                     type:"MALL_LIST_PARAM",
+                    paramSectionType: type,
                     paramAttributeId: id,
                     paramAttributeValue: text,
                     paramKeywords: "",
@@ -39,6 +40,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
+        paramSectionType: state.ShopReducer.paramSectionType,
         selectEnter: state.ShopReducer.selectEnter,
         prodAttribute: state.ShopReducer.prodAttribute
     }

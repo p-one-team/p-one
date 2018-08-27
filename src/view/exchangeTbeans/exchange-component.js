@@ -23,7 +23,7 @@ class ExchangeTbeansComponent extends Component {
             PriceSort: 0,
             QualitySort: 0,
             RaritySort: 0,
-            StockType: 1
+            StockType: 3
         })
 
         this.state = {

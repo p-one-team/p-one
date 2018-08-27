@@ -306,17 +306,17 @@ class InventoryComponent extends Component {
         if (info.Ornaments) {
             let ornamentList;
             if (info.Ornaments && info.Ornaments.length == 0) {
-                ornamentList = (<div styleName="go_buy">
+                ornamentList = this.state.stockType==1 ? (<div styleName="go_buy">
                     <div onClick={() => this.props.goStore()}>去商城购买<span className="iconfont icon-previewright"></span></div>
                     <div onClick={() => this.props.goToSteamInventory()}>去Steam存入<span className="iconfont icon-previewright"></span></div>
-                </div>)
+                </div>) : null;
 
             } else {
                 ornamentList = (<div styleName="imgPart">
-                    <div styleName="goStore" onClick={() => this.props.goStore()}>
+                    {this.state.stockType==1 ? (<div styleName="goStore" onClick={() => this.props.goStore()}>
                         <p className="iconfont icon-cart"></p>
                         <p>去商城购买</p>
-                    </div>
+                    </div>) : null}
                     {this.state.stockType == 1 
                     ? info.Ornaments.map((item, index) => (
                         <InventoryItem

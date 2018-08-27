@@ -113,6 +113,8 @@ class matchDetail extends Component {
         this.props.cancelMyGuess({
             GuessID: id
         }, () => {
+            this.props.getGameItemInfo(this.props.gameItemId);
+            
             this.props.getUserGuessList({
                 HandicapID: this.props.gameItemId
             }, () => {

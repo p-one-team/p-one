@@ -56,6 +56,7 @@ const mapDispatchToProps = (dispatch, props) => {
 const mapStateToProps = (state) => {
     return {
         shopInfos: state.ShopReducer.shopInfos,
+        paramSectionType: state.ShopReducer.paramSectionType,
         paramAttributeId: state.ShopReducer.paramAttributeId,
         paramAttributeValue: state.ShopReducer.paramAttributeValue,
         paramKeywords: state.ShopReducer.paramKeywords,

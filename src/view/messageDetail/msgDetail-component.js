@@ -23,7 +23,7 @@ class MsgDetailComponent extends Component {
 
                 <div styleName="detail">
                     <p>{detail.Title}</p>
-                    <p>{detail.Content}</p>
+                    <div>{detail.Content}</div>
                     <p>GT</p>
                     <p>{detail.PublishTime}</p>
                 </div>
