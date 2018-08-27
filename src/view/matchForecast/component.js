@@ -262,13 +262,13 @@ class MatchForecastComponent extends Component {
                     {this.state.canChoose && (this.state.chosedTeam == "" || this.state.chosedTeam == gameItemInfos.GameTeam.LeftTeamName)
                         ? (<div styleName="canChooseL">
                             <p>{gameItemInfos.GameTeam.LeftTeamName}</p>
-                            <p>价值：{gameItemInfos.GameTeam.LeftTeamOdds}</p>
+                            <p>赔率：{gameItemInfos.GameTeam.LeftTeamOdds}</p>
                             {/* <p>收益：0.00</p> */}
                             <div onClick={() => this.chooseTeam(1, gameItemInfos.GameTeam.LeftTeamID)}>选择</div>
                         </div>)
                         : (<div styleName="teamL">
                             <p>{gameItemInfos.GameTeam.LeftTeamName}</p>
-                            <p>价值：{gameItemInfos.GameTeam.LeftTeamOdds}</p>
+                            <p>赔率：{gameItemInfos.GameTeam.LeftTeamOdds}</p>
                             {/* <p>收益：0.00</p> */}
                             <div>选择</div>
                         </div>)}
@@ -276,13 +276,13 @@ class MatchForecastComponent extends Component {
                     {this.state.canChoose && (this.state.chosedTeam == "" || this.state.chosedTeam == gameItemInfos.GameTeam.RightTeamName)
                         ? (<div styleName="canChooseR">
                             <p>{gameItemInfos.GameTeam.RightTeamName}</p>
-                            <p>价值：{gameItemInfos.GameTeam.RightTeamOdds}</p>
+                            <p>赔率：{gameItemInfos.GameTeam.RightTeamOdds}</p>
                             {/* <p>收益：0.00</p> */}
                             <div onClick={() => this.chooseTeam(2, gameItemInfos.GameTeam.RightTeamID)}>选择</div>
                         </div>)
                         : (<div styleName="teamR">
                             <p>{gameItemInfos.GameTeam.RightTeamName}</p>
-                            <p>价值：{gameItemInfos.GameTeam.RightTeamOdds}</p>
+                            <p>赔率：{gameItemInfos.GameTeam.RightTeamOdds}</p>
                             {/* <p>收益：0.00</p> */}
                             <div>选择</div>
                         </div>)}
