@@ -11,32 +11,66 @@ class TradeHistoryComponent extends Component {
     constructor(props) {
         super(props)
 
+        this.props.getMyPublishRecords(1)
+
         this.state = {
             startDate: this.props.myHistoryStart,
-            endDate: this.props.myHistoryEnd
+            endDate: this.props.myHistoryEnd,
+            isLeftChosen: true
         }
     }
 
-    queryTrans = (tradeList) => {
-        if(tradeList && tradeList.length>0){
+    queryTrans = (type,list) => {
+        if(list && list.length>0){
             return (<div>
                 <div styleName="title">
                     <label>时间</label>
-                    <label>操作</label>
+                    <label>饰品名称</label>
                     <label>数量</label>
-                    <label>T豆</label>
-                    <label>交易状态</label>
+                    <label>价格</label>
+                    <label>操作</label>
                 </div>
                 <ul>
-                    {tradeList.map((item,index) => (
-                        <li key={index}>
-                            <label>{item.TransactionDate}</label>
-                            <label>{item.TransactionContent}</label>
-                            <label>{item.TransactionCount}</label>
-                            <label>{item.TransactionAmount}</label>
-                            <label>{item.TransactionStatus}</label>
-                        </li>
-                    ))}
+                    {list.map((item,index) => {
+                        let lastBtn;
+                        if(type==1){
+                            if(item.AllowCancel){
+                                lastBtn = (<label styleName="cancelBtn" onClick={()=>this.props.cancelOrnamentSale(item.PublishID)}>取消出售</label>)
+                            }else{
+                                if(item.Status==1){
+                                    lastBtn = (<label>新建出售</label>)
+                                }else if(item.Status==2){
+                                    lastBtn = (<label>部分出售</label>)
+                                }else if(item.Status==3){
+                                    lastBtn = (<label>出售成功</label>)
+                                }else if(item.Status==4){
+                                    lastBtn = (<label>已取消出售</label>)
+                                }
+                            }
+                        }else if(type==2){
+                            if(item.AllowCancel){
+                                lastBtn = (<label styleName="cancelBtn" onClick={()=>this.props.cancelOrnamentSale(item.PublishID)}>取消求购</label>)
+                            }else{
+                                if(item.Status==1){
+                                    lastBtn = (<label>新建求购</label>)
+                                }else if(item.Status==2){
+                                    lastBtn = (<label>部分求购</label>)
+                                }else if(item.Status==3){
+                                    lastBtn = (<label>求购成功</label>)
+                                }else if(item.Status==4){
+                                    lastBtn = (<label>已取消求购</label>)
+                                }
+                            }
+                        }
+                        
+                        return (<li key={index}>
+                            <label>{item.Time}</label>
+                            <label>{item.Name}</label>
+                            <label>{item.OrnamentCount}</label>
+                            <label>{item.OrnamentPrice}</label>
+                            {lastBtn}
+                        </li>)
+                    })}
                 </ul>
             </div>)
         }else{
@@ -56,9 +90,16 @@ class TradeHistoryComponent extends Component {
         })
     }
 
+    getRecords = (type) => {
+        this.props.getMyPublishRecords(type,()=>{
+            this.setState({
+                isLeftChosen: type==1 ? true : false
+            })
+        })
+    }
+
     render() {
         let tradeInfo = this.props.myTransactionInfo
-        let tradeList = this.props.myTransactionHistory
 
         return (
             <div styleName="wrap">
@@ -105,16 +146,25 @@ class TradeHistoryComponent extends Component {
                     </div>
 
                     <div styleName="listPart">
-                        <p styleName="recent_deal">查询交易<span>(填写日期，如：20180101至20180214)</span></p>
+                        {/* <p styleName="recent_deal">查询交易<span>(填写日期，如：20180101至20180214)</span></p>
 
                         <div styleName="chooseDate">
                             <input placeholder="开始日期" type="text" value={this.state.startDate} onChange={this.start.bind(this)} />
                             <label>至</label>
                             <input placeholder="结束日期" type="text" value={this.state.endDate} onChange={this.end.bind(this)} />
-                            <span onClick={()=>this.props.queryRecord(this.state.startDate, this.state.endDate)}>查询</span>
-                        </div>
+                            <span onClick={()=>this.props.getMyPublishRecords(this.state.startDate, this.state.endDate)}>查询</span>
+                        </div> */}
 
-                        {this.queryTrans(tradeList)}
+                        {this.state.isLeftChosen ? <div styleName="publishBtn">
+                            <span styleName="chosen" onClick={()=>this.getRecords(1)}>出售记录</span>
+                            <span onClick={()=>this.getRecords(2)}>求购记录</span>
+                        </div> : <div styleName="publishBtn">
+                            <span onClick={()=>this.getRecords(1)}>出售记录</span>
+                            <span styleName="chosen" onClick={()=>this.getRecords(2)}>求购记录</span>
+                        </div> }
+                        
+
+                        {this.queryTrans(this.props.recordPublishType,this.props.myPublishRecordsList)}
                     </div>
                 </div>
             </div>
