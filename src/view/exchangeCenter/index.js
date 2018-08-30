@@ -1,9 +1,12 @@
 import { connect } from 'react-redux'
 import ExchangeComponent from './exchange-component'
+import { refreshUserInfo } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-
+        refreshUserInfo() {
+            refreshUserInfo()
+        },
         goExchangeTbeans() {
             props.history.push('/exchangeTbeans')
         },

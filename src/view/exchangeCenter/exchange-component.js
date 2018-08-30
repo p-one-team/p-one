@@ -14,6 +14,10 @@ class ExchangeComponent extends Component {
         }
     }
 
+    componentWillMount() {
+        this.props.refreshUserInfo()
+    }
+
     render() {
         return (
             <div styleName="wrap">
@@ -31,7 +35,7 @@ class ExchangeComponent extends Component {
                         <div styleName="detail">
                             <p>T豆余额</p>
                             <p>{this.props.userInfos.TBeansCount}</p>
-                            <div onClick={()=>this.props.goExchangeTbeans()}>兑换T豆</div>
+                            <div onClick={() => this.props.goExchangeTbeans()}>兑换T豆</div>
                         </div>
                     </div>
                     <p styleName="tips">只接受价值3以上饰品兑换</p>
