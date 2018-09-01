@@ -350,7 +350,7 @@ class InventoryComponent extends Component {
                 </div>)
             }
 
-            return (<div>
+            return (<div styleName="dota_content">
                 <div styleName="type_title">
                     <span onClick={() => this.changeDotaSort(3)}>品质{this.state.dotaSort.QualitySort == 0 ? <label className="iconfont icon-shang"></label> : <label className="iconfont icon-xia"></label>}</span>
                     <span onClick={() => this.changeDotaSort(4)}>稀有度{this.state.dotaSort.RaritySort == 0 ? <label className="iconfont icon-shang"></label> : <label className="iconfont icon-xia"></label>}</span>
@@ -533,7 +533,7 @@ class InventoryComponent extends Component {
                     onTabClick={(tab) => { this.onTabClick(tab.type) }}
                 >
 
-                    <div styleName="dota_content">
+                    <div styleName="dota_outer">
                         {this.dotaContent(this.props.dotaInventory)}
                     </div>
 

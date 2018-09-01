@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
-import style from './password.less'
+import style from './forget.less'
 
 import { List, InputItem, Toast, NavBar, Icon } from 'antd-mobile';
 import { createForm } from 'rc-form';
@@ -9,7 +9,7 @@ import { createForm } from 'rc-form';
 
 
 @CSSModules(style, { handleNotFoundStyleName: 'ignore' })
-class resetPsdComponent extends Component {
+class forgetPsdComponent extends Component {
     constructor(props) {
         super(props)
 
@@ -169,8 +169,8 @@ class resetPsdComponent extends Component {
                 <NavBar
                     mode="dark"
                     icon={<Icon type="left" />}
-                    onLeftClick={() => this.props.history.goBack()}
-                >重置密码</NavBar>
+                    onLeftClick={() => this.props.goToBack()}
+                >忘记密码</NavBar>
 
                 <div styleName="main">
                     <List>
@@ -230,12 +230,12 @@ class resetPsdComponent extends Component {
     }
 }
 
-resetPsdComponent.propTypes = {
+forgetPsdComponent.propTypes = {
     phoneNumber: PropTypes.string,
     messageCode: PropTypes.string,
     loginPsd: PropTypes.string,
     confirmPsd: PropTypes.string
 }
 
-const resetPsdComponentWrapper = createForm()(resetPsdComponent);
-export default resetPsdComponentWrapper
+const forgetPsdComponentWrapper = createForm()(forgetPsdComponent);
+export default forgetPsdComponentWrapper

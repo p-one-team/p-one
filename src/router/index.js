@@ -33,6 +33,7 @@ import ExchangeCenter from '../view/exchangeCenter'
 import ExchangeTbeans from '../view/exchangeTbeans'
 import MessageDetail from '../view/messageDetail'
 import Protocol from '../view/protocol'
+import ForgetPassword from '../view/forgetPassword'
 
 /*引入路由切换样式*/
 import style from './router.less'
@@ -52,14 +53,6 @@ const routes_config = [
 		component: Match,
 		isExact: true
 	},
-	// {
-	// 	path: '/login',
-	// 	component: Login,
-	// },
-	// {
-	// 	path: '/signUp',
-	// 	component: signUp
-	// },
 	{
 		path: '/matchDetail',
 		component: matchDetail
@@ -161,6 +154,7 @@ const App = () => (
 								<Route path="/login" component={Login} />
 								<Route path="/signUp" component={signUp} />
 								<Route path="/protocol" component={Protocol} />
+								<Route path='/forgetPassword' component={ForgetPassword} />
 								{routes_config.map(config => (<PrivateRoute key={config.path} path={config.path} exact={config.isExact} component={config.component} />))}
 							</Switch>
 							
@@ -178,7 +172,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 			_ut.isEmpty(window.token) && _ut.isEmpty(getCookie('token'))
 				? (window.register=="protocol" 
 					? <Redirect from='/' to='/protocol'/>
-					: (window.register=="register" ? <Redirect from="/" to="/signUp" /> : <Redirect from="/" to="/login" />))
+					: (window.register=="forget" 
+						? <Redirect from='/' to='/forgetPassword'/> 
+						: (window.register=="register" 
+							? <Redirect from="/" to="/signUp" /> 
+							: <Redirect from="/" to="/login" />)))
 				: (<Component {...props} />)
 		}
 	/>

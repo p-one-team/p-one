@@ -4,12 +4,12 @@ import AlertWindow from '../module/mo-alertWindow'
 
 
 // 添加请求拦截器
-axios.interceptors.request.use(function (config) {
+axios.interceptors.request.use(function(config) {
 
     let loading = document.getElementById('Loading');
     loading.style.display = 'flex';
     return config;
-}, function (error) {
+}, function(error) {
     // 对请求错误做些什么
     let loading = document.getElementById('Loading');
     loading.style.display = 'none';
@@ -18,7 +18,7 @@ axios.interceptors.request.use(function (config) {
 
 
 //请求方式axios
-axios.interceptors.response.use(function (res) {
+axios.interceptors.response.use(function(res) {
 
     let loading = document.getElementById('Loading');
     loading.style.display = 'none';
@@ -30,7 +30,7 @@ axios.interceptors.response.use(function (res) {
         return false
     }
 
-}, function (err) {
+}, function(err) {
     return Promise.reject(err);
 })
 
@@ -50,7 +50,7 @@ export default {
             data: params,
             headers: {
                 'Content-Type': 'application/json-patch+json',
-                'Authorization': _ut.isEmpty(window.token) ? getCookie('token') : "Bearer " + window.token,
+                'Authorization': _ut.isEmpty(window.token) ? "Bearer " + getCookie('token') : "Bearer " + window.token,
                 'withCredentials': true
             }
         })
@@ -63,7 +63,7 @@ export default {
             data: params,
             headers: {
                 'Content-Type': 'application/json-patch+json',
-                'Authorization': _ut.isEmpty(window.token) ? getCookie('token') : "Bearer " + window.token,
+                'Authorization': _ut.isEmpty(window.token) ? "Bearer " + getCookie('token') : "Bearer " + window.token,
                 'withCredentials': true
             }
         })
@@ -71,7 +71,7 @@ export default {
 }
 
 const getCookie = (c_name) => {
-    if (document.cookie.length > 13) //首先查询cookie是否是空的
+    if (document.cookie.length > 6) //首先查询cookie是否是空的
     {
         let c_start = document.cookie.indexOf(c_name + "=") //检测这个cookie是否存在
         if (c_start != -1) //如果cookie存在
