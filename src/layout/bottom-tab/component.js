@@ -108,8 +108,13 @@ class TabBarExample extends React.Component {
                         }
                         selected={this.props.currentPage === 'recommend'}
                         onPress={() => {
+                            StatusBar.hide();
                             this.props.changePage('recommend');
-                            window.location.href = this.props.userInfos.ChessUrl;
+                            setTimeout(() => {
+                                this.props.changePage('lottery');
+                                window.location.href = this.props.userInfos.ChessUrl;
+                            }, 0);
+
                         }}
                         data-seed="logId"
                     >
