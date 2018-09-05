@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import TradeHistoryComponent from './tradeHistory-component'
-import { queryMyTransHistory } from '../../reducers/shop'
+// import { queryMyTransHistory } from '../../reducers/shop'
+import { getMyPublishRecords,cancelOrnamentSale } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -9,11 +10,16 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/list')
         },
 
-        queryRecord(startDate,endDate){
-            queryMyTransHistory({
-                TransactionStartDate: startDate,
-                TransactionEndDate: endDate
-            })
+        cancelOrnamentSale(id,callback){
+            cancelOrnamentSale({
+                PublishRecordID: id
+            },callback)
+        },
+
+        getMyPublishRecords(type,callback){
+            getMyPublishRecords({
+                PublishType: type,
+            },callback)
         }
     }
 }
@@ -23,7 +29,9 @@ const mapStateToProps = (state) => {
         myTransactionInfo: state.ShopReducer.myTransactionInfo,
         myHistoryStart: state.ShopReducer.myHistoryStart,
         myHistoryEnd: state.ShopReducer.myHistoryEnd,
-        myTransactionHistory: state.ShopReducer.myTransactionHistory
+        myTransactionHistory: state.ShopReducer.myTransactionHistory,
+        myPublishRecordsList: state.UserReducer.myPublishRecordsList,
+        recordPublishType: state.UserReducer.recordPublishType,
     }
 }
 

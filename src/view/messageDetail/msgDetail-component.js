@@ -22,10 +22,10 @@ class MsgDetailComponent extends Component {
                 >系统公告</NavBar>
 
                 <div styleName="detail">
-                    <p>{detail.Title}</p>
-                    <p>{detail.Content}</p>
-                    <p>GT</p>
-                    <p>{detail.PublishTime}</p>
+                    <p styleName="title" dangerouslySetInnerHTML={{__html: detail.Title}}></p>
+                    <div styleName="content" dangerouslySetInnerHTML={{__html: detail.Content}}></div>
+                    <p styleName="name">GT</p>
+                    <p styleName="time">{detail.PublishTime}</p>
                 </div>
             </div>
         )

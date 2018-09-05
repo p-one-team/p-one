@@ -11,15 +11,11 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         goResetPsd() {
-            dispatch({
-                type: "USER_FORGET_PSD",
-                isForgetPsd: false
-            })
             props.history.push('/resetPassword')
         },
 
         logout() {
-            logoutAction(function () {
+            logoutAction(function() {
                 //返回到主菜单页，由主菜单进行登录判断
                 props.history.goBack()
             })

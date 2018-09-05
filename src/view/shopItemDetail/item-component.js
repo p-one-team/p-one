@@ -210,6 +210,7 @@ class ShopItemDetailComponent extends Component {
                 PublishRecordID: this.state.transactionInfo.id,
                 TransactionCount: parseInt(this.state.transactionCount)
             }, () => {
+                this.closeTransactionAlert()
                 this.changeTab(this.state.chosenTab)
             })
         }

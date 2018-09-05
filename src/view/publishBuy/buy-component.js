@@ -186,7 +186,7 @@ class BuyComponent extends Component {
 										<p>
 											<label styleName="now">{item.TPrice}T豆</label>
 										</p>
-										<p>已售: {item.SaleCount}件</p>
+										<p>库存: {item.SaleCount}件</p>
 									</div>
 								</div>
 							</li>

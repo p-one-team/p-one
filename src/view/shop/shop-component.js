@@ -17,14 +17,14 @@ class ShopComponent extends Component {
 			shopList: [],
 			isShopMore: false,
 			isLoadingMore: false,
-			sectionType: 2,
-			title: "商城 - 土豪区"
+			sectionType: this.props.paramSectionType,
 		}
 	}
 
 	componentWillMount(){
-		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue, this.props.paramKeywords, this.props.paramPageIndex, this.state.sectionType, ()=>{
+		this.props.getShopList(this.props.paramAttributeId, this.props.paramAttributeValue, this.props.paramKeywords, this.props.paramPageIndex, this.props.paramSectionType, ()=>{
 			this.setState({
+				sectionType: this.props.paramSectionType,
 				shopList: this.props.shopInfos.Ornaments,
 				isShopMore: this.props.shopInfos.IsMore
 			})
@@ -115,7 +115,7 @@ class ShopComponent extends Component {
 										<p>
 											<label styleName="now">{item.TPrice}T豆</label>
 										</p>
-										<p>已售: {item.SaleCount}件</p>
+										<p>库存: {item.SaleCount}件</p>
 									</div>
 								</div>
 							</li>
@@ -137,6 +137,7 @@ class ShopComponent extends Component {
 	showGetMallList = () => {
 		store.dispatch({
 			type:"MALL_LIST_PARAM",
+			paramSectionType: this.state.sectionType,
 			paramAttributeId: this.props.paramAttributeId,
 			paramAttributeValue: this.props.paramAttributeValue,
 			paramKeywords: this.state.value,
@@ -156,6 +157,7 @@ class ShopComponent extends Component {
 	searchCancel = () => {
 		store.dispatch({
 			type:"MALL_LIST_PARAM",
+			paramSectionType: this.state.sectionType,
 			paramAttributeId: this.props.paramAttributeId,
 			paramAttributeValue: this.props.paramAttributeValue,
 			paramKeywords: "",
@@ -175,11 +177,18 @@ class ShopComponent extends Component {
 
 	tyrantPart = () => {
 		this.props.getShopList(0, "", "", 1, 2, ()=>{
+			store.dispatch({
+				type:"MALL_LIST_PARAM",
+				paramSectionType: 2,
+				paramAttributeId: 0,
+				paramAttributeValue: "",
+				paramKeywords: "",
+				paramPageIndex: 1
+			})
 			this.setState({
 				value: '',
 				pageIndex: 1,
 				sectionType: 2,
-				title: "商城 - 土豪区",
 				shopList: this.props.shopInfos.Ornaments,
 				isShopMore: this.props.shopInfos.IsMore
 			})
@@ -188,11 +197,18 @@ class ShopComponent extends Component {
 
 	commonPart = () => {
 		this.props.getShopList(0, "", "", 1, 1, ()=>{
+			store.dispatch({
+				type:"MALL_LIST_PARAM",
+				paramSectionType: 1,
+				paramAttributeId: 0,
+				paramAttributeValue: "",
+				paramKeywords: "",
+				paramPageIndex: 1
+			})
 			this.setState({
 				value: '',
 				pageIndex: 1,
 				sectionType: 1,
-				title: "商城 - 普通区",
 				shopList: this.props.shopInfos.Ornaments,
 				isShopMore: this.props.shopInfos.IsMore
 			})
@@ -216,7 +232,7 @@ class ShopComponent extends Component {
 					icon={<Icon type="left" />}
 					onLeftClick={() => this.props.history.goBack()}
 					rightContent={this.titleContent()}
-				>{this.state.title}</NavBar>
+				>{this.state.sectionType==1 ? "商城 - 普通区" : "商城 - 土豪区"}</NavBar>
 
 				<div styleName="btnPart">
 					<span onClick={()=>this.props.goInventoryPage()}>出售</span>

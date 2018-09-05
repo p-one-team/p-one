@@ -7,6 +7,7 @@ import store from '../store'
 /*User Reducer*/
 /*-----------------------------------------------------------------*/
 const initShopInfo = {
+    paramSectionType: 2,
     paramAttributeId: 0,
     paramAttributeValue: "",
     paramKeywords: "",
@@ -35,7 +36,7 @@ const ShopReducer = (state = initShopInfo, action) => {
             return Object.assign({}, state, { selectEnter: action.selectEnter })
 
         case 'MALL_LIST_PARAM':
-            return Object.assign({}, state, { paramAttributeId: action.paramAttributeId, paramAttributeValue: action.paramAttributeValue, paramKeywords: action.paramKeywords, paramPageIndex: action.paramPageIndex })
+            return Object.assign({}, state, { paramSectionType: action.paramSectionType, paramAttributeId: action.paramAttributeId, paramAttributeValue: action.paramAttributeValue, paramKeywords: action.paramKeywords, paramPageIndex: action.paramPageIndex })
 
         case 'MALL_LIST_PUBLISH':
             return Object.assign({}, state, { publishAttributeId: action.publishAttributeId, publishAttributeValue: action.publishAttributeValue, publishKeywords: action.publishKeywords, publishPageIndex: action.publishPageIndex })

@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch, props) => {
         goStore() {
             store.dispatch({
                 type: "MALL_LIST_PARAM",
+                paramSectionType: 2,
                 paramAttributeId: 0,
                 paramAttributeValue: "",
                 paramKeywords: "",

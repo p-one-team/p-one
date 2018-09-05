@@ -9,11 +9,12 @@ import _ut from '../libs/my-util'
 /*-----------------------------------------------------------------*/
 const initUserInfo = {
     userInfos: {},
-    isForgetPsd: false,
     userSteamAlert: false,
     userUrlAlert: false,
     noticesList: {},
-    noticesDetail: {}
+    noticesDetail: {},
+    myPublishRecordsList: [],
+    recordPublishType: 1
 }
 
 const UserReducer = (state = initUserInfo, action) => {
@@ -21,9 +22,6 @@ const UserReducer = (state = initUserInfo, action) => {
     switch (action.type) {
         case 'USER_INFO':
             return Object.assign({}, state, { userInfos: action.userInfos })
-
-        case 'USER_FORGET_PSD':
-            return Object.assign({}, state, { isForgetPsd: action.isForgetPsd })
 
         case 'USER_STEAM_ALERT':
             return Object.assign({}, state, { userSteamAlert: action.userSteamAlert, userUrlAlert: action.userUrlAlert })
@@ -33,6 +31,9 @@ const UserReducer = (state = initUserInfo, action) => {
 
         case 'NOTICES_DETAIL':
             return Object.assign({}, state, { noticesDetail: action.noticesDetail })
+
+        case 'MY_PUBLISH_RECORDS_LIST':
+            return Object.assign({}, state, { recordPublishType: action.recordPublishType, myPublishRecordsList: action.myPublishRecordsList })
 
         default:
             return state
@@ -286,6 +287,47 @@ const getNotices = (data, callback) => {
         });
 }
 
+//我的交易-出售、求购记录
+const getMyPublishRecords = (data, callback) => {
+    axios.post('/Game/GetMyPublishRecords', {
+            PublishType: data.PublishType,
+            PageIndex: 1,
+            PageSize: 7
+        })
+        .then(function(res) {
+            if (res) {
+                store.dispatch({
+                    type: "MY_PUBLISH_RECORDS_LIST",
+                    recordPublishType: data.PublishType,
+                    myPublishRecordsList: res.Data.PublishRecords
+                })
+
+                callback ? callback() : ""
+            }
+        })
+        .catch(function(error) {
+            Toast.fail('请求失败，请稍后重试！');
+            console.log('error', error)
+        });
+}
+
+//取消交易
+const cancelOrnamentSale = (data, callback) => {
+    axios.post('/Game/CancelOrnamentSale', {
+            PublishRecordID: data.PublishRecordID,
+        })
+        .then(function(res) {
+            if (res) {
+                Toast.success(res.Msg)
+                callback ? callback() : ""
+            }
+        })
+        .catch(function(error) {
+            Toast.fail('请求失败，请稍后重试！');
+            console.log('error', error)
+        });
+}
+
 //更新steamurl
 const updateSteamUrl = (data, callback) => {
     axios.post('/User/UpdateSteamTradeUrl', {
@@ -307,7 +349,7 @@ const updateSteamUrl = (data, callback) => {
 const setCookie = (value, expiredays) => {
     var exdate = new Date();
     exdate.setDate(exdate.getDate + expiredays);
-    document.cookie = "token=Bearer " + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+    document.cookie = "token=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
 }
 
 
@@ -322,5 +364,7 @@ export {
     refreshUserInfo,
     updateSteamUrl,
     feedback,
-    getNotices
+    getNotices,
+    getMyPublishRecords,
+    cancelOrnamentSale
 }

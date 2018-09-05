@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import resetPsdComponentWrapper from './resetPsd-component.js'
+import forgetPsdComponentWrapper from './forget-component.js'
 import { getMsgCode, resetPsdAction } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -7,8 +7,13 @@ const mapDispatchToProps = (dispatch, props) => {
 
         resetPsd(data) {
             resetPsdAction(data, function() {
-                props.history.goBack()
+                this.goToBack()
             })
+        },
+
+        goToBack() {
+            window.register = "login"
+            props.history.replace('/')
         },
 
         getCode(data) {
@@ -24,9 +29,9 @@ const mapStateToProps = (state) => {
 }
 
 
-const ResetPassword = connect(
+const ForgetPassword = connect(
     mapStateToProps,
     mapDispatchToProps
-)(resetPsdComponentWrapper)
+)(forgetPsdComponentWrapper)
 
-export default ResetPassword;
+export default ForgetPassword;
