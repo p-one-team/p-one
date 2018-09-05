@@ -16,8 +16,14 @@ class TradeHistoryComponent extends Component {
         this.state = {
             startDate: this.props.myHistoryStart,
             endDate: this.props.myHistoryEnd,
-            isLeftChosen: true
+            recordType: 1
         }
+    }
+
+    cancel = (id) => {
+        this.props.cancelOrnamentSale(id,()=>{
+            this.getRecords(this.state.recordType)
+        })
     }
 
     queryTrans = (type,list) => {
@@ -35,7 +41,7 @@ class TradeHistoryComponent extends Component {
                         let lastBtn;
                         if(type==1){
                             if(item.AllowCancel){
-                                lastBtn = (<label styleName="cancelBtn" onClick={()=>this.props.cancelOrnamentSale(item.PublishID)}>取消出售</label>)
+                                lastBtn = (<label styleName="cancelBtn" onClick={()=>this.cancel(item.PublishID)}>取消出售</label>)
                             }else{
                                 if(item.Status==1){
                                     lastBtn = (<label>新建出售</label>)
@@ -49,7 +55,7 @@ class TradeHistoryComponent extends Component {
                             }
                         }else if(type==2){
                             if(item.AllowCancel){
-                                lastBtn = (<label styleName="cancelBtn" onClick={()=>this.props.cancelOrnamentSale(item.PublishID)}>取消求购</label>)
+                                lastBtn = (<label styleName="cancelBtn" onClick={()=>this.cancel(item.PublishID)}>取消求购</label>)
                             }else{
                                 if(item.Status==1){
                                     lastBtn = (<label>新建求购</label>)
@@ -93,7 +99,7 @@ class TradeHistoryComponent extends Component {
     getRecords = (type) => {
         this.props.getMyPublishRecords(type,()=>{
             this.setState({
-                isLeftChosen: type==1 ? true : false
+                recordType: type
             })
         })
     }
@@ -155,7 +161,7 @@ class TradeHistoryComponent extends Component {
                             <span onClick={()=>this.props.getMyPublishRecords(this.state.startDate, this.state.endDate)}>查询</span>
                         </div> */}
 
-                        {this.state.isLeftChosen ? <div styleName="publishBtn">
+                        {this.state.recordType==1 ? <div styleName="publishBtn">
                             <span styleName="chosen" onClick={()=>this.getRecords(1)}>出售记录</span>
                             <span onClick={()=>this.getRecords(2)}>求购记录</span>
                         </div> : <div styleName="publishBtn">

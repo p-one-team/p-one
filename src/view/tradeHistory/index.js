@@ -10,10 +10,10 @@ const mapDispatchToProps = (dispatch, props) => {
             props.history.push('/list')
         },
 
-        cancelOrnamentSale(id){
+        cancelOrnamentSale(id,callback){
             cancelOrnamentSale({
                 PublishRecordID: id
-            })
+            },callback)
         },
 
         getMyPublishRecords(type,callback){
