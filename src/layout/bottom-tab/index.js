@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 import { changePage } from '../../reducers/main'
 import TabBarExample from './component.js'
-import {getGameInfos} from '../../reducers/match.js'
+import { getGameInfos } from '../../reducers/match.js'
+import { withRouter } from 'react-router-dom'
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
     return {
         changePage(pageText) {
             dispatch(changePage(pageText))
@@ -11,7 +12,11 @@ const mapDispatchToProps = (dispatch) => {
 
         changeGameInfo(code) {
             getGameInfos(code)
-        }
+        },
+
+        goExchangeTbeans() {
+            props.history.push('/exchangeTbeans')
+        },
 
     }
 }
@@ -32,9 +37,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const BottomTab = connect(
+const BottomTab = withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(TabBarExample)
+)(TabBarExample))
 
 export default BottomTab;

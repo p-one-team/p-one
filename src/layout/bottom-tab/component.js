@@ -108,10 +108,12 @@ class TabBarExample extends React.Component {
                         }
                         selected={this.props.currentPage === 'recommend'}
                         onPress={() => {
-                            StatusBar.hide();
+                            navigator.StatusBar && navigator.StatusBar.hide();
+                            window.StatusBar && window.StatusBar.hide();
                             this.props.changePage('recommend');
                             setTimeout(() => {
                                 this.props.changePage('lottery');
+                                this.props.goExchangeTbeans();
                                 window.location.href = this.props.userInfos.ChessUrl;
                             }, 0);
 
