@@ -158,6 +158,8 @@ class resetPsdComponent extends Component {
             SmsCode: this.state.messageCode,
             Password: this.state.loginPsd,
             ConfirmPassword: this.state.confirmPsd
+        },()=>{
+            this.props.history.goBack()
         })
     }
 
