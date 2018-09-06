@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch, props) => {
         logout() {
             logoutAction(function() {
                 //返回到主菜单页，由主菜单进行登录判断
+                window.register = "login"
                 props.history.goBack()
             })
         }

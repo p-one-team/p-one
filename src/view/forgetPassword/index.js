@@ -5,10 +5,8 @@ import { getMsgCode, resetPsdAction } from '../../reducers/user'
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
-        resetPsd(data) {
-            resetPsdAction(data, function() {
-                this.goToBack()
-            })
+        resetPsd(data,callback) {
+            resetPsdAction(data,callback)
         },
 
         goToBack() {

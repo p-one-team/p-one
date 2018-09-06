@@ -58,6 +58,7 @@ const loginAction = (data, callback) => {
                 // Toast.success('登录成功！');
                 window.token = res.Data.Token
                 setCookie(res.Data.Token)
+                
                 store.dispatch({
                     type: "USER_INFO",
                     userInfos: res.Data
@@ -193,8 +194,10 @@ const resetPsdAction = (data, callback) => {
         })
         .then(function(res) {
             if (res) {
+                Toast.success('重置密码成功！');
                 window.token = res.Data.Token
                 setCookie(res.Data.Token)
+
                 store.dispatch({
                     type: "USER_INFO",
                     userInfos: res.Data
