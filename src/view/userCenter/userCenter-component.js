@@ -9,6 +9,7 @@ import { steamLogin } from '../../common'
 class UserCenterComponent extends Component {
 	constructor(props) {
 		super(props)
+		
 
 		this.state = {
 			isSign: this.props.userInfos.IsCheckIn,
