@@ -111,6 +111,7 @@ class MatchComponent extends Component {
         //  cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
         let InAppBrowserCallback = ()=>{
             //alert('更新userInfo');
+            this.props.refreshUserInfo('',()=>{return false})
         }
         ref.addEventListener('exit', InAppBrowserCallback);
 
