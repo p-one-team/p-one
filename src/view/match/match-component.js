@@ -110,7 +110,7 @@ class MatchComponent extends Component {
         let ref = window.cordova.InAppBrowser.open(`${steamLogin}?userId=${this.props.userInfos.UserId}&mobile=${this.props.userInfos.Mobile}`, '_blank', 'location=no')
         //  cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
         let InAppBrowserCallback = ()=>{
-            alert('更新userInfo');
+            //alert('更新userInfo');
         }
         ref.addEventListener('exit', InAppBrowserCallback);
 

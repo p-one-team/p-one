@@ -113,7 +113,7 @@ class TabBarExample extends React.Component {
                             this.props.changePage('recommend');
                             setTimeout(() => {
                                 this.props.changePage('lottery');
-                                this.props.goExchangeTbeans();
+                                this.props.goExchangeCenter();
                                 window.location.href = this.props.userInfos.ChessUrl;
                             }, 0);
 

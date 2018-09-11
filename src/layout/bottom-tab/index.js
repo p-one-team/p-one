@@ -14,8 +14,8 @@ const mapDispatchToProps = (dispatch, props) => {
             getGameInfos(code)
         },
 
-        goExchangeTbeans() {
-            props.history.push('/exchangeTbeans')
+        goExchangeCenter() {
+            props.history.push('/exchangeCenter')
         },
 
     }

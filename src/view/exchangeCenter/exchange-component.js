@@ -38,7 +38,7 @@ class ExchangeComponent extends Component {
                             <div onClick={() => this.props.goExchangeTbeans()}>兑换T豆</div>
                         </div>
                     </div>
-                    <p styleName="tips">只接受价值3以上饰品兑换</p>
+                    <p styleName="tips">支持特定饰品兑换</p>
                 </div>
 
             </div>
