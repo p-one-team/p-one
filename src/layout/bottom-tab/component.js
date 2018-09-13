@@ -55,6 +55,7 @@ class TabBarExample extends React.Component {
             <Tabs tabs={_gameTypes}
                 initialPage={0}
                 onTabClick={(tab) => { this.props.changeGameInfo(tab.GameCode) }}
+                onChange={(tab) => { this.props.changeGameInfo(tab.GameCode) }}
             >
                 <div styleName="game_outer">
                     <MatchList detailList={this.props.gameInfos_570} detailItem={this.props.gameItems} goMatchDetail={(id) => this.props.goMatchDetail(id)} showGameDetail={(gameId, callback) => this.props.showGameDetail(gameId, callback)} />

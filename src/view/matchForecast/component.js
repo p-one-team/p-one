@@ -178,6 +178,7 @@ class MatchForecastComponent extends Component {
                 <Tabs tabs={this.state.tabs}
                     initalPage={0}
                     onTabClick={(tab) => this.changeTab(tab.index)}
+                    onChange={(tab) => this.changeTab(tab.index)}
                 >
                     <div>
                         {this.ornamentForecast(this.props.dotaInventory)}

@@ -175,6 +175,7 @@ class RankComponentWrapper extends Component {
                     <Tabs tabs={this.state.tabs}
                         initialPage={0}
                         onTabClick={(tab) => this.changeTab(tab.sub)}
+                        onChange={(tab) => this.changeTab(tab.sub)}
                     >
 
                         <div styleName="beacon-list">

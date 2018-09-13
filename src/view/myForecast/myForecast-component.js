@@ -208,6 +208,7 @@ class myForecastComponent extends Component {
                     <Tabs tabs={this.state.tabs}
                         initialPage={0}
                         onTabClick={(tab) => this.changeTab(tab.sub)}
+                        onChange={(tab) => this.changeTab(tab.sub)}
                     >
                         <div>
                             {this.TabExample(this.state.guessInfo, this.state.dayList, this.state.isDayMore)}

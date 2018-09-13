@@ -531,6 +531,7 @@ class InventoryComponent extends Component {
                     tabBarPosition="top"
                     renderTab={tab => <span>{tab.title}</span>}
                     onTabClick={(tab) => { this.onTabClick(tab.type) }}
+                    onChange={(tab) => { this.onTabClick(tab.type) }}
                 >
 
                     <div styleName="dota_outer">

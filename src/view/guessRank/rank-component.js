@@ -81,6 +81,7 @@ class GuessRankComponentWrapper extends Component {
                     <Tabs tabs={this.state.tabs}
                         initialPage={0}
                         onTabClick={(tab) => { this.props.getGuessRanking({ RankingType: tab.sub }) }}
+                        onChange={(tab) => { this.props.getGuessRanking({ RankingType: tab.sub }) }}
                     >
 
                         <div styleName="beacon-list">

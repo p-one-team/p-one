@@ -299,6 +299,7 @@ class matchDetail extends Component {
                 <Tabs tabs={this.state.tabs}
                     initalPage={0}
                     onTabClick={(tab) => this.changeTab(tab.sub)}
+                    onChange={(tab) => this.changeTab(tab.sub)}
                 >
                     <div>
                         {this.guessList(this.state.ornamentsGuessList, this.state.isOrnamentsMore)}
@@ -334,7 +335,7 @@ class matchDetail extends Component {
                     <div styleName="des">
                         <p>{gameItemInfos.GameItemTitle}</p>
                         {/* <p>猜输赢</p> */}
-                        <p>{gameItemInfos.IsForecast ? gameItemInfos.GameItemDate : "进行中"}</p>
+                        <p>{gameItemInfos.GameItemDate}</p>
                     </div>
                     <div styleName="teamR">
                         <img src={gameItemInfos.GameTeam.RightTeamImage} alt="" />
