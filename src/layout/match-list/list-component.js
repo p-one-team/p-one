@@ -58,17 +58,27 @@ class MatchList extends React.Component {
     //主列表
     buildGameList = (list) => {
         let gameList = list.map((item) => {
-            let status = ""
+            let status,bgColor,wordColor;
             if(item.GameStatus==0) {
                 status = "不可预测"
+                bgColor = style.greyBg;
+                wordColor = style.greyWord;
             }else if(item.GameStatus==1) {
                 status = "可预测"
+                bgColor = style.greenBg;
+                wordColor = style.blackWord;
             }else if(item.GameStatus==2) {
                 status = "即将开始"
+                bgColor = style.greenBg;
+                wordColor = style.blackWord;
             }else if(item.GameStatus==3) {
                 status = "比赛中"
+                bgColor = style.redBg;
+                wordColor = style.blackWord;
             }else if(item.GameStatus==4) {
                 status = "比赛结束"
+                bgColor = style.greyBg;
+                wordColor = style.greyWord;
             }
 
             return (<li key={item.GameID} className={style.matchItem} onClick={() =>this.showDetail(item.isShowDetail,item.GameID)}>
@@ -81,16 +91,11 @@ class MatchList extends React.Component {
                     
                     <div className={style.leftScore}>{item.GameStatus==4 ? item.GameTeam.LeftTeamScore : ""}</div>
 
-                    {item.GameStatus==1 ? (<div className={style.descript}>
+                    <div className={style.descript}>
                         <p>{item.GameTitle}</p>
-                        <p className={style.blackBg}>{status}</p>
-                        <p className={style.blackWord}>{item.GameDate}</p>
-                    </div>)
-                        : (<div className={style.descript}>
-                            <p>{item.GameTitle}</p>
-                            <p className={style.greyBg}>{status}</p>
-                            <p className={style.greyWord}>{item.GameDate}</p>
-                        </div>)}
+                        <p className={bgColor}>{status}</p>
+                        <p className={wordColor}>{item.GameDate}</p>
+                    </div>
 
                     <div className={style.rightScore}>{item.GameStatus==4 ? item.GameTeam.RightTeamScore : ""}</div>
 
