@@ -366,10 +366,10 @@ class matchDetail extends Component {
                         <label></label>
                         <span style={{ width: parseFloat(gameItemInfos.GameTeam.RightTeamRate) + "%" }}></span>
                     </div>
-                    {gameItemInfos.IsForecast ? (<div styleName="forecastCanClick" onClick={() => this.props.goForecast()}>{this.state.isAddForecast ? "加注" : "预测"}</div>) : (<div styleName="forecast">{this.state.isAddForecast ? "加注" : "预测"}</div>)}
+                    {gameItemInfos.GameStatus==1 ? (<div styleName="forecastCanClick" onClick={() => this.props.goForecast()}>{this.state.isAddForecast ? "加注" : "预测"}</div>) : (<div styleName="forecast">{this.state.isAddForecast ? "加注" : "预测"}</div>)}
                 </div>
 
-                {gameItemInfos.IsForecast ? (this.state.isUserGuessShow ? this.userGuess() : null) : null}
+                {gameItemInfos.GameStatus==1 ? (this.state.isUserGuessShow ? this.userGuess() : null) : null}
 
                 <div styleName="rankList">
                     {this.TabExample()}

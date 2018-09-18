@@ -58,6 +58,19 @@ class MatchList extends React.Component {
     //主列表
     buildGameList = (list) => {
         let gameList = list.map((item) => {
+            let status = ""
+            if(item.GameStatus==0) {
+                status = "不可预测"
+            }else if(item.GameStatus==1) {
+                status = "可预测"
+            }else if(item.GameStatus==2) {
+                status = "即将开始"
+            }else if(item.GameStatus==3) {
+                status = "比赛中"
+            }else if(item.GameStatus==4) {
+                status = "比赛结束"
+            }
+
             return (<li key={item.GameID} className={style.matchItem} onClick={() =>this.showDetail(item.isShowDetail,item.GameID)}>
                 <div className={style.content}>
 
@@ -66,20 +79,20 @@ class MatchList extends React.Component {
                         <div>{item.GameTeam.LeftTeamName}</div>
                     </div>
                     
-                    <div className={style.leftScore}>{item.IsGameOver ? item.GameTeam.LeftTeamScore : ""}</div>
+                    <div className={style.leftScore}>{item.GameStatus==4 ? item.GameTeam.LeftTeamScore : ""}</div>
 
-                    {item.IsForecast ? (<div className={style.descript}>
+                    {item.GameStatus==1 ? (<div className={style.descript}>
                         <p>{item.GameTitle}</p>
-                        <p className={style.blackBg}>可预测</p>
+                        <p className={style.blackBg}>{status}</p>
                         <p className={style.blackWord}>{item.GameDate}</p>
                     </div>)
                         : (<div className={style.descript}>
                             <p>{item.GameTitle}</p>
-                            <p className={style.greyBg}>已结束</p>
+                            <p className={style.greyBg}>{status}</p>
                             <p className={style.greyWord}>{item.GameDate}</p>
                         </div>)}
 
-                    <div className={style.rightScore}>{item.IsGameOver ? item.GameTeam.RightTeamScore : ""}</div>
+                    <div className={style.rightScore}>{item.GameStatus==4 ? item.GameTeam.RightTeamScore : ""}</div>
 
                     <div className={style.itemR + " " + style.itemImg}>
                         <img src={item.GameTeam.RightTeamImage} alt="" />
@@ -93,31 +106,39 @@ class MatchList extends React.Component {
     }
 
     //点击详情列表
-    buildDetailList = (list) => (list.map((item) => (
-        <div key={item.GameItemID} className={style.oddItem} onClick={() => this.props.goMatchDetail(item.GameItemID)}>
+    buildDetailList = (list) => (list.map((item) => {
+        let isOver = item.GameStatus==4||item.GameStatus==5||item.GameStatus==6 ? true : false;
+        let titleColor,wordColor;
+        if(item.GameStatus==1||item.GameStatus==2){
+            titleColor = style.greenTitle;
+            wordColor = style.blackWord;
+        }else if(item.GameStatus==3){
+            titleColor = style.redTitle;
+            wordColor = style.blackWord;
+        }else if(item.GameStatus==4||item.GameStatus==5||item.GameStatus==6||item.GameStatus==10){
+            titleColor = style.greyTitle;
+            wordColor = style.greyWord;
+        }
+
+        return (<div key={item.GameItemID} className={style.oddItem} onClick={() => this.props.goMatchDetail(item.GameItemID)}>
             <div className={style.oddValue}>
                 <p>{item.LeftOdds}</p>
                 <p>赔率</p>
-                {!item.IsForecast&&item.GameResult==1 ? <div className={style.winLogo1}>胜</div> : null}
+                {isOver&&item.GameResult==1 ? <div className={style.winLogo1}>胜</div> : null}
             </div>
 
-            {item.IsForecast
-                ? (<div className={style.oddDesc}>
-                    <div className={style.blackTitle}>{item.GameItemTitle}</div>
-                    <p className={style.blackWord}>{item.GameItemDate}</p>
-                </div>)
-                : (<div className={style.oddDesc}>
-                    <div className={style.greyTitle}>{item.GameItemTitle}</div>
-                    <p className={style.greyWord}>{item.GameItemDate}</p>
-                </div>)}
+            <div className={style.oddDesc}>
+                <div className={titleColor}>{item.GameItemTitle}</div>
+                <p className={wordColor}>{item.GameItemDate}</p>
+            </div>
 
             <div className={style.oddValue}>
                 <p>{item.RightOdds}</p>
                 <p>赔率</p>
-                {!item.IsForecast&&item.GameResult==2 ? <div className={style.winLogo2}>胜</div> : null}
+                {isOver&&item.GameResult==2 ? <div className={style.winLogo2}>胜</div> : null}
             </div>
-        </div>
-    )))
+        </div>)
+    }))
 
     render() {
         return (
