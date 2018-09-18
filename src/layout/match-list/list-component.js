@@ -55,6 +55,31 @@ class MatchList extends React.Component {
         }
     }
 
+    mySubString = (str, len) => {
+        var newLength = 0;
+        var newStr = "";
+        var singleChar = "";
+        var strLength = str.replace(/[\u4e00-\u9fa5]/g, "**").length;
+        for (var i = 0; i < strLength; i++) {
+            singleChar = str.charAt(i).toString();
+            if (singleChar.match(/[\u4e00-\u9fa5]/g) != null) {
+                newLength += 2;
+            } else {
+                newLength++;
+            }
+            if (newLength > len) {
+                break;
+            }
+            newStr += singleChar;
+        }
+
+        if (strLength > len) {
+            return newStr + "...";
+        } else {
+            return newStr;
+        }
+    }
+
     //主列表
     buildGameList = (list) => {
         let gameList = list.map((item) => {
@@ -92,7 +117,7 @@ class MatchList extends React.Component {
                     <div className={style.leftScore}>{item.GameStatus==4 ? item.GameTeam.LeftTeamScore : ""}</div>
 
                     <div className={style.descript}>
-                        <p>{item.GameTitle}</p>
+                        <p>{this.mySubString(item.GameTitle,16)}</p>
                         <p className={bgColor}>{status}</p>
                         <p className={wordColor}>{item.GameDate}</p>
                     </div>
