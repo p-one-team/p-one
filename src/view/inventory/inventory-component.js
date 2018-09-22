@@ -332,16 +332,16 @@ class InventoryComponent extends Component {
                         <p>去商城购买</p>
                     </div>) : null}
                     {this.state.stockType == 1 
-                    ? info.Ornaments.map((item, index) => (
+                    ? info.Ornaments.map((item) => (
                         <InventoryItem
-                            key={index}
+                            key={item.AssetId}
                             itemInfo={item}
                             usageType="vip"
                             changeBtn={this.changeBtnPart}
                         />))
-                    : info.Ornaments.map((item, index) => (
+                    : info.Ornaments.map((item) => (
                         <InventoryItem
-                            key={index}
+                            key={item.AssetId}
                             itemInfo={item}
                             usageType="lock"
                             changeBtn={this.changeBtnPart}

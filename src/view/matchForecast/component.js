@@ -21,26 +21,27 @@ class MatchForecastComponent extends Component {
             dotaChosenForecastInventory: []
         })
 
-        this.props.getInventory({
-            GameType: "570",
-            DateSort: 0,
-            PriceSort: 0,
-            QualitySort: 0,
-            RaritySort: 0,
-            StockType: 1
-        })
+        // 获取用户库存饰品
+        // this.props.getInventory({
+        //     GameType: "570",
+        //     DateSort: 0,
+        //     PriceSort: 0,
+        //     QualitySort: 0,
+        //     RaritySort: 0,
+        //     StockType: 1
+        // })
 
         this.props.refreshUserInfo()
 
         this.state = {
             tabs: [
-                { title: 'DOTA2预测', index: 0 },
+                // { title: 'DOTA2预测', index: 0 },
                 { title: 'T豆预测', index: 1 },
             ],
             canChoose: false,//是否可以选择队伍
             chosedTeam: (this.props.userGuessList && this.props.userGuessList.length > 0) ? this.props.userGuessList[0].GuessTeam : "",//哪个队伍当前可选择
             tbeanCount: 0, //输入的t豆个数
-            tabChosen: 0, //选中哪个tab
+            tabChosen: 1, //选中哪个tab,0为饰品预测 1为T豆预测
         }
     }
 
@@ -76,9 +77,9 @@ class MatchForecastComponent extends Component {
                             <p className="iconfont icon-cart"></p>
                             <p>去商城购买</p>
                         </div>
-                        {info.Ornaments.map((item, index) => (
+                        {info.Ornaments.map((item) => (
                             <InventoryItem
-                                key={index}
+                                key={item.AssetId}
                                 itemInfo={item}
                                 usageType="forecast"
                                 changeBtn={this.changeBtnPart}
@@ -180,9 +181,9 @@ class MatchForecastComponent extends Component {
                     onTabClick={(tab) => this.changeTab(tab.index)}
                     onChange={(tab) => this.changeTab(tab.index)}
                 >
-                    <div>
+                    {/* <div>
                         {this.ornamentForecast(this.props.dotaInventory)}
-                    </div>
+                    </div> */}
                     <div>
                         {this.tBeanForecast()}
                     </div>

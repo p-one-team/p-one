@@ -15,11 +15,11 @@ class matchDetail extends Component {
 
         this.state = {
             tabs: [
-                { title: '饰品竞猜', sub: 1 },
+                // { title: '饰品竞猜', sub: 1 },
                 { title: 'T豆竞猜', sub: 2 },
                 { title: '土豪榜', sub: 3 },
             ],
-            chosenTab: 1,
+            chosenTab: 2,  //默认的tab位置，参照tabs数组
             pageIndex: 1,
             ornamentsGuessList: [],
             isOrnamentsMore: false,
@@ -59,17 +59,7 @@ class matchDetail extends Component {
     componentWillMount() {
         this.props.getGameItemInfo(this.props.gameItemId);
 
-        this.props.getOrnamentsGuessList({
-            HandicapID: this.props.gameItemId,
-            PageIndex: 1
-        }, () => {
-            this.setState({
-                pageIndex: 1,
-                chosenTab: 1,
-                ornamentsGuessList: this.props.gameItemOrnamentsGuessInfo.OrnamentsGuessOfGameItems,
-                isOrnamentsMore: this.props.gameItemOrnamentsGuessInfo.IsMore,
-            })
-        })
+        this.changeTab(this.state.chosenTab);
 
         this.props.getUserGuessList({
             HandicapID: this.props.gameItemId
@@ -301,9 +291,9 @@ class matchDetail extends Component {
                     onTabClick={(tab) => this.changeTab(tab.sub)}
                     onChange={(tab) => this.changeTab(tab.sub)}
                 >
-                    <div>
+                    {/* <div>
                         {this.guessList(this.state.ornamentsGuessList, this.state.isOrnamentsMore)}
-                    </div>
+                    </div> */}
                     <div>
                         {this.tBeansList(this.state.tbeansGuessList, this.state.isTbeansMore)}
                     </div>
@@ -366,7 +356,7 @@ class matchDetail extends Component {
                         <label></label>
                         <span style={{ width: parseFloat(gameItemInfos.GameTeam.RightTeamRate) + "%" }}></span>
                     </div>
-                    {gameItemInfos.GameStatus==1 ? (<div styleName="forecastCanClick" onClick={() => this.props.goForecast()}>{this.state.isAddForecast ? "加注" : "预测"}</div>) : (<div styleName="forecast">{this.state.isAddForecast ? "加注" : "预测"}</div>)}
+                    {gameItemInfos.GameStatus==1 ? (<div styleName="forecastCanClick" onClick={() => this.props.goForecast()}>{this.state.isAddForecast ? "加注" : "预测"}</div>) : (<div styleName="forecast" onClick={() => this.props.goForecast()}>{this.state.isAddForecast ? "加注" : "预测"}</div>)}
                 </div>
 
                 {gameItemInfos.GameStatus==1 ? (this.state.isUserGuessShow ? this.userGuess() : null) : null}
