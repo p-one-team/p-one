@@ -78,15 +78,15 @@ class LoginComponent extends Component {
     //密码相关
     onErrorClickPsd = () => {
         if (this.state.hasPsdError) {
-            Toast.info('密码必须由6~15个字母和数字组成,请重新填写！');
+            Toast.info('密码必须由6~18个字母和数字组成,请重新填写！');
         }
     }
 
     onChangePsd = (value) => {
-        let regExp = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,15}$/;
+        let regExp = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/;
         value = value.replace(/\s/g, '');
 
-        if (value.length < 6 || value.length > 15) {
+        if (value.length < 6 || value.length > 18) {
             this.setState({
                 hasPsdError: true,
             });
