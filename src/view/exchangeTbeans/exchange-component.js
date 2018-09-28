@@ -63,9 +63,9 @@ class ExchangeTbeansComponent extends Component {
                             <p className="iconfont icon-cart"></p>
                             <p>去商城购买</p>
                         </div>
-                        {info.Ornaments.map((item, index) => (
+                        {info.Ornaments.map((item) => (
                             <InventoryItem
-                                key={index}
+                                key={item.AssetId}
                                 itemInfo={item}
                                 usageType="exchange"
                                 changeBtn={this.changeBtnPart}

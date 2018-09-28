@@ -33,9 +33,9 @@ class SteamInventoryComponent extends Component {
         <div styleName="content">
             <p styleName="tips">如果交易失败，请检测您的steam交易链接是否正确，以及您的steam账户是否存在7天交易限制</p>
             <div styleName="inventory_part">
-                {list.map((item,index)=>(
+                {list.map((item)=>(
                     <InventoryItem
-                        key={index}
+                        key={item.AssetId}
                         itemInfo={item}
                         usageType="steam"
                     />
