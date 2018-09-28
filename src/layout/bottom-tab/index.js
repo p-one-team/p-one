@@ -33,7 +33,8 @@ const mapStateToProps = (state) => {
         gameItems: state.MatchReducer.gameItems,
 
         currentPage: state.MainInfoReducer.currentPage,
-        hidden: false
+        hidden: false,
+        showGame: state.UserReducer.showGame
     }
 }
 

@@ -14,7 +14,8 @@ const initUserInfo = {
     noticesList: {},
     noticesDetail: {},
     myPublishRecordsList: [],
-    recordPublishType: 1
+    recordPublishType: 1,
+    showGame: false
 }
 
 const UserReducer = (state = initUserInfo, action) => {
@@ -34,6 +35,9 @@ const UserReducer = (state = initUserInfo, action) => {
 
         case 'MY_PUBLISH_RECORDS_LIST':
             return Object.assign({}, state, { recordPublishType: action.recordPublishType, myPublishRecordsList: action.myPublishRecordsList })
+
+        case 'SHOW_GAME':
+            return Object.assign({}, state, { showGame: action.showGame })
 
         default:
             return state
@@ -349,6 +353,25 @@ const updateSteamUrl = (data, callback) => {
         });
 }
 
+//是否可进入游戏
+const isShowGame = (callback) => {
+    axios.post('/User/ShowGame', {})
+        .then(function(res) {
+            if (res) {
+                store.dispatch({
+                    type: "SHOW_GAME",
+                    showGame: res.Data
+                })
+
+                callback ? callback() : ""
+            }
+        })
+        .catch(function(error) {
+            Toast.fail('请求失败，请稍后重试！');
+            console.log('error', error)
+        });
+}
+
 const setCookie = (value, expiredays) => {
     var exdate = new Date();
     exdate.setDate(exdate.getDate + expiredays);
@@ -369,5 +392,6 @@ export {
     feedback,
     getNotices,
     getMyPublishRecords,
-    cancelOrnamentSale
+    cancelOrnamentSale,
+    isShowGame
 }

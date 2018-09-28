@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import signUpComponentWrapper from './signUp-component.js'
-import { getMsgCode, registerAction } from '../../reducers/user'
+import { getMsgCode, registerAction, isShowGame } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -12,6 +12,7 @@ const mapDispatchToProps = (dispatch, props) => {
         register(data) {
             registerAction(data, function() {
                 props.history.replace('/')
+                isShowGame()
             })
         },
 

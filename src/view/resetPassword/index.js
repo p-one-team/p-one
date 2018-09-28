@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import resetPsdComponentWrapper from './resetPsd-component.js'
-import { getMsgCode, resetPsdAction } from '../../reducers/user'
+import { getMsgCode, resetPsdAction, isShowGame } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -9,7 +9,10 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         resetPsd(data,callback) {
-            resetPsdAction(data, callback)
+            resetPsdAction(data, ()=>{
+                callback ? callback() : null;
+                isShowGame()
+            })
         },
 
         getCode(data) {

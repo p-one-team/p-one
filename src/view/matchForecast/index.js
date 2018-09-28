@@ -3,12 +3,15 @@ import { connect } from 'react-redux'
 import { getMyInventory } from '../../reducers/inventory'
 import { useTBeanForecast, useOrnamentForecast } from '../../reducers/match'
 import store from '../../store'
-import { refreshUserInfo } from '../../reducers/user'
+import { refreshUserInfo, isShowGame } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        refreshUserInfo() {
-            refreshUserInfo()
+        refreshUserInfo(data,callback) {
+            refreshUserInfo(data,()=>{
+                callback ? callback() : null;
+                isShowGame()
+            })
         },
 
         goStore() {

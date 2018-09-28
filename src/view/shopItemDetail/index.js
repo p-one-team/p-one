@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import ShopItemDetailComponent from './item-component.js'
 import { getSalePublishRecords, getBuyPublishRecords, getTransactionRecords, mallTransaction } from '../../reducers/shop'
-import { refreshUserInfo } from '../../reducers/user'
+import { refreshUserInfo, isShowGame } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -26,7 +26,10 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         refreshUserInfo(data,callback) {
-            refreshUserInfo(data,callback)
+            refreshUserInfo(data,()=>{
+                callback ? callback() : null;
+                isShowGame()
+            })
         },
     }
 }

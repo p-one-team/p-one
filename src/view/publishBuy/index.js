@@ -1,13 +1,16 @@
 import { connect } from 'react-redux'
 import BuyComponent from './buy-component.js'
 import { getMallList, publishBuyOrSale, getOrnamentAttributes } from '../../reducers/shop'
-import { refreshUserInfo } from '../../reducers/user'
+import { refreshUserInfo, isShowGame } from '../../reducers/user'
 
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
         refreshUserInfo(data,callback) {
-            refreshUserInfo(data,callback)
+            refreshUserInfo(data,()=>{
+                callback ? callback() : null;
+                isShowGame()
+            })
         },
 
         publishBuy(data,callback){

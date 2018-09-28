@@ -2,13 +2,16 @@ import { connect } from 'react-redux'
 import MatchComponent from './match-component'
 import { getGameItems, getGameItemInfo } from '../../reducers/match'
 import store from '../../store'
-import { refreshUserInfo } from '../../reducers/user'
+import { refreshUserInfo, isShowGame } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
         refreshUserInfo(data, callback) {
-            refreshUserInfo(data, callback)
+            refreshUserInfo(data, ()=>{
+                callback ? callback() : null;
+                isShowGame()
+            })
         },
 
         goMatchDetail(id) {

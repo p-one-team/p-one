@@ -77,7 +77,7 @@ class TabBarExample extends React.Component {
     recommendPart = () => (<div style={{ backgroundColor: '#fff', height: '100%', textAlign: 'center' }}>
         <NavBar
             mode="dark"
-        >游戏</NavBar>
+        >{this.props.showGame?"游戏":"--"}</NavBar>
         <p style={{ marginTop: 50 }}></p>
     </div>);
 
@@ -91,7 +91,7 @@ class TabBarExample extends React.Component {
                     hidden={this.props.hidden}
                 >
                     <TabBar.Item
-                        title="游戏"
+                        title={this.props.showGame?"游戏":"--"}
                         key="recommend"
                         icon={<div style={{
                             width: '6.5vw',
@@ -109,15 +109,18 @@ class TabBarExample extends React.Component {
                         }
                         selected={this.props.currentPage === 'recommend'}
                         onPress={() => {
-                            navigator.StatusBar && navigator.StatusBar.hide();
-                            window.StatusBar && window.StatusBar.hide();
-                            this.props.changePage('recommend');
-                            setTimeout(() => {
-                                this.props.changePage('lottery');
-                                this.props.goExchangeCenter();
-                                window.location.href = this.props.userInfos.ChessUrl;
-                            }, 0);
-
+                            if(this.props.showGame){
+                                navigator.StatusBar && navigator.StatusBar.hide();
+                                window.StatusBar && window.StatusBar.hide();
+                                this.props.changePage('recommend');
+                                setTimeout(() => {
+                                    this.props.changePage('lottery');
+                                    this.props.goExchangeCenter();
+                                    window.location.href = this.props.userInfos.ChessUrl;
+                                }, 0);
+                            }else{
+                                this.props.changePage('recommend');
+                            }
                         }}
                         data-seed="logId"
                     >

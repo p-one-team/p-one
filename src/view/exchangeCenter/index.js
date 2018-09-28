@@ -1,12 +1,16 @@
 import { connect } from 'react-redux'
 import ExchangeComponent from './exchange-component'
-import { refreshUserInfo } from '../../reducers/user'
+import { refreshUserInfo, isShowGame } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        refreshUserInfo() {
-            refreshUserInfo()
+        refreshUserInfo(data,callback) {
+            refreshUserInfo(data,()=>{
+                callback ? callback() : null;
+                isShowGame();
+            })
         },
+
         goExchangeTbeans() {
             props.history.push('/exchangeTbeans')
         },
@@ -15,7 +19,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state) => {
     return {
-        userInfos: state.UserReducer.userInfos
+        userInfos: state.UserReducer.userInfos,
     }
 }
 

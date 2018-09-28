@@ -2,14 +2,17 @@ import { connect } from 'react-redux'
 import UserCenterComponent from './userCenter-component.js'
 import { withRouter } from 'react-router-dom'
 import { getMyTransaction } from '../../reducers/shop'
-import { signIn, refreshUserInfo } from '../../reducers/user'
+import { signIn, refreshUserInfo, isShowGame } from '../../reducers/user'
 
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
         refreshUserInfo(data, callback) {
-            refreshUserInfo(data, callback)
+            refreshUserInfo(data, ()=>{
+                callback ? callback() : null;
+                isShowGame()
+            })
         },
 
         goDetail() {

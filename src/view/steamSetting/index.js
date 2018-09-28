@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import SteamSetComponent from './steamSet-component'
-import { updateSteamUrl,refreshUserInfo } from '../../reducers/user'
+import { updateSteamUrl,refreshUserInfo, isShowGame } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -13,7 +13,10 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         refreshUserInfo(data,callback) {
-            refreshUserInfo(data,callback)
+            refreshUserInfo(data,()=>{
+                callback ? callback() : null;
+                isShowGame()
+            })
         },
     }
 }

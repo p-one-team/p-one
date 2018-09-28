@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import ExchangeTbeansComponent from './exchange-component'
 import { getMyInventory,ornamentExchangeTbeans } from '../../reducers/inventory'
-import { refreshUserInfo } from '../../reducers/user'
+import { refreshUserInfo, isShowGame } from '../../reducers/user'
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -19,7 +19,10 @@ const mapDispatchToProps = (dispatch, props) => {
         },
 
         refreshUserInfo(data,callback) {
-            refreshUserInfo(data,callback)
+            refreshUserInfo(data,()=>{
+                callback ? callback() : null;
+                isShowGame()
+            })
         },
 
         goInventoryPage() {
